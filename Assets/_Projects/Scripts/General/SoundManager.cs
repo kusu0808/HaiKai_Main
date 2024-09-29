@@ -1,4 +1,4 @@
-using System;
+ï»¿using System;
 using UnityEngine;
 using UnityEngine.Audio;
 
@@ -14,8 +14,8 @@ namespace General
     public static class SoundManager
     {
         /// <summary>
-        /// nullƒ`ƒFƒbƒNÏ‚İ
-        /// SoundType.Master‚Í•s‰Â
+        /// nullãƒã‚§ãƒƒã‚¯æ¸ˆã¿
+        /// SoundType.Masterã¯ä¸å¯
         /// </summary>
         public static void Raise(this AudioSource source, AudioClip clip, SoundType type)
         {
@@ -38,7 +38,7 @@ namespace General
 
                 source.PlayOneShot(clip);
             }
-            else throw new Exception("–³Œø‚Èí—Ş‚Å‚·");
+            else throw new Exception("ç„¡åŠ¹ãªç¨®é¡ã§ã™");
         }
 
         public static float BGMVolume
@@ -73,7 +73,7 @@ namespace General
             SoundType.Master => "MasterParam",
             SoundType.BGM => "BGMParam",
             SoundType.SE => "SEParam",
-            _ => throw new Exception("–³Œø‚Èí—Ş‚Å‚·")
+            _ => throw new Exception("ç„¡åŠ¹ãªç¨®é¡ã§ã™")
         };
     }
 }

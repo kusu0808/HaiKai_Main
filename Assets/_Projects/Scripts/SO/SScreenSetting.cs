@@ -1,4 +1,4 @@
-using General;
+ï»¿using General;
 using UnityEngine;
 
 namespace SO
@@ -6,7 +6,7 @@ namespace SO
     [CreateAssetMenu(fileName = "ScreenSetting", menuName = "SO/ScreenSetting")]
     public class SScreenSetting : ScriptableObject
     {
-        [SerializeField, Header("ƒXƒNƒŠ[ƒ“Ý’è")]
+        [SerializeField, Header("ã‚¹ã‚¯ãƒªãƒ¼ãƒ³è¨­å®š")]
         private SerializedScreenSetting _serializedScreenSetting;
         internal SerializedScreenSetting SerializedScreenSetting => _serializedScreenSetting;
     }

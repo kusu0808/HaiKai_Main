@@ -1,4 +1,4 @@
-using Cysharp.Threading.Tasks;
+ï»¿using Cysharp.Threading.Tasks;
 using SO;
 using UnityEngine;
 using UnityEngine.AddressableAssets;
@@ -25,7 +25,7 @@ namespace General
             await handle.Task.AsUniTask();
             if (handle.Status == AsyncOperationStatus.Succeeded) handle.Result.SerializedScreenSetting.Apply();
             Addressables.Release(handle);
-            "ScreenSetting‚Ì‰Šú‰»Š®—¹".Tell("00ffff");
+            "ScreenSettingã®åˆæœŸåŒ–å®Œäº†".Tell("00ffff");
         }
 
         private static async UniTask InitializeAudioMixer()
@@ -33,8 +33,7 @@ namespace General
             var handle = Addressables.LoadAssetAsync<AudioMixer>("AM");
             await handle.Task.AsUniTask();
             if (handle.Status == AsyncOperationStatus.Succeeded) SoundManager.AM = handle.Result;
-            Addressables.Release(handle);
-            "AM‚Ì‰Šú‰»Š®—¹".Tell("00ffff");
+            "AMã®åˆæœŸåŒ–å®Œäº†(è§£æ”¾ã¯è¡Œã‚ãªã„)".Tell("00ffff");
         }
     }
 }

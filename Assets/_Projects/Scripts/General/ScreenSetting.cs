@@ -1,4 +1,4 @@
-using System;
+ï»¿using System;
 using UnityEngine;
 
 namespace General
@@ -20,7 +20,7 @@ namespace General
     [Serializable]
     public sealed class SerializedScreenSetting
     {
-        [SerializeField, Header("‰ð‘œ“x(ex. 1920, 1080)")]
+        [SerializeField, Header("è§£åƒåº¦(ex. 1920, 1080)")]
         private Vector2Int _resolution;
         public Vector2Int Resolution
         {
@@ -33,13 +33,13 @@ namespace General
             }
         }
 
-        [SerializeField, Header("ƒtƒ‹ƒXƒNƒŠ[ƒ“‚©H")]
+        [SerializeField, Header("ãƒ•ãƒ«ã‚¹ã‚¯ãƒªãƒ¼ãƒ³ã‹ï¼Ÿ")]
         private bool _isFullScreen;
         public bool IsFullScreen => _isFullScreen;
 
-        [SerializeField, Header("‚’¼“¯Šú‚ÍƒIƒ“‚©H")]
+        [SerializeField, Header("åž‚ç›´åŒæœŸã¯ã‚ªãƒ³ã‹ï¼Ÿ")]
         private bool _isVsyncOn;
-        [SerializeField, Range(30, 240), Header("‚’¼“¯Šú‚ªƒIƒt‚È‚çA\nƒ^[ƒQƒbƒgƒtƒŒ[ƒ€ƒŒ[ƒg‚Í‚¢‚­‚Â‚©H")]
+        [SerializeField, Range(30, 240), Header("åž‚ç›´åŒæœŸãŒã‚ªãƒ•ãªã‚‰ã€\nã‚¿ãƒ¼ã‚²ãƒƒãƒˆãƒ•ãƒ¬ãƒ¼ãƒ ãƒ¬ãƒ¼ãƒˆã¯ã„ãã¤ã‹ï¼Ÿ")]
         private int _targetFrameRate;
         public (bool isVsyncOn, int targetFrameRate) Display => (_isVsyncOn, _targetFrameRate);
     }
