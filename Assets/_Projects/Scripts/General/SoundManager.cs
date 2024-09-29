@@ -53,20 +53,20 @@ namespace General
             set => SetVolume(SoundType.SE, value);
         }
 
+        public static AudioMixer AM { get; set; } = null;
+
         private static float GetVolume(SoundType type)
         {
-            if (am == null) return 0;
-            am.GetFloat(type.ToParamNameString(), out float volume);
+            if (AM == null) return 0;
+            AM.GetFloat(type.ToParamNameString(), out float volume);
             return volume;
         }
 
         private static void SetVolume(SoundType type, float newVolume)
         {
-            if (am == null) return;
-            am.SetFloat(type.ToParamNameString(), newVolume);
+            if (AM == null) return;
+            AM.SetFloat(type.ToParamNameString(), newVolume);
         }
-
-        private static AudioMixer am => null;  // ‰¼ŽÀ‘•
 
         private static string ToParamNameString(this SoundType type) => type switch
         {
