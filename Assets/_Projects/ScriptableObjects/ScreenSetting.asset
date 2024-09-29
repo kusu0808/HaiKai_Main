@@ -12,8 +12,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 75a184240e8292d4f82b7b07eedc4721, type: 3}
   m_Name: ScreenSetting
   m_EditorClassIdentifier: 
-  serializedScreenSetting:
-    resolution: {x: 1920, y: 1080}
-    isFullScreen: 1
-    isVsyncOn: 1
-    targetFrameRate: 60
+  _serializedScreenSetting:
+    _resolution: {x: 1920, y: 1080}
+    _isFullScreen: 1
+    _isVsyncOn: 1
+    _targetFrameRate: 60

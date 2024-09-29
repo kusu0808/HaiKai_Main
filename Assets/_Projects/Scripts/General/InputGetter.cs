@@ -48,9 +48,9 @@ namespace IA
 
     public sealed class InputInfo : IDisposable
     {
-        private InputAction inputAction;
-        private readonly InputType type;
-        private ReadOnlyCollection<Action<InputAction.CallbackContext>> action;
+        private InputAction _inputAction;
+        private readonly InputType _type;
+        private ReadOnlyCollection<Action<InputAction.CallbackContext>> _action;
 
         public bool Bool { get; private set; } = false;
         public float Float { get; private set; } = 0;
@@ -59,10 +59,10 @@ namespace IA
 
         public InputInfo(InputAction inputAction, InputType type)
         {
-            this.inputAction = inputAction;
-            this.type = type;
+            this._inputAction = inputAction;
+            this._type = type;
 
-            this.action = this.type switch
+            this._action = this._type switch
             {
                 InputType.Null => null,
 
@@ -109,51 +109,51 @@ namespace IA
 
         public void Dispose()
         {
-            inputAction = null;
-            action = null;
+            _inputAction = null;
+            _action = null;
         }
 
         public void Link(bool isLink)
         {
-            if (inputAction == null) return;
-            if (action == null) return;
+            if (_inputAction == null) return;
+            if (_action == null) return;
 
             if (isLink)
             {
-                switch (type)
+                switch (_type)
                 {
                     case InputType.Null:
                         break;
 
                     case InputType.Click:
-                        inputAction.performed += action[0];
+                        _inputAction.performed += _action[0];
                         break;
 
                     case InputType.Hold:
-                        inputAction.performed += action[0];
+                        _inputAction.performed += _action[0];
                         break;
 
                     case InputType.Value0:
-                        inputAction.performed += action[0];
-                        inputAction.canceled += action[1];
+                        _inputAction.performed += _action[0];
+                        _inputAction.canceled += _action[1];
                         break;
 
                     case InputType.Value1:
-                        inputAction.started += action[0];
-                        inputAction.performed += action[0];
-                        inputAction.canceled += action[0];
+                        _inputAction.started += _action[0];
+                        _inputAction.performed += _action[0];
+                        _inputAction.canceled += _action[0];
                         break;
 
                     case InputType.Value2:
-                        inputAction.started += action[0];
-                        inputAction.performed += action[0];
-                        inputAction.canceled += action[0];
+                        _inputAction.started += _action[0];
+                        _inputAction.performed += _action[0];
+                        _inputAction.canceled += _action[0];
                         break;
 
                     case InputType.Value3:
-                        inputAction.started += action[0];
-                        inputAction.performed += action[0];
-                        inputAction.canceled += action[0];
+                        _inputAction.started += _action[0];
+                        _inputAction.performed += _action[0];
+                        _inputAction.canceled += _action[0];
                         break;
 
                     default:
@@ -162,40 +162,40 @@ namespace IA
             }
             else
             {
-                switch (type)
+                switch (_type)
                 {
                     case InputType.Null:
                         break;
 
                     case InputType.Click:
-                        inputAction.performed -= action[0];
+                        _inputAction.performed -= _action[0];
                         break;
 
                     case InputType.Hold:
-                        inputAction.performed -= action[0];
+                        _inputAction.performed -= _action[0];
                         break;
 
                     case InputType.Value0:
-                        inputAction.performed -= action[0];
-                        inputAction.canceled -= action[1];
+                        _inputAction.performed -= _action[0];
+                        _inputAction.canceled -= _action[1];
                         break;
 
                     case InputType.Value1:
-                        inputAction.started -= action[0];
-                        inputAction.performed -= action[0];
-                        inputAction.canceled -= action[0];
+                        _inputAction.started -= _action[0];
+                        _inputAction.performed -= _action[0];
+                        _inputAction.canceled -= _action[0];
                         break;
 
                     case InputType.Value2:
-                        inputAction.started -= action[0];
-                        inputAction.performed -= action[0];
-                        inputAction.canceled -= action[0];
+                        _inputAction.started -= _action[0];
+                        _inputAction.performed -= _action[0];
+                        _inputAction.canceled -= _action[0];
                         break;
 
                     case InputType.Value3:
-                        inputAction.started -= action[0];
-                        inputAction.performed -= action[0];
-                        inputAction.canceled -= action[0];
+                        _inputAction.started -= _action[0];
+                        _inputAction.performed -= _action[0];
+                        _inputAction.canceled -= _action[0];
                         break;
 
                     default:
@@ -206,8 +206,8 @@ namespace IA
 
         public void OnLateUpdate()
         {
-            if (type == InputType.Click && Bool) Bool = false;
-            else if (type == InputType.Hold && Bool) Bool = false;
+            if (_type == InputType.Click && Bool) Bool = false;
+            else if (_type == InputType.Hold && Bool) Bool = false;
         }
     }
 
@@ -226,8 +226,8 @@ namespace IA
     {
         #region
 
-        private IA ia;
-        private List<InputInfo> inputInfoList;
+        private IA _ia;
+        private List<InputInfo> _inputInfoList;
         public static InputGetter Instance { get; set; } = null;
 
         private void Awake()
@@ -235,30 +235,30 @@ namespace IA
             if (Instance == null) Instance = this;
             else Destroy(gameObject);
 
-            ia = new();
-            inputInfoList = new();
+            _ia = new();
+            _inputInfoList = new();
 
             Init();
 
-            foreach (InputInfo e in inputInfoList) e.Link(true);
+            foreach (InputInfo e in _inputInfoList) e.Link(true);
         }
         private void OnDestroy()
         {
-            foreach (InputInfo e in inputInfoList) e.Link(false);
+            foreach (InputInfo e in _inputInfoList) e.Link(false);
 
-            ia.Dispose();
-            foreach (InputInfo e in inputInfoList) e.Dispose();
+            _ia.Dispose();
+            foreach (InputInfo e in _inputInfoList) e.Dispose();
 
-            ia = null;
-            inputInfoList = null;
+            _ia = null;
+            _inputInfoList = null;
         }
 
-        private void OnEnable() => ia.Enable();
-        private void OnDisable() => ia.Disable();
+        private void OnEnable() => _ia.Enable();
+        private void OnDisable() => _ia.Disable();
 
         private void LateUpdate()
         {
-            foreach (InputInfo e in inputInfoList) e.OnLateUpdate();
+            foreach (InputInfo e in _inputInfoList) e.OnLateUpdate();
         }
 
         #endregion
@@ -272,12 +272,12 @@ namespace IA
 
         private void Init()
         {
-            PlayerMove = new InputInfo(ia.Player.Move, InputType.Value2).Add(inputInfoList);
-            PlayerLook = new InputInfo(ia.Player.Look, InputType.Value2).Add(inputInfoList);
-            PlayerInteract = new InputInfo(ia.Player.Interact, InputType.Click).Add(inputInfoList);
-            Submit = new InputInfo(ia.General.Submit, InputType.Click).Add(inputInfoList);
-            Cancel = new InputInfo(ia.General.Cancel, InputType.Click).Add(inputInfoList);
-            Select = new InputInfo(ia.General.Select, InputType.Value1).Add(inputInfoList);
+            PlayerMove = new InputInfo(_ia.Player.Move, InputType.Value2).Add(_inputInfoList);
+            PlayerLook = new InputInfo(_ia.Player.Look, InputType.Value2).Add(_inputInfoList);
+            PlayerInteract = new InputInfo(_ia.Player.Interact, InputType.Click).Add(_inputInfoList);
+            Submit = new InputInfo(_ia.General.Submit, InputType.Click).Add(_inputInfoList);
+            Cancel = new InputInfo(_ia.General.Cancel, InputType.Click).Add(_inputInfoList);
+            Select = new InputInfo(_ia.General.Select, InputType.Value1).Add(_inputInfoList);
         }
     }
 }
