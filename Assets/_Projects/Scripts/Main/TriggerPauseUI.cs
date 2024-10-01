@@ -1,11 +1,11 @@
-using Cysharp.Threading.Tasks;
+ï»¿using Cysharp.Threading.Tasks;
 using IA;
 using UnityEngine;
 
 namespace Main
 {
     /// <summary>
-    /// ƒQ[ƒ€‚Ìˆê’â~Aƒ|[ƒYUI‚Ì•\¦Ø‘Ö
+    /// ã‚²ãƒ¼ãƒ ã®ä¸€æ™‚åœæ­¢ã€ãƒãƒ¼ã‚ºUIã®è¡¨ç¤ºåˆ‡æ›¿
     /// </summary>
     public sealed class TriggerPauseUI : MonoBehaviour
     {
