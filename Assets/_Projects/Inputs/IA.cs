@@ -211,6 +211,15 @@ namespace IA
                     ""processors"": """",
                     ""interactions"": """",
                     ""initialStateCheck"": true
+                },
+                {
+                    ""name"": ""Pause"",
+                    ""type"": ""Button"",
+                    ""id"": ""43352296-5e3a-4560-b3a1-9d33e6ba7708"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
                 }
             ],
             ""bindings"": [
@@ -268,6 +277,17 @@ namespace IA
                     ""action"": ""Select"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": true
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""d3e65889-e9a9-4e78-9161-b8dae8c1deed"",
+                    ""path"": ""<Keyboard>/escape"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Pause"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
                 }
             ]
         }
@@ -284,6 +304,7 @@ namespace IA
             m_General_Submit = m_General.FindAction("Submit", throwIfNotFound: true);
             m_General_Cancel = m_General.FindAction("Cancel", throwIfNotFound: true);
             m_General_Select = m_General.FindAction("Select", throwIfNotFound: true);
+            m_General_Pause = m_General.FindAction("Pause", throwIfNotFound: true);
         }
 
         public void Dispose()
@@ -410,6 +431,7 @@ namespace IA
         private readonly InputAction m_General_Submit;
         private readonly InputAction m_General_Cancel;
         private readonly InputAction m_General_Select;
+        private readonly InputAction m_General_Pause;
         public struct GeneralActions
         {
             private @IA m_Wrapper;
@@ -417,6 +439,7 @@ namespace IA
             public InputAction @Submit => m_Wrapper.m_General_Submit;
             public InputAction @Cancel => m_Wrapper.m_General_Cancel;
             public InputAction @Select => m_Wrapper.m_General_Select;
+            public InputAction @Pause => m_Wrapper.m_General_Pause;
             public InputActionMap Get() { return m_Wrapper.m_General; }
             public void Enable() { Get().Enable(); }
             public void Disable() { Get().Disable(); }
@@ -435,6 +458,9 @@ namespace IA
                 @Select.started += instance.OnSelect;
                 @Select.performed += instance.OnSelect;
                 @Select.canceled += instance.OnSelect;
+                @Pause.started += instance.OnPause;
+                @Pause.performed += instance.OnPause;
+                @Pause.canceled += instance.OnPause;
             }
 
             private void UnregisterCallbacks(IGeneralActions instance)
@@ -448,6 +474,9 @@ namespace IA
                 @Select.started -= instance.OnSelect;
                 @Select.performed -= instance.OnSelect;
                 @Select.canceled -= instance.OnSelect;
+                @Pause.started -= instance.OnPause;
+                @Pause.performed -= instance.OnPause;
+                @Pause.canceled -= instance.OnPause;
             }
 
             public void RemoveCallbacks(IGeneralActions instance)
@@ -476,6 +505,7 @@ namespace IA
             void OnSubmit(InputAction.CallbackContext context);
             void OnCancel(InputAction.CallbackContext context);
             void OnSelect(InputAction.CallbackContext context);
+            void OnPause(InputAction.CallbackContext context);
         }
     }
 }

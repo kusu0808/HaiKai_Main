@@ -269,6 +269,7 @@ namespace IA
         public InputInfo Submit { get; private set; }
         public InputInfo Cancel { get; private set; }
         public InputInfo Select { get; private set; }
+        public InputInfo Pause { get; private set; }
 
         private void Init()
         {
@@ -278,6 +279,7 @@ namespace IA
             Submit = new InputInfo(_ia.General.Submit, InputType.Click).Add(_inputInfoList);
             Cancel = new InputInfo(_ia.General.Cancel, InputType.Click).Add(_inputInfoList);
             Select = new InputInfo(_ia.General.Select, InputType.Value1).Add(_inputInfoList);
+            Pause = new InputInfo(_ia.General.Pause, InputType.Click).Add(_inputInfoList);
         }
     }
 }
