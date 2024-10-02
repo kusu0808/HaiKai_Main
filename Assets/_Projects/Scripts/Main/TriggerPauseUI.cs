@@ -39,8 +39,6 @@ namespace Main
             }
         }
 
-        private void OnDisable() => _pauseUICanvas = null;
-
         /// <summary>
         /// 後方互換
         /// </summary>
