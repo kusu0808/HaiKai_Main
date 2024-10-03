@@ -17,7 +17,7 @@ namespace Main
         private LoopedInt _itemIndex;
 
         private GameObject _playerUI => _playerUICanvas.gameObject;
-        private float selectInput => InputGetter.Instance.PlayerSelect.Float;
+        private float _selectInput => InputGetter.Instance.PlayerSelect.Float;
 
         private static readonly Color32 LightWhite = new(255, 255, 255, 100);
         private static readonly Color32 DarkWhite = new(255, 255, 255, 255);
@@ -33,8 +33,8 @@ namespace Main
 
             while (true)
             {
-                await UniTask.WaitWhile(() => selectInput == 0.0f, cancellationToken: ct);
-                _itemIndex.Value += selectInput > 0 ? -1 : 1;
+                await UniTask.WaitWhile(() => _selectInput == 0.0f, cancellationToken: ct);
+                _itemIndex.Value += _selectInput > 0 ? -1 : 1;
                 UpdateItemImages(Array.AsReadOnly(_itemImages), _itemIndex.Value);
             }
 
