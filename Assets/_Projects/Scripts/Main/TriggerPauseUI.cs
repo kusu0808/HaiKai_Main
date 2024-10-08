@@ -1,6 +1,8 @@
 ﻿using Cysharp.Threading.Tasks;
-using IA;
+using General;
+using System.Threading;
 using UnityEngine;
+using UnityEngine.UI;
 
 namespace Main
 {
@@ -10,23 +12,38 @@ namespace Main
     public sealed class TriggerPauseUI : MonoBehaviour
     {
         [SerializeField] private Canvas _pauseUICanvas;
+        [SerializeField] private Button _settingButton;
+        [SerializeField] private Button _toTitleButton;
+        [SerializeField] private TriggerSettingUI _triggerSettingUI;
 
         private GameObject _pauseUI => _pauseUICanvas.gameObject;
-        private bool _isPause => InputGetter.Instance.Pause.Bool;
+        private bool _isPauseTrigger => IA.InputGetter.Instance.Pause.Bool && !_triggerSettingUI.IsActive;
 
-        private async void Start()
+        private void OnEnable()
         {
-            var ct = this.GetCancellationTokenOnDestroy();
             _pauseUI.SetActive(false);
 
+            _settingButton.onClick.AddListener(_triggerSettingUI.Open);
+            _toTitleButton.onClick.AddListener(LoadSceneAsync);
+
+            Trigger(this.GetCancellationTokenOnDestroy()).Forget();
+        }
+
+        private async UniTask Trigger(CancellationToken ct)
+        {
             while (true)
             {
-                await UniTask.WaitUntil(() => _isPause, cancellationToken: ct);
+                await UniTask.WaitUntil(() => _isPauseTrigger, cancellationToken: ct);
                 _pauseUI.SetActive(!_pauseUI.activeSelf);
                 Time.timeScale = _pauseUI.activeSelf ? 0 : 1;
             }
         }
 
         private void OnDisable() => _pauseUICanvas = null;
+
+        /// <summary>
+        /// 後方互換
+        /// </summary>
+        private void LoadSceneAsync() => UnityEngine.SceneManagement.SceneManager.LoadScene("Title");
     }
 }
