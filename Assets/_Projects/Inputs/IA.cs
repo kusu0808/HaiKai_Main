@@ -48,12 +48,30 @@ namespace IA
                     ""initialStateCheck"": true
                 },
                 {
-                    ""name"": ""Interact"",
+                    ""name"": ""Action"",
                     ""type"": ""Button"",
                     ""id"": ""6c633444-23a3-4b53-93ba-3014dc9105b7"",
                     ""expectedControlType"": ""Button"",
                     ""processors"": """",
                     ""interactions"": """",
+                    ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""Select"",
+                    ""type"": ""Value"",
+                    ""id"": ""226ae46c-d0e3-4a4b-9e04-8fea3c55c821"",
+                    ""expectedControlType"": ""Axis"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": true
+                },
+                {
+                    ""name"": ""SpecialAction"",
+                    ""type"": ""Button"",
+                    ""id"": ""1570db01-b7a8-4714-9dfd-00d2efbf23ba"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": ""Hold(duration=1)"",
                     ""initialStateCheck"": false
                 }
             ],
@@ -171,11 +189,55 @@ namespace IA
                 {
                     ""name"": """",
                     ""id"": ""9dea5d92-c00b-403c-a42b-94175f42bd0f"",
-                    ""path"": ""<Keyboard>/space"",
+                    ""path"": ""<Mouse>/leftButton"",
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": """",
-                    ""action"": ""Interact"",
+                    ""action"": ""Action"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": ""1D Axis"",
+                    ""id"": ""731ad829-1a11-4624-9128-866f3e3ab784"",
+                    ""path"": ""1DAxis"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Select"",
+                    ""isComposite"": true,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": ""negative"",
+                    ""id"": ""93467072-cd0a-4856-9577-87c6fa78f081"",
+                    ""path"": ""<Mouse>/scroll/down"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Select"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": true
+                },
+                {
+                    ""name"": ""positive"",
+                    ""id"": ""da9793e3-17c0-4ee5-9d2a-f73a0378b981"",
+                    ""path"": ""<Mouse>/scroll/up"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Select"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": true
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""28949c21-3b1b-4bb6-8a07-afc49ec9de20"",
+                    ""path"": ""<Keyboard>/w"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""SpecialAction"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
                 }
@@ -185,33 +247,6 @@ namespace IA
             ""name"": ""General"",
             ""id"": ""bce01126-98c7-4d1b-824e-d6fbd2726694"",
             ""actions"": [
-                {
-                    ""name"": ""Submit"",
-                    ""type"": ""Button"",
-                    ""id"": ""653f0692-bad5-4bc7-9635-c259b96fd73b"",
-                    ""expectedControlType"": ""Button"",
-                    ""processors"": """",
-                    ""interactions"": """",
-                    ""initialStateCheck"": false
-                },
-                {
-                    ""name"": ""Cancel"",
-                    ""type"": ""Button"",
-                    ""id"": ""2a2a1623-7e44-496e-8ddb-df09186e873f"",
-                    ""expectedControlType"": ""Button"",
-                    ""processors"": """",
-                    ""interactions"": """",
-                    ""initialStateCheck"": false
-                },
-                {
-                    ""name"": ""Select"",
-                    ""type"": ""Value"",
-                    ""id"": ""09504bd2-cd83-43b4-a4bc-a531c17b335c"",
-                    ""expectedControlType"": ""Axis"",
-                    ""processors"": """",
-                    ""interactions"": """",
-                    ""initialStateCheck"": true
-                },
                 {
                     ""name"": ""Pause"",
                     ""type"": ""Button"",
@@ -223,61 +258,6 @@ namespace IA
                 }
             ],
             ""bindings"": [
-                {
-                    ""name"": """",
-                    ""id"": ""47ce6971-d475-44c1-a8e2-e773b49fe85f"",
-                    ""path"": ""<Mouse>/leftButton"",
-                    ""interactions"": """",
-                    ""processors"": """",
-                    ""groups"": """",
-                    ""action"": ""Submit"",
-                    ""isComposite"": false,
-                    ""isPartOfComposite"": false
-                },
-                {
-                    ""name"": """",
-                    ""id"": ""c1d9fbfb-e7d3-4da6-bb80-53b27bba9c6e"",
-                    ""path"": ""<Mouse>/rightButton"",
-                    ""interactions"": """",
-                    ""processors"": """",
-                    ""groups"": """",
-                    ""action"": ""Cancel"",
-                    ""isComposite"": false,
-                    ""isPartOfComposite"": false
-                },
-                {
-                    ""name"": ""1D Axis"",
-                    ""id"": ""674f1d5b-87b8-4239-b3b0-318d4c1619d1"",
-                    ""path"": ""1DAxis"",
-                    ""interactions"": """",
-                    ""processors"": """",
-                    ""groups"": """",
-                    ""action"": ""Select"",
-                    ""isComposite"": true,
-                    ""isPartOfComposite"": false
-                },
-                {
-                    ""name"": ""negative"",
-                    ""id"": ""5691e0b3-ef70-4fca-97d6-26c8634d8fde"",
-                    ""path"": ""<Mouse>/scroll/down"",
-                    ""interactions"": """",
-                    ""processors"": """",
-                    ""groups"": """",
-                    ""action"": ""Select"",
-                    ""isComposite"": false,
-                    ""isPartOfComposite"": true
-                },
-                {
-                    ""name"": ""positive"",
-                    ""id"": ""73e118c7-1cd3-4921-b189-3092b96c17a1"",
-                    ""path"": ""<Mouse>/scroll/up"",
-                    ""interactions"": """",
-                    ""processors"": """",
-                    ""groups"": """",
-                    ""action"": ""Select"",
-                    ""isComposite"": false,
-                    ""isPartOfComposite"": true
-                },
                 {
                     ""name"": """",
                     ""id"": ""d3e65889-e9a9-4e78-9161-b8dae8c1deed"",
@@ -298,12 +278,11 @@ namespace IA
             m_Player = asset.FindActionMap("Player", throwIfNotFound: true);
             m_Player_Move = m_Player.FindAction("Move", throwIfNotFound: true);
             m_Player_Look = m_Player.FindAction("Look", throwIfNotFound: true);
-            m_Player_Interact = m_Player.FindAction("Interact", throwIfNotFound: true);
+            m_Player_Action = m_Player.FindAction("Action", throwIfNotFound: true);
+            m_Player_Select = m_Player.FindAction("Select", throwIfNotFound: true);
+            m_Player_SpecialAction = m_Player.FindAction("SpecialAction", throwIfNotFound: true);
             // General
             m_General = asset.FindActionMap("General", throwIfNotFound: true);
-            m_General_Submit = m_General.FindAction("Submit", throwIfNotFound: true);
-            m_General_Cancel = m_General.FindAction("Cancel", throwIfNotFound: true);
-            m_General_Select = m_General.FindAction("Select", throwIfNotFound: true);
             m_General_Pause = m_General.FindAction("Pause", throwIfNotFound: true);
         }
 
@@ -368,14 +347,18 @@ namespace IA
         private List<IPlayerActions> m_PlayerActionsCallbackInterfaces = new List<IPlayerActions>();
         private readonly InputAction m_Player_Move;
         private readonly InputAction m_Player_Look;
-        private readonly InputAction m_Player_Interact;
+        private readonly InputAction m_Player_Action;
+        private readonly InputAction m_Player_Select;
+        private readonly InputAction m_Player_SpecialAction;
         public struct PlayerActions
         {
             private @IA m_Wrapper;
             public PlayerActions(@IA wrapper) { m_Wrapper = wrapper; }
             public InputAction @Move => m_Wrapper.m_Player_Move;
             public InputAction @Look => m_Wrapper.m_Player_Look;
-            public InputAction @Interact => m_Wrapper.m_Player_Interact;
+            public InputAction @Action => m_Wrapper.m_Player_Action;
+            public InputAction @Select => m_Wrapper.m_Player_Select;
+            public InputAction @SpecialAction => m_Wrapper.m_Player_SpecialAction;
             public InputActionMap Get() { return m_Wrapper.m_Player; }
             public void Enable() { Get().Enable(); }
             public void Disable() { Get().Disable(); }
@@ -391,9 +374,15 @@ namespace IA
                 @Look.started += instance.OnLook;
                 @Look.performed += instance.OnLook;
                 @Look.canceled += instance.OnLook;
-                @Interact.started += instance.OnInteract;
-                @Interact.performed += instance.OnInteract;
-                @Interact.canceled += instance.OnInteract;
+                @Action.started += instance.OnAction;
+                @Action.performed += instance.OnAction;
+                @Action.canceled += instance.OnAction;
+                @Select.started += instance.OnSelect;
+                @Select.performed += instance.OnSelect;
+                @Select.canceled += instance.OnSelect;
+                @SpecialAction.started += instance.OnSpecialAction;
+                @SpecialAction.performed += instance.OnSpecialAction;
+                @SpecialAction.canceled += instance.OnSpecialAction;
             }
 
             private void UnregisterCallbacks(IPlayerActions instance)
@@ -404,9 +393,15 @@ namespace IA
                 @Look.started -= instance.OnLook;
                 @Look.performed -= instance.OnLook;
                 @Look.canceled -= instance.OnLook;
-                @Interact.started -= instance.OnInteract;
-                @Interact.performed -= instance.OnInteract;
-                @Interact.canceled -= instance.OnInteract;
+                @Action.started -= instance.OnAction;
+                @Action.performed -= instance.OnAction;
+                @Action.canceled -= instance.OnAction;
+                @Select.started -= instance.OnSelect;
+                @Select.performed -= instance.OnSelect;
+                @Select.canceled -= instance.OnSelect;
+                @SpecialAction.started -= instance.OnSpecialAction;
+                @SpecialAction.performed -= instance.OnSpecialAction;
+                @SpecialAction.canceled -= instance.OnSpecialAction;
             }
 
             public void RemoveCallbacks(IPlayerActions instance)
@@ -428,17 +423,11 @@ namespace IA
         // General
         private readonly InputActionMap m_General;
         private List<IGeneralActions> m_GeneralActionsCallbackInterfaces = new List<IGeneralActions>();
-        private readonly InputAction m_General_Submit;
-        private readonly InputAction m_General_Cancel;
-        private readonly InputAction m_General_Select;
         private readonly InputAction m_General_Pause;
         public struct GeneralActions
         {
             private @IA m_Wrapper;
             public GeneralActions(@IA wrapper) { m_Wrapper = wrapper; }
-            public InputAction @Submit => m_Wrapper.m_General_Submit;
-            public InputAction @Cancel => m_Wrapper.m_General_Cancel;
-            public InputAction @Select => m_Wrapper.m_General_Select;
             public InputAction @Pause => m_Wrapper.m_General_Pause;
             public InputActionMap Get() { return m_Wrapper.m_General; }
             public void Enable() { Get().Enable(); }
@@ -449,15 +438,6 @@ namespace IA
             {
                 if (instance == null || m_Wrapper.m_GeneralActionsCallbackInterfaces.Contains(instance)) return;
                 m_Wrapper.m_GeneralActionsCallbackInterfaces.Add(instance);
-                @Submit.started += instance.OnSubmit;
-                @Submit.performed += instance.OnSubmit;
-                @Submit.canceled += instance.OnSubmit;
-                @Cancel.started += instance.OnCancel;
-                @Cancel.performed += instance.OnCancel;
-                @Cancel.canceled += instance.OnCancel;
-                @Select.started += instance.OnSelect;
-                @Select.performed += instance.OnSelect;
-                @Select.canceled += instance.OnSelect;
                 @Pause.started += instance.OnPause;
                 @Pause.performed += instance.OnPause;
                 @Pause.canceled += instance.OnPause;
@@ -465,15 +445,6 @@ namespace IA
 
             private void UnregisterCallbacks(IGeneralActions instance)
             {
-                @Submit.started -= instance.OnSubmit;
-                @Submit.performed -= instance.OnSubmit;
-                @Submit.canceled -= instance.OnSubmit;
-                @Cancel.started -= instance.OnCancel;
-                @Cancel.performed -= instance.OnCancel;
-                @Cancel.canceled -= instance.OnCancel;
-                @Select.started -= instance.OnSelect;
-                @Select.performed -= instance.OnSelect;
-                @Select.canceled -= instance.OnSelect;
                 @Pause.started -= instance.OnPause;
                 @Pause.performed -= instance.OnPause;
                 @Pause.canceled -= instance.OnPause;
@@ -498,13 +469,12 @@ namespace IA
         {
             void OnMove(InputAction.CallbackContext context);
             void OnLook(InputAction.CallbackContext context);
-            void OnInteract(InputAction.CallbackContext context);
+            void OnAction(InputAction.CallbackContext context);
+            void OnSelect(InputAction.CallbackContext context);
+            void OnSpecialAction(InputAction.CallbackContext context);
         }
         public interface IGeneralActions
         {
-            void OnSubmit(InputAction.CallbackContext context);
-            void OnCancel(InputAction.CallbackContext context);
-            void OnSelect(InputAction.CallbackContext context);
             void OnPause(InputAction.CallbackContext context);
         }
     }

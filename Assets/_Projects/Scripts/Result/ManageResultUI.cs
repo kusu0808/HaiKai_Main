@@ -23,11 +23,5 @@ namespace Result
         /// 後方置換
         /// </summary>
         private void ToTitle() => UnityEngine.SceneManagement.SceneManager.LoadScene("Title");
-
-        private void OnDisable()
-        {
-            _restartButton = null;
-            _toTitleButton = null;
-        }
     }
 }

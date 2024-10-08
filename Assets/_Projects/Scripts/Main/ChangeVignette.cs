@@ -57,10 +57,5 @@ namespace Main
                         .OnUpdate(() => vignette.intensity.value = value);
             }
         }
-
-        private void OnDisable()
-        {
-            _volume = null;
-        }
     }
 }

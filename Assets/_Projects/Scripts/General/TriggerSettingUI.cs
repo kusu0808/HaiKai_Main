@@ -44,14 +44,6 @@ namespace General
         private float Convert(Slider slider)
             => slider == null ? 0 : slider.value.Remap(0, 1, MinVolume, MaxVolume);
 
-        private void OnDisable()
-        {
-            _settingUICanvas = null;
-            _bgmSlider = null;
-            _seSlider = null;
-            _closeButton = null;
-        }
-
         public void Open() => _settingUI.SetActive(true);
     }
 }

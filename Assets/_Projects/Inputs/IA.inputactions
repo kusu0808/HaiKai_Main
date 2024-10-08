@@ -24,12 +24,30 @@
                     "initialStateCheck": true
                 },
                 {
-                    "name": "Interact",
+                    "name": "Action",
                     "type": "Button",
                     "id": "6c633444-23a3-4b53-93ba-3014dc9105b7",
                     "expectedControlType": "Button",
                     "processors": "",
                     "interactions": "",
+                    "initialStateCheck": false
+                },
+                {
+                    "name": "Select",
+                    "type": "Value",
+                    "id": "226ae46c-d0e3-4a4b-9e04-8fea3c55c821",
+                    "expectedControlType": "Axis",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": true
+                },
+                {
+                    "name": "SpecialAction",
+                    "type": "Button",
+                    "id": "1570db01-b7a8-4714-9dfd-00d2efbf23ba",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": "Hold(duration=1)",
                     "initialStateCheck": false
                 }
             ],
@@ -147,11 +165,55 @@
                 {
                     "name": "",
                     "id": "9dea5d92-c00b-403c-a42b-94175f42bd0f",
-                    "path": "<Keyboard>/space",
+                    "path": "<Mouse>/leftButton",
                     "interactions": "",
                     "processors": "",
                     "groups": "",
-                    "action": "Interact",
+                    "action": "Action",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "1D Axis",
+                    "id": "731ad829-1a11-4624-9128-866f3e3ab784",
+                    "path": "1DAxis",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Select",
+                    "isComposite": true,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "negative",
+                    "id": "93467072-cd0a-4856-9577-87c6fa78f081",
+                    "path": "<Mouse>/scroll/down",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Select",
+                    "isComposite": false,
+                    "isPartOfComposite": true
+                },
+                {
+                    "name": "positive",
+                    "id": "da9793e3-17c0-4ee5-9d2a-f73a0378b981",
+                    "path": "<Mouse>/scroll/up",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Select",
+                    "isComposite": false,
+                    "isPartOfComposite": true
+                },
+                {
+                    "name": "",
+                    "id": "28949c21-3b1b-4bb6-8a07-afc49ec9de20",
+                    "path": "<Keyboard>/w",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "SpecialAction",
                     "isComposite": false,
                     "isPartOfComposite": false
                 }
@@ -161,33 +223,6 @@
             "name": "General",
             "id": "bce01126-98c7-4d1b-824e-d6fbd2726694",
             "actions": [
-                {
-                    "name": "Submit",
-                    "type": "Button",
-                    "id": "653f0692-bad5-4bc7-9635-c259b96fd73b",
-                    "expectedControlType": "Button",
-                    "processors": "",
-                    "interactions": "",
-                    "initialStateCheck": false
-                },
-                {
-                    "name": "Cancel",
-                    "type": "Button",
-                    "id": "2a2a1623-7e44-496e-8ddb-df09186e873f",
-                    "expectedControlType": "Button",
-                    "processors": "",
-                    "interactions": "",
-                    "initialStateCheck": false
-                },
-                {
-                    "name": "Select",
-                    "type": "Value",
-                    "id": "09504bd2-cd83-43b4-a4bc-a531c17b335c",
-                    "expectedControlType": "Axis",
-                    "processors": "",
-                    "interactions": "",
-                    "initialStateCheck": true
-                },
                 {
                     "name": "Pause",
                     "type": "Button",
@@ -199,61 +234,6 @@
                 }
             ],
             "bindings": [
-                {
-                    "name": "",
-                    "id": "47ce6971-d475-44c1-a8e2-e773b49fe85f",
-                    "path": "<Mouse>/leftButton",
-                    "interactions": "",
-                    "processors": "",
-                    "groups": "",
-                    "action": "Submit",
-                    "isComposite": false,
-                    "isPartOfComposite": false
-                },
-                {
-                    "name": "",
-                    "id": "c1d9fbfb-e7d3-4da6-bb80-53b27bba9c6e",
-                    "path": "<Mouse>/rightButton",
-                    "interactions": "",
-                    "processors": "",
-                    "groups": "",
-                    "action": "Cancel",
-                    "isComposite": false,
-                    "isPartOfComposite": false
-                },
-                {
-                    "name": "1D Axis",
-                    "id": "674f1d5b-87b8-4239-b3b0-318d4c1619d1",
-                    "path": "1DAxis",
-                    "interactions": "",
-                    "processors": "",
-                    "groups": "",
-                    "action": "Select",
-                    "isComposite": true,
-                    "isPartOfComposite": false
-                },
-                {
-                    "name": "negative",
-                    "id": "5691e0b3-ef70-4fca-97d6-26c8634d8fde",
-                    "path": "<Mouse>/scroll/down",
-                    "interactions": "",
-                    "processors": "",
-                    "groups": "",
-                    "action": "Select",
-                    "isComposite": false,
-                    "isPartOfComposite": true
-                },
-                {
-                    "name": "positive",
-                    "id": "73e118c7-1cd3-4921-b189-3092b96c17a1",
-                    "path": "<Mouse>/scroll/up",
-                    "interactions": "",
-                    "processors": "",
-                    "groups": "",
-                    "action": "Select",
-                    "isComposite": false,
-                    "isPartOfComposite": true
-                },
                 {
                     "name": "",
                     "id": "d3e65889-e9a9-4e78-9161-b8dae8c1deed",

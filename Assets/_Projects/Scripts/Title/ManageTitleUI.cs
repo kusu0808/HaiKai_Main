@@ -41,13 +41,5 @@ namespace Title
             UnityEngine.Application.Quit();
 #endif
         }
-
-        private void OnDisable()
-        {
-            _startButton = null;
-            _continueButton = null;
-            _settingButton = null;
-            _quitButton = null;
-        }
     }
 }

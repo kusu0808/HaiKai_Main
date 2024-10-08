@@ -265,20 +265,18 @@ namespace IA
 
         public InputInfo PlayerMove { get; private set; }
         public InputInfo PlayerLook { get; private set; }
-        public InputInfo PlayerInteract { get; private set; }
-        public InputInfo Submit { get; private set; }
-        public InputInfo Cancel { get; private set; }
-        public InputInfo Select { get; private set; }
+        public InputInfo PlayerAction { get; private set; }
+        public InputInfo PlayerSelect { get; private set; }
+        public InputInfo PlayerSpecialAction { get; private set; }
         public InputInfo Pause { get; private set; }
 
         private void Init()
         {
             PlayerMove = new InputInfo(_ia.Player.Move, InputType.Value2).Add(_inputInfoList);
             PlayerLook = new InputInfo(_ia.Player.Look, InputType.Value2).Add(_inputInfoList);
-            PlayerInteract = new InputInfo(_ia.Player.Interact, InputType.Click).Add(_inputInfoList);
-            Submit = new InputInfo(_ia.General.Submit, InputType.Click).Add(_inputInfoList);
-            Cancel = new InputInfo(_ia.General.Cancel, InputType.Click).Add(_inputInfoList);
-            Select = new InputInfo(_ia.General.Select, InputType.Value1).Add(_inputInfoList);
+            PlayerAction = new InputInfo(_ia.Player.Action, InputType.Click).Add(_inputInfoList);
+            PlayerSelect = new InputInfo(_ia.Player.Select, InputType.Value1).Add(_inputInfoList);
+            PlayerSpecialAction = new InputInfo(_ia.Player.SpecialAction, InputType.Hold).Add(_inputInfoList);
             Pause = new InputInfo(_ia.General.Pause, InputType.Click).Add(_inputInfoList);
         }
     }
