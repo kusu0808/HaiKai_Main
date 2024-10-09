@@ -1,4 +1,5 @@
-﻿using System.Text;
+﻿using IA;
+using System.Text;
 using TMPro;
 using UnityEngine;
 using Profiler = UnityEngine.Profiling.Profiler;
@@ -7,9 +8,6 @@ namespace General
 {
     public sealed class AnalyzeBenchmark : MonoBehaviour
     {
-        [SerializeField, Header("この機能をオンにする")]
-        private bool _isEnable;
-
         [SerializeField, Header("配下のCanvas")]
         private Canvas _canvas;
 
@@ -20,6 +18,8 @@ namespace General
         private float _preT = 0f;
         private float _fps = 0f;
 
+        private bool _isEnable = false;
+
         private void OnEnable()
         {
             if (_canvas == null) return;
@@ -28,6 +28,8 @@ namespace General
 
         private void Update()
         {
+            if (InputGetter.Instance.TriggerBenchmarkText.Bool) _isEnable = !_isEnable;
+            if (_canvas != null && _canvas.gameObject.activeSelf != _isEnable) _canvas.gameObject.SetActive(_isEnable);
             if (!_isEnable) return;
 
             _cnt++;
