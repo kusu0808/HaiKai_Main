@@ -5,6 +5,9 @@ using UnityEngine.UI;
 
 namespace General
 {
+    /// <summary>
+    /// 最初にChangeVolume()を呼ぶこと
+    /// </summary>
     public sealed class TriggerSettingUI : MonoBehaviour
     {
         [SerializeField] private Canvas _settingUICanvas;
@@ -25,10 +28,9 @@ namespace General
 
             _bgmSlider.value = 0.5f;
             _seSlider.value = 0.5f;
-            ChangeVolume(this.GetCancellationTokenOnDestroy()).Forget();
         }
 
-        private async UniTask ChangeVolume(CancellationToken ct)
+        public async UniTaskVoid ChangeVolume(CancellationToken ct)
         {
             while (true)
             {
