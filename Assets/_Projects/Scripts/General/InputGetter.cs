@@ -263,21 +263,19 @@ namespace IA
 
         #endregion
 
-        public InputInfo PlayerMove { get; private set; }
-        public InputInfo PlayerLook { get; private set; }
         public InputInfo PlayerAction { get; private set; }
         public InputInfo PlayerSelect { get; private set; }
         public InputInfo PlayerSpecialAction { get; private set; }
         public InputInfo Pause { get; private set; }
+        public InputInfo TriggerBenchmarkText { get; private set; }
 
         private void Init()
         {
-            PlayerMove = new InputInfo(_ia.Player.Move, InputType.Value2).Add(_inputInfoList);
-            PlayerLook = new InputInfo(_ia.Player.Look, InputType.Value2).Add(_inputInfoList);
             PlayerAction = new InputInfo(_ia.Player.Action, InputType.Click).Add(_inputInfoList);
             PlayerSelect = new InputInfo(_ia.Player.Select, InputType.Value1).Add(_inputInfoList);
             PlayerSpecialAction = new InputInfo(_ia.Player.SpecialAction, InputType.Hold).Add(_inputInfoList);
             Pause = new InputInfo(_ia.General.Pause, InputType.Click).Add(_inputInfoList);
+            TriggerBenchmarkText = new InputInfo(_ia.Debug.TriggerBenchmarkText, InputType.Click).Add(_inputInfoList);
         }
     }
 }
