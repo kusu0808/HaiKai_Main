@@ -95,9 +95,9 @@ namespace Main.EventManager
         /// </summary>
         public void InitPlayerMove()
         {
-            _firstPersonController.MoveSpeed = 4;
-            _firstPersonController.SprintSpeed = 6;
-            _firstPersonController.RotationSpeed = 2;
+            _firstPersonController.MoveSpeed = 2;
+            _firstPersonController.SprintSpeed = 4;
+            _firstPersonController.RotationSpeed = 1;
         }
 
         /// <summary>

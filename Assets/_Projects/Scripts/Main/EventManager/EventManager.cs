@@ -26,7 +26,7 @@ namespace Main.EventManager
             _player.CheckDeviation(_points.Init, ct).Forget();
 
             _uiElements.BlackImageAlpha = 1;
-            await _uiElements.FadeIn(0.5f, Ease.Linear, ct);
+            await _uiElements.FadeIn(2, Ease.Linear, ct);
             _player.InitPlayerMove();
             ObserveAction(ct).Forget();
             _uiElements.ActivateUIManagers(ct);
@@ -35,7 +35,7 @@ namespace Main.EventManager
 
             await UniTask.WaitUntil(() => _borders.BorderHoge.IsIn(_player.Position) == true, cancellationToken: ct);
 
-            _uiElements.NewlyShowLogText("テスト：エリアに入った", 10);
+            _uiElements.NewlyShowLogText("テスト：エリアに入った", 5);
         }
 
         private async UniTaskVoid ObserveAction(CancellationToken ct)
@@ -56,7 +56,7 @@ namespace Main.EventManager
 
                 if (string.IsNullOrEmpty(text)) continue;  // 無効なものに当たった
 
-                _uiElements.NewlyShowLogText(text, 5);
+                _uiElements.NewlyShowLogText(text, 3);
             }
         }
     }
