@@ -9,6 +9,9 @@ using UnityEngine.UI;
 
 namespace Main
 {
+    /// <summary>
+    /// 最初にRollItem()を呼ぶこと
+    /// </summary>
     public class ManagePlayerUI : MonoBehaviour
     {
         [SerializeField] private Canvas _playerUICanvas;
@@ -22,9 +25,7 @@ namespace Main
         private static readonly Color32 LightWhite = new(255, 255, 255, 100);
         private static readonly Color32 DarkWhite = new(255, 255, 255, 255);
 
-        private void OnEnable() => RollItem(this.GetCancellationTokenOnDestroy()).Forget();
-
-        private async UniTask RollItem(CancellationToken ct)
+        public async UniTaskVoid RollItem(CancellationToken ct)
         {
             _playerUI.SetActive(true);
 
@@ -33,7 +34,7 @@ namespace Main
 
             while (true)
             {
-                await UniTask.WaitWhile(() => _selectInput == 0.0f, cancellationToken: ct);
+                await UniTask.WaitUntil(() => _selectInput != 0.0f && Time.timeScale == 1, cancellationToken: ct);
                 _itemIndex.Value += _selectInput > 0 ? -1 : 1;
                 UpdateItemImages(Array.AsReadOnly(_itemImages), _itemIndex.Value);
             }
