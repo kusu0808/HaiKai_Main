@@ -48,5 +48,9 @@ namespace Main
                 _ => throw new Exception()
             };
         }
+
+        public void SetHasItem1(bool value) => _hasItem1 = value;
+        public void SetHasItem2(bool value) => _hasItem2 = value;
+        public void SetHasItem3(bool value) => _hasItem3 = value;
     }
 }
