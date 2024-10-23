@@ -80,7 +80,9 @@ namespace Main.EventManager
                 (TextMeshProUGUI logText, string text, float duration, CancellationToken ct)
             {
                 logText.text = text;
-                await WaitUntilOffInput(ct);
+                await UniTask.WhenAny(
+                    WaitUntilOffInput(ct),
+                    UniTask.Delay(TimeSpan.FromSeconds(duration), cancellationToken: ct));
                 logText.text = string.Empty;
             }
 
