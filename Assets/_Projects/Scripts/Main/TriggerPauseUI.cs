@@ -37,7 +37,7 @@ namespace Main
             {
                 await UniTask.WaitUntil(() => _isPauseTrigger, cancellationToken: ct);
                 _pauseUI.SetActive(!_pauseUI.activeSelf);
-                Time.timeScale = _pauseUI.activeSelf ? 0 : 1;
+                PauseState.IsPaused = _pauseUI.activeSelf;
                 SetCursor(_pauseUI.activeSelf);
             }
         }

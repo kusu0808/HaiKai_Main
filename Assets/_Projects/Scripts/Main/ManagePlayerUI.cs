@@ -34,7 +34,7 @@ namespace Main
 
             while (true)
             {
-                await UniTask.WaitUntil(() => _selectInput != 0.0f && Time.timeScale == 1, cancellationToken: ct);
+                await UniTask.WaitUntil(() => _selectInput != 0.0f && PauseState.IsPaused is false, cancellationToken: ct);
                 _itemIndex.Value += _selectInput > 0 ? -1 : 1;
                 UpdateItemImages(Array.AsReadOnly(_itemImages), _itemIndex.Value);
             }

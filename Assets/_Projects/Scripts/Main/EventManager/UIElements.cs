@@ -1,6 +1,7 @@
 ﻿using Cysharp.Threading.Tasks;
 using DG.Tweening;
 using General;
+using IA;
 using System;
 using System.Threading;
 using TMPro;
@@ -79,9 +80,12 @@ namespace Main.EventManager
                 (TextMeshProUGUI logText, string text, float duration, CancellationToken ct)
             {
                 logText.text = text;
-                await UniTask.Delay(TimeSpan.FromSeconds(duration), cancellationToken: ct);
+                await WaitUntilOffInput(ct);
                 logText.text = string.Empty;
             }
+
+            static async UniTask WaitUntilOffInput(CancellationToken ct) =>
+                await UniTask.WaitUntil(() => InputGetter.Instance.PlayerCancel.Bool, cancellationToken: ct);
         }
 
         public void ActivateUIManagers(CancellationToken ct)

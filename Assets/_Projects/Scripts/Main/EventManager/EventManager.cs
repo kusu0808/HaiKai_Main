@@ -1,5 +1,6 @@
 ﻿using Cysharp.Threading.Tasks;
 using DG.Tweening;
+using General;
 using IA;
 using Main.Eventer;
 using System.Threading;
@@ -42,22 +43,31 @@ namespace Main.EventManager
         {
             while (true)
             {
+                await UniTask.Yield(ct);
+
+                if (PauseState.IsPaused is true) continue;  // ポーズ中
                 await UniTask.WaitUntil(() => InputGetter.Instance.PlayerAction.Bool, cancellationToken: ct);
+                if (PauseState.IsPaused is true) continue;  // ポーズ中
 
                 Collider collider = _player.GetHitColliderFromCamera();
 
                 if (collider == null) continue;  // 当たらなかった
 
-                string text = collider.tag switch
-                {
-                    "ActionEvent/BusSign" => "古びた標識だ",
-                    _ => string.Empty
-                };
+                string text = collider.tag.GetMessage();
 
                 if (string.IsNullOrEmpty(text)) continue;  // 無効なものに当たった
 
                 _uiElements.NewlyShowLogText(text, 3);
             }
         }
+    }
+
+    public static class EventManagerEx
+    {
+        public static string GetMessage(this string tag) => tag switch
+        {
+            "ActionEvent/BusSign" => "古びた標識だ",
+            _ => string.Empty
+        };
     }
 }

@@ -55,6 +55,15 @@ namespace IA
                     ""processors"": """",
                     ""interactions"": ""Hold(duration=1)"",
                     ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""Cancel"",
+                    ""type"": ""Button"",
+                    ""id"": ""fb6ad0fe-8520-4606-862f-199985bb4143"",
+                    ""expectedControlType"": """",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
                 }
             ],
             ""bindings"": [
@@ -110,6 +119,17 @@ namespace IA
                     ""processors"": """",
                     ""groups"": """",
                     ""action"": ""SpecialAction"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""3304f57c-0f3f-46a4-b951-8814f74aadaa"",
+                    ""path"": ""<Mouse>/rightButton"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Cancel"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
                 }
@@ -212,6 +232,7 @@ namespace IA
             m_Player_Action = m_Player.FindAction("Action", throwIfNotFound: true);
             m_Player_Select = m_Player.FindAction("Select", throwIfNotFound: true);
             m_Player_SpecialAction = m_Player.FindAction("SpecialAction", throwIfNotFound: true);
+            m_Player_Cancel = m_Player.FindAction("Cancel", throwIfNotFound: true);
             // General
             m_General = asset.FindActionMap("General", throwIfNotFound: true);
             m_General_Pause = m_General.FindAction("Pause", throwIfNotFound: true);
@@ -289,6 +310,7 @@ namespace IA
         private readonly InputAction m_Player_Action;
         private readonly InputAction m_Player_Select;
         private readonly InputAction m_Player_SpecialAction;
+        private readonly InputAction m_Player_Cancel;
         public struct PlayerActions
         {
             private @IA m_Wrapper;
@@ -296,6 +318,7 @@ namespace IA
             public InputAction @Action => m_Wrapper.m_Player_Action;
             public InputAction @Select => m_Wrapper.m_Player_Select;
             public InputAction @SpecialAction => m_Wrapper.m_Player_SpecialAction;
+            public InputAction @Cancel => m_Wrapper.m_Player_Cancel;
             public InputActionMap Get() { return m_Wrapper.m_Player; }
             public void Enable() { Get().Enable(); }
             public void Disable() { Get().Disable(); }
@@ -314,6 +337,9 @@ namespace IA
                 @SpecialAction.started += instance.OnSpecialAction;
                 @SpecialAction.performed += instance.OnSpecialAction;
                 @SpecialAction.canceled += instance.OnSpecialAction;
+                @Cancel.started += instance.OnCancel;
+                @Cancel.performed += instance.OnCancel;
+                @Cancel.canceled += instance.OnCancel;
             }
 
             private void UnregisterCallbacks(IPlayerActions instance)
@@ -327,6 +353,9 @@ namespace IA
                 @SpecialAction.started -= instance.OnSpecialAction;
                 @SpecialAction.performed -= instance.OnSpecialAction;
                 @SpecialAction.canceled -= instance.OnSpecialAction;
+                @Cancel.started -= instance.OnCancel;
+                @Cancel.performed -= instance.OnCancel;
+                @Cancel.canceled -= instance.OnCancel;
             }
 
             public void RemoveCallbacks(IPlayerActions instance)
@@ -441,6 +470,7 @@ namespace IA
             void OnAction(InputAction.CallbackContext context);
             void OnSelect(InputAction.CallbackContext context);
             void OnSpecialAction(InputAction.CallbackContext context);
+            void OnCancel(InputAction.CallbackContext context);
         }
         public interface IGeneralActions
         {
