@@ -8,7 +8,7 @@ ModelImporter:
       type: UnityEngine:Material
       assembly: UnityEngine.CoreModule
       name: CherryAtlas_Mat.001
-    second: {fileID: 1367383701777426158, guid: 347eed0506cb0e24aa7c0e93d108d6cf,
+    second: {fileID: -834276554121905127, guid: b5e131f841a96444da74759f085aeab5,
       type: 3}
   - first:
       type: UnityEngine:Material
