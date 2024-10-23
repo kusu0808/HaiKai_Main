@@ -27,19 +27,13 @@ namespace Main.EventManager
             _player.SetTransform(_points.Init);
             _player.CheckDeviation(_points.Init, ct).Forget();
 
-            _uiElements.BlackImageAlpha = 1;
-            await _uiElements.FadeIn(2, Ease.Linear, ct);
+            await _uiElements.FadeIn(EventManagerConst.FadeInDuration, ct);
             _player.InitPlayerMove();
             ObserveAction(ct).Forget();
             ObserveTrigger(ct);
             _uiElements.ActivateUIManagers(ct);
 
             _busMover.MoveOnce(ct).Forget();
-
-            //await UniTask.WaitUntil(() => _borders.BorderHoge.IsIn(_player.Position) == true, cancellationToken: ct);
-            await UniTask.Delay(5000, cancellationToken: ct);
-
-            _uiElements.NewlyShowLogText("テスト：エリアに入った", 5);
         }
 
         private async UniTaskVoid ObserveAction(CancellationToken ct)
@@ -60,24 +54,38 @@ namespace Main.EventManager
 
                 if (string.IsNullOrEmpty(text)) continue;  // 無効なものに当たった
 
-                _uiElements.NewlyShowLogText(text, 3);
+                _uiElements.NewlyShowLogText(text, EventManagerConst.NormalTextShowDuration);
             }
         }
 
         private void ObserveTrigger(CancellationToken ct)
         {
             BusStopCannotMove(ct).Forget();
+            BridgePlaySound(ct).Forget();
 
             async UniTaskVoid BusStopCannotMove(CancellationToken ct)
             {
                 while (true)
                 {
-                    await UniTask.WaitUntil(() => _borders.IsInAny(_player.Position) is false, cancellationToken: ct);
-                    await UniTask.WaitUntil(() => _borders.IsInAny(_player.Position) is true, cancellationToken: ct);
-                    _uiElements.NewlyShowLogText("真っ暗で、先が見えない…", 5);
-                    Debug.Log("!!");
+                    await UniTask.WaitUntil(
+                        () => _borders.IsInAnyBusStopCannotMove(_player.Position) is false, cancellationToken: ct);
+                    await UniTask.WaitUntil(
+                        () => _borders.IsInAnyBusStopCannotMove(_player.Position) is true, cancellationToken: ct);
+                    _uiElements.NewlyShowLogText("真っ暗で、先が見えない…", EventManagerConst.NormalTextShowDuration);
+                    await UniTask.Delay(TimeSpan.FromSeconds(EventManagerConst.SameEventDuration), cancellationToken: ct);
+                }
+            }
 
-                    await UniTask.Delay(TimeSpan.FromSeconds(5), cancellationToken: ct);
+            async UniTaskVoid BridgePlaySound(CancellationToken ct)
+            {
+                while (true)
+                {
+                    await UniTask.WaitUntil(
+                    () => _borders.BridgePlaySound.IsIn(_player.Position) is true, cancellationToken: ct);
+                    "後方置換：橋がきしむ音を再生開始".Warn();
+                    await UniTask.WaitUntil(
+                    () => _borders.BridgePlaySound.IsIn(_player.Position) is false, cancellationToken: ct);
+                    "後方置換：橋がきしむ音を再生終了".Warn();
                 }
             }
         }
@@ -90,5 +98,13 @@ namespace Main.EventManager
             "ActionEvent/BusSign" => "古びた標識だ",
             _ => string.Empty
         };
+    }
+
+    public static class EventManagerConst
+    {
+        public static readonly float FadeInDuration = 2;
+        public static readonly float NormalTextShowDuration = 3;
+        public static readonly float EventTextShowDuration = 5;
+        public static readonly float SameEventDuration = 5;
     }
 }

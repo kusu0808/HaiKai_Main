@@ -25,7 +25,7 @@ namespace Main.EventManager
         /// <summary>
         /// [0, 1]
         /// </summary>
-        public float BlackImageAlpha
+        private float _blackImageAlpha
         {
             get
             {
@@ -42,25 +42,25 @@ namespace Main.EventManager
         }
 
         /// <summary>
-        /// 画面が暗くなっていないなら、フェードアウトする
+        /// 透明度0.0fにして、フェードアウトする
         /// </summary>
         /// <remarks>並列に呼ばないこと</remarks>
-        public async UniTask FadeOut(float duration, Ease ease, CancellationToken ct)
+        public async UniTask FadeOut(float duration, CancellationToken ct, Ease ease = Ease.Linear)
         {
             if (_blackImage == null) return;
-            if (_blackImage.color.a != 0) return;
+            _blackImageAlpha = 0;
 
             await _blackImage.DOFade(1, duration).SetEase(ease).ToUniTask(cancellationToken: ct);
         }
 
         /// <summary>
-        /// 画面が暗くなっているなら、フェードインする
+        /// 透明度1.0fにして、フェードインする
         /// </summary>
         /// <remarks>並列に呼ばないこと</remarks>
-        public async UniTask FadeIn(float duration, Ease ease, CancellationToken ct)
+        public async UniTask FadeIn(float duration, CancellationToken ct, Ease ease = Ease.Linear)
         {
             if (_blackImage == null) return;
-            if (_blackImage.color.a != 1) return;
+            _blackImageAlpha = 1;
 
             await _blackImage.DOFade(0, duration).SetEase(ease).ToUniTask(cancellationToken: ct);
         }

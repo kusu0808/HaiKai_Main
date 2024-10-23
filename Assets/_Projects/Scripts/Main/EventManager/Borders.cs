@@ -13,10 +13,14 @@ namespace Main.EventManager
         private Border[] _busStopCannotMove;
         public ReadOnlyCollection<Border> BusStopCannotMove
         { get { _busStopCannotMoveRc ??= Array.AsReadOnly(_busStopCannotMove); return _busStopCannotMoveRc; } }
-        public bool IsInAny(Vector3 pos)
+        public bool IsInAnyBusStopCannotMove(Vector3 pos)
         {
             foreach (var border in _busStopCannotMove) if (border.IsIn(pos) is true) return true;
             return false;
         }
+
+        [SerializeField, Tooltip("橋：きしむ音を立てる")]
+        private Border _bridgePlaySound;
+        public Border BridgePlaySound => _bridgePlaySound;
     }
 }
