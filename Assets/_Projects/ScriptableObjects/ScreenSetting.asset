@@ -15,5 +15,5 @@ MonoBehaviour:
   _serializedScreenSetting:
     _resolution: {x: 1920, y: 1080}
     _isFullScreen: 1
-    _isVsyncOn: 1
+    _isVsyncOn: 0
     _targetFrameRate: 60
