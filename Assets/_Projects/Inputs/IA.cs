@@ -51,7 +51,7 @@ namespace IA
                     ""name"": ""SpecialAction"",
                     ""type"": ""Button"",
                     ""id"": ""1570db01-b7a8-4714-9dfd-00d2efbf23ba"",
-                    ""expectedControlType"": ""Button"",
+                    ""expectedControlType"": """",
                     ""processors"": """",
                     ""interactions"": ""Hold(duration=1)"",
                     ""initialStateCheck"": false
@@ -114,7 +114,7 @@ namespace IA
                 {
                     ""name"": """",
                     ""id"": ""28949c21-3b1b-4bb6-8a07-afc49ec9de20"",
-                    ""path"": ""<Keyboard>/w"",
+                    ""path"": ""<Mouse>/leftButton"",
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": """",
