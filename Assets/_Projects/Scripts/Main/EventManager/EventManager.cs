@@ -1,9 +1,11 @@
-﻿using Cysharp.Threading.Tasks;
+﻿using BorderSystem;
+using Cysharp.Threading.Tasks;
 using DG.Tweening;
 using General;
 using IA;
 using Main.Eventer;
 using System;
+using System.Collections.ObjectModel;
 using System.Threading;
 using UnityEngine;
 
@@ -23,12 +25,12 @@ namespace Main.EventManager
         private async UniTaskVoid Observe(CancellationToken ct)
         {
             _uiElements.SetCursor(false);
-            _player.StopPlayerMove();
+            _player.IsPlayerControlEnabled = false;
             _player.SetTransform(_points.Init);
             _player.CheckDeviation(_points.Init, ct).Forget();
 
             await _uiElements.FadeIn(EventManagerConst.FadeInDuration, ct);
-            _player.InitPlayerMove();
+            _player.IsPlayerControlEnabled = true;
             ObserveAction(ct).Forget();
             ObserveTrigger(ct);
             _uiElements.ActivateUIManagers(ct);
@@ -62,15 +64,16 @@ namespace Main.EventManager
         {
             BusStopCannotMove(ct).Forget();
             BridgePlaySound(ct).Forget();
+            PathWaySquat(ct).Forget();
 
             async UniTaskVoid BusStopCannotMove(CancellationToken ct)
             {
+                ReadOnlyCollection<Border> cache = _borders.BusStopCannotMove;
+
                 while (true)
                 {
-                    await UniTask.WaitUntil(
-                        () => _borders.IsInAnyBusStopCannotMove(_player.Position) is false, cancellationToken: ct);
-                    await UniTask.WaitUntil(
-                        () => _borders.IsInAnyBusStopCannotMove(_player.Position) is true, cancellationToken: ct);
+                    await UniTask.WaitUntil(() => cache.IsInAny(_player.Position) is false, cancellationToken: ct);
+                    await UniTask.WaitUntil(() => cache.IsInAny(_player.Position) is true, cancellationToken: ct);
                     _uiElements.NewlyShowLogText("真っ暗で、先が見えない…", EventManagerConst.NormalTextShowDuration);
                     await UniTask.Delay(TimeSpan.FromSeconds(EventManagerConst.SameEventDuration), cancellationToken: ct);
                 }
@@ -78,15 +81,39 @@ namespace Main.EventManager
 
             async UniTaskVoid BridgePlaySound(CancellationToken ct)
             {
+                Border cache = _borders.BridgePlaySound;
+
                 while (true)
                 {
-                    await UniTask.WaitUntil(
-                    () => _borders.BridgePlaySound.IsIn(_player.Position) is true, cancellationToken: ct);
+                    await UniTask.WaitUntil(() => cache.IsIn(_player.Position) is true, cancellationToken: ct);
                     "後方置換：橋がきしむ音を再生開始".Warn();
-                    await UniTask.WaitUntil(
-                    () => _borders.BridgePlaySound.IsIn(_player.Position) is false, cancellationToken: ct);
+                    await UniTask.WaitUntil(() => cache.IsIn(_player.Position) is false, cancellationToken: ct);
                     "後方置換：橋がきしむ音を再生終了".Warn();
                 }
+            }
+
+            async UniTaskVoid PathWaySquat(CancellationToken ct)
+            {
+                while (true) await UniTask.WhenAny(
+                        PathWaySquatImpl(_borders.PathWaySquat1, ct), PathWaySquatImpl(_borders.PathWaySquat2, ct));
+
+                async UniTask PathWaySquatImpl(Borders.TeleportBorder cache, CancellationToken ct)
+                {
+                    await UniTask.WaitUntil(() => cache.In.IsIn(_player.Position) is true, cancellationToken: ct);
+                    await _TeleportPlayer(cache.FirstTf, ct);
+                    await UniTask.WaitUntil(() => cache.Out.IsIn(_player.Position) is true, cancellationToken: ct);
+                    await _TeleportPlayer(cache.SecondTf, ct);
+                }
+            }
+
+            async UniTask _TeleportPlayer(Transform transform, CancellationToken ct)
+            {
+                if (transform == null) return;
+                _player.IsPlayerControlEnabled = false;
+                await _uiElements.FadeOut(EventManagerConst.FadeOutDuration, ct);
+                _player.SetTransform(transform);
+                await _uiElements.FadeIn(EventManagerConst.FadeInDuration, ct);
+                _player.IsPlayerControlEnabled = true;
             }
         }
     }
@@ -103,8 +130,11 @@ namespace Main.EventManager
     public static class EventManagerConst
     {
         public static readonly float FadeInDuration = 2;
+        public static readonly float FadeOutDuration = 2;
+        public static readonly float FadeInOutInterval = 1;
         public static readonly float NormalTextShowDuration = 3;
         public static readonly float EventTextShowDuration = 5;
         public static readonly float SameEventDuration = 5;
+        public static readonly float RayMaxDistance = 2;
     }
 }

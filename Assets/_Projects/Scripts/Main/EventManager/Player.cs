@@ -13,7 +13,6 @@ namespace Main.EventManager
         [SerializeField] private CharacterController _characterController;
         [SerializeField] private FirstPersonController _firstPersonController;
         [SerializeField] private Camera _camera;
-        [SerializeField, Range(0.1f, 10.0f), Tooltip("アクションRayの最大距離")] private float _actionRayMaxDistance;
 
         public Vector3 Position
         {
@@ -73,31 +72,28 @@ namespace Main.EventManager
 
         /// <summary>
         /// カメラの正面方向にRayを飛ばし、当たったColliderを返す
+        /// 当たらなかったらnull
         /// </summary>
         public Collider GetHitColliderFromCamera()
         {
             Ray ray = _camera.ScreenPointToRay(new(Screen.width / 2, Screen.height / 2, 0));
-            return Physics.Raycast(ray, out RaycastHit hitInfo, _actionRayMaxDistance) ? hitInfo.collider : null;
+            return Physics.Raycast(ray, out var hitInfo, EventManagerConst.RayMaxDistance) ? hitInfo.collider : null;
         }
 
+        private bool _isPlayerControlEnabled = true;
         /// <summary>
-        /// プレイヤーの移動と回転を0にする
+        /// 移動・回転・ジャンプ
         /// </summary>
-        public void StopPlayerMove()
+        public bool IsPlayerControlEnabled
         {
-            _firstPersonController.MoveSpeed = 0;
-            _firstPersonController.SprintSpeed = 0;
-            _firstPersonController.RotationSpeed = 0;
-        }
-
-        /// <summary>
-        /// プレイヤーの移動と回転を初期に戻す
-        /// </summary>
-        public void InitPlayerMove()
-        {
-            _firstPersonController.MoveSpeed = 2;
-            _firstPersonController.SprintSpeed = 4;
-            _firstPersonController.RotationSpeed = 1;
+            get => _isPlayerControlEnabled;
+            set
+            {
+                _isPlayerControlEnabled = value;
+                _firstPersonController.IsMoveEnabled = value;
+                _firstPersonController.IsLookEnabled = value;
+                _firstPersonController.IsJumpEnabled = value;
+            }
         }
 
         /// <summary>
