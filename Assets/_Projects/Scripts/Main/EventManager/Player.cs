@@ -71,6 +71,16 @@ namespace Main.EventManager
         }
 
         /// <summary>
+        /// 完全にデバッグ用。戻すことはできない。
+        /// </summary>
+        public void FastenPlayer() => _firstPersonController.MoveSpeed *= 5;
+
+        /// <summary>
+        /// 完全にデバッグ用。戻すことはできない。
+        /// </summary>
+        public void FastenLook() => _firstPersonController.RotationSpeed *= 3;
+
+        /// <summary>
         /// カメラの正面方向にRayを飛ばし、当たったColliderを返す
         /// 当たらなかったらnull
         /// </summary>

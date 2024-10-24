@@ -12,6 +12,8 @@ namespace Main.EventManager
 {
     public sealed class EventManager : MonoBehaviour
     {
+        [SerializeField] private Debug _debug;
+        [Space(25)]
         [SerializeField] private Points _points;
         [SerializeField] private Borders _borders;
         [SerializeField] private Player _player;
@@ -28,6 +30,8 @@ namespace Main.EventManager
             _player.SetTransform(_points.Init);
             _player.CheckDeviation(_points.Init, ct).Forget();
 
+            if (_debug.IsEnabled) InitializeDebugProperty();
+
             await _uiElements.FadeIn(EventManagerConst.FadeInDuration, ct);
             _player.IsPlayerControlEnabled = true;
             ObserveAction(ct).Forget();
@@ -35,6 +39,14 @@ namespace Main.EventManager
             _uiElements.ActivateUIManagers(ct);
 
             _busMover.MoveOnce(ct).Forget();
+        }
+
+        private void InitializeDebugProperty()
+        {
+            "デバッグ機能が有効になっています".Warn();
+
+            if (_debug.FastMove) _player.FastenPlayer();
+            if (_debug.FastLook) _player.FastenLook();
         }
 
         private async UniTaskVoid ObserveAction(CancellationToken ct)
@@ -64,6 +76,7 @@ namespace Main.EventManager
             BusStopCannotMove(ct).Forget();
             BridgePlaySound(ct).Forget();
             PathWaySquat(ct).Forget();
+            UnderStageSquat(ct).Forget();
 
             async UniTaskVoid BusStopCannotMove(CancellationToken ct)
             {
@@ -99,19 +112,61 @@ namespace Main.EventManager
                         UniTask.WaitUntil(() => _borders.PathWaySquat1.In.IsIn(_player.Position) is true, cancellationToken: ct),
                         UniTask.WaitUntil(() => _borders.PathWaySquat2.In.IsIn(_player.Position) is true, cancellationToken: ct));
 
-                    Borders.TeleportBorder cache = i == 0 ? _borders.PathWaySquat1 : _borders.PathWaySquat2;
-                    string logText = i == 0 ? "ここ、すごく狭いね (アクション長押しで通る)" : "そろそろ戻ろう (アクション長押しで通る)";
+                    Borders.TeleportBorder cache = i is 0 ? _borders.PathWaySquat1 : _borders.PathWaySquat2;
+                    string logText = i is 0 ? "ここ、すごく狭いね (アクション長押しで通る)" : "そろそろ戻ろう (アクション長押しで通る)";
 
                     _uiElements.ForciblyShowLogText(logText);
                     int j = await UniTask.WhenAny(
                         UniTask.WaitUntil(() => cache.In.IsIn(_player.Position) is false, cancellationToken: ct),
-                        UniTask.WaitUntil(() => InputGetter.Instance.PlayerSpecialAction.Bool));
+                        UniTask.WaitUntil(() => InputGetter.Instance.PlayerSpecialAction.Bool, cancellationToken: ct));
                     _uiElements.ForciblyShowLogText(string.Empty);
-                    if (j != 1) continue;
+                    if (j is not 1) continue;
 
                     await _TeleportPlayer(cache.FirstTf, ct);
                     await UniTask.WaitUntil(() => cache.Out.IsIn(_player.Position) is true, cancellationToken: ct);
                     await _TeleportPlayer(cache.SecondTf, ct);
+                }
+            }
+
+            async UniTaskVoid UnderStageSquat(CancellationToken ct)
+            {
+                while (true)
+                {
+                    int i1 = await WaitUntilWithIndex(() => _borders.UnderStageSquat.Elements.IsInInAny(_player.Position), ct);
+                    if (i1 is -1) return;
+                    var cache1 = _borders.UnderStageSquat.Elements[i1];
+                    _uiElements.ForciblyShowLogText("(アクション長押しで入る)");
+                    int j1 = await UniTask.WhenAny(
+                        UniTask.WaitUntil(() => cache1.In.IsIn(_player.Position) is false, cancellationToken: ct),
+                        UniTask.WaitUntil(() => InputGetter.Instance.PlayerSpecialAction.Bool, cancellationToken: ct));
+                    _uiElements.ForciblyShowLogText(string.Empty);
+                    if (j1 is not 1) continue;
+                    await _TeleportPlayer(cache1.OutTf, ct);
+
+                    int i2 = await WaitUntilWithIndex(() => _borders.UnderStageSquat.Elements.IsInOutAny(_player.Position), ct);
+                    if (i2 is -1) return;
+                    var cache2 = _borders.UnderStageSquat.Elements[i2];
+                    _uiElements.ForciblyShowLogText("(アクション長押しで出る)");
+                    int j2 = await UniTask.WhenAny(
+                        UniTask.WaitUntil(() => cache2.Out.IsIn(_player.Position) is false, cancellationToken: ct),
+                        UniTask.WaitUntil(() => InputGetter.Instance.PlayerSpecialAction.Bool, cancellationToken: ct));
+                    _uiElements.ForciblyShowLogText(string.Empty);
+                    if (j2 is not 1) continue;
+                    await _TeleportPlayer(cache2.OutTf, ct);
+                }
+
+                /// <summary>
+                /// condition が -1 以外を返すまで待機し、そのインデックスを返す
+                /// </summary>
+                static async UniTask<int> WaitUntilWithIndex(Func<int> condition, CancellationToken ct)
+                {
+                    if (condition is null) return -1;
+                    while (true)
+                    {
+                        int i = condition();
+                        if (i is not -1) return i;
+                        await UniTask.Yield(ct);
+                    }
                 }
             }
 
@@ -124,6 +179,22 @@ namespace Main.EventManager
                 await _uiElements.FadeIn(EventManagerConst.FadeInDuration, ct);
                 _player.IsPlayerControlEnabled = true;
             }
+        }
+
+        [Serializable]
+        public sealed class Debug
+        {
+            [SerializeField, Tooltip("以下の全ての、設定の有効/無効")]
+            private bool _isEnabled;
+            public bool IsEnabled => _isEnabled;
+
+            [SerializeField, Tooltip("プレイヤーの速度を5倍にする")]
+            private bool _fastMove;
+            public bool FastMove => _isEnabled && _fastMove;
+
+            [SerializeField, Tooltip("プレイヤーの回転スピードを3倍にする")]
+            private bool _fastLook;
+            public bool FastLook => _isEnabled && _fastLook;
         }
     }
 

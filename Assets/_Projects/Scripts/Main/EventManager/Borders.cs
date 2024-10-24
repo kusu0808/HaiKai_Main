@@ -1,4 +1,5 @@
 ﻿using BorderSystem;
+using Cysharp.Threading.Tasks;
 using System;
 using System.Collections.ObjectModel;
 using UnityEngine;
@@ -72,15 +73,19 @@ namespace Main.EventManager
             {
                 [SerializeField]
                 private Border _in;
+                public Border In => _in;
 
                 [SerializeField]
                 private Border _out;
+                public Border Out => _out;
 
                 [SerializeField]
                 private Transform _inTf;
+                public Transform InTf => _inTf;
 
                 [SerializeField]
                 private Transform _outTf;
+                public Transform OutTf => _outTf;
             }
         }
     }
@@ -92,6 +97,20 @@ namespace Main.EventManager
             if (borders is null) return false;
             foreach (Border border in borders) if (border.IsIn(pos) is true) return true;
             return false;
+        }
+
+        public static int IsInInAny(this ReadOnlyCollection<Borders.TeleportBorders.Element> elements, Vector3 pos)
+        {
+            if (elements is null) return -1;
+            for (int i = 0; i < elements.Count; i++) if (elements[i].In.IsIn(pos) is true) return i;
+            return -1;
+        }
+
+        public static int IsInOutAny(this ReadOnlyCollection<Borders.TeleportBorders.Element> elements, Vector3 pos)
+        {
+            if (elements is null) return -1;
+            for (int i = 0; i < elements.Count; i++) if (elements[i].Out.IsIn(pos) is true) return i;
+            return -1;
         }
     }
 }
