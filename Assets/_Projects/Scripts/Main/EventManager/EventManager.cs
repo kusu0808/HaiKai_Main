@@ -67,7 +67,7 @@ namespace Main.EventManager
 
             async UniTaskVoid BusStopCannotMove(CancellationToken ct)
             {
-                ReadOnlyCollection<Border> cache = _borders.BusStopCannotMove;
+                ReadOnlyCollection<Border> cache = _borders.BusStopCannotMove.Elements;
 
                 while (true)
                 {

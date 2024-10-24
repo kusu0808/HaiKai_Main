@@ -8,10 +8,9 @@ namespace Main.EventManager
     [Serializable]
     public sealed class Borders
     {
-        private ReadOnlyCollection<Border> _cache;
         [SerializeField, Tooltip("バス停：ここから先には行けない！")]
-        private Border[] _busStopCannotMove;
-        public ReadOnlyCollection<Border> BusStopCannotMove { get { _cache ??= Array.AsReadOnly(_busStopCannotMove); return _cache; } }
+        private MultiBorders _busStopCannotMove;
+        public MultiBorders BusStopCannotMove => _busStopCannotMove;
 
         [SerializeField, Tooltip("橋：きしむ音を立てる")]
         private Border _bridgePlaySound;
@@ -28,6 +27,16 @@ namespace Main.EventManager
         [SerializeField, Tooltip("舞台下：しゃがんで通り抜ける")]
         private TeleportBorders _underStageSquat;
         public TeleportBorders UnderStageSquat => _underStageSquat;
+
+        [Serializable]
+        public sealed class MultiBorders
+        {
+            private ReadOnlyCollection<Border> _cache;
+
+            [SerializeField]
+            private Border[] _elements;
+            public ReadOnlyCollection<Border> Elements { get { _cache ??= Array.AsReadOnly(_elements); return _cache; } }
+        }
 
         [Serializable]
         public sealed class TeleportBorder
