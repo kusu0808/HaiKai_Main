@@ -93,18 +93,22 @@ namespace Main.EventManager
 
             async UniTaskVoid PathWaySquat(CancellationToken ct)
             {
-                while (true) await UniTask.WhenAny(
-                        PathWaySquatImpl(_borders.PathWaySquat1, ct), PathWaySquatImpl(_borders.PathWaySquat2, ct));
-
-                async UniTask PathWaySquatImpl(Borders.TeleportBorder cache, CancellationToken ct)
+                while (true)
                 {
-                    await UniTask.WaitUntil(() => cache.In.IsIn(_player.Position) is true, cancellationToken: ct);
-                    _uiElements.ForciblyShowLogText("アクション長押しで通る");
                     int i = await UniTask.WhenAny(
+                        UniTask.WaitUntil(() => _borders.PathWaySquat1.In.IsIn(_player.Position) is true, cancellationToken: ct),
+                        UniTask.WaitUntil(() => _borders.PathWaySquat2.In.IsIn(_player.Position) is true, cancellationToken: ct));
+
+                    Borders.TeleportBorder cache = i == 0 ? _borders.PathWaySquat1 : _borders.PathWaySquat2;
+                    string logText = i == 0 ? "ここ、すごく狭いね (アクション長押しで通る)" : "そろそろ戻ろう (アクション長押しで通る)";
+
+                    _uiElements.ForciblyShowLogText(logText);
+                    int j = await UniTask.WhenAny(
                         UniTask.WaitUntil(() => cache.In.IsIn(_player.Position) is false, cancellationToken: ct),
                         UniTask.WaitUntil(() => InputGetter.Instance.PlayerSpecialAction.Bool));
                     _uiElements.ForciblyShowLogText(string.Empty);
-                    if (i != 1) return;
+                    if (j != 1) continue;
+
                     await _TeleportPlayer(cache.FirstTf, ct);
                     await UniTask.WaitUntil(() => cache.Out.IsIn(_player.Position) is true, cancellationToken: ct);
                     await _TeleportPlayer(cache.SecondTf, ct);
