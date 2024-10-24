@@ -42,7 +42,7 @@ namespace Main.EventManager
         }
 
         /// <summary>
-        /// 透明度0.0fにして、フェードアウトする
+        /// 透明度0.0fにして、フェードアウトする(透明度は元に戻さない)
         /// </summary>
         /// <remarks>並列に呼ばないこと</remarks>
         public async UniTask FadeOut(float duration, CancellationToken ct, Ease ease = Ease.Linear)
@@ -54,7 +54,7 @@ namespace Main.EventManager
         }
 
         /// <summary>
-        /// 透明度1.0fにして、フェードインする
+        /// 透明度1.0fにして、フェードインする(透明度は元に戻さない)
         /// </summary>
         /// <remarks>並列に呼ばないこと</remarks>
         public async UniTask FadeIn(float duration, CancellationToken ct, Ease ease = Ease.Linear)
