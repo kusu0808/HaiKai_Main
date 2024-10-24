@@ -100,6 +100,13 @@ namespace Main.EventManager
                 async UniTask PathWaySquatImpl(Borders.TeleportBorder cache, CancellationToken ct)
                 {
                     await UniTask.WaitUntil(() => cache.In.IsIn(_player.Position) is true, cancellationToken: ct);
+                    _uiElements.NewlyShowLogText("AAA", 15);
+                    _uiElements.ForciblyShowLogText("アクション長押しで通る");
+                    int i = await UniTask.WhenAny(
+                        UniTask.WaitUntil(() => cache.In.IsIn(_player.Position) is false, cancellationToken: ct),
+                        UniTask.WaitUntil(() => InputGetter.Instance.PlayerSpecialAction.Bool));
+                    _uiElements.ForciblyShowLogText(string.Empty);
+                    if (i != 1) return;
                     await _TeleportPlayer(cache.FirstTf, ct);
                     await UniTask.WaitUntil(() => cache.Out.IsIn(_player.Position) is true, cancellationToken: ct);
                     await _TeleportPlayer(cache.SecondTf, ct);

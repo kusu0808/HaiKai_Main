@@ -21,6 +21,7 @@ namespace Main.EventManager
         [SerializeField] private TriggerSettingUI _triggerSettingUI;
 
         private CancellationTokenSource _ctsLogText = new();
+        private void ResetCtsLogText() { _ctsLogText.Cancel(); _ctsLogText.Dispose(); _ctsLogText = new(); }
 
         /// <summary>
         /// [0, 1]
@@ -65,24 +66,37 @@ namespace Main.EventManager
             await _blackImage.DOFade(0, duration).SetEase(ease).ToUniTask(cancellationToken: ct);
         }
 
-        public void NewlyShowLogText(string text, float duration)
+        private bool _isLogTextShowingForcibly = false;
+
+        /// <summary>
+        /// NewlyShowLogText()と競合した場合、こちらが優先される。
+        /// string.Emptyの場合、ログテキストを非表示にしたとみなし、NewlyShowLogText()の表示を許可する
+        /// </summary>
+        public void ForciblyShowLogText(string text)
         {
             if (_logText == null) return;
+            _isLogTextShowingForcibly = !string.IsNullOrEmpty(text);
 
-            _ctsLogText.Cancel();
+            ResetCtsLogText();
+            _logText.text = text;
+        }
+
+        public void NewlyShowLogText(string text, float duration, bool isGetOffInput = true)
+        {
+            if (_logText == null) return;
+            if (_isLogTextShowingForcibly) return;
+
+            ResetCtsLogText();
             _logText.text = string.Empty;
-
-            _ctsLogText.Dispose();
-            _ctsLogText = new();
-            ShowLogText(_logText, text, duration, _ctsLogText.Token).Forget();
+            ShowLogText(_logText, text, duration, _ctsLogText.Token, isGetOffInput).Forget();
 
             static async UniTaskVoid ShowLogText
-                (TextMeshProUGUI logText, string text, float duration, CancellationToken ct)
+                (TextMeshProUGUI logText, string text, float duration, CancellationToken ct, bool isGetOffInput = true)
             {
                 logText.text = text;
-                await UniTask.WhenAny(
-                    WaitUntilOffInput(ct),
+                if (isGetOffInput) await UniTask.WhenAny(WaitUntilOffInput(ct),
                     UniTask.Delay(TimeSpan.FromSeconds(duration), cancellationToken: ct));
+                else await UniTask.Delay(TimeSpan.FromSeconds(duration), cancellationToken: ct);
                 logText.text = string.Empty;
             }
 
