@@ -1,6 +1,5 @@
 ﻿using BorderSystem;
 using Cysharp.Threading.Tasks;
-using DG.Tweening;
 using General;
 using IA;
 using Main.Eventer;
@@ -100,7 +99,6 @@ namespace Main.EventManager
                 async UniTask PathWaySquatImpl(Borders.TeleportBorder cache, CancellationToken ct)
                 {
                     await UniTask.WaitUntil(() => cache.In.IsIn(_player.Position) is true, cancellationToken: ct);
-                    _uiElements.NewlyShowLogText("AAA", 15);
                     _uiElements.ForciblyShowLogText("アクション長押しで通る");
                     int i = await UniTask.WhenAny(
                         UniTask.WaitUntil(() => cache.In.IsIn(_player.Position) is false, cancellationToken: ct),

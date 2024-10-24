@@ -69,8 +69,9 @@ namespace Main.EventManager
         private bool _isLogTextShowingForcibly = false;
 
         /// <summary>
-        /// NewlyShowLogText()と競合した場合、こちらが優先される。
-        /// string.Emptyの場合、ログテキストを非表示にしたとみなし、NewlyShowLogText()の表示を許可する
+        /// 手動でログの表示と非表示を行う。
+        /// textが null or Empty の場合、ログテキストを非表示にしたとみなす。
+        /// NewlyShowLogText()を強制的に止め、ログを表示する。その間、NewlyShowLogText()の実行は無効化される。
         /// </summary>
         public void ForciblyShowLogText(string text)
         {
@@ -81,6 +82,9 @@ namespace Main.EventManager
             _logText.text = text;
         }
 
+        /// <summary>
+        /// 自動でログの表示と非表示を行う。
+        /// </summary>
         public void NewlyShowLogText(string text, float duration, bool isGetOffInput = true)
         {
             if (_logText == null) return;
