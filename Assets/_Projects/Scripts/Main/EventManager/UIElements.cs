@@ -1,6 +1,7 @@
 ﻿using Cysharp.Threading.Tasks;
 using DG.Tweening;
 using General;
+using IA;
 using System;
 using System.Threading;
 using TMPro;
@@ -20,11 +21,12 @@ namespace Main.EventManager
         [SerializeField] private TriggerSettingUI _triggerSettingUI;
 
         private CancellationTokenSource _ctsLogText = new();
+        private void ResetCtsLogText() { _ctsLogText.Cancel(); _ctsLogText.Dispose(); _ctsLogText = new(); }
 
         /// <summary>
         /// [0, 1]
         /// </summary>
-        public float BlackImageAlpha
+        private float _blackImageAlpha
         {
             get
             {
@@ -41,47 +43,69 @@ namespace Main.EventManager
         }
 
         /// <summary>
-        /// 画面が暗くなっていないなら、フェードアウトする
+        /// 透明度0.0fにして、フェードアウトする(透明度は元に戻さない)
         /// </summary>
         /// <remarks>並列に呼ばないこと</remarks>
-        public async UniTask FadeOut(float duration, Ease ease, CancellationToken ct)
+        public async UniTask FadeOut(float duration, CancellationToken ct, Ease ease = Ease.Linear)
         {
             if (_blackImage == null) return;
-            if (_blackImage.color.a != 0) return;
+            _blackImageAlpha = 0;
 
             await _blackImage.DOFade(1, duration).SetEase(ease).ToUniTask(cancellationToken: ct);
         }
 
         /// <summary>
-        /// 画面が暗くなっているなら、フェードインする
+        /// 透明度1.0fにして、フェードインする(透明度は元に戻さない)
         /// </summary>
         /// <remarks>並列に呼ばないこと</remarks>
-        public async UniTask FadeIn(float duration, Ease ease, CancellationToken ct)
+        public async UniTask FadeIn(float duration, CancellationToken ct, Ease ease = Ease.Linear)
         {
             if (_blackImage == null) return;
-            if (_blackImage.color.a != 1) return;
+            _blackImageAlpha = 1;
 
             await _blackImage.DOFade(0, duration).SetEase(ease).ToUniTask(cancellationToken: ct);
         }
 
-        public void NewlyShowLogText(string text, float duration)
+        private bool _isLogTextShowingForcibly = false;
+
+        /// <summary>
+        /// 手動でログの表示と非表示を行う。
+        /// textが null or Empty の場合、ログテキストを非表示にしたとみなす。
+        /// NewlyShowLogText()を強制的に止め、ログを表示する。その間、NewlyShowLogText()の実行は無効化される。
+        /// </summary>
+        public void ForciblyShowLogText(string text)
         {
             if (_logText == null) return;
+            _isLogTextShowingForcibly = !string.IsNullOrEmpty(text);
 
-            _ctsLogText.Cancel();
+            ResetCtsLogText();
+            _logText.text = text;
+        }
+
+        /// <summary>
+        /// 自動でログの表示と非表示を行う。
+        /// </summary>
+        public void NewlyShowLogText(string text, float duration, bool isGetOffInput = true)
+        {
+            if (_logText == null) return;
+            if (_isLogTextShowingForcibly) return;
+
+            ResetCtsLogText();
             _logText.text = string.Empty;
-
-            _ctsLogText.Dispose();
-            _ctsLogText = new();
-            ShowLogText(_logText, text, duration, _ctsLogText.Token).Forget();
+            ShowLogText(_logText, text, duration, _ctsLogText.Token, isGetOffInput).Forget();
 
             static async UniTaskVoid ShowLogText
-                (TextMeshProUGUI logText, string text, float duration, CancellationToken ct)
+                (TextMeshProUGUI logText, string text, float duration, CancellationToken ct, bool isGetOffInput = true)
             {
                 logText.text = text;
-                await UniTask.Delay(TimeSpan.FromSeconds(duration), cancellationToken: ct);
+                if (isGetOffInput) await UniTask.WhenAny(WaitUntilOffInput(ct),
+                    UniTask.Delay(TimeSpan.FromSeconds(duration), cancellationToken: ct));
+                else await UniTask.Delay(TimeSpan.FromSeconds(duration), cancellationToken: ct);
                 logText.text = string.Empty;
             }
+
+            static async UniTask WaitUntilOffInput(CancellationToken ct) =>
+                await UniTask.WaitUntil(() => InputGetter.Instance.PlayerCancel.Bool, cancellationToken: ct);
         }
 
         public void ActivateUIManagers(CancellationToken ct)
