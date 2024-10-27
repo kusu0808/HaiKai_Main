@@ -203,6 +203,7 @@ namespace Main.EventManager
         public static string GetMessage(this string tag) => tag switch
         {
             "ActionEvent/BusSign" => "古びた標識だ",
+            "ActionEvent/PathWaySign" => "汚れていて見えない",
             _ => string.Empty
         };
     }
