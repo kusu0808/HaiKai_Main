@@ -27,7 +27,7 @@ namespace Main
 
             _settingButton.onClick.AddListener(_triggerSettingUI.Open);
             _toTitleButton.onClick.AddListener
-                (() => SceneChange.LoadSceneAsync(SceneID.Title, destroyCancellationToken).Forget());
+                (() => Scene.ID.Title.LoadAsync().Forget());
         }
 
         /// <remarks>カーソルの状態も更新</remarks>
