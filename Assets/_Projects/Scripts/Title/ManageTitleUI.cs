@@ -1,6 +1,7 @@
 ﻿using UnityEngine;
 using UnityEngine.UI;
 using General;
+using Cysharp.Threading.Tasks;
 
 namespace Title
 {
@@ -23,12 +24,12 @@ namespace Title
         /// <summary>
         /// 後方互換
         /// </summary>
-        private void StartFromBeginning() => UnityEngine.SceneManagement.SceneManager.LoadScene("Main");
+        private void StartFromBeginning() => Scene.ID.Main.LoadAsync().Forget();
 
         /// <summary>
         /// 後方互換
         /// </summary>
-        private void ContinueAndStart() => UnityEngine.SceneManagement.SceneManager.LoadScene("Main");
+        private void ContinueAndStart() => Scene.ID.Main.LoadAsync().Forget();
 
         /// <summary>
         /// 後方互換

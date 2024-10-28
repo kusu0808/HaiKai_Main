@@ -1,52 +1,42 @@
 ﻿using Cysharp.Threading.Tasks;
+using Main;
 using System.Threading;
-using UnityEngine;
 using UnityEngine.SceneManagement;
 
 namespace General
 {
-    /// <summary>
-    /// シーンのID
-    /// </summary>
-    public enum SceneID
+    public static class Scene
     {
-        Title,
-        Main,
-        Result
-    }
-
-    /// <summary>
-    /// シーン変更担当クラス
-    /// </summary>
-    public static class SceneChange
-    {
-        /// <summary>
-        /// フェードアウト後非同期シーンロード
-        /// </summary>
-        public static async UniTask FadeOutAndChangeScene(SceneID sceneId, CancellationToken cancellationToken)
+        public enum ID
         {
-            // await FadeOut(cancellationToken); // フェードアウトの実装はこちらに
-
-            await LoadSceneAsync(sceneId, cancellationToken);
+            Title,
+            Main,
+            Result
         }
 
         /// <summary>
-        /// 非同期シーンロード
+        /// キャンセル不可
         /// </summary>
-        public static async UniTask LoadSceneAsync(SceneID sceneId, CancellationToken cancellationToken)
+        public static async UniTaskVoid LoadAsync(this ID id)
         {
-            AsyncOperation sceneLoadOperation = SceneManager.LoadSceneAsync(sceneId.ToSceneName());
-            sceneLoadOperation.allowSceneActivation = false;
-            await UniTask.WaitUntil(() => sceneLoadOperation.isDone, cancellationToken: cancellationToken);
-            sceneLoadOperation.allowSceneActivation = true;
+            string name = id.ToName();
+            if (string.IsNullOrEmpty(name)) return;
+
+            PauseState.IsPaused = true;
+            var opr = SceneManager.LoadSceneAsync(name);
+            opr.allowSceneActivation = false;
+            await UniTask.WaitUntil(() => opr.progress >= 0.9f);
+            opr.allowSceneActivation = true;
+            await UniTask.WaitUntil(() => opr.isDone);
+            PauseState.IsPaused = false;
         }
 
-        private static string ToSceneName(this SceneID sceneId) => sceneId switch
+        private static string ToName(this ID id) => id switch
         {
-            SceneID.Title => "Title",
-            SceneID.Main => "Main",
-            SceneID.Result => "Result",
-            _ => throw new(),
+            ID.Title => "Title",
+            ID.Main => "Main",
+            ID.Result => "Result",
+            _ => string.Empty
         };
     }
 }
