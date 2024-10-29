@@ -207,6 +207,7 @@ namespace Main.EventManager
             "ActionEvent/BusSign" => "古びた標識だ",
             "ActionEvent/PathWaySign" => "汚れていて見えない",
             "ActionEvent/OneWayDoor" => "こちらからは開けられない様だ",
+            "ActionEvent/Memo" => "文章未決定",
             _ => string.Empty
         };
     }
