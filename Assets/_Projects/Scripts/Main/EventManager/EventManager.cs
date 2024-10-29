@@ -67,29 +67,26 @@ namespace Main.EventManager
 
                 if (string.IsNullOrEmpty(text)) continue;  // 無効なものに当たった
 
-                bool isGetOffInput = 
-                    text != "ActionEvent/OneWayDoor";//メッセージの表示終了を３秒後のフェードアウトに限定する
+                bool isGetOffInput =
+                    collider.tag != "ActionEvent/OneWayDoor";//メッセージの表示終了を３秒後のフェードアウトに限定する
 
                 _uiElements.NewlyShowLogText(text, EventManagerConst.NormalTextShowDuration, isGetOffInput);
 
-                if (text == "ActionEvent/Memo") PosePlayerAsync(ct).Forget();
+                if (collider.tag == "ActionEvent/Memo") await PosePlayerAsync(EventManagerConst.NormalTextShowDuration, ct);
             }
 
-            async UniTaskVoid PosePlayerAsync(CancellationToken ct)
+            async UniTask PosePlayerAsync(float delay, CancellationToken ct)
             {
                 try
                 {
                     _player.IsPlayerControlEnabled = false;
-                    PauseState.IsPaused = true;
-                    await UniTask.Delay(TimeSpan.FromSeconds(EventManagerConst.NormalTextShowDuration), cancellationToken: ct);
+                    await UniTask.Delay(TimeSpan.FromSeconds(delay), cancellationToken: ct);
                     _player.IsPlayerControlEnabled = true;
-                    PauseState.IsPaused = false;
                 }
                 catch (OperationCanceledException)
                 {
                     //キャンセルされたときが起きた時ポーズ解除
                     _player.IsPlayerControlEnabled = true;
-                    PauseState.IsPaused = false;
                 }
             }
         }
