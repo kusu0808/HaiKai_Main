@@ -67,7 +67,10 @@ namespace Main.EventManager
 
                 if (string.IsNullOrEmpty(text)) continue;  // 無効なものに当たった
 
-                _uiElements.NewlyShowLogText(text, EventManagerConst.NormalTextShowDuration);
+                bool isGetOffInput = 
+                    text != "ActionEvent/OneWayDoor";//メッセージの表示終了を３秒後のフェードアウトに限定する
+
+                _uiElements.NewlyShowLogText(text, EventManagerConst.NormalTextShowDuration, isGetOffInput);
 
 
             }
