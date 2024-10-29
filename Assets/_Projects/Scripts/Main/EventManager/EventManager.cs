@@ -72,7 +72,25 @@ namespace Main.EventManager
 
                 _uiElements.NewlyShowLogText(text, EventManagerConst.NormalTextShowDuration, isGetOffInput);
 
+                if (text == "ActionEvent/Memo") PosePlayerAsync(ct).Forget();
+            }
 
+            async UniTaskVoid PosePlayerAsync(CancellationToken ct)
+            {
+                try
+                {
+                    _player.IsPlayerControlEnabled = false;
+                    PauseState.IsPaused = true;
+                    await UniTask.Delay(TimeSpan.FromSeconds(EventManagerConst.NormalTextShowDuration), cancellationToken: ct);
+                    _player.IsPlayerControlEnabled = true;
+                    PauseState.IsPaused = false;
+                }
+                catch (OperationCanceledException)
+                {
+                    //キャンセルされたときが起きた時ポーズ解除
+                    _player.IsPlayerControlEnabled = true;
+                    PauseState.IsPaused = false;
+                }
             }
         }
 
@@ -185,6 +203,8 @@ namespace Main.EventManager
                 _player.IsPlayerControlEnabled = true;
             }
         }
+
+
 
         [Serializable]
         public sealed class Debug
