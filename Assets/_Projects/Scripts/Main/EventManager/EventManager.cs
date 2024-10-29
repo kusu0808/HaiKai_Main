@@ -68,6 +68,8 @@ namespace Main.EventManager
                 if (string.IsNullOrEmpty(text)) continue;  // 無効なものに当たった
 
                 _uiElements.NewlyShowLogText(text, EventManagerConst.NormalTextShowDuration);
+
+
             }
         }
 
@@ -204,6 +206,7 @@ namespace Main.EventManager
         {
             "ActionEvent/BusSign" => "古びた標識だ",
             "ActionEvent/PathWaySign" => "汚れていて見えない",
+            "ActionEvent/OneWayDoor" => "こちらからは開けられない様だ",
             _ => string.Empty
         };
     }
