@@ -7,6 +7,8 @@ TagManager:
   - CinemachineTarget
   - ActionEvent/BusSign
   - ActionEvent/PathWaySign
+  - ActionEvent/OneWayDoor
+  - ActionEvent/Memo
   layers:
   - Default
   - TransparentFX
