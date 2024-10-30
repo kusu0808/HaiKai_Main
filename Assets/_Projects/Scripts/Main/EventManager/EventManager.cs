@@ -75,12 +75,13 @@ namespace Main.EventManager
                 if (collider.tag == "ActionEvent/Memo") await PosePlayerAsync(EventManagerConst.NormalTextShowDuration, ct);
             }
 
+
             async UniTask PosePlayerAsync(float delay, CancellationToken ct)
             {
                 try
                 {
                     _player.IsPlayerControlEnabled = false;
-                    await UniTask.Delay(TimeSpan.FromSeconds(delay), cancellationToken: ct);
+                    await UniTask.WaitUntil(() => InputGetter.Instance.PlayerAction.Bool, cancellationToken: ct);
                     _player.IsPlayerControlEnabled = true;
                 }
                 catch (OperationCanceledException)
