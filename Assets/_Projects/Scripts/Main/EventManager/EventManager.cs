@@ -67,7 +67,40 @@ namespace Main.EventManager
 
                 if (string.IsNullOrEmpty(text)) continue;  // 無効なものに当たった
 
-                _uiElements.NewlyShowLogText(text, EventManagerConst.NormalTextShowDuration);
+                bool isGetOffInput;
+                IsGetOffInput(collider, out isGetOffInput);
+
+                _uiElements.NewlyShowLogText(text, EventManagerConst.NormalTextShowDuration, isGetOffInput);
+
+                await IfPose(collider, EventManagerConst.NormalTextShowDuration, ct);
+            }
+
+            void IsGetOffInput(Collider collider, out bool isGetOffInput)
+            {
+                isGetOffInput =
+                collider.tag != "ActionEvent/OneWayDoor";//メッセージの表示終了を３秒後のフェードアウトに限定する
+            }
+
+            async UniTask IfPose(Collider collider, float delay, CancellationToken ct)
+            {
+                //ポーズ
+                if (collider.tag == "ActionEvent/Memo") await PosePlayerAsync(delay, ct);
+            }  
+
+            async UniTask PosePlayerAsync(float delay, CancellationToken ct)
+            {
+                try
+                {
+                    _player.IsPlayerControlEnabled = false;
+                    //入力を検知する
+                    await UniTask.WaitUntil(() => InputGetter.Instance.PlayerCancel.Bool, cancellationToken: ct);
+                    _player.IsPlayerControlEnabled = true;
+                }
+                catch (OperationCanceledException)
+                {
+                    //キャンセルされたときが起きた時ポーズ解除
+                    _player.IsPlayerControlEnabled = true;
+                }
             }
         }
 
@@ -181,6 +214,8 @@ namespace Main.EventManager
             }
         }
 
+
+
         [Serializable]
         public sealed class Debug
         {
@@ -204,6 +239,8 @@ namespace Main.EventManager
         {
             "ActionEvent/BusSign" => "古びた標識だ",
             "ActionEvent/PathWaySign" => "汚れていて見えない",
+            "ActionEvent/OneWayDoor" => "こちらからは開けられない様だ",
+            "ActionEvent/Memo" => "文章未決定",
             _ => string.Empty
         };
     }
