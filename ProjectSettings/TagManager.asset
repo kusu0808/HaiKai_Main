@@ -9,6 +9,8 @@ TagManager:
   - ActionEvent/PathWaySign
   - StoryEvent/DaughterKnife
   - StoryEvent/BigIvy
+  - StoryEvent/OneWayDoor
+  - StoryEvent/Memo
   layers:
   - Default
   - TransparentFX
