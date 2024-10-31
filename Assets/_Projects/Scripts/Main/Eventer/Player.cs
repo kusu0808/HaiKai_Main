@@ -3,8 +3,9 @@ using StarterAssets;
 using System;
 using System.Threading;
 using UnityEngine;
+using Main.EventManager;
 
-namespace Main.EventManager
+namespace Main.Eventer
 {
     [Serializable]
     public sealed class Player
@@ -69,6 +70,8 @@ namespace Main.EventManager
                 _transform.localEulerAngles = value;
             }
         }
+
+        public bool IsMoving => Mathf.Abs(_characterController.velocity.magnitude) > 0.01f;
 
         /// <summary>
         /// 完全にデバッグ用。戻すことはできない。

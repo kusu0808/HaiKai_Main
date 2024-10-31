@@ -1,10 +1,9 @@
 ﻿using BorderSystem;
-using Cysharp.Threading.Tasks;
 using System;
 using System.Collections.ObjectModel;
 using UnityEngine;
 
-namespace Main.EventManager
+namespace Main.Eventer
 {
     [Serializable]
     public sealed class Borders
@@ -13,7 +12,11 @@ namespace Main.EventManager
         private MultiBorders _busStopCannotMove;
         public MultiBorders BusStopCannotMove => _busStopCannotMove;
 
-        [SerializeField, Tooltip("橋：きしむ音を立てる")]
+        [SerializeField, Tooltip("小道：割れた皿を踏む")]
+        private Border _footOnDish;
+        public Border FootOnDish => _footOnDish;
+
+        [SerializeField, Tooltip("小道：橋がきしむ音を立てる")]
         private Border _bridgePlaySound;
         public Border BridgePlaySound => _bridgePlaySound;
 
@@ -24,6 +27,10 @@ namespace Main.EventManager
         [SerializeField, Tooltip("小道：しゃがんで通り抜ける 2")]
         private TeleportBorder _pathWaySquat2;
         public TeleportBorder PathWaySquat2 => _pathWaySquat2;
+
+        [SerializeField, Tooltip("小道；行き止まり(ここで娘が攫われる)")]
+        private Border _pathWayFarewell;
+        public Border PathWayFarewell => _pathWayFarewell;
 
         [SerializeField, Tooltip("舞台下：しゃがんで通り抜ける")]
         private TeleportBorders _underStageSquat;

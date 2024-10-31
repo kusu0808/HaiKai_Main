@@ -7,6 +7,8 @@ TagManager:
   - CinemachineTarget
   - ActionEvent/BusSign
   - ActionEvent/PathWaySign
+  - StoryEvent/DaughterKnife
+  - StoryEvent/BigIvy
   layers:
   - Default
   - TransparentFX
