@@ -8,7 +8,7 @@ using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
 
-namespace Main.EventManager
+namespace Main.Eventer
 {
     [Serializable]
     public sealed class UIElements

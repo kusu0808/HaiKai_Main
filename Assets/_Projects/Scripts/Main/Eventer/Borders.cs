@@ -1,10 +1,9 @@
 ﻿using BorderSystem;
-using Cysharp.Threading.Tasks;
 using System;
 using System.Collections.ObjectModel;
 using UnityEngine;
 
-namespace Main.EventManager
+namespace Main.Eventer
 {
     [Serializable]
     public sealed class Borders

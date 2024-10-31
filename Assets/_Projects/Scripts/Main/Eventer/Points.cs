@@ -1,7 +1,7 @@
 ﻿using System;
 using UnityEngine;
 
-namespace Main.EventManager
+namespace Main.Eventer
 {
     [Serializable]
     public sealed class Points

@@ -3,8 +3,9 @@ using StarterAssets;
 using System;
 using System.Threading;
 using UnityEngine;
+using Main.EventManager;
 
-namespace Main.EventManager
+namespace Main.Eventer
 {
     [Serializable]
     public sealed class Player
