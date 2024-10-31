@@ -9,7 +9,6 @@ TagManager:
   - ActionEvent/PathWaySign
   - ActionEvent/OneWayDoor
   - ActionEvent/Memo
-  - ActionEvent/???
   layers:
   - Default
   - TransparentFX
