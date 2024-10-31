@@ -2,6 +2,7 @@ using Cysharp.Threading.Tasks;
 using System.Threading;
 using UnityEngine;
 using IA;
+using System;
 
 namespace Main.EventManager
 {
@@ -19,15 +20,32 @@ namespace Main.EventManager
                 if (PauseState.IsPaused is true) continue;  // ポーズ中
 
                 Collider collider = _player.GetHitColliderFromCamera();
-
                 if (collider == null) continue;  // 当たらなかった
 
-                string text = collider.tag.GetMessage();
+                string tag = collider.tag;
 
-                if (string.IsNullOrEmpty(text)) continue;  // 無効なものに当たった
-
-                _uiElements.NewlyShowLogText(text, EventManagerConst.NormalTextShowDuration);
+                Action action = GetAction(tag, ct);
+                if (action is not null) action.Invoke(); // イベントが発火したので、ログは出さない
+                else
+                {
+                    string message = GetMessage(tag);
+                    if (string.IsNullOrEmpty(message)) continue;  // 無効なものに当たった
+                    _uiElements.NewlyShowLogText(message, EventManagerConst.NormalTextShowDuration);
+                }
             }
         }
+
+        private string GetMessage(string tag) => tag switch
+        {
+            "ActionEvent/BusSign" => "古びた標識だ",
+            "ActionEvent/PathWaySign" => "汚れていて見えない",
+            _ => string.Empty
+        };
+
+        private Action GetAction(string tag, CancellationToken ctIfNeeded) => tag switch
+        {
+            "StoryEvent/DaughterKnife" => () => PickUpDaughterKnife(ctIfNeeded).Forget(),
+            _ => null
+        };
     }
 }

@@ -8,7 +8,8 @@ namespace Main.EventManager
     {
         private async UniTaskVoid PathWayFarewell(CancellationToken ct)
         {
-            _daughter.SetPathWayItemsEnabled(false);
+            //_daughter.SetPathWayItemsEnabled(false);
+            "本来は、アイテムを消しておくこと！".Warn();
             await UniTask.WaitUntil(() => _borders.PathWayFarewell.IsIn(_player.Position) is true, cancellationToken: ct);
             _uiElements.NewlyShowLogText("キャーッ！", EventManagerConst.EventTextShowDuration, false);
             _daughter.IsActive = false;

@@ -9,8 +9,8 @@ namespace Main.Eventer
         [SerializeField]
         private Transform _transform;
 
-        [SerializeField, Header("小道に散らばる予定の、娘の持ち物全て")]
-        private GameObject[] _pathWayItems;
+        [SerializeField, Header("ナイフ(小道に散らばる予定)")]
+        private GameObject _knife;
 
         public bool IsActive
         {
@@ -41,15 +41,16 @@ namespace Main.Eventer
             }
         }
 
+        // 一括変更
         public void SetPathWayItemsEnabled(bool value)
         {
-            if (_pathWayItems is null) return;
+            if (_knife != null) _knife.SetActive(value);
+        }
 
-            foreach (GameObject item in _pathWayItems)
-            {
-                if (item == null) continue;
-                item.SetActive(value);
-            }
+        // 個別変更(一括変更の方と競合し得る)
+        public void SetKnifeEnabled(bool value)
+        {
+            if (_knife != null) _knife.SetActive(value);
         }
     }
 }

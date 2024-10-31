@@ -6,9 +6,7 @@ namespace Main
     [Serializable]
     public sealed class PlayerItem
     {
-        public bool HasItem1 { get; set; } = false;
-        public bool HasItem2 { get; set; } = false;
-        public bool HasItem3 { get; set; } = false;
+        public bool HasKnife { get; set; } = false;
 
         public PlayerItem() { }
 
