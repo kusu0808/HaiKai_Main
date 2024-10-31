@@ -46,6 +46,8 @@ namespace Main.EventManager
         {
             "StoryEvent/DaughterKnife" => () => PickUpDaughterKnife(ctIfNeeded).Forget(),
             "StoryEvent/BigIvy" => () => CutBigIvy(),
+            "StoryEvent/OneWayDoor" => () => TMPNAME_GoThroughOneWayDoor(ctIfNeeded).Forget(),
+            "StoryEvent/Memo" => () => TMPNAME_ReadMemo(ctIfNeeded).Forget(),
             _ => null
         };
     }
