@@ -9,6 +9,10 @@ namespace Main.EventManager
     {
         private void ObserveTrigger(CancellationToken ct)
         {
+            // 一回だけ
+            FootOnDishOnce(ct).Forget();
+
+            // 繰り返し
             BusStopCannotMove(ct).Forget();
             FootOnDish(ct).Forget();
             BridgePlaySound(ct).Forget();
