@@ -10,6 +10,7 @@ namespace Main.EventManager
         private void ObserveTrigger(CancellationToken ct)
         {
             BusStopCannotMove(ct).Forget();
+            FootOnDish(ct).Forget();
             BridgePlaySound(ct).Forget();
             PathWaySquat(ct).Forget();
             UnderStageSquat(ct).Forget();

@@ -12,7 +12,11 @@ namespace Main.Eventer
         private MultiBorders _busStopCannotMove;
         public MultiBorders BusStopCannotMove => _busStopCannotMove;
 
-        [SerializeField, Tooltip("橋：きしむ音を立てる")]
+        [SerializeField, Tooltip("小道：割れた皿を踏む")]
+        private Border _footOnDish;
+        public Border FootOnDish => _footOnDish;
+
+        [SerializeField, Tooltip("小道：橋がきしむ音を立てる")]
         private Border _bridgePlaySound;
         public Border BridgePlaySound => _bridgePlaySound;
 

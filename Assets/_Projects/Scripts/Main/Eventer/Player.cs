@@ -71,6 +71,8 @@ namespace Main.Eventer
             }
         }
 
+        public bool IsMoving => Mathf.Abs(_characterController.velocity.magnitude) > 0.01f;
+
         /// <summary>
         /// 完全にデバッグ用。戻すことはできない。
         /// </summary>

@@ -2,6 +2,7 @@ using Cysharp.Threading.Tasks;
 using System.Threading;
 using BorderSystem;
 using General;
+using UnityEngine;
 
 namespace Main.EventManager
 {
@@ -11,11 +12,13 @@ namespace Main.EventManager
         {
             Border cache = _borders.BridgePlaySound;
 
+            bool IsMovingOnBridge() => cache.IsIn(_player.Position) is true && _player.IsMoving is true;
+
             while (true)
             {
-                await UniTask.WaitUntil(() => cache.IsIn(_player.Position) is true, cancellationToken: ct);
+                await UniTask.WaitUntil(() => IsMovingOnBridge() is true, cancellationToken: ct);
                 "後方置換：橋がきしむ音を再生開始".Warn();
-                await UniTask.WaitUntil(() => cache.IsIn(_player.Position) is false, cancellationToken: ct);
+                await UniTask.WaitUntil(() => IsMovingOnBridge() is false, cancellationToken: ct);
                 "後方置換：橋がきしむ音を再生終了".Warn();
             }
         }
