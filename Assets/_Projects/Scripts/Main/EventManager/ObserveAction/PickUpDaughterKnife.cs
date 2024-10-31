@@ -10,7 +10,7 @@ namespace Main.EventManager
         {
             PauseState.IsPaused = true;
             "ナイフのUI表示開始".Warn();
-            await UniTask.Delay(1000, cancellationToken: ct);
+            await UniTask.Delay(1000, ignoreTimeScale: true, cancellationToken: ct);
             "ナイフのUI表示終了".Warn();
             PauseState.IsPaused = false;
 
