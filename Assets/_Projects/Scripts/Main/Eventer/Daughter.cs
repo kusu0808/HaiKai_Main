@@ -9,7 +9,7 @@ namespace Main.Eventer
         [SerializeField]
         private Transform _transform;
 
-        public bool isActive
+        public bool IsActive
         {
             get
             {

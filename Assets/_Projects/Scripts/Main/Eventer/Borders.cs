@@ -28,6 +28,10 @@ namespace Main.Eventer
         private TeleportBorder _pathWaySquat2;
         public TeleportBorder PathWaySquat2 => _pathWaySquat2;
 
+        [SerializeField, Tooltip("小道；行き止まり(ここで娘が攫われる)")]
+        private Border _pathWayFarewell;
+        public Border PathWayFarewell => _pathWayFarewell;
+
         [SerializeField, Tooltip("舞台下：しゃがんで通り抜ける")]
         private TeleportBorders _underStageSquat;
         public TeleportBorders UnderStageSquat => _underStageSquat;

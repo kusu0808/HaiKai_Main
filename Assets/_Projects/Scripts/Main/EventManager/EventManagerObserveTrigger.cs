@@ -11,6 +11,7 @@ namespace Main.EventManager
         {
             // 一回だけ
             FootOnDishOnce(ct).Forget();
+            PathWayFarewell(ct).Forget();
 
             // 繰り返し
             BusStopCannotMove(ct).Forget();
