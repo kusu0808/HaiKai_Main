@@ -6,7 +6,7 @@ namespace Main.EventManager
 {
     public sealed partial class EventManager
     {
-        private async UniTaskVoid CutBigIvy(CancellationToken ct)
+        private void CutBigIvy()
         {
             if (_uiElements.IsHoldingDaughterKnife())
             {

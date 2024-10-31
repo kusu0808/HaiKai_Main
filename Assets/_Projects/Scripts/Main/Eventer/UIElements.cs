@@ -133,8 +133,7 @@ namespace Main.Eventer
             set
             {
                 if (_managePlayerUI == null) return;
-                Sprite sprite = value ? _daughterKnifeSprite : null;
-                _managePlayerUI.SetSprite(_daughterKnifeIndex, sprite);
+                _managePlayerUI.SetSprite(_daughterKnifeIndex, value ? _daughterKnifeSprite : null);
                 _isShowDaughterKnife = value;
             }
         }

@@ -45,7 +45,7 @@ namespace Main.EventManager
         private Action GetAction(string tag, CancellationToken ctIfNeeded) => tag switch
         {
             "StoryEvent/DaughterKnife" => () => PickUpDaughterKnife(ctIfNeeded).Forget(),
-            "StoryEvent/BigIvy" => () => CutBigIvy(ctIfNeeded).Forget(),
+            "StoryEvent/BigIvy" => () => CutBigIvy(),
             _ => null
         };
     }
