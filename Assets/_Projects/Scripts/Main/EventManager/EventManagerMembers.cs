@@ -7,6 +7,7 @@ namespace Main.EventManager
     {
         [SerializeField] private Debug _debug;
         [Space(25)]
+        [SerializeField] private Objects _objects;
         [SerializeField] private Points _points;
         [SerializeField] private Borders _borders;
         [SerializeField] private Player _player;

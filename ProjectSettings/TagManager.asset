@@ -8,6 +8,7 @@ TagManager:
   - ActionEvent/BusSign
   - ActionEvent/PathWaySign
   - StoryEvent/DaughterKnife
+  - StoryEvent/BigIvy
   layers:
   - Default
   - TransparentFX

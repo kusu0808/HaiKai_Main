@@ -16,9 +16,11 @@ namespace Main.Eventer
         [SerializeField] private Image _blackImage;
         [SerializeField] private TextMeshProUGUI _logText;
         [Space(25)]
-        [SerializeField] private ManagePlayerUI _managePlayerUI;
+        [SerializeField] private ManagePlayerUI _managePlayerUI; // アイテムの入手順が決まっているので、それぞれのアイテム毎に、何番目に入れるかを厳密に指定する
         [SerializeField] private TriggerPauseUI _triggerPauseUI;
         [SerializeField] private TriggerSettingUI _triggerSettingUI;
+        [Space(25)]
+        [SerializeField] private Sprite _daughterKnifeSprite;
 
         private CancellationTokenSource _ctsLogText = new();
         private void ResetCtsLogText() { _ctsLogText.Cancel(); _ctsLogText.Dispose(); _ctsLogText = new(); }
@@ -120,5 +122,22 @@ namespace Main.Eventer
             if (_triggerPauseUI == null) return;
             _triggerPauseUI.SetCursor(isActive);
         }
+
+        private bool IsHoldingThisIndex(int index) => (_managePlayerUI == null) ? false : index == _managePlayerUI.ItemIndex;
+
+        private static readonly int _daughterKnifeIndex = 0;
+        private bool _isShowDaughterKnife = false;
+        public bool IsShowDaughterKnife
+        {
+            get => _isShowDaughterKnife;
+            set
+            {
+                if (_managePlayerUI == null) return;
+                Sprite sprite = value ? _daughterKnifeSprite : null;
+                _managePlayerUI.SetSprite(_daughterKnifeIndex, sprite);
+                _isShowDaughterKnife = value;
+            }
+        }
+        public bool IsHoldingDaughterKnife() => IsShowDaughterKnife && IsHoldingThisIndex(_daughterKnifeIndex);
     }
 }

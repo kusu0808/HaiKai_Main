@@ -11,6 +11,7 @@ namespace Main
 {
     /// <summary>
     /// 最初にRollItem()を呼ぶこと
+    /// アイテムの個数や種類などは、他の場所で管理すること
     /// </summary>
     public class ManagePlayerUI : MonoBehaviour
     {
@@ -18,6 +19,7 @@ namespace Main
         [SerializeField] private Image[] _itemImages;
 
         private LoopedInt _itemIndex;
+        public int ItemIndex => _itemIndex.Value;
 
         private GameObject _playerUI => _playerUICanvas.gameObject;
         private float _selectInput => InputGetter.Instance.PlayerSelect.Float;
@@ -48,6 +50,20 @@ namespace Main
                     img.color = i == itemIndex ? DarkWhite : LightWhite;
                 }
             }
+        }
+
+        // 非表示にしたいときは、nullを入れる
+        public void SetSprite(int index, Sprite sprite)
+        {
+            if (_itemImages is null) return;
+            if (!(0 <= index && index < _itemImages.Length)) return;
+            if (sprite == null) return;
+
+            Image image = _itemImages[index];
+            if (image == null) return;
+
+            // index番目にspriteの画像をセット
+            image.sprite = sprite;
         }
     }
 }

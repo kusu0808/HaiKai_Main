@@ -14,6 +14,7 @@ namespace Main.EventManager
             _player.IsPlayerControlEnabled = false;
             _player.SetTransform(_points.Init);
             _player.CheckDeviation(_points.Init, ct).Forget();
+            _uiElements.IsShowDaughterKnife = false;
 
             if (_debug.IsEnabled) InitializeDebugProperty();
 
