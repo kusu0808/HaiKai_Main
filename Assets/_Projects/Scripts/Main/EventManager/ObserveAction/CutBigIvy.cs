@@ -1,5 +1,3 @@
-using System.Threading;
-using Cysharp.Threading.Tasks;
 using General;
 
 namespace Main.EventManager
@@ -13,7 +11,6 @@ namespace Main.EventManager
                 "植物を切り開くSEを1回だけ再生".Warn();
                 _objects.DeactivateBigIvy();
                 _uiElements.NewlyShowLogText("通れるようになった", EventManagerConst.EventTextShowDuration);
-                _uiElements.IsShowDaughterKnife = false;
             }
             else
             {

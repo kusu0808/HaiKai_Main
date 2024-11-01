@@ -73,6 +73,9 @@ namespace Main.Eventer
 
         public bool IsMoving => Mathf.Abs(_characterController.velocity.magnitude) > 0.01f;
 
+        // 委譲するだけ
+        public float SlopLimit { set => _firstPersonController.SlopeLimit = value; }
+
         /// <summary>
         /// 完全にデバッグ用。戻すことはできない。
         /// </summary>

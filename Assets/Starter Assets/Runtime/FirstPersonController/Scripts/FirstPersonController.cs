@@ -69,6 +69,16 @@ namespace StarterAssets
         public bool IsJumpEnabled { get; set; } = true;
         private static readonly bool IsSprintEnabled = false;
 
+        public float SlopeLimit
+        {
+            set
+            {
+                if (_controller == null) return;
+                if (value is not (>= 0.1f and <= 89.9f)) return;
+                _controller.slopeLimit = value;
+            }
+        }
+
 #if ENABLE_INPUT_SYSTEM
         private PlayerInput _playerInput;
 #endif

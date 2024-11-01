@@ -18,6 +18,7 @@ namespace Main.EventManager
             FootOnDish(ct).Forget();
             BridgePlaySound(ct).Forget();
             PathWaySquat(ct).Forget();
+            EnableGoUpOnEnteringHouse(ct).Forget();
             UnderStageSquat(ct).Forget();
         }
 
