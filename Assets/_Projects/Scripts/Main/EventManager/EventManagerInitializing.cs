@@ -13,6 +13,7 @@ namespace Main.EventManager
             _uiElements.SetCursor(false);
             _player.IsPlayerControlEnabled = false;
             _player.SetTransform(_points.Init);
+            _player.SlopLimit = EventManagerConst.SlopLimitInit;
             _player.CheckDeviation(_points.Init, ct).Forget();
             _uiElements.IsShowDaughterKnife = false;
 

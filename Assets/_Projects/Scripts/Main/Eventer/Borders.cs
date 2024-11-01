@@ -32,6 +32,10 @@ namespace Main.Eventer
         private Border _pathWayFarewell;
         public Border PathWayFarewell => _pathWayFarewell;
 
+        [SerializeField, Tooltip("民家：入り口だけ昇れる角度が変わる")]
+        private Border _enableGoUpOnEnteringHouse;
+        public Border EnableGoUpOnEnteringHouse => _enableGoUpOnEnteringHouse;
+
         [SerializeField, Tooltip("舞台下：しゃがんで通り抜ける")]
         private TeleportBorders _underStageSquat;
         public TeleportBorders UnderStageSquat => _underStageSquat;

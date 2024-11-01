@@ -28,5 +28,8 @@ namespace Main.EventManager
         public static readonly float EventTextShowDuration = 5;
         public static readonly float SameEventDuration = 5;
         public static readonly float RayMaxDistance = 2;
+
+        public static readonly float SlopLimitInit = 45.1f;
+        public static readonly float SlopLimitOnEnteringHouse = 89;
     }
 }
