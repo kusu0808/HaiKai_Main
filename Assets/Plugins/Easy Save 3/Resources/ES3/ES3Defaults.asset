@@ -33,6 +33,7 @@ MonoBehaviour:
     - Assembly-CSharp
     - Assembly-CSharp-firstpass
     - Cinemachine
+    - Sirenix.OdinInspector.Modules.Unity.Addressables
     - UniRx
     - UniTask
     - UniTask.Addressables
