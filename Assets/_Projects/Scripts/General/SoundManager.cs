@@ -36,6 +36,7 @@ namespace General
                 source.playOnAwake = false;
                 source.loop = false;
 
+                source.clip = clip; // 一応
                 source.PlayOneShot(clip);
             }
             else throw new Exception("無効な種類です");

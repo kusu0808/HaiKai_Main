@@ -1,11 +1,17 @@
 using UnityEngine;
 using Main.Eventer;
+using SO;
+using Sirenix.OdinInspector;
+using Eventer;
 
 namespace Main.EventManager
 {
     public sealed partial class EventManager
     {
         [SerializeField] private Debug _debug;
+        [Space(25)]
+        [SerializeField, AssetsOnly, InlineEditor(InlineEditorModes.FullEditor)] private SAudioClips _SAudioClips;
+        [SerializeField, SceneObjectsOnly] private AudioClips _audioClips;
         [Space(25)]
         [SerializeField] private Objects _objects;
         [SerializeField] private Points _points;
