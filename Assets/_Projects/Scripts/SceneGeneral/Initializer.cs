@@ -4,8 +4,9 @@ using UnityEngine;
 using UnityEngine.AddressableAssets;
 using UnityEngine.Audio;
 using AsyncOperationStatus = UnityEngine.ResourceManagement.AsyncOperations.AsyncOperationStatus;
+using General;
 
-namespace General
+namespace SceneGeneral
 {
     public static class Initializer
     {

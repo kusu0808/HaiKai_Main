@@ -4,6 +4,7 @@ using IA;
 using System.Threading;
 using UnityEngine;
 using UnityEngine.UI;
+using SceneGeneral;
 
 namespace Main
 {

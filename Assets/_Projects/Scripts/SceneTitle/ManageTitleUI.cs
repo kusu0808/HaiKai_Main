@@ -1,7 +1,7 @@
 ﻿using UnityEngine;
 using UnityEngine.UI;
 using General;
-using Cysharp.Threading.Tasks;
+using SceneGeneral;
 
 namespace Title
 {

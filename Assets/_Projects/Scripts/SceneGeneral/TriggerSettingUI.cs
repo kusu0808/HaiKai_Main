@@ -2,8 +2,9 @@
 using System.Threading;
 using UnityEngine;
 using UnityEngine.UI;
+using General;
 
-namespace General
+namespace SceneGeneral
 {
     /// <summary>
     /// 最初にChangeVolume()を呼ぶこと

@@ -1,12 +1,12 @@
 ﻿using Cysharp.Threading.Tasks;
 using DG.Tweening;
-using General;
 using IA;
 using System;
 using System.Threading;
 using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
+using SceneGeneral;
 
 namespace Main.Eventer
 {
