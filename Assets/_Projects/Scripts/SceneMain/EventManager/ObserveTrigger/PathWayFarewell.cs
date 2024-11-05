@@ -14,7 +14,8 @@ namespace Main.EventManager
             _uiElements.NewlyShowLogText("キャーッ！", EventManagerConst.EventTextShowDuration, false);
             _daughter.IsActive = false;
             _daughter.SetPathWayItemsEnabled(true);
-            "ここで娘が攫われるSEを1回だけ再生, 何か演出も入れるか？".Warn();
+            _audioSources.GetNew().Raise(_audioClips.Voice.DaughterScream, SoundType.Voice);
+            "何か演出も入れるか？".Warn();
         }
     }
 }

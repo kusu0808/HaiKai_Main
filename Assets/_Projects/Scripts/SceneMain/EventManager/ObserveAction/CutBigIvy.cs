@@ -8,7 +8,7 @@ namespace Main.EventManager
         {
             if (_uiElements.IsHoldingDaughterKnife())
             {
-                "植物を切り開くSEを1回だけ再生".Warn();
+                _audioSources.GetNew().Raise(_audioClips.SE.CutBigIvy, SoundType.SE);
                 _objects.DeactivateBigIvy();
                 _uiElements.NewlyShowLogText("通れるようになった", EventManagerConst.EventTextShowDuration);
             }

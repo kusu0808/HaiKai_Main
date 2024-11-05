@@ -6,7 +6,7 @@ using UnityEngine;
 namespace Eventer
 {
     [Serializable]
-    public sealed class AudioClips
+    public sealed class AudioSources
     {
         [SerializeField, Required, SceneObjectsOnly, LabelText("ルート"), Tooltip("この配下の子オブジェクトは全て、AudioSourceコンポーネントのみを持っている前提")]
         private GameObject _root;

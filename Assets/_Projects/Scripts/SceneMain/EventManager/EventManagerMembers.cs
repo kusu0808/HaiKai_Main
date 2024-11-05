@@ -10,8 +10,8 @@ namespace Main.EventManager
     {
         [SerializeField] private Debug _debug;
         [Space(25)]
-        [SerializeField, AssetsOnly, InlineEditor(InlineEditorModes.FullEditor)] private SAudioClips _SAudioClips;
-        [SerializeField, SceneObjectsOnly] private AudioClips _audioClips;
+        [SerializeField, AssetsOnly, InlineEditor(InlineEditorModes.FullEditor)] private SAudioClips _audioClips;
+        [SerializeField, SceneObjectsOnly] private AudioSources _audioSources;
         [Space(25)]
         [SerializeField] private Objects _objects;
         [SerializeField] private Points _points;

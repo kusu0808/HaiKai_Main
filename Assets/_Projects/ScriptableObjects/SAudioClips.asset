@@ -12,3 +12,36 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a3e94b0c747e74f2ba022be9981818ea, type: 3}
   m_Name: SAudioClips
   m_EditorClassIdentifier: 
+  _bgm:
+    _title: {fileID: 0}
+    _mainChapter1: {fileID: 0}
+    _mainChapter2: {fileID: 0}
+    _mainChapter3: {fileID: 0}
+    _waterSurfaceWave: {fileID: 0}
+    _busStop: {fileID: 0}
+    _moveOnBrokenDish: {fileID: 0}
+    _bridgeCreak: {fileID: 0}
+  _voice:
+    _daughterBreath: {fileID: 0}
+    _daughterScream: {fileID: 8300000, guid: 6defbb0a96465411195ae2776b919116, type: 3}
+    _daughterResist: {fileID: 0}
+    _yatsuBreath: {fileID: 0}
+    _yatsuGroan: {fileID: 0}
+    _yatsuRoar: {fileID: 0}
+  _se:
+    _submit: {fileID: 0}
+    _cancel: {fileID: 0}
+    _pause: {fileID: 0}
+    _cannotSubmit: {fileID: 0}
+    _getItem: {fileID: 0}
+    _busBeginMove: {fileID: 0}
+    _windCut: {fileID: 0}
+    _dishBreak: {fileID: 0}
+    _cutBigIvy: {fileID: 0}
+  _seRough:
+    _moveOnRoad: {fileID: 0}
+    _moveOnPathWay: {fileID: 0}
+    _moveInHouse: {fileID: 0}
+    _moveInCave: {fileID: 0}
+    _jumpOffPathWay: {fileID: 0}
+    _moveDaughter: {fileID: 0}

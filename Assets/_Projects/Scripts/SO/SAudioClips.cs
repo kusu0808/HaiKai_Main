@@ -49,6 +49,14 @@ namespace SO
             [SerializeField, Required, AssetsOnly, LabelText("バスが停車中")]
             private AudioClip _busStop;
             public AudioClip BusStop => _busStop;
+
+            [SerializeField, Required, AssetsOnly, LabelText("割れた皿の上を移動する")]
+            private AudioClip _moveOnBrokenDish;
+            public AudioClip MoveOnBrokenDish => _moveOnBrokenDish;
+
+            [SerializeField, Required, AssetsOnly, LabelText("橋が軋む")]
+            private AudioClip _bridgeCreak;
+            public AudioClip BridgeCreak => _bridgeCreak;
         }
 
         [Serializable]
@@ -111,54 +119,42 @@ namespace SO
             [SerializeField, Required, AssetsOnly, LabelText("風切り音")]
             private AudioClip _windCut;
             public AudioClip WindCut => _windCut;
+
+            [SerializeField, Required, AssetsOnly, LabelText("皿が割れる")]
+            private AudioClip _dishBreak;
+            public AudioClip DishBreak => _dishBreak;
+
+            [SerializeField, Required, AssetsOnly, LabelText("植物を切り開く")]
+            private AudioClip _cutBigIvy;
+            public AudioClip CutBigIvy => _cutBigIvy;
         }
 
         [Serializable]
         public sealed class AudioClipsSERough
         {
-            [SerializeField, Required, AssetsOnly, LabelText("道路の上を歩く")]
-            private AudioClip _walkOnRoad;
-            public AudioClip WalkOnRoad => _walkOnRoad;
+            [SerializeField, Required, AssetsOnly, LabelText("道路の上を移動する")]
+            private AudioClip _moveOnRoad;
+            public AudioClip MoveOnRoad => _moveOnRoad;
 
-            [SerializeField, Required, AssetsOnly, LabelText("道路の上を走る")]
-            private AudioClip _runOnRoad;
-            public AudioClip RunOnRoad => _runOnRoad;
+            [SerializeField, Required, AssetsOnly, LabelText("小道の上を移動する")]
+            private AudioClip _moveOnPathWay;
+            public AudioClip MoveOnPathWay => _moveOnPathWay;
 
-            [SerializeField, Required, AssetsOnly, LabelText("小道の上を歩く")]
-            private AudioClip _walkOnPathWay;
-            public AudioClip WalkOnPathWay => _walkOnPathWay;
+            [SerializeField, Required, AssetsOnly, LabelText("家の中を移動する")]
+            private AudioClip _moveInHouse;
+            public AudioClip MoveInHouse => _moveInHouse;
 
-            [SerializeField, Required, AssetsOnly, LabelText("小道の上を走る")]
-            private AudioClip _runOnPathWay;
-            public AudioClip RunOnPathWay => _runOnPathWay;
-
-            [SerializeField, Required, AssetsOnly, LabelText("家の中を歩く")]
-            private AudioClip _walkInHouse;
-            public AudioClip WalkInHouse => _walkInHouse;
-
-            [SerializeField, Required, AssetsOnly, LabelText("家の中を走る")]
-            private AudioClip _runInHouse;
-            public AudioClip RunInHouse => _runInHouse;
-
-            [SerializeField, Required, AssetsOnly, LabelText("洞窟の中を歩く")]
-            private AudioClip _walkInCave;
-            public AudioClip WalkInCave => _walkInCave;
-
-            [SerializeField, Required, AssetsOnly, LabelText("洞窟の中を走る")]
-            private AudioClip _runInCave;
-            public AudioClip RunInCave => _runInCave;
+            [SerializeField, Required, AssetsOnly, LabelText("洞窟の中を移動する")]
+            private AudioClip _moveInCave;
+            public AudioClip MoveInCave => _moveInCave;
 
             [SerializeField, Required, AssetsOnly, LabelText("小道に飛び降りる")]
             private AudioClip _jumpOffPathWay;
             public AudioClip JumpOffPathWay => _jumpOffPathWay;
 
-            [SerializeField, Required, AssetsOnly, LabelText("娘の歩く音")]
-            private AudioClip _daughterWalk;
-            public AudioClip DaughterWalk => _daughterWalk;
-
-            [SerializeField, Required, AssetsOnly, LabelText("娘の走る音")]
-            private AudioClip _daughterRun;
-            public AudioClip DaughterRun => _daughterRun;
+            [SerializeField, Required, AssetsOnly, LabelText("娘の移動する音")]
+            private AudioClip _moveDaughter;
+            public AudioClip MoveDaughter => _moveDaughter;
         }
     }
 }

@@ -2,6 +2,7 @@ using Cysharp.Threading.Tasks;
 using System.Threading;
 using BorderSystem;
 using General;
+using UnityEngine;
 
 namespace Main.EventManager
 {
@@ -16,9 +17,10 @@ namespace Main.EventManager
             while (true)
             {
                 await UniTask.WaitUntil(() => IsMovingOnDish() is true, cancellationToken: ct);
-                "後方置換：皿が割れる音を再生開始".Warn();
+                AudioSource audioSource = _audioSources.GetNew();
+                audioSource.Raise(_audioClips.BGM.MoveOnBrokenDish, SoundType.BGM);
                 await UniTask.WaitUntil(() => IsMovingOnDish() is false, cancellationToken: ct);
-                "後方置換：皿が割れる音を再生終了".Warn();
+                audioSource.Stop();
             }
         }
     }

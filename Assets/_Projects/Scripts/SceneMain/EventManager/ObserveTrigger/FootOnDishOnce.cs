@@ -10,7 +10,7 @@ namespace Main.EventManager
         {
             await UniTask.WaitUntil(() => _borders.FootOnDish.IsIn(_player.Position) is true, cancellationToken: ct);
             _uiElements.NewlyShowLogText("キャッ！", EventManagerConst.NormalTextShowDuration, false);
-            "ここで皿が割れるSEを1回だけ再生".Warn();
+            _audioSources.GetNew().Raise(_audioClips.SE.DishBreak, SoundType.SE);
         }
     }
 }

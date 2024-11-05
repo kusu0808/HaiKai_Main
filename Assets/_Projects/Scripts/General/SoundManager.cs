@@ -8,7 +8,9 @@ namespace General
     {
         Master,
         BGM,
-        SE
+        Voice,
+        SE,
+        SERough
     }
 
     public static class SoundManager
@@ -31,7 +33,7 @@ namespace General
                 source.clip = clip;
                 source.Play();
             }
-            else if (type is SoundType.SE)
+            else if (type is SoundType.Voice or SoundType.SE or SoundType.SERough)
             {
                 source.playOnAwake = false;
                 source.loop = false;
@@ -48,33 +50,52 @@ namespace General
             set => SetVolume(SoundType.BGM, value);
         }
 
+        // Voice, SE, SERoughは同じ
+        public static float VoiceVolume
+        {
+            get => GetVolume(SoundType.Voice);
+            set => SetVolume(SoundType.Voice, value);
+        }
+
+        // Voice, SE, SERoughは同じ
         public static float SEVolume
         {
             get => GetVolume(SoundType.SE);
             set => SetVolume(SoundType.SE, value);
         }
 
+        // Voice, SE, SERoughは同じ
+        public static float SERoughVolume
+        {
+            get => GetVolume(SoundType.SERough);
+            set => SetVolume(SoundType.SERough, value);
+        }
+
         public static AudioMixer AM { get; set; } = null;
 
         private static float GetVolume(SoundType type)
         {
-            if (AM == null) return 0;
-            AM.GetFloat(type.ToParamNameString(), out float volume);
+            if (AM == null) return default;
+            string paramName = type.ToParamNameString();
+            if (string.IsNullOrEmpty(paramName)) return default;
+            AM.GetFloat(paramName, out float volume);
             return volume;
         }
 
         private static void SetVolume(SoundType type, float newVolume)
         {
             if (AM == null) return;
-            AM.SetFloat(type.ToParamNameString(), newVolume);
+            string paramName = type.ToParamNameString();
+            if (string.IsNullOrEmpty(paramName)) return;
+            AM.SetFloat(paramName, newVolume);
         }
 
         private static string ToParamNameString(this SoundType type) => type switch
         {
             SoundType.Master => "MasterParam",
             SoundType.BGM => "BGMParam",
-            SoundType.SE => "SEParam",
-            _ => throw new Exception("無効な種類です")
+            SoundType.Voice or SoundType.SE or SoundType.SERough => "SEParam",
+            _ => string.Empty
         };
     }
 }
