@@ -11,6 +11,7 @@ TagManager:
   - StoryEvent/BigIvy
   - StoryEvent/OneWayDoor
   - StoryEvent/Memo
+  - StoryEvent/KeyDoor
   layers:
   - Default
   - TransparentFX
