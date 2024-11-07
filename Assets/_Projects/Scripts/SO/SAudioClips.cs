@@ -133,6 +133,18 @@ namespace SO
             [SerializeField, Required, AssetsOnly, LabelText("植物を切り開く")]
             private AudioClip _cutBigIvy;
             public AudioClip CutBigIvy => _cutBigIvy;
+
+            [SerializeField, Required, AssetsOnly, LabelText("鹿が飛び出す")]
+            private AudioClip _deerJumpOut;
+            public AudioClip DeerJumpOut => _deerJumpOut;
+
+            [SerializeField, Required, AssetsOnly, LabelText("鹿が逃げていく")]
+            private AudioClip _deerRunAway;
+            public AudioClip DeerRunAway => _deerRunAway;
+
+            [SerializeField, Required, AssetsOnly, LabelText("鳥が飛び立つ")]
+            private AudioClip _birdFlyAway;
+            public AudioClip BirdFlyAway => _birdFlyAway;
         }
 
         [Serializable]

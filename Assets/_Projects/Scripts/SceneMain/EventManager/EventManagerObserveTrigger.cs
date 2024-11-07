@@ -13,6 +13,8 @@ namespace Main.EventManager
             FootOnDishOnce(ct).Forget();
             PathWayCannotGo(ct).Forget();
             VillageWayDeerCry(ct).Forget();
+            VillageWayDeerAppear(ct).Forget();
+            VillageWayBirdAppear(ct).Forget();
 
             // 繰り返し
             BusStopCannotMove(ct).Forget();
