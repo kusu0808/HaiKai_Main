@@ -6,21 +6,19 @@ namespace Main
     [Serializable]
     public sealed class PlayerItem
     {
-        public bool HasKnife { get; set; } = false;
+        public bool HasKnife = false;
 
-        public PlayerItem() { }
-
-        private static readonly string playerItemKey = "PlayerItem";
+        private const string KEY = nameof(PlayerItem);
 
         public static void Save(PlayerItem playerItem)
         {
             string jsonData = JsonUtility.ToJson(playerItem);
-            ES3.Save(playerItemKey, jsonData);
+            ES3.Save(KEY, jsonData);
         }
 
         public static void Load(out PlayerItem playerItem)
         {
-            string jsonData = ES3.Load<string>(playerItemKey, string.Empty);
+            string jsonData = ES3.Load<string>(KEY);
             playerItem = JsonUtility.FromJson<PlayerItem>(jsonData);
         }
     }
