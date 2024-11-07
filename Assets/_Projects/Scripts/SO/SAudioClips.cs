@@ -86,7 +86,13 @@ namespace SO
             private AudioClip _yatsuRoar;
             public AudioClip YatsuRoar => _yatsuRoar;
 
-            // その他、各種ボイス
+            [SerializeField, Required, AssetsOnly, LabelText("鹿の鳴き声")]
+            private AudioClip _deerCry;
+            public AudioClip DeerCry => _deerCry;
+
+            [SerializeField, Required, AssetsOnly, LabelText("鳥の鳴き声")]
+            private AudioClip _birdCry;
+            public AudioClip BirdCry => _birdCry;
         }
 
         [Serializable]

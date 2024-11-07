@@ -28,9 +28,25 @@ namespace Main.Eventer
         private TeleportBorder _pathWaySquat2;
         public TeleportBorder PathWaySquat2 => _pathWaySquat2;
 
-        [SerializeField, Tooltip("小道；行き止まり(ここで娘が攫われる)")]
-        private Border _pathWayFarewell;
-        public Border PathWayFarewell => _pathWayFarewell;
+        [SerializeField, Tooltip("小道；行き止まり")]
+        private Border _pathWayStop;
+        public Border PathWayStop => _pathWayStop;
+
+        [SerializeField, Tooltip("村道：鹿の鳴き声がする(1回目)")]
+        private Border _villageWayDeerCry1;
+        public Border VillageWayDeerCry1 => _villageWayDeerCry1;
+
+        [SerializeField, Tooltip("村道：鹿の鳴き声がする(2回目)")]
+        private Border _villageWayDeerCry2;
+        public Border VillageWayDeerCry2 => _villageWayDeerCry2;
+
+        [SerializeField, Tooltip("村道：鹿が飛び出す")]
+        private Border _villageWayDeerJumpOut;
+        public Border VillageWayDeerJumpOut => _villageWayDeerJumpOut;
+
+        [SerializeField, Tooltip("村道：鳥が飛び立つ")]
+        private Border _villageWayBirdFly;
+        public Border VillageWayBirdFly => _villageWayBirdFly;
 
         [SerializeField, Tooltip("民家：入り口だけ昇れる角度が変わる")]
         private Border _enableGoUpOnEnteringHouse;

@@ -2,6 +2,7 @@ using Cysharp.Threading.Tasks;
 using System.Threading;
 using IA;
 using Main.Eventer;
+using General;
 
 namespace Main.EventManager
 {
@@ -9,16 +10,23 @@ namespace Main.EventManager
     {
         private async UniTaskVoid PathWaySquat(CancellationToken ct)
         {
+            _daughter.SetPathWayItemsEnabled(false);
+
+            bool isSeparatedFromDaughter = false; // 娘と別れたか
+
             while (true)
             {
                 int i = await UniTask.WhenAny(
                     UniTask.WaitUntil(() => _borders.PathWaySquat1.In.IsIn(_player.Position) is true, cancellationToken: ct),
                     UniTask.WaitUntil(() => _borders.PathWaySquat2.In.IsIn(_player.Position) is true, cancellationToken: ct));
 
-                Borders.TeleportBorder cache = i is 0 ? _borders.PathWaySquat1 : _borders.PathWaySquat2;
-                string logText = i is 0 ? "ここ、すごく狭いね (アクション長押しで通る)" : "そろそろ戻ろう (アクション長押しで通る)";
+                bool isGoingToTheBack = i is 0; // 奥の道に向かっているか
+                bool isFarewellTurn = isGoingToTheBack is true && isSeparatedFromDaughter is false; // 娘と別れるターンか
 
-                _uiElements.ForciblyShowLogText(logText);
+                Borders.TeleportBorder cache = isGoingToTheBack ? _borders.PathWaySquat1 : _borders.PathWaySquat2;
+
+                string text = isFarewellTurn ? "ここ、すごく狭いね (アクション長押しで通る)" : "(アクション長押しで通る)";
+                _uiElements.ForciblyShowLogText(text);
                 int j = await UniTask.WhenAny(
                     UniTask.WaitUntil(() => cache.In.IsIn(_player.Position) is false, cancellationToken: ct),
                     UniTask.WaitUntil(() => InputGetter.Instance.PlayerSpecialAction.Bool, cancellationToken: ct));
@@ -28,6 +36,12 @@ namespace Main.EventManager
                 await _TeleportPlayer(cache.FirstTf, ct);
                 await UniTask.WaitUntil(() => cache.Out.IsIn(_player.Position) is true, cancellationToken: ct);
                 await _TeleportPlayer(cache.SecondTf, ct);
+
+                if (isFarewellTurn is false) continue;
+                isSeparatedFromDaughter = true;
+                _daughter.IsActive = false;
+                _daughter.SetPathWayItemsEnabled(true);
+                _audioSources.GetNew().Raise(_audioClips.Voice.DaughterScream, SoundType.Voice);
             }
         }
     }
