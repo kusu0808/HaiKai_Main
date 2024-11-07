@@ -39,6 +39,8 @@ namespace Main.EventManager
         {
             "ActionEvent/BusSign" => "古びた標識だ",
             "ActionEvent/PathWaySign" => "汚れていて見えない",
+            "ActionEvent/ClosedDoor" => "開かない",
+            "ActionEvent/LockedDoor" => "鍵がかかっている",
             _ => string.Empty
         };
 
@@ -46,8 +48,7 @@ namespace Main.EventManager
         {
             "StoryEvent/DaughterKnife" => () => PickUpDaughterKnife(ctIfNeeded).Forget(),
             "StoryEvent/BigIvy" => () => CutBigIvy(),
-            "StoryEvent/OneWayDoor" => () => TMPNAME_GoThroughOneWayDoor(ctIfNeeded).Forget(),
-            "StoryEvent/Memo" => () => TMPNAME_ReadMemo(ctIfNeeded).Forget(),
+            "StoryEvent/PuzzleHintScroll" => () => ReadPuzzleHintScroll(ctIfNeeded).Forget(),
             _ => null
         };
     }
