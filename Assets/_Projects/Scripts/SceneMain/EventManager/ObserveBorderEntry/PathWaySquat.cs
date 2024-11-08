@@ -11,8 +11,6 @@ namespace Main.EventManager
         private async UniTaskVoid PathWaySquat(CancellationToken ct)
         {
             _daughter.SetPathWayItemsEnabled(false);
-            "本来は非表示にしておくこと！".Warn();
-            _daughter.SetPathWayItemsEnabled(true);
 
             bool isSeparatedFromDaughter = false; // 娘と別れたか
 

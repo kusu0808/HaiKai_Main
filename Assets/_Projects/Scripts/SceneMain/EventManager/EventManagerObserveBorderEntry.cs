@@ -26,7 +26,7 @@ namespace Main.EventManager
             EnableGoUpOnEnteringHouse(ct).Forget();
             HousePlayWalkCorridorSound(ct).Forget();
             HousePlayWalkTatamiSound(ct).Forget();
-            UnderStageSquat(ct).Forget();
+            UnderStageSquat(ct);
             EnableGoUpOnShrineWay(ct).Forget();
         }
 

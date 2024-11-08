@@ -8,7 +8,7 @@ namespace Main.EventManager
     {
         private async UniTaskVoid EnableGoUpOnShrineWay(CancellationToken ct)
         {
-            Border cache = _borders.EnableGoUpOnEnteringHouse;
+            Border cache = _borders.EnableGoUpOnShrineWay;
 
             while (true)
             {

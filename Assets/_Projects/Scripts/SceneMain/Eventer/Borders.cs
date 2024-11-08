@@ -143,6 +143,9 @@ namespace Main.Eventer
                 [SerializeField]
                 private Transform _outTf;
                 public Transform OutTf => _outTf;
+
+                public Border GetBorder(bool isInBorder) => isInBorder ? In : Out;
+                public Transform GetTransform(bool isInBorder) => isInBorder ? OutTf : InTf;
             }
         }
     }
@@ -156,65 +159,24 @@ namespace Main.Eventer
             return false;
         }
 
-        /// <summary>
-        /// Inボーダー達の中に、1つでも入っているか
-        /// </summary>
         /// <param name="layers">この中に入っていないものに関しては、判定を行わない(無視する)。空の場合は、レイヤーを考慮しないでメソッドの処理を行う</param>
         /// <returns>最初に見つけたもののインデックス、それ以外は-1</returns>
-        public static int IsInInAny(this ReadOnlyCollection<Borders.TeleportBorders.Element> elements, Vector3 pos, params int[] layers)
+        public static int IsInAny(this ReadOnlyCollection<Borders.TeleportBorders.Element> elements, Vector3 pos, bool isInBorder, params int[] layers)
         {
             if (elements is null) return -1;
             if (layers is null) return -1;
 
-            if (layers.Length <= 0)
+            for (int i = 0; i < elements.Count; i++)
             {
-                for (int i = 0; i < elements.Count; i++)
+                if (layers.Length <= 0)
                 {
-                    if (elements[i].In.IsIn(pos) is false) continue;
-                    return i;
+                    if (elements[i].GetBorder(isInBorder).IsIn(pos) is true) return i;
                 }
-            }
-            else
-            {
-                for (int i = 0; i < elements.Count; i++)
+                else
                 {
                     foreach (int layer in layers)
                     {
-                        if (elements[i].In.IsIn(pos, layer) is false) continue;
-                        return i;
-                    }
-                }
-            }
-
-            return -1;
-        }
-
-        /// <summary>
-        /// Outボーダー達の中に、1つでも入っているか
-        /// </summary>
-        /// <param name="layers">この中に入っていないものに関しては、判定を行わない(無視する)。空の場合は、レイヤーを考慮しないでメソッドの処理を行う</param>
-        /// <returns>最初に見つけたもののインデックス、それ以外は-1</returns>
-        public static int IsInOutAny(this ReadOnlyCollection<Borders.TeleportBorders.Element> elements, Vector3 pos, params int[] layers)
-        {
-            if (elements is null) return -1;
-            if (layers is null) return -1;
-
-            if (layers.Length <= 0)
-            {
-                for (int i = 0; i < elements.Count; i++)
-                {
-                    if (elements[i].Out.IsIn(pos) is false) continue;
-                    return i;
-                }
-            }
-            else
-            {
-                for (int i = 0; i < elements.Count; i++)
-                {
-                    foreach (int layer in layers)
-                    {
-                        if (elements[i].Out.IsIn(pos, layer) is false) continue;
-                        return i;
+                        if (elements[i].GetBorder(isInBorder).IsIn(pos, layer) is true) return i;
                     }
                 }
             }

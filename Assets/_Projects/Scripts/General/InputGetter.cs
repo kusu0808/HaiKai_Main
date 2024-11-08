@@ -274,7 +274,7 @@ namespace IA
         {
             PlayerAction = new InputInfo(_ia.Player.Action, InputType.Click).Add(_inputInfoList);
             PlayerSelect = new InputInfo(_ia.Player.Select, InputType.Value1).Add(_inputInfoList);
-            PlayerSpecialAction = new InputInfo(_ia.Player.SpecialAction, InputType.Hold).Add(_inputInfoList);
+            PlayerSpecialAction = new InputInfo(_ia.Player.SpecialAction, InputType.Click).Add(_inputInfoList);
             PlayerCancel = new InputInfo(_ia.Player.Cancel, InputType.Click).Add(_inputInfoList);
             Pause = new InputInfo(_ia.General.Pause, InputType.Click).Add(_inputInfoList);
             TriggerBenchmarkText = new InputInfo(_ia.Debug.TriggerBenchmarkText, InputType.Click).Add(_inputInfoList);
