@@ -1,4 +1,4 @@
-using Cysharp.Threading.Tasks;
+ï»¿using Cysharp.Threading.Tasks;
 using Cysharp.Threading.Tasks.Linq;
 using Cysharp.Threading.Tasks.Triggers;
 using Sirenix.OdinInspector;
@@ -10,10 +10,10 @@ namespace Main.Eventer
     [Serializable]
     public sealed class PlayerCollision
     {
-        [SerializeField, Required, SceneObjectsOnly, LabelText("ƒvƒŒƒCƒ„[")]
+        [SerializeField, Required, SceneObjectsOnly, LabelText("ãƒ—ãƒ¬ã‚¤ãƒ¤ãƒ¼")]
         private Collider _playerCollider;
 
-        // Å‰‚É‚±‚ê‚ğŒÄ‚Ô‚±‚Æ
+        // æœ€åˆã«ã“ã‚Œã‚’å‘¼ã¶ã“ã¨
         public void Init(Action<Collider> onTriggerEnter)
         {
             if (_playerCollider == null) return;
