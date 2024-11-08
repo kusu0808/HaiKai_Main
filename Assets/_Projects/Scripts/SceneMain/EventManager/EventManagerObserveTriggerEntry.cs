@@ -13,7 +13,6 @@ namespace Main.EventManager
 
             Action GetAction(string tag, CancellationToken ctIfNeeded) => tag switch
             {
-                "TriggerEntry/PathWayStepDownSlope" => () => OnPathWayStepDownSlope(),
                 _ => null
             };
         }
