@@ -31,5 +31,6 @@ namespace Main.EventManager
 
         public static readonly float SlopLimitInit = 45.1f;
         public static readonly float SlopLimitOnEnteringHouse = 89;
+        public static readonly float SlopLimitOnShrineWay = 75;
     }
 }

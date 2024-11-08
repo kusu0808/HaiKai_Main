@@ -16,6 +16,7 @@ namespace Main.EventManager
             VillageWayDeerAppear(ct).Forget();
             VillageWayBirdAppear(ct).Forget();
             HouseFeelYatsu(ct).Forget();
+            ShrineWayFoundedByYatsu(ct).Forget();
 
             // 繰り返し
             BusStopCannotMove(ct).Forget();
@@ -26,6 +27,7 @@ namespace Main.EventManager
             HousePlayWalkCorridorSound(ct).Forget();
             HousePlayWalkTatamiSound(ct).Forget();
             UnderStageSquat(ct).Forget();
+            EnableGoUpOnShrineWay(ct).Forget();
         }
 
         // 後方置換されるかも
