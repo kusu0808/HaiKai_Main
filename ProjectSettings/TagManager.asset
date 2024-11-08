@@ -5,13 +5,14 @@ TagManager:
   serializedVersion: 2
   tags:
   - CinemachineTarget
-  - ActionEvent/BusSign
-  - ActionEvent/PathWaySign
-  - StoryEvent/DaughterKnife
-  - StoryEvent/BigIvy
-  - StoryEvent/PuzzleHintScroll
-  - ActionEvent/ClosedDoor
-  - ActionEvent/LockedDoor
+  - TriggerEntry/PathWayStepDownSlope
+  - ActionAgainstCollider/Event/DaughterKnife
+  - ActionAgainstCollider/Event/BigIvy
+  - ActionAgainstCollider/Event/PuzzleHintScroll
+  - ActionAgainstCollider/Message/BusSign
+  - ActionAgainstCollider/Message/PathWaySign
+  - ActionAgainstCollider/Message/ClosedDoor
+  - ActionAgainstCollider/Message/LockedDoor
   layers:
   - Default
   - TransparentFX

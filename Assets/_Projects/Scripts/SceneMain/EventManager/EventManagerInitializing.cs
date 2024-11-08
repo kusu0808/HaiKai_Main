@@ -10,6 +10,8 @@ namespace Main.EventManager
         // バスの動きなど、行動の開始もここで
         private async UniTask Initialize(CancellationToken ct)
         {
+            _playerCollision.Init(col => OnPlayerTriggerEnter(col, ct));
+
             _uiElements.SetCursor(false);
             _player.IsPlayerControlEnabled = false;
             _player.SetTransform(_points.Init);

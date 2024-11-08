@@ -7,7 +7,7 @@ namespace Main.EventManager
     // Borderを使うイベント
     public sealed partial class EventManager
     {
-        private void ObserveTrigger(CancellationToken ct)
+        private void ObserveBorderEntry(CancellationToken ct)
         {
             // 一回だけ
             FootOnDishOnce(ct).Forget();

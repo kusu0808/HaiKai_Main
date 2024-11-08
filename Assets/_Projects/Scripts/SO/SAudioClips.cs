@@ -166,9 +166,9 @@ namespace SO
             private AudioClip _moveInCave;
             public AudioClip MoveInCave => _moveInCave;
 
-            [SerializeField, Required, AssetsOnly, LabelText("小道に飛び降りる")]
-            private AudioClip _jumpOffPathWay;
-            public AudioClip JumpOffPathWay => _jumpOffPathWay;
+            [SerializeField, Required, AssetsOnly, LabelText("段差を飛び降りる")]
+            private AudioClip _jumpDownStep;
+            public AudioClip JumpDownStep => _jumpDownStep;
 
             [SerializeField, Required, AssetsOnly, LabelText("娘の移動する音")]
             private AudioClip _moveDaughter;

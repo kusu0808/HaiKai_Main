@@ -11,8 +11,8 @@ namespace Main.EventManager
         private async UniTaskVoid Observe(CancellationToken ct)
         {
             await Initialize(ct);
-            ObserveAction(ct).Forget();
-            ObserveTrigger(ct);
+            ObserveActionAgainstCollider(ct).Forget();
+            ObserveBorderEntry(ct);
         }
     }
 }

@@ -73,6 +73,24 @@ namespace Main.Eventer
 
         public bool IsMoving => Mathf.Abs(_characterController.velocity.magnitude) > 0.01f;
 
+        private bool _isGrounded = true;
+        private bool _isPreGrounded = true;
+        private bool _isBecameGrounded = false;
+        public bool IsBecameGrounded => _isBecameGrounded;
+
+        // 最初に呼んでほしい
+        public async UniTaskVoid StartUpdatingGroundedFlag(CancellationToken ct)
+        {
+            while (true)
+            {
+                _isGrounded = _characterController.isGrounded;
+                _isBecameGrounded = _isGrounded && !_isPreGrounded;
+                _isPreGrounded = _isGrounded;
+
+                await UniTask.NextFrame(ct);
+            }
+        }
+
         // 委譲するだけ
         public float SlopLimit { set => _firstPersonController.SlopeLimit = value; }
 
