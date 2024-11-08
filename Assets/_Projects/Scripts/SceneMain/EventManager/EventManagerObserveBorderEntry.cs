@@ -15,6 +15,7 @@ namespace Main.EventManager
             VillageWayDeerCry(ct).Forget();
             VillageWayDeerAppear(ct).Forget();
             VillageWayBirdAppear(ct).Forget();
+            HouseFeelYatsu(ct).Forget();
 
             // 繰り返し
             BusStopCannotMove(ct).Forget();
@@ -22,6 +23,8 @@ namespace Main.EventManager
             BridgePlaySound(ct).Forget();
             PathWaySquat(ct).Forget();
             EnableGoUpOnEnteringHouse(ct).Forget();
+            HousePlayWalkCorridorSound(ct).Forget();
+            HousePlayWalkTatamiSound(ct).Forget();
             UnderStageSquat(ct).Forget();
         }
 

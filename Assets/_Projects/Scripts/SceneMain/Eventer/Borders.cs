@@ -52,6 +52,26 @@ namespace Main.Eventer
         private Border _enableGoUpOnEnteringHouse;
         public Border EnableGoUpOnEnteringHouse => _enableGoUpOnEnteringHouse;
 
+        [SerializeField, Tooltip("民家：ヤツの気配がする(1回目)")]
+        private Border _houseFeelingYatsu1;
+        public Border HouseFeelingYatsu1 => _houseFeelingYatsu1;
+
+        [SerializeField, Tooltip("民家：ヤツの気配がする(2回目)")]
+        private Border _houseFeelingYatsu2;
+        public Border HouseFeelingYatsu2 => _houseFeelingYatsu2;
+
+        [SerializeField, Tooltip("民家：ヤツの気配がする(3回目)")]
+        private Border _houseFeelingYatsu3;
+        public Border HouseFeelingYatsu3 => _houseFeelingYatsu3;
+
+        [SerializeField, Tooltip("民家：廊下")]
+        private MultiBorders _houseCorridor;
+        public MultiBorders HouseCorridor => _houseCorridor;
+
+        [SerializeField, Tooltip("民家：畳")]
+        private MultiBorders _houseTatami;
+        public MultiBorders HouseTatami => _houseTatami;
+
         [SerializeField, Tooltip("舞台下：しゃがんで通り抜ける")]
         private TeleportBorders _underStageSquat;
         public TeleportBorders UnderStageSquat => _underStageSquat;
