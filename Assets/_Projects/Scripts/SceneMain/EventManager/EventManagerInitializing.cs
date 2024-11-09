@@ -11,6 +11,7 @@ namespace Main.EventManager
         private async UniTask Initialize(CancellationToken ct)
         {
             _playerCollision.Init(col => OnPlayerTriggerEnter(col, ct));
+            _daughter.InitNavMeshAgent();
 
             _uiElements.SetCursor(false);
             _player.IsPlayerControlEnabled = false;
