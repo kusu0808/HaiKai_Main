@@ -13,6 +13,7 @@ namespace Main.EventManager
         [SerializeField, AssetsOnly, InlineEditor(InlineEditorModes.FullEditor)] private SAudioClips _audioClips;
         [SerializeField, SceneObjectsOnly] private AudioSources _audioSources;
         [Space(25)]
+        [SerializeField] private PlayerCollision _playerCollision;
         [SerializeField] private Objects _objects;
         [SerializeField] private Points _points;
         [SerializeField] private Borders _borders;

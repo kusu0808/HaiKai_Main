@@ -21,9 +21,9 @@ namespace Main.EventManager
 
     public static class EventManagerConst
     {
-        public static readonly float FadeInDuration = 2;
-        public static readonly float FadeOutDuration = 2;
-        public static readonly float FadeInOutInterval = 1;
+        public static readonly float FadeInDuration = 0.5f;
+        public static readonly float FadeOutDuration = 0.5f;
+        public static readonly float FadeInOutInterval = 0.2f;
         public static readonly float NormalTextShowDuration = 3;
         public static readonly float EventTextShowDuration = 5;
         public static readonly float SameEventDuration = 5;
@@ -31,5 +31,6 @@ namespace Main.EventManager
 
         public static readonly float SlopLimitInit = 45.1f;
         public static readonly float SlopLimitOnEnteringHouse = 89;
+        public static readonly float SlopLimitOnShrineWay = 75;
     }
 }

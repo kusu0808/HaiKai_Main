@@ -7,11 +7,16 @@ namespace Main.EventManager
     // Borderを使うイベント
     public sealed partial class EventManager
     {
-        private void ObserveTrigger(CancellationToken ct)
+        private void ObserveBorderEntry(CancellationToken ct)
         {
             // 一回だけ
             FootOnDishOnce(ct).Forget();
-            PathWayFarewell(ct).Forget();
+            PathWayCannotGo(ct).Forget();
+            VillageWayDeerCry(ct).Forget();
+            VillageWayDeerAppear(ct).Forget();
+            VillageWayBirdAppear(ct).Forget();
+            HouseFeelYatsu(ct).Forget();
+            ShrineWayFoundedByYatsu(ct).Forget();
 
             // 繰り返し
             BusStopCannotMove(ct).Forget();
@@ -19,7 +24,10 @@ namespace Main.EventManager
             BridgePlaySound(ct).Forget();
             PathWaySquat(ct).Forget();
             EnableGoUpOnEnteringHouse(ct).Forget();
-            UnderStageSquat(ct).Forget();
+            HousePlayWalkCorridorSound(ct).Forget();
+            HousePlayWalkTatamiSound(ct).Forget();
+            UnderStageSquat(ct);
+            EnableGoUpOnShrineWay(ct).Forget();
         }
 
         // 後方置換されるかも

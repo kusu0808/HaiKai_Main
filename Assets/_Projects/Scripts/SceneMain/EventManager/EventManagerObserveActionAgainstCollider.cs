@@ -1,0 +1,55 @@
+using Cysharp.Threading.Tasks;
+using System.Threading;
+using UnityEngine;
+using IA;
+using System;
+
+namespace Main.EventManager
+{
+    public sealed partial class EventManager
+    {
+        // コライダーを使うイベント：Rayを飛ばす
+        private async UniTaskVoid ObserveActionAgainstCollider(CancellationToken ct)
+        {
+            while (true)
+            {
+                await UniTask.Yield(ct);
+
+                if (PauseState.IsPaused is true) continue;  // ポーズ中
+                await UniTask.WaitUntil(() => InputGetter.Instance.PlayerAction.Bool, cancellationToken: ct);
+                if (PauseState.IsPaused is true) continue;  // ポーズ中
+
+                Collider collider = _player.GetHitColliderFromCamera();
+                if (collider == null) continue;  // 当たらなかった
+
+                string tag = collider.tag;
+
+                Action @event = GetEvent(tag, ct);
+                if (@event is not null) @event.Invoke(); // イベントが発火したので、ログは出さない
+                else
+                {
+                    string message = GetMessage(tag);
+                    if (string.IsNullOrEmpty(message)) continue;  // 無効なものに当たった
+                    _uiElements.NewlyShowLogText(message, EventManagerConst.NormalTextShowDuration);
+                }
+            }
+
+            static string GetMessage(string tag) => tag switch
+            {
+                "ActionAgainstCollider/Message/BusSign" => "古びた標識だ",
+                "ActionAgainstCollider/Message/PathWaySign" => "汚れていて見えない",
+                "ActionAgainstCollider/Message/ClosedDoor" => "開かない",
+                "ActionAgainstCollider/Message/LockedDoor" => "鍵がかかっている",
+                _ => string.Empty
+            };
+
+            Action GetEvent(string tag, CancellationToken ctIfNeeded) => tag switch
+            {
+                "ActionAgainstCollider/Event/DaughterKnife" => () => PickUpDaughterKnife(ctIfNeeded).Forget(),
+                "ActionAgainstCollider/Event/BigIvy" => () => CutBigIvy(),
+                "ActionAgainstCollider/Event/PuzzleHintScroll" => () => ReadPuzzleHintScroll(ctIfNeeded).Forget(),
+                _ => null
+            };
+        }
+    }
+}

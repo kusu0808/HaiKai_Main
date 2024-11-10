@@ -28,17 +28,63 @@ namespace Main.Eventer
         private TeleportBorder _pathWaySquat2;
         public TeleportBorder PathWaySquat2 => _pathWaySquat2;
 
-        [SerializeField, Tooltip("小道；行き止まり(ここで娘が攫われる)")]
-        private Border _pathWayFarewell;
-        public Border PathWayFarewell => _pathWayFarewell;
+        [SerializeField, Tooltip("小道；行き止まり")]
+        private Border _pathWayStop;
+        public Border PathWayStop => _pathWayStop;
+
+        [SerializeField, Tooltip("村道：鹿の鳴き声がする(1回目)")]
+        private Border _villageWayDeerCry1;
+        public Border VillageWayDeerCry1 => _villageWayDeerCry1;
+
+        [SerializeField, Tooltip("村道：鹿の鳴き声がする(2回目)")]
+        private Border _villageWayDeerCry2;
+        public Border VillageWayDeerCry2 => _villageWayDeerCry2;
+
+        [SerializeField, Tooltip("村道：鹿が飛び出す")]
+        private Border _villageWayDeerJumpOut;
+        public Border VillageWayDeerJumpOut => _villageWayDeerJumpOut;
+
+        [SerializeField, Tooltip("村道：鳥が飛び立つ")]
+        private Border _villageWayBirdFly;
+        public Border VillageWayBirdFly => _villageWayBirdFly;
 
         [SerializeField, Tooltip("民家：入り口だけ昇れる角度が変わる")]
         private Border _enableGoUpOnEnteringHouse;
         public Border EnableGoUpOnEnteringHouse => _enableGoUpOnEnteringHouse;
 
-        [SerializeField, Tooltip("舞台下：しゃがんで通り抜ける")]
+        [SerializeField, Tooltip("民家：ヤツの気配がする(1回目)")]
+        private Border _houseFeelingYatsu1;
+        public Border HouseFeelingYatsu1 => _houseFeelingYatsu1;
+
+        [SerializeField, Tooltip("民家：ヤツの気配がする(2回目)")]
+        private Border _houseFeelingYatsu2;
+        public Border HouseFeelingYatsu2 => _houseFeelingYatsu2;
+
+        [SerializeField, Tooltip("民家：ヤツの気配がする(3回目)")]
+        private Border _houseFeelingYatsu3;
+        public Border HouseFeelingYatsu3 => _houseFeelingYatsu3;
+
+        [SerializeField, Tooltip("民家：廊下")]
+        private MultiBorders _houseCorridor;
+        public MultiBorders HouseCorridor => _houseCorridor;
+
+        [SerializeField, Tooltip("民家：畳")]
+        private MultiBorders _houseTatami;
+        public MultiBorders HouseTatami => _houseTatami;
+
+        [SerializeField, Tooltip("神社：参道だけ登れる角度が変わる")]
+        private Border _enableGoUpOnShrineWay;
+        public Border EnableGoUpOnShrineWay => _enableGoUpOnShrineWay;
+
+        [SerializeField, Tooltip("神社：参道でヤツに見つかるイベントが始まる")]
+        private Border _shrineWayFoundedEvent;
+        public Border ShrineWayFoundedEvent => _shrineWayFoundedEvent;
+
+        [SerializeField, Tooltip("舞台下：しゃがんで通り抜ける(3番目は、舞台下から参道に行くもの。イベントで通れなくなるため、これだけレイヤーが1。他は全て0。")]
         private TeleportBorders _underStageSquat;
         public TeleportBorders UnderStageSquat => _underStageSquat;
+
+        public bool IsFromUnderStageToShrineWayBorderEnabled { get; set; } = true;
 
         [Serializable]
         public sealed class MultiBorders
@@ -97,6 +143,9 @@ namespace Main.Eventer
                 [SerializeField]
                 private Transform _outTf;
                 public Transform OutTf => _outTf;
+
+                public Border GetBorder(bool isInBorder) => isInBorder ? In : Out;
+                public Transform GetTransform(bool isInBorder) => isInBorder ? OutTf : InTf;
             }
         }
     }
@@ -110,17 +159,28 @@ namespace Main.Eventer
             return false;
         }
 
-        public static int IsInInAny(this ReadOnlyCollection<Borders.TeleportBorders.Element> elements, Vector3 pos)
+        /// <param name="layers">この中に入っていないものに関しては、判定を行わない(無視する)。空の場合は、レイヤーを考慮しないでメソッドの処理を行う</param>
+        /// <returns>最初に見つけたもののインデックス、それ以外は-1</returns>
+        public static int IsInAny(this ReadOnlyCollection<Borders.TeleportBorders.Element> elements, Vector3 pos, bool isInBorder, params int[] layers)
         {
             if (elements is null) return -1;
-            for (int i = 0; i < elements.Count; i++) if (elements[i].In.IsIn(pos) is true) return i;
-            return -1;
-        }
+            if (layers is null) return -1;
 
-        public static int IsInOutAny(this ReadOnlyCollection<Borders.TeleportBorders.Element> elements, Vector3 pos)
-        {
-            if (elements is null) return -1;
-            for (int i = 0; i < elements.Count; i++) if (elements[i].Out.IsIn(pos) is true) return i;
+            for (int i = 0; i < elements.Count; i++)
+            {
+                if (layers.Length <= 0)
+                {
+                    if (elements[i].GetBorder(isInBorder).IsIn(pos) is true) return i;
+                }
+                else
+                {
+                    foreach (int layer in layers)
+                    {
+                        if (elements[i].GetBorder(isInBorder).IsIn(pos, layer) is true) return i;
+                    }
+                }
+            }
+
             return -1;
         }
     }
