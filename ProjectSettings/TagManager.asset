@@ -12,6 +12,14 @@ TagManager:
   - ActionAgainstCollider/Message/ClosedDoor
   - ActionAgainstCollider/Message/LockedDoor
   - ActionAgainstCollider/Event/DaughterKnife
+  - ActionAgainstCollider/Event/DeerBlood
+  - ActionAgainstCollider/Event/CupBlood
+  - ActionAgainstCollider/Event/Cup
+  - ActionAgainstCollider/Event/KokeshiBlood
+  - ActionAgainstCollider/Event/KokeshiKey
+  - ActionAgainstCollider/Event/ButaisideKey
+  - ActionAgainstCollider/Event/CupCrash
+  - ActionAgainstCollider/Event/SetCrashedCup
   layers:
   - Default
   - TransparentFX
