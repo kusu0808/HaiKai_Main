@@ -19,6 +19,7 @@ namespace Main.EventManager
         [SerializeField] private Borders _borders;
         [SerializeField] private Player _player;
         [SerializeField] private Daughter _daughter;
+        [SerializeField] private Yatsu _yatsu;
         [SerializeField] private UIElements _uiElements;
         [Space(25)]
         [SerializeField] private BusMover _busMover;

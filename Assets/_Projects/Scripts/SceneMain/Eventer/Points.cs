@@ -1,4 +1,5 @@
 ﻿using System;
+using Sirenix.OdinInspector;
 using UnityEngine;
 
 namespace Main.Eventer
@@ -9,5 +10,13 @@ namespace Main.Eventer
         [SerializeField, Tooltip("落下などで強制引き戻しする場合も、ここに戻す")]
         private Transform _init;
         public Transform Init => _init;
+
+        [SerializeField, Required, SceneObjectsOnly, Tooltip("ゲームの最初で、娘が出現する場所")]
+        private Transform _roadWayDaughterSpawnPoint;
+        public Transform RoadWayDaughterSpawnPoint => _roadWayDaughterSpawnPoint;
+
+        [SerializeField, Required, SceneObjectsOnly, Tooltip("神社の道でヤツに見つかるイベントで、ヤツが出現する場所")]
+        private Transform _shrineWayYatsuSpawnPoint;
+        public Transform ShrineWayYatsuSpawnPoint => _shrineWayYatsuSpawnPoint;
     }
 }

@@ -12,6 +12,7 @@ namespace Main.EventManager
         {
             _playerCollision.Init(col => OnPlayerTriggerEnter(col, ct));
             _daughter.InitNavMeshAgent();
+            _yatsu.InitNavMeshAgent();
 
             _uiElements.SetCursor(false);
             _player.IsPlayerControlEnabled = false;
@@ -19,6 +20,8 @@ namespace Main.EventManager
             _player.SlopLimit = EventManagerConst.SlopLimitInit;
             _player.CheckDeviation(_points.Init, ct).Forget();
             _uiElements.IsShowDaughterKnife = false;
+            _daughter.SpawnHere(_points.RoadWayDaughterSpawnPoint);
+            _daughter.IsKnifeEnabled = false;
 
             if (_debug.IsEnabled) InitializeDebugProperty();
 
