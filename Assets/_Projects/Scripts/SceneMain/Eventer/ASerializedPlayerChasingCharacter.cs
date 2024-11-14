@@ -42,6 +42,7 @@ namespace Main.Eventer
                     _isInitialized = true;
 
                     MonoBehaviourComponent monoBehaviourComponent = _navMeshAgent.gameObject.AddComponent<MonoBehaviourComponent>();
+
                     if (monoBehaviourComponent != null)
                     {
                         monoBehaviourComponent.GetAsyncUpdateTrigger().

@@ -20,6 +20,7 @@ TagManager:
   - ActionAgainstCollider/Event/ButaisideKey
   - ActionAgainstCollider/Event/CupCrash
   - ActionAgainstCollider/Event/SetCrashedCup
+  - Character/Yatsu
   layers:
   - Default
   - TransparentFX
