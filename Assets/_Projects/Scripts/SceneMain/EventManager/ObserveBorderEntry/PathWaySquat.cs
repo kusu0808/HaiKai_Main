@@ -10,8 +10,6 @@ namespace Main.EventManager
     {
         private async UniTaskVoid PathWaySquat(CancellationToken ct)
         {
-            _daughter.SetPathWayItemsEnabled(false);
-
             bool isSeparatedFromDaughter = false; // 娘と別れたか
 
             while (true)
@@ -39,8 +37,8 @@ namespace Main.EventManager
 
                 if (isFarewellTurn is false) continue;
                 isSeparatedFromDaughter = true;
-                _daughter.IsActive = false;
-                _daughter.SetPathWayItemsEnabled(true);
+                _daughter.Despawn();
+                _daughter.IsKnifeEnabled = true;
                 _audioSources.GetNew().Raise(_audioClips.Voice.DaughterScream, SoundType.Voice);
             }
         }

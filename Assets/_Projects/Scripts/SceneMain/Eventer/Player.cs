@@ -4,6 +4,9 @@ using System;
 using System.Threading;
 using UnityEngine;
 using Main.EventManager;
+using Cysharp.Threading.Tasks.Triggers;
+using Cysharp.Threading.Tasks.Linq;
+using General;
 
 namespace Main.Eventer
 {
@@ -73,24 +76,6 @@ namespace Main.Eventer
 
         public bool IsMoving => Mathf.Abs(_characterController.velocity.magnitude) > 0.01f;
 
-        private bool _isGrounded = true;
-        private bool _isPreGrounded = true;
-        private bool _isBecameGrounded = false;
-        public bool IsBecameGrounded => _isBecameGrounded;
-
-        // 最初に呼んでほしい
-        public async UniTaskVoid StartUpdatingGroundedFlag(CancellationToken ct)
-        {
-            while (true)
-            {
-                _isGrounded = _characterController.isGrounded;
-                _isBecameGrounded = _isGrounded && !_isPreGrounded;
-                _isPreGrounded = _isGrounded;
-
-                await UniTask.NextFrame(ct);
-            }
-        }
-
         // 委譲するだけ
         public float SlopLimit { set => _firstPersonController.SlopeLimit = value; }
 
@@ -143,7 +128,7 @@ namespace Main.Eventer
         }
 
         /// <summary>
-        /// プレイヤーが不正な場所にいったら、強制敵に初期座標に戻す
+        /// 最初に呼んで欲しい、プレイヤーが不正な場所にいったら、強制敵に初期座標に戻す
         /// </summary>
         public async UniTaskVoid CheckDeviation(Transform initTransform, CancellationToken ct)
         {
@@ -158,5 +143,29 @@ namespace Main.Eventer
                 if (Position.y < -20) SetTransform(initTransform);
             }
         }
+
+        /// <summary>
+        /// 最初に呼んで欲しい、ヤツとの接触を検知
+        /// </summary>
+        public void SubscribeYatsuCollision()
+        {
+            if (_characterController == null) return;
+
+            _characterController.
+                GetAsyncControllerColliderHitTrigger().
+                Subscribe(OnControllerColliderHit).
+                AddTo(_characterController.GetCancellationTokenOnDestroy());
+        }
+
+        private void OnControllerColliderHit(ControllerColliderHit hit)
+        {
+            if (hit == null) return;
+            Collider collider = hit.collider;
+            if (collider == null) return;
+            if (collider.CompareTag("Character/Yatsu") is false) return;
+            OnHitYatsu();
+        }
+
+        private void OnHitYatsu() => Scene.ID.Death.LoadAsync().Forget();
     }
 }

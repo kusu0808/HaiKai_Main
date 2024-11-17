@@ -1,6 +1,5 @@
 ﻿using Cysharp.Threading.Tasks;
 using Main;
-using System.Threading;
 using UnityEngine.SceneManagement;
 
 namespace General
@@ -11,6 +10,7 @@ namespace General
         {
             Title,
             Main,
+            Death,
             Result
         }
 
@@ -35,6 +35,7 @@ namespace General
         {
             ID.Title => "Title",
             ID.Main => "Main",
+            ID.Death => "Death",
             ID.Result => "Result",
             _ => string.Empty
         };

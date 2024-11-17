@@ -1,0 +1,141 @@
+
+using System;
+using Cysharp.Threading.Tasks;
+using Cysharp.Threading.Tasks.Linq;
+using Cysharp.Threading.Tasks.Triggers;
+using Sirenix.OdinInspector;
+using UnityEngine;
+using UnityEngine.AI;
+
+namespace Main.Eventer
+{
+    [Serializable]
+    public abstract class ASerializedPlayerChasingCharacter
+    {
+        protected sealed class MonoBehaviourComponent : MonoBehaviour { }
+
+        [SerializeField, Required, SceneObjectsOnly]
+        protected NavMeshAgent _navMeshAgent;
+
+        [SerializeField, Required, SceneObjectsOnly]
+        protected Transform _playerTransform;
+
+        protected static readonly float InitSpeed = 3.5f;
+        protected static readonly float InitAngularSpeed = 120.0f;
+        protected static readonly float InitAcceleration = 8.0f;
+
+        protected bool _isInitialized = false;
+
+        protected bool _isEnabled = false;
+        protected bool isEnabled
+        {
+            get => _isEnabled;
+            set
+            {
+                if (_navMeshAgent == null) return;
+
+                _isEnabled = value;
+                _navMeshAgent.gameObject.SetActive(_isEnabled);
+
+                if (value is true && _isInitialized is false)
+                {
+                    _isInitialized = true;
+
+                    MonoBehaviourComponent monoBehaviourComponent = _navMeshAgent.gameObject.AddComponent<MonoBehaviourComponent>();
+
+                    if (monoBehaviourComponent != null)
+                    {
+                        monoBehaviourComponent.GetAsyncUpdateTrigger().
+                        Subscribe(_ => ChasePlayerOnUpdateIfAvailable(_playerTransform)).
+                        AddTo(monoBehaviourComponent.destroyCancellationToken);
+                    }
+                }
+            }
+        }
+
+        protected virtual void ChasePlayerOnUpdateIfAvailable(Transform playerTransform)
+        {
+            if (_isEnabled is false) return;
+            if (_navMeshAgent == null) return;
+            if (playerTransform == null) return;
+            if (_navMeshAgent.isOnNavMesh is false) return;
+
+            _navMeshAgent.SetDestination(playerTransform.position);
+
+            _navMeshAgent.transform.LookAt(playerTransform);
+        }
+
+        public void InitNavMeshAgent()
+        {
+            Speed = InitSpeed;
+            AngularSpeed = InitAngularSpeed;
+            Acceleration = InitAcceleration;
+        }
+
+        public void SpawnHere(Transform transform)
+        {
+            if (_navMeshAgent == null) return;
+            if (transform == null) return;
+            _navMeshAgent.Warp(transform.position);
+            _navMeshAgent.transform.rotation = transform.rotation;
+            isEnabled = true;
+        }
+
+        public void Despawn()
+        {
+            if (_navMeshAgent == null) return;
+            isEnabled = false;
+        }
+
+        public float Speed
+        {
+            get
+            {
+                if (isEnabled is false) return 0;
+                if (_navMeshAgent == null) return 0;
+                return _navMeshAgent.speed;
+            }
+            set
+            {
+                if (isEnabled is false) return;
+                if (_navMeshAgent == null) return;
+                if (value is not (> 0.1f and < 50.0f)) return;
+                _navMeshAgent.speed = value;
+            }
+        }
+
+        public float AngularSpeed
+        {
+            get
+            {
+                if (isEnabled is false) return 0;
+                if (_navMeshAgent == null) return 0;
+                return _navMeshAgent.angularSpeed;
+            }
+            set
+            {
+                if (isEnabled is false) return;
+                if (_navMeshAgent == null) return;
+                if (value is not (> 0.1f and < 359.9f)) return;
+                _navMeshAgent.angularSpeed = value;
+            }
+        }
+
+        public float Acceleration
+        {
+            get
+            {
+                if (isEnabled is false) return 0;
+                if (_navMeshAgent == null) return 0;
+                return _navMeshAgent.acceleration;
+            }
+            set
+            {
+                if (isEnabled is false) return;
+                if (_navMeshAgent == null) return;
+                if (value is not (> 0.1f and < 100.0f)) return;
+                _navMeshAgent.acceleration = value;
+            }
+        }
+    }
+}
