@@ -135,7 +135,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 41d87bacc8011164381d97b026ca4a88, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  hoverImageUI: {fileID: 3449215120821496604}
+  _hoverImageUI: {fileID: 3449215120821496604}
 --- !u!1 &439392433847050806
 GameObject:
   m_ObjectHideFlags: 0
@@ -1169,7 +1169,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 41d87bacc8011164381d97b026ca4a88, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  hoverImageUI: {fileID: 295744622316752052}
+  _hoverImageUI: {fileID: 295744622316752052}
 --- !u!1 &7214336256032319459
 GameObject:
   m_ObjectHideFlags: 0
@@ -1305,7 +1305,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 41d87bacc8011164381d97b026ca4a88, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  hoverImageUI: {fileID: 3547077806049639995}
+  _hoverImageUI: {fileID: 3547077806049639995}
 --- !u!1 &7423697496458244475
 GameObject:
   m_ObjectHideFlags: 0
@@ -1623,7 +1623,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 41d87bacc8011164381d97b026ca4a88, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  hoverImageUI: {fileID: 3466065714338724746}
+  _hoverImageUI: {fileID: 3466065714338724746}
 --- !u!1 &8239381744828016964
 GameObject:
   m_ObjectHideFlags: 0
