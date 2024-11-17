@@ -23,6 +23,5 @@ namespace Title
                 _hoverImageUI.color = Color.white;
             }
         }
-
     }
 }
