@@ -17,7 +17,7 @@ namespace Main.EventManager
             {
                 await UniTask.WaitUntil(() => cache.IsInAny(_player.Position) is false, cancellationToken: ct);
                 await UniTask.WaitUntil(() => cache.IsInAny(_player.Position) is true, cancellationToken: ct);
-                _uiElements.NewlyShowLogText("真っ暗で、先が見えない…", EventManagerConst.NormalTextShowDuration);
+                _uiElements.NewlyShowLogText("真っ暗で、先が見えない…");
                 await UniTask.Delay(TimeSpan.FromSeconds(EventManagerConst.SameEventDuration), cancellationToken: ct);
             }
         }
