@@ -68,6 +68,9 @@ namespace Main.Eventer
             await _blackImage.DOFade(0, duration).SetEase(ease).ToUniTask(cancellationToken: ct);
         }
 
+        private const float LOG_TEXT_DURATION_DEFAULT = 3;
+        private const float LOG_TEXT_FADEOUT_DURATION_DEFAULT = 1;
+
         private bool _isLogTextShowingForcibly = false;
 
         /// <summary>
@@ -82,28 +85,32 @@ namespace Main.Eventer
 
             ResetCtsLogText();
             _logText.text = text;
+            _logText.alpha = 1;
         }
 
         /// <summary>
         /// 自動でログの表示と非表示を行う。
         /// </summary>
-        public void NewlyShowLogText(string text, float duration, bool isGetOffInput = true)
+        public void NewlyShowLogText(
+            string text, float duration = LOG_TEXT_DURATION_DEFAULT, float fadeoutDuration = LOG_TEXT_FADEOUT_DURATION_DEFAULT, bool isGetOffInput = true)
         {
             if (_logText == null) return;
             if (_isLogTextShowingForcibly) return;
 
             ResetCtsLogText();
             _logText.text = string.Empty;
-            ShowLogText(_logText, text, duration, _ctsLogText.Token, isGetOffInput).Forget();
+            ShowLogText(_logText, text, duration, fadeoutDuration, _ctsLogText.Token, isGetOffInput).Forget();
 
             static async UniTaskVoid ShowLogText
-                (TextMeshProUGUI logText, string text, float duration, CancellationToken ct, bool isGetOffInput = true)
+                (TextMeshProUGUI logText, string text, float duration, float fadeoutDuration, CancellationToken ct, bool isGetOffInput = true)
             {
                 logText.text = text;
                 if (isGetOffInput) await UniTask.WhenAny(WaitUntilOffInput(ct),
                     UniTask.Delay(TimeSpan.FromSeconds(duration), cancellationToken: ct));
                 else await UniTask.Delay(TimeSpan.FromSeconds(duration), cancellationToken: ct);
+                await logText.DOFade(0, fadeoutDuration).ToUniTask(cancellationToken: ct);
                 logText.text = string.Empty;
+                logText.alpha = 1;
             }
 
             static async UniTask WaitUntilOffInput(CancellationToken ct) =>

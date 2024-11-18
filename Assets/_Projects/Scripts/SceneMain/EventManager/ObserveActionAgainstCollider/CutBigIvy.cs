@@ -10,11 +10,11 @@ namespace Main.EventManager
             {
                 _audioSources.GetNew().Raise(_audioClips.SE.CutBigIvy, SoundType.SE);
                 _objects.DeactivateBigIvy();
-                _uiElements.NewlyShowLogText("通れるようになった", EventManagerConst.EventTextShowDuration);
+                _uiElements.NewlyShowLogText("通れるようになった");
             }
             else
             {
-                _uiElements.NewlyShowLogText("大きな植物が道を遮っている", EventManagerConst.NormalTextShowDuration);
+                _uiElements.NewlyShowLogText("大きな植物が道を遮っている");
             }
         }
     }
