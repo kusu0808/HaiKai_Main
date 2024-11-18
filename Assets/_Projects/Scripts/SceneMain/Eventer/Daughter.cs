@@ -19,14 +19,17 @@ namespace Main.Eventer
             if (playerTransform == null) return;
             if (_navMeshAgent.isOnNavMesh is false) return;
 
-            Vector3 daughterToPlayer = playerTransform.position - _navMeshAgent.transform.position;
+            Vector2 daughterPos = _navMeshAgent.transform.position.WithoutY(out float daughterY);
+            Vector2 playerPos = playerTransform.position.WithoutY(out _);
+            Vector2 daughterToPlayer = playerPos - daughterPos;
+
             if (daughterToPlayer.sqrMagnitude > DistanceFromPlayer * DistanceFromPlayer)
             {
-                Vector3 targetPosition = playerTransform.position - daughterToPlayer.normalized * DistanceFromPlayer;
-                _navMeshAgent.SetDestination(targetPosition);
+                Vector3 targetPos = (playerPos - daughterToPlayer.normalized * DistanceFromPlayer).WithY(daughterY);
+                _navMeshAgent.SetDestination(targetPos);
             }
 
-            _navMeshAgent.transform.LookAt(playerTransform);
+            _navMeshAgent.transform.LookAt(playerPos.WithY(daughterY));
         }
 
         public bool IsKnifeEnabled
@@ -42,5 +45,16 @@ namespace Main.Eventer
                 _knife.SetActive(value);
             }
         }
+    }
+
+    public static class DaughterEx
+    {
+        public static Vector2 WithoutY(this Vector3 v, out float ignoredY)
+        {
+            ignoredY = v.y;
+            return new(v.x, v.z);
+        }
+
+        public static Vector3 WithY(this Vector2 v, float y) => new(v.x, y, v.y);
     }
 }
