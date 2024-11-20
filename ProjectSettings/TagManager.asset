@@ -5,7 +5,6 @@ TagManager:
   serializedVersion: 2
   tags:
   - CinemachineTarget
-  - ActionAgainstCollider/Event/BigIvy
   - ActionAgainstCollider/Event/PuzzleHintScroll
   - ActionAgainstCollider/Message/BusSign
   - ActionAgainstCollider/Message/PathWaySign
@@ -21,6 +20,9 @@ TagManager:
   - ActionAgainstCollider/Event/CupCrash
   - ActionAgainstCollider/Event/SetCrashedCup
   - Character/Yatsu
+  - ActionAgainstCollider/Event/BigIvyOnShrineStair
+  - ActionAgainstCollider/Event/BigIvyOnPathWay
+  - ActionAgainstCollider/Event/BigIvyOnCaveEntrance
   layers:
   - Default
   - TransparentFX

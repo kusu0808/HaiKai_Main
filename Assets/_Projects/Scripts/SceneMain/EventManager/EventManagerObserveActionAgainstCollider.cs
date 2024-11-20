@@ -3,6 +3,7 @@ using System.Threading;
 using UnityEngine;
 using IA;
 using System;
+using Type = Main.Eventer.Objects.BigIviesClass.Type;
 
 namespace Main.EventManager
 {
@@ -46,7 +47,9 @@ namespace Main.EventManager
             Action GetEvent(string tag, CancellationToken ctIfNeeded) => tag switch
             {
                 "ActionAgainstCollider/Event/DaughterKnife" => () => PickUpDaughterKnife(ctIfNeeded).Forget(),
-                "ActionAgainstCollider/Event/BigIvy" => () => CutBigIvy(),
+                "ActionAgainstCollider/Event/BigIvyOnPathWay" => () => CutBigIvy(Type.PathWay),
+                "ActionAgainstCollider/Event/BigIvyOnShrineStair" => () => CutBigIvy(Type.ShrineStair),
+                "ActionAgainstCollider/Event/BigIvyOnCaveEntrance" => () => CutBigIvy(Type.CaveEntrance),
                 "ActionAgainstCollider/Event/PuzzleHintScroll" => () => ReadPuzzleHintScroll(ctIfNeeded).Forget(),
                 _ => null
             };
