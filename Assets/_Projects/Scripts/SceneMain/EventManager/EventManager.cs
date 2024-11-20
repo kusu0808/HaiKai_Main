@@ -1,10 +1,9 @@
 ﻿using Cysharp.Threading.Tasks;
 using System.Threading;
-using UnityEngine;
 
 namespace Main.EventManager
 {
-    public sealed partial class EventManager : MonoBehaviour
+    public sealed partial class EventManager
     {
         private void OnEnable() => Observe(destroyCancellationToken).Forget();
 
