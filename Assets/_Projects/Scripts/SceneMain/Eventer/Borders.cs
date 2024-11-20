@@ -1,4 +1,5 @@
 ﻿using BorderSystem;
+using Sirenix.OdinInspector;
 using System;
 using System.Collections.ObjectModel;
 using UnityEngine;
@@ -83,6 +84,14 @@ namespace Main.Eventer
         [SerializeField, Tooltip("舞台下：しゃがんで通り抜ける(3番目は、舞台下から参道に行くもの。イベントで通れなくなるため、これだけレイヤーが1。他は全て0。")]
         private TeleportBorders _underStageSquat;
         public TeleportBorders UnderStageSquat => _underStageSquat;
+
+        [SerializeField, Required, SceneObjectsOnly, Tooltip("神社上の道：ヤツが脱出経路の方から来る")]
+        private Border _shrineUpWayYatsuComeFromEscapeRoute;
+        public Border ShrineUpWayYatsuComeFromEscapeRoute => _shrineUpWayYatsuComeFromEscapeRoute;
+
+        [SerializeField, Required, SceneObjectsOnly, Tooltip("奥の村道：ヤツが洞窟の方から来る")]
+        private Border _villageFarWayYatsuComeFromCave;
+        public Border VillageFarWayYatsuComeFromCave => _villageFarWayYatsuComeFromCave;
 
         public bool IsFromUnderStageToShrineWayBorderEnabled { get; set; } = true;
 

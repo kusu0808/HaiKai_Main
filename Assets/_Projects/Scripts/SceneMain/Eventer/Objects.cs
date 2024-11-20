@@ -11,6 +11,22 @@ namespace Main.Eventer
         private BigIviesClass _bigIvies;
         public BigIviesClass BigIvies => _bigIvies;
 
+        [SerializeField, Required, SceneObjectsOnly]
+        private Collider _butaiSideKey;
+        public bool IsButaiSideKeyEnabled
+        {
+            get
+            {
+                if (_butaiSideKey == null) return false;
+                return _butaiSideKey.gameObject.activeSelf;
+            }
+            set
+            {
+                if (_butaiSideKey == null) return;
+                _butaiSideKey.gameObject.SetActive(value);
+            }
+        }
+
         [Serializable]
         public sealed class BigIviesClass
         {
