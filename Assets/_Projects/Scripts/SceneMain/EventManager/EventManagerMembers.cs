@@ -6,7 +6,7 @@ using Eventer;
 
 namespace Main.EventManager
 {
-    public sealed partial class EventManager
+    public sealed partial class EventManager : MonoBehaviour
     {
         [SerializeField] private Debug _debug;
         [Space(25)]
