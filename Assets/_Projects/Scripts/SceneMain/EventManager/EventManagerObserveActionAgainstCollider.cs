@@ -51,6 +51,7 @@ namespace Main.EventManager
                 "ActionAgainstCollider/Event/BigIvyOnShrineStair" => () => CutBigIvy(Type.ShrineStair),
                 "ActionAgainstCollider/Event/BigIvyOnCaveEntrance" => () => CutBigIvy(Type.CaveEntrance),
                 "ActionAgainstCollider/Event/PuzzleHintScroll" => () => ReadPuzzleHintScroll(ctIfNeeded).Forget(),
+                "ActionAgainstCollider/Event/ButaisideKey" => () => PickUpButaiSideKey(ctIfNeeded).Forget(),
                 _ => null
             };
         }

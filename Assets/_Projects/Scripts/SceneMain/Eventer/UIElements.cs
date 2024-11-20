@@ -21,6 +21,7 @@ namespace Main.Eventer
         [SerializeField] private TriggerSettingUI _triggerSettingUI;
         [Space(25)]
         [SerializeField] private Sprite _daughterKnifeSprite;
+        [SerializeField] private Sprite _butaiSideKeySprite;
 
         private CancellationTokenSource _ctsLogText = new();
         private void ResetCtsLogText() { _ctsLogText.Cancel(); _ctsLogText.Dispose(); _ctsLogText = new(); }
@@ -145,5 +146,19 @@ namespace Main.Eventer
             }
         }
         public bool IsHoldingDaughterKnife() => IsShowDaughterKnife && IsHoldingThisIndex(_daughterKnifeIndex);
+
+        private static readonly int _butaiSideKeyIndex = 1;
+        private bool _isShowbutaiSideKey = false;
+        public bool IsShowbutaiSideKey
+        {
+            get => _isShowbutaiSideKey;
+            set
+            {
+                if (_managePlayerUI == null) return;
+                _managePlayerUI.SetSprite(_butaiSideKeyIndex, value ? _butaiSideKeySprite : null);
+                _isShowbutaiSideKey = value;
+            }
+        }
+        public bool IsHoldingButaiSideKey() => IsShowbutaiSideKey && IsHoldingThisIndex(_butaiSideKeyIndex);
     }
 }

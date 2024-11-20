@@ -7,6 +7,7 @@ namespace Main
     public sealed class PlayerItem
     {
         public bool HasKnife = false;
+        public bool HasButaiSideKey = false;
 
         private const string KEY = nameof(PlayerItem);
 

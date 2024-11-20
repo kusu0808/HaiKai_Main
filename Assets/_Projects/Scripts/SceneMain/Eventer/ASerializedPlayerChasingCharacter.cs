@@ -20,9 +20,9 @@ namespace Main.Eventer
         [SerializeField, Required, SceneObjectsOnly]
         protected Transform _playerTransform;
 
-        protected static readonly float InitSpeed = 3.5f;
-        protected static readonly float InitAngularSpeed = 120.0f;
-        protected static readonly float InitAcceleration = 8.0f;
+        protected virtual float InitSpeed => 3.5f;
+        protected virtual float InitAngularSpeed => 120.0f;
+        protected virtual float InitAcceleration => 8.0f;
 
         protected bool _isInitialized = false;
 
@@ -72,6 +72,7 @@ namespace Main.Eventer
             Acceleration = InitAcceleration;
         }
 
+        // 既にアクティブの場合、テレポートと同義
         public void SpawnHere(Transform transform)
         {
             if (_navMeshAgent == null) return;
@@ -91,13 +92,11 @@ namespace Main.Eventer
         {
             get
             {
-                if (isEnabled is false) return 0;
                 if (_navMeshAgent == null) return 0;
                 return _navMeshAgent.speed;
             }
             set
             {
-                if (isEnabled is false) return;
                 if (_navMeshAgent == null) return;
                 if (value is not (> 0.1f and < 50.0f)) return;
                 _navMeshAgent.speed = value;
@@ -108,13 +107,11 @@ namespace Main.Eventer
         {
             get
             {
-                if (isEnabled is false) return 0;
                 if (_navMeshAgent == null) return 0;
                 return _navMeshAgent.angularSpeed;
             }
             set
             {
-                if (isEnabled is false) return;
                 if (_navMeshAgent == null) return;
                 if (value is not (> 0.1f and < 359.9f)) return;
                 _navMeshAgent.angularSpeed = value;
@@ -125,13 +122,11 @@ namespace Main.Eventer
         {
             get
             {
-                if (isEnabled is false) return 0;
                 if (_navMeshAgent == null) return 0;
                 return _navMeshAgent.acceleration;
             }
             set
             {
-                if (isEnabled is false) return;
                 if (_navMeshAgent == null) return;
                 if (value is not (> 0.1f and < 100.0f)) return;
                 _navMeshAgent.acceleration = value;
