@@ -5,12 +5,12 @@ namespace Main.EventManager
 {
     public sealed partial class EventManager
     {
-        private void CutBigIvy(Type tpye)
+        private void CutBigIvy(Type type)
         {
             if (_uiElements.IsHoldingDaughterKnife())
             {
                 _audioSources.GetNew().Raise(_audioClips.SE.CutBigIvy, SoundType.SE);
-                _objects.BigIvies.DeactivateThis(tpye);
+                _objects.BigIvies.DeactivateThis(type);
                 _uiElements.NewlyShowLogText("通れるようになった");
             }
             else
