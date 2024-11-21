@@ -25,5 +25,7 @@ namespace Main.EventManager
         [SerializeField] private BusMover _busMover;
 
         private readonly PlayerItem _playerItem = new();
+
+        private AudioSource _yatsuKnockToiletDoorAudioSource = null;
     }
 }

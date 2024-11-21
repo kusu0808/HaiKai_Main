@@ -7,21 +7,24 @@ using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
 using SceneGeneral;
+using Sirenix.OdinInspector;
 
 namespace Main.Eventer
 {
     [Serializable]
     public sealed class UIElements
     {
-        [SerializeField] private Image _blackImage;
-        [SerializeField] private TextMeshProUGUI _logText;
+        [SerializeField, Required, SceneObjectsOnly] private Image _blackImage;
+        [SerializeField, Required, SceneObjectsOnly] private TextMeshProUGUI _logText;
         [Space(25)]
-        [SerializeField] private ManagePlayerUI _managePlayerUI; // アイテムの入手順が決まっているので、それぞれのアイテム毎に、何番目に入れるかを厳密に指定する
-        [SerializeField] private TriggerPauseUI _triggerPauseUI;
-        [SerializeField] private TriggerSettingUI _triggerSettingUI;
+        // アイテムの入手順が決まっているので、それぞれのアイテム毎に、何番目に入れるかを厳密に指定する
+        [SerializeField, Required, SceneObjectsOnly] private ManagePlayerUI _managePlayerUI;
+        [SerializeField, Required, SceneObjectsOnly] private TriggerPauseUI _triggerPauseUI;
+        [SerializeField, Required, SceneObjectsOnly] private TriggerSettingUI _triggerSettingUI;
         [Space(25)]
-        [SerializeField] private Sprite _daughterKnifeSprite;
-        [SerializeField] private Sprite _butaiSideKeySprite;
+        [SerializeField, Required, AssetsOnly] private Sprite _daughterKnifeSprite;
+        [SerializeField, Required, AssetsOnly] private Sprite _butaiSideKeySprite;
+        [SerializeField, Required, AssetsOnly] private Sprite _cupSprite;
 
         private CancellationTokenSource _ctsLogText = new();
         private void ResetCtsLogText() { _ctsLogText.Cancel(); _ctsLogText.Dispose(); _ctsLogText = new(); }
@@ -77,7 +80,8 @@ namespace Main.Eventer
         /// <summary>
         /// 手動でログの表示と非表示を行う。
         /// textが null or Empty の場合、ログテキストを非表示にしたとみなす。
-        /// NewlyShowLogText()を強制的に止め、ログを表示する。その間、NewlyShowLogText()の実行は無効化される。
+        /// NewlyShowLogText()を強制的に止め、ログを表示する。
+        /// 表示している間、NewlyShowLogText()の実行は無効化される。
         /// </summary>
         public void ForciblyShowLogText(string text)
         {
@@ -160,5 +164,19 @@ namespace Main.Eventer
             }
         }
         public bool IsHoldingButaiSideKey() => IsShowbutaiSideKey && IsHoldingThisIndex(ButaiSideKeyIndex);
+
+        private static readonly int CupIndex = 1;
+        private bool _isShowCup = false;
+        public bool IsShowCup
+        {
+            get => _isShowCup;
+            set
+            {
+                if (_managePlayerUI == null) return;
+                _managePlayerUI.SetSprite(CupIndex, value ? _cupSprite : null);
+                _isShowCup = value;
+            }
+        }
+        public bool IsHoldingCup() => IsShowCup && IsHoldingThisIndex(CupIndex);
     }
 }

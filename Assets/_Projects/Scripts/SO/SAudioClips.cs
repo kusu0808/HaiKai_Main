@@ -41,6 +41,10 @@ namespace SO
             [SerializeField, Required, AssetsOnly, LabelText("家の中で、畳を歩く")]
             private AudioClip _walkOnTatamiInHouse;
             public AudioClip WalkOnTatamiInHouse => _walkOnTatamiInHouse;
+
+            [SerializeField, Required, AssetsOnly, LabelText("ヤツがトイレのドアを叩く")]
+            private AudioClip _yatsuKnockToiletDoor;
+            public AudioClip YatsuKnockToiletDoor => _yatsuKnockToiletDoor;
         }
 
         [Serializable]

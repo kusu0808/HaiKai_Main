@@ -26,5 +26,9 @@ namespace Main.Eventer
         [SerializeField, Required, SceneObjectsOnly, Tooltip("奥の村道で、ヤツが洞窟の方から来る時の、スポーン場所")]
         private Transform _villageFarWayYatsuComeFromCaveSpawnPoint;
         public Transform VillageFarWayYatsuComeFromCaveSpawnPoint => _villageFarWayYatsuComeFromCaveSpawnPoint;
+
+        [SerializeField, Required, SceneObjectsOnly, Tooltip("奥の村道で、鍵を使ってトイレのドアを開けた後の、テレポート先")]
+        private Transform _villageFarWayInsideToiletPoint;
+        public Transform VillageFarWayInsideToiletPoint => _villageFarWayInsideToiletPoint;
     }
 }
