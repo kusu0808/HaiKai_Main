@@ -23,6 +23,8 @@ TagManager:
   - ActionAgainstCollider/Event/BigIvyOnShrineStair
   - ActionAgainstCollider/Event/BigIvyOnPathWay
   - ActionAgainstCollider/Event/BigIvyOnCaveEntrance
+  - ActionAgainstCollider/Event/ToiletOneWayDoor
+  - ActionAgainstCollider/Event/WarehouseLockedDoor
   layers:
   - Default
   - TransparentFX

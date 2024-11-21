@@ -8,6 +8,7 @@ namespace Main
     {
         public bool HasKnife = false;
         public bool HasButaiSideKey = false;
+        public bool HasCup = false;
 
         private const string KEY = nameof(PlayerItem);
 

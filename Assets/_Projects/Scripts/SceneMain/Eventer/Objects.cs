@@ -27,6 +27,54 @@ namespace Main.Eventer
             }
         }
 
+        [SerializeField, Required, SceneObjectsOnly]
+        private Collider _toiletCup;
+        public bool IsToiletCupEnabled
+        {
+            get
+            {
+                if (_toiletCup == null) return false;
+                return _toiletCup.gameObject.activeSelf;
+            }
+            set
+            {
+                if (_toiletCup == null) return;
+                _toiletCup.gameObject.SetActive(value);
+            }
+        }
+
+        [SerializeField, Required, SceneObjectsOnly]
+        private Collider _toiletOneWayDoor;
+        public bool IsToiletOneWayDoorEnabled
+        {
+            get
+            {
+                if (_toiletOneWayDoor == null) return false;
+                return _toiletOneWayDoor.gameObject.activeSelf;
+            }
+            set
+            {
+                if (_toiletOneWayDoor == null) return;
+                _toiletOneWayDoor.gameObject.SetActive(value);
+            }
+        }
+
+        [SerializeField, Required, SceneObjectsOnly]
+        private Collider _warehouseLockedDoor;
+        public bool IsWarehouseLockedDoorEnabled
+        {
+            get
+            {
+                if (_warehouseLockedDoor == null) return false;
+                return _warehouseLockedDoor.gameObject.activeSelf;
+            }
+            set
+            {
+                if (_warehouseLockedDoor == null) return;
+                _warehouseLockedDoor.gameObject.SetActive(value);
+            }
+        }
+
         [Serializable]
         public sealed class BigIviesClass
         {
