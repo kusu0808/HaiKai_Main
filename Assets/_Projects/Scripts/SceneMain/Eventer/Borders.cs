@@ -97,6 +97,10 @@ namespace Main.Eventer
         private Border _villageFarWayRunIntoToilet;
         public Border VillageFarWayRunIntoToilet => _villageFarWayRunIntoToilet;
 
+        [SerializeField, Required, SceneObjectsOnly, Tooltip("奥の村道：ヤツがトイレを叩く音が止む")]
+        private Border _villageFarWayYatsuStopToiletSound;
+        public Border VillageFarWayYatsuStopToiletSound => _villageFarWayYatsuStopToiletSound;
+
         public bool IsFromUnderStageToShrineWayBorderEnabled { get; set; } = true;
 
         [Serializable]
