@@ -12,9 +12,6 @@ namespace Main.EventManager
 
             _objects.IsToiletOneWayDoorEnabled = false;
             _uiElements.NewlyShowLogText("ドアを開けた");
-
-            if (_yatsuKnockToiletDoorAudioSource == null) return;
-            _yatsuKnockToiletDoorAudioSource.Pause();
         }
     }
 }
