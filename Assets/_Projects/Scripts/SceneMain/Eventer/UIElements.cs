@@ -137,7 +137,7 @@ namespace Main.Eventer
 
         private bool IsHoldingThisIndex(int index) => (_managePlayerUI == null) ? false : index == _managePlayerUI.ItemIndex;
 
-        private static readonly int DaughterKnifeIndex = 0;
+        private int _daughterKnifeIndex = 0;
         private bool _isShowDaughterKnife = false;
         public bool IsShowDaughterKnife
         {
@@ -145,13 +145,23 @@ namespace Main.Eventer
             set
             {
                 if (_managePlayerUI == null) return;
-                _managePlayerUI.SetSprite(DaughterKnifeIndex, value ? _daughterKnifeSprite : null);
+                _managePlayerUI.SetSprite(_daughterKnifeIndex, value ? _daughterKnifeSprite : null);
                 _isShowDaughterKnife = value;
             }
         }
-        public bool IsHoldingDaughterKnife() => IsShowDaughterKnife && IsHoldingThisIndex(DaughterKnifeIndex);
+        public int DaughterKnifeIndex
+        {
+            set
+            {
+                if (_managePlayerUI == null) return;
+                _managePlayerUI.SetSprite(_daughterKnifeIndex, null);
+                _daughterKnifeIndex = value;
+                _managePlayerUI.SetSprite(_daughterKnifeIndex, _daughterKnifeSprite);
+            }
+        }
+        public bool IsHoldingDaughterKnife() => IsShowDaughterKnife && IsHoldingThisIndex(_daughterKnifeIndex);
 
-        private static readonly int ButaiSideKeyIndex = 1;
+        private int _butaiSideKeyIndex = 1;
         private bool _isShowbutaiSideKey = false;
         public bool IsShowbutaiSideKey
         {
@@ -159,13 +169,23 @@ namespace Main.Eventer
             set
             {
                 if (_managePlayerUI == null) return;
-                _managePlayerUI.SetSprite(ButaiSideKeyIndex, value ? _butaiSideKeySprite : null);
+                _managePlayerUI.SetSprite(_butaiSideKeyIndex, value ? _butaiSideKeySprite : null);
                 _isShowbutaiSideKey = value;
             }
         }
-        public bool IsHoldingButaiSideKey() => IsShowbutaiSideKey && IsHoldingThisIndex(ButaiSideKeyIndex);
+        public int ButaiSideKeyIndex
+        {
+            set
+            {
+                if (_managePlayerUI == null) return;
+                _managePlayerUI.SetSprite(_butaiSideKeyIndex, null);
+                _butaiSideKeyIndex = value;
+                _managePlayerUI.SetSprite(_butaiSideKeyIndex, _butaiSideKeySprite);
+            }
+        }
+        public bool IsHoldingButaiSideKey() => IsShowbutaiSideKey && IsHoldingThisIndex(_butaiSideKeyIndex);
 
-        private static readonly int CupIndex = 1;
+        private int _cupIndex = 2;
         private bool _isShowCup = false;
         public bool IsShowCup
         {
@@ -173,10 +193,20 @@ namespace Main.Eventer
             set
             {
                 if (_managePlayerUI == null) return;
-                _managePlayerUI.SetSprite(CupIndex, value ? _cupSprite : null);
+                _managePlayerUI.SetSprite(_cupIndex, value ? _cupSprite : null);
                 _isShowCup = value;
             }
         }
-        public bool IsHoldingCup() => IsShowCup && IsHoldingThisIndex(CupIndex);
+        public int CupIndex
+        {
+            set
+            {
+                if (_managePlayerUI == null) return;
+                _managePlayerUI.SetSprite(_cupIndex, null);
+                _cupIndex = value;
+                _managePlayerUI.SetSprite(_cupIndex, _cupSprite);
+            }
+        }
+        public bool IsHoldingCup() => IsShowCup && IsHoldingThisIndex(_cupIndex);
     }
 }

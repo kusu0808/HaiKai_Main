@@ -13,7 +13,7 @@ namespace Main.EventManager
             _yatsu.Despawn();
             await _TeleportPlayer(_points.VillageFarWayInsideToiletPoint, ct);
 
-            if (_yatsuKnockToiletDoorAudioSource == null) return;
+            if (_yatsuKnockToiletDoorAudioSource != null) return;
             _yatsuKnockToiletDoorAudioSource = _audioSources.GetNew();
             _yatsuKnockToiletDoorAudioSource.Raise(_audioClips.BGM.YatsuKnockToiletDoor, SoundType.BGM);
         }

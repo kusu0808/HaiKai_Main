@@ -11,6 +11,7 @@ namespace Main.EventManager
             }
             _playerItem.HasButaiSideKey = false;
             _uiElements.IsShowbutaiSideKey = false;
+            _uiElements.CupIndex = 1;
             _uiElements.NewlyShowLogText("鍵を開けた");
 
             _objects.IsWarehouseLockedDoorEnabled = false;
