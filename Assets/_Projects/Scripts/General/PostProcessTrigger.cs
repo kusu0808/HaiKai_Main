@@ -37,15 +37,21 @@ namespace General
         [SerializeField]
         private Volume _postProcessVolume;
 
+        [SerializeField]
+        private Light _headLight;
+
         public void SetState(PostProcessTrigger.State state)
         {
             if (_sun == null) return;
             if (_postProcessVolume == null) return;
+            if (_headLight == null) return;
 
             switch (state)
             {
                 case PostProcessTrigger.State.Develop:
                     {
+                        RenderSettings.ambientIntensity = 1.0f;
+                        _headLight.enabled = false;
                         _sun.enabled = true;
                         _postProcessVolume.enabled = false;
                         if (_postProcessVolume.profile.TryGet(out ColorAdjustments ca)) ca.active = false;
@@ -54,6 +60,8 @@ namespace General
 
                 case PostProcessTrigger.State.Release:
                     {
+                        RenderSettings.ambientIntensity = 0.0f;
+                        _headLight.enabled = true;
                         _sun.enabled = false;
                         _postProcessVolume.enabled = true;
                         if (_postProcessVolume.profile.TryGet(out ColorAdjustments ca)) ca.active = true;
