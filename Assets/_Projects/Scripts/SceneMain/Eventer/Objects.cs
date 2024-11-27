@@ -50,12 +50,12 @@ namespace Main.Eventer
             get
             {
                 if (_toiletOneWayDoor == null) return false;
-                return _toiletOneWayDoor.gameObject.activeSelf;
+                return _toiletOneWayDoor.enabled;
             }
             set
             {
                 if (_toiletOneWayDoor == null) return;
-                _toiletOneWayDoor.gameObject.SetActive(value);
+                _toiletOneWayDoor.enabled = value;
             }
         }
 
@@ -66,12 +66,12 @@ namespace Main.Eventer
             get
             {
                 if (_warehouseLockedDoor == null) return false;
-                return _warehouseLockedDoor.gameObject.activeSelf;
+                return _warehouseLockedDoor.enabled;
             }
             set
             {
                 if (_warehouseLockedDoor == null) return;
-                _warehouseLockedDoor.gameObject.SetActive(value);
+                _warehouseLockedDoor.enabled = value;
             }
         }
 

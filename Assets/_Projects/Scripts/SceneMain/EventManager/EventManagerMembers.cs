@@ -23,6 +23,8 @@ namespace Main.EventManager
         [SerializeField] private UIElements _uiElements;
         [Space(25)]
         [SerializeField] private BusMover _busMover;
+        [SerializeField] private DoorMover _toiletDoorMover;
+        [SerializeField] private DoorMover _warehouseLookedDoorMover;
 
         private readonly PlayerItem _playerItem = new();
 

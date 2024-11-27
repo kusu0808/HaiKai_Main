@@ -1,8 +1,11 @@
+using System.Threading;
+using Cysharp.Threading.Tasks;
+
 namespace Main.EventManager
 {
     public sealed partial class EventManager
     {
-        private void OpenWarehouseLockedDoor()
+        private void OpenWarehouseLockedDoor(CancellationToken ct)
         {
             if (_playerItem.HasButaiSideKey is false || _uiElements.IsHoldingButaiSideKey() is false)
             {
@@ -15,6 +18,7 @@ namespace Main.EventManager
             _uiElements.NewlyShowLogText("鍵を開けた");
 
             _objects.IsWarehouseLockedDoorEnabled = false;
+            _warehouseLookedDoorMover.SlideDoor(ct).Forget();
         }
     }
 }
