@@ -1,5 +1,6 @@
 ﻿using Cysharp.Threading.Tasks;
 using DG.Tweening;
+using Sirenix.OdinInspector;
 using System.Threading;
 using UnityEngine;
 
@@ -10,16 +11,16 @@ namespace Main.Eventer
     /// </summary>
     public sealed class BusMover : MonoBehaviour
     {
-        [SerializeField, Tooltip("バスのTransform")]
+        [SerializeField, Required, SceneObjectsOnly, Tooltip("バスのTransform")]
         private Transform _busTf;
 
-        [SerializeField, Tooltip("バスの移動先のTransform\nローカルx座標のみを変化させるべき")]
+        [SerializeField, Required, SceneObjectsOnly, Tooltip("バスの移動先のTransform\nローカルx座標のみを変化させるべき")]
         private Transform _destTf;
 
-        [SerializeField, Tooltip("補間方法")]
+        [SerializeField, Required, Tooltip("補間方法")]
         private Ease _ease;
 
-        [SerializeField, Tooltip("移動時間")]
+        [SerializeField, Required, Range(0.1f, 100.0f), Tooltip("移動時間")]
         private float _duration;
 
         /// <summary>
