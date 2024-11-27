@@ -12,7 +12,7 @@ namespace Main.EventManager
         {
             Borders.MultiBorders cache = _borders.HouseTatami;
 
-            bool IsMovingOnCorridor() => cache.Elements.IsInAny(_player.Position) is true && _player.IsMoving is true;
+            bool IsMovingOnCorridor() => cache.IsInAny(_player.Position) is true && _player.IsMoving is true;
 
             while (true)
             {

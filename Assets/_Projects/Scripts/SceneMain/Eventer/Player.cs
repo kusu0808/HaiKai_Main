@@ -7,16 +7,17 @@ using Main.EventManager;
 using Cysharp.Threading.Tasks.Triggers;
 using Cysharp.Threading.Tasks.Linq;
 using General;
+using Sirenix.OdinInspector;
 
 namespace Main.Eventer
 {
     [Serializable]
     public sealed class Player
     {
-        [SerializeField] private Transform _transform;
-        [SerializeField] private CharacterController _characterController;
-        [SerializeField] private FirstPersonController _firstPersonController;
-        [SerializeField] private Camera _camera;
+        [SerializeField, Required, SceneObjectsOnly] private Transform _transform;
+        [SerializeField, Required, SceneObjectsOnly] private CharacterController _characterController;
+        [SerializeField, Required, SceneObjectsOnly] private FirstPersonController _firstPersonController;
+        [SerializeField, Required, SceneObjectsOnly] private Camera _camera;
 
         public Vector3 Position
         {
