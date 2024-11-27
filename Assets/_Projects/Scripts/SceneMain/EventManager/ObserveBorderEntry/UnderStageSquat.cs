@@ -15,20 +15,22 @@ namespace Main.EventManager
 
             async UniTaskVoid Impl(bool isEnter, CancellationToken ct)
             {
-                bool IsInAny(out Borders.TeleportBorders.Element element)
-                {
-                    Func<Borders.TeleportBorders.Element> f = _borders.IsFromUnderStageToShrineWayBorderEnabled ?
-                    () => _borders.UnderStageSquat.IsInAny(_player.Position, isEnter) :
-                    () => _borders.UnderStageSquat.IsInAny(_player.Position, isEnter, 0);
-
-                    element = f();
-                    return element is not null;
-                }
-
                 while (true)
                 {
-                    Borders.TeleportBorders.Element element = null;
-                    await UniTask.WaitUntil(() => IsInAny(out var element), cancellationToken: ct);
+                    int i = 0;
+                    while (true)
+                    {
+                        Func<int> f = _borders.IsFromUnderStageToShrineWayBorderEnabled ?
+                            () => _borders.UnderStageSquat.Elements.IsInAny(_player.Position, isEnter) :
+                            () => _borders.UnderStageSquat.Elements.IsInAny(_player.Position, isEnter, 0);
+
+                        i = f();
+                        if (i is not -1) break;
+
+                        await UniTask.NextFrame(ct);
+                    }
+
+                    var element = _borders.UnderStageSquat.Elements[i];
 
                     _uiElements.ForciblyShowLogText(isEnter ? "(アクション長押しで入る)" : "(アクション長押しで出る)");
                     int j = await UniTask.WhenAny(

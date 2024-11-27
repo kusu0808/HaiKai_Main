@@ -1,6 +1,8 @@
 using Cysharp.Threading.Tasks;
 using System;
+using System.Collections.ObjectModel;
 using System.Threading;
+using BorderSystem;
 using Main.Eventer;
 
 namespace Main.EventManager
@@ -9,7 +11,7 @@ namespace Main.EventManager
     {
         private async UniTaskVoid BusStopCannotMove(CancellationToken ct)
         {
-            Borders.MultiBorders cache = _borders.BusStopCannotMove;
+            ReadOnlyCollection<Border> cache = _borders.BusStopCannotMove.Elements;
 
             while (true)
             {

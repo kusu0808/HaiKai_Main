@@ -1,7 +1,6 @@
 using System;
 using Sirenix.OdinInspector;
 using UnityEngine;
-using General;
 
 namespace Main.Eventer
 {
@@ -46,5 +45,16 @@ namespace Main.Eventer
                 _knife.SetActive(value);
             }
         }
+    }
+
+    public static class DaughterEx
+    {
+        public static Vector2 WithoutY(this Vector3 v, out float ignoredY)
+        {
+            ignoredY = v.y;
+            return new(v.x, v.z);
+        }
+
+        public static Vector3 WithY(this Vector2 v, float y) => new(v.x, y, v.y);
     }
 }
