@@ -8,7 +8,7 @@ namespace Main.EventManager
     {
         private async UniTaskVoid PickUpCup(CancellationToken ct)
         {
-            if (_objects.IsToiletCupEnabled is false) return;
+            if (_objects.ToiletCup.IsEnabled is false) return;
 
             PauseState.IsPaused = true;
             "コップ入手開始".Warn();
@@ -17,7 +17,7 @@ namespace Main.EventManager
             PauseState.IsPaused = false;
 
             _playerItem.HasCup = true;
-            _objects.IsToiletCupEnabled = false;
+            _objects.ToiletCup.IsEnabled = false;
             _uiElements.IsShowCup = true;
         }
     }
