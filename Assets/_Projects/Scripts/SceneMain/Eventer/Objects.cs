@@ -12,6 +12,10 @@ namespace Main.Eventer
         public BigIviesClass BigIvies => _bigIvies;
 
         [SerializeField, Required, SceneObjectsOnly]
+        private DeersClass _deers;
+        public DeersClass Deers => _deers;
+
+        [SerializeField, Required, SceneObjectsOnly]
         private Collider _butaiSideKey;
         public bool IsButaiSideKeyEnabled
         {
@@ -107,6 +111,11 @@ namespace Main.Eventer
 
                 collider.gameObject.SetActive(false);
             }
+        }
+
+        [Serializable]
+        public sealed class DeersClass
+        {
         }
     }
 }
