@@ -4,15 +4,15 @@ namespace Main.EventManager
     {
         private void OpenWarehouseLockedDoor()
         {
-            if (_playerItem.HasButaiSideKey is false || _uiElements.IsHoldingButaiSideKey() is false)
+            if (_playerItem.HasButaiSideKey is false || _uiElements.WarehouseKey.IsHolding() is false)
             {
-                _uiElements.NewlyShowLogText("鍵がかかっている");
+                _uiElements.LogText.ShowAutomatically("鍵がかかっている");
                 return;
             }
             _playerItem.HasButaiSideKey = false;
-            _uiElements.IsShowbutaiSideKey = false;
-            _uiElements.CupIndex = 1;
-            _uiElements.NewlyShowLogText("鍵を開けた");
+            _uiElements.WarehouseKey.IsShow = false;
+            _uiElements.Cup.Index = 1;
+            _uiElements.LogText.ShowAutomatically("鍵を開けた");
 
             _objects.IsWarehouseLockedDoorEnabled = false;
         }

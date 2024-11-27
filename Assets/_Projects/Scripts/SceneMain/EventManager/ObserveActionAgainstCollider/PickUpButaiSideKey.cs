@@ -18,7 +18,7 @@ namespace Main.EventManager
 
             _playerItem.HasButaiSideKey = true;
             _objects.ButaiSideKey.IsEnabled = false;
-            _uiElements.IsShowbutaiSideKey = true;
+            _uiElements.WarehouseKey.IsShow = true;
         }
     }
 }

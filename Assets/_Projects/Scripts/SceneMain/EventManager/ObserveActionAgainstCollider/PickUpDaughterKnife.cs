@@ -18,7 +18,7 @@ namespace Main.EventManager
 
             _playerItem.HasKnife = true;
             _daughter.IsKnifeEnabled = false;
-            _uiElements.IsShowDaughterKnife = true;
+            _uiElements.DaughterKnife.IsShow = true;
         }
     }
 }

@@ -18,7 +18,7 @@ namespace Main.EventManager
 
             _playerItem.HasCup = true;
             _objects.ToiletCup.IsEnabled = false;
-            _uiElements.IsShowCup = true;
+            _uiElements.Cup.IsShow = true;
         }
     }
 }

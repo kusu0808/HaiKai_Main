@@ -7,10 +7,9 @@ using Sirenix.OdinInspector;
 using UnityEngine;
 using UnityEngine.AI;
 
-namespace Main.Eventer
+namespace Main.Eventer.PlayerChasingCharacter
 {
-    [Serializable]
-    public abstract class ASerializedPlayerChasingCharacter
+    public abstract class APlayerChasingCharacter
     {
         protected sealed class MonoBehaviourComponent : MonoBehaviour { }
 

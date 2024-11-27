@@ -3,10 +3,10 @@ using Sirenix.OdinInspector;
 using UnityEngine;
 using General;
 
-namespace Main.Eventer
+namespace Main.Eventer.PlayerChasingCharacter
 {
     [Serializable]
-    public sealed class Daughter : ASerializedPlayerChasingCharacter
+    public sealed class Daughter : APlayerChasingCharacter
     {
         [SerializeField, Required, SceneObjectsOnly, Tooltip("ナイフ(小道に散らばる予定)")]
         private GameObject _knife;

@@ -3,7 +3,7 @@ using General;
 using Sirenix.OdinInspector;
 using UnityEngine;
 
-namespace Eventer
+namespace Main.Eventer
 {
     [Serializable]
     public sealed class AudioSources
