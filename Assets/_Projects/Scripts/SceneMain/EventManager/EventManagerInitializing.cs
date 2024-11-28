@@ -11,6 +11,7 @@ namespace Main.EventManager
         private async UniTask Initialize(CancellationToken ct)
         {
             _playerCollision.Init(col => OnPlayerTriggerEnter(col, ct));
+            _uiElements.Init();
             _daughter.InitNavMeshAgent();
             _yatsu.InitNavMeshAgent();
 
@@ -20,13 +21,13 @@ namespace Main.EventManager
             _player.SlopLimit = EventManagerConst.SlopLimitInit;
             _player.CheckDeviation(_points.Init, ct).Forget();
             _player.SubscribeYatsuCollision();
-            _uiElements.IsShowDaughterKnife = false;
+            _uiElements.DaughterKnife.IsShow = false;
             _daughter.SpawnHere(_points.RoadWayDaughterSpawnPoint);
             _daughter.IsKnifeEnabled = false;
 
             if (_debug.IsEnabled) InitializeDebugProperty();
 
-            await _uiElements.FadeIn(EventManagerConst.FadeInDuration, ct);
+            await _uiElements.BlackImage.FadeIn(EventManagerConst.FadeInDuration, ct);
             _player.IsPlayerControlEnabled = true;
 
             _uiElements.ActivateUIManagers(ct);

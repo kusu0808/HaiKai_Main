@@ -1,8 +1,9 @@
 using UnityEngine;
-using Main.Eventer;
 using SO;
 using Sirenix.OdinInspector;
-using Eventer;
+using Main.Eventer;
+using Main.Eventer.PlayerChasingCharacter;
+using Main.Eventer.UIElements;
 
 namespace Main.EventManager
 {

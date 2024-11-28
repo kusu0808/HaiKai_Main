@@ -31,7 +31,7 @@ namespace Main.EventManager
                 {
                     string message = GetMessage(tag);
                     if (string.IsNullOrEmpty(message)) continue;  // 無効なものに当たった
-                    _uiElements.NewlyShowLogText(message);
+                    _uiElements.LogText.ShowAutomatically(message);
                 }
             }
 

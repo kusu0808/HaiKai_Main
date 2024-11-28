@@ -38,9 +38,9 @@ namespace Main.EventManager
         {
             if (transform == null) return;
             _player.IsPlayerControlEnabled = false;
-            await _uiElements.FadeOut(EventManagerConst.FadeOutDuration, ct);
+            await _uiElements.BlackImage.FadeOut(EventManagerConst.FadeOutDuration, ct);
             _player.SetTransform(transform);
-            await _uiElements.FadeIn(EventManagerConst.FadeInDuration, ct);
+            await _uiElements.BlackImage.FadeIn(EventManagerConst.FadeInDuration, ct);
             _player.IsPlayerControlEnabled = true;
         }
     }

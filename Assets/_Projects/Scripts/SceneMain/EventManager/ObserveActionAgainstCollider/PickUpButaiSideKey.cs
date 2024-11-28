@@ -8,7 +8,7 @@ namespace Main.EventManager
     {
         private async UniTaskVoid PickUpButaiSideKey(CancellationToken ct)
         {
-            if (_objects.IsButaiSideKeyEnabled is false) return;
+            if (_objects.ButaiSideKey.IsEnabled is false) return;
 
             PauseState.IsPaused = true;
             "舞台横の鍵入手開始".Warn();
@@ -17,8 +17,8 @@ namespace Main.EventManager
             PauseState.IsPaused = false;
 
             _playerItem.HasButaiSideKey = true;
-            _objects.IsButaiSideKeyEnabled = false;
-            _uiElements.IsShowbutaiSideKey = true;
+            _objects.ButaiSideKey.IsEnabled = false;
+            _uiElements.WarehouseKey.IsShow = true;
         }
     }
 }

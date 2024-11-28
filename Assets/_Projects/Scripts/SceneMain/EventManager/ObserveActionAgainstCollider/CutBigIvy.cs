@@ -7,15 +7,15 @@ namespace Main.EventManager
     {
         private void CutBigIvy(Type type)
         {
-            if (_uiElements.IsHoldingDaughterKnife())
+            if (_uiElements.DaughterKnife.IsHolding())
             {
                 _audioSources.GetNew().Raise(_audioClips.SE.CutBigIvy, SoundType.SE);
                 _objects.BigIvies.DeactivateThis(type);
-                _uiElements.NewlyShowLogText("通れるようになった");
+                _uiElements.LogText.ShowAutomatically("通れるようになった");
             }
             else
             {
-                _uiElements.NewlyShowLogText("大きな植物が道を遮っている");
+                _uiElements.LogText.ShowAutomatically("大きな植物が道を遮っている");
             }
         }
     }

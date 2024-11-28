@@ -15,28 +15,26 @@ namespace Main.EventManager
 
             async UniTaskVoid Impl(bool isEnter, CancellationToken ct)
             {
+                bool IsInAny(out Borders.TeleportBorders.Element element)
+                {
+                    Func<Borders.TeleportBorders.Element> f = _borders.IsFromUnderStageToShrineWayBorderEnabled ?
+                    () => _borders.UnderStageSquat.IsInAny(_player.Position, isEnter) :
+                    () => _borders.UnderStageSquat.IsInAny(_player.Position, isEnter, 0);
+
+                    element = f();
+                    return element is not null;
+                }
+
                 while (true)
                 {
-                    int i = 0;
-                    while (true)
-                    {
-                        Func<int> f = _borders.IsFromUnderStageToShrineWayBorderEnabled ?
-                            () => _borders.UnderStageSquat.Elements.IsInAny(_player.Position, isEnter) :
-                            () => _borders.UnderStageSquat.Elements.IsInAny(_player.Position, isEnter, 0);
+                    Borders.TeleportBorders.Element element = null;
+                    await UniTask.WaitUntil(() => IsInAny(out var element), cancellationToken: ct);
 
-                        i = f();
-                        if (i is not -1) break;
-
-                        await UniTask.NextFrame(ct);
-                    }
-
-                    var element = _borders.UnderStageSquat.Elements[i];
-
-                    _uiElements.ForciblyShowLogText(isEnter ? "(アクション長押しで入る)" : "(アクション長押しで出る)");
+                    _uiElements.LogText.ShowManually(isEnter ? "(アクション長押しで入る)" : "(アクション長押しで出る)");
                     int j = await UniTask.WhenAny(
                         UniTask.WaitUntil(() => element.GetBorder(isEnter).IsIn(_player.Position) is false, cancellationToken: ct),
                         UniTask.WaitUntil(() => InputGetter.Instance.PlayerSpecialAction.Bool, cancellationToken: ct));
-                    _uiElements.ForciblyShowLogText(string.Empty);
+                    _uiElements.LogText.ShowManually(string.Empty);
 
                     if (j is not 1) continue;
                     await _TeleportPlayer(element.GetTransform(isEnter), ct);

@@ -1,0 +1,62 @@
+﻿using System;
+using System.Threading;
+using UnityEngine;
+using SceneGeneral;
+using Sirenix.OdinInspector;
+
+namespace Main.Eventer.UIElements
+{
+    [Serializable]
+    public sealed class UIElements
+    {
+        [SerializeField, Required, SceneObjectsOnly]
+        private BlackImageClass _blackImage;
+        public BlackImageClass BlackImage => _blackImage;
+
+        [SerializeField, Required, SceneObjectsOnly]
+        private LogTextClass _logText;
+        public LogTextClass LogText => _logText;
+
+        [SerializeField, Required, SceneObjectsOnly]
+        private ManagePlayerUI _managePlayerUI;
+
+        [SerializeField, Required, SceneObjectsOnly]
+        private TriggerPauseUI _triggerPauseUI;
+
+        [SerializeField, Required, SceneObjectsOnly]
+        private TriggerSettingUI _triggerSettingUI;
+
+        [SerializeField, Required, AssetsOnly]
+        private UIItemClass _daughterKnife;
+        public UIItemClass DaughterKnife => _daughterKnife;
+
+        [SerializeField, Required, AssetsOnly]
+        private UIItemClass _warehouseKey;
+        public UIItemClass WarehouseKey => _warehouseKey;
+
+        [SerializeField, Required, AssetsOnly]
+        private UIItemClass _cup;
+        public UIItemClass Cup => _cup;
+
+        // 最初に呼ぶこと！
+        public void Init()
+        {
+            _daughterKnife.Init(_managePlayerUI, 0);
+            _warehouseKey.Init(_managePlayerUI, 1);
+            _cup.Init(_managePlayerUI, 2);
+        }
+
+        public void ActivateUIManagers(CancellationToken ct)
+        {
+            if (_managePlayerUI != null) _managePlayerUI.RollItem(ct).Forget();
+            if (_triggerPauseUI != null) _triggerPauseUI.Trigger(ct).Forget();
+            if (_triggerSettingUI != null) _triggerSettingUI.ChangeVolume(ct).Forget();
+        }
+
+        public void SetCursor(bool isActive)
+        {
+            if (_triggerPauseUI == null) return;
+            _triggerPauseUI.SetCursor(isActive);
+        }
+    }
+}

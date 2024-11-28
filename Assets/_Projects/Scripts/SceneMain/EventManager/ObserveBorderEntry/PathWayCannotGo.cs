@@ -9,7 +9,7 @@ namespace Main.EventManager
         private async UniTaskVoid PathWayCannotGo(CancellationToken ct)
         {
             await UniTask.WaitUntil(() => _borders.PathWayStop.IsIn(_player.Position) is true, cancellationToken: ct);
-            _uiElements.NewlyShowLogText("この先は高くて進めそうにない");
+            _uiElements.LogText.ShowAutomatically("この先は高くて進めそうにない");
         }
     }
 }

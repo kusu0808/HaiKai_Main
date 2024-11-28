@@ -12,36 +12,16 @@ namespace Main.Eventer
         public BigIviesClass BigIvies => _bigIvies;
 
         [SerializeField, Required, SceneObjectsOnly]
-        private Collider _butaiSideKey;
-        public bool IsButaiSideKeyEnabled
-        {
-            get
-            {
-                if (_butaiSideKey == null) return false;
-                return _butaiSideKey.gameObject.activeSelf;
-            }
-            set
-            {
-                if (_butaiSideKey == null) return;
-                _butaiSideKey.gameObject.SetActive(value);
-            }
-        }
+        private DeersClass _deers;
+        public DeersClass Deers => _deers;
 
         [SerializeField, Required, SceneObjectsOnly]
-        private Collider _toiletCup;
-        public bool IsToiletCupEnabled
-        {
-            get
-            {
-                if (_toiletCup == null) return false;
-                return _toiletCup.gameObject.activeSelf;
-            }
-            set
-            {
-                if (_toiletCup == null) return;
-                _toiletCup.gameObject.SetActive(value);
-            }
-        }
+        private PickUpItems _butaiSideKey;
+        public PickUpItems ButaiSideKey => _butaiSideKey;
+
+        [SerializeField, Required, SceneObjectsOnly]
+        private PickUpItems _toiletCup;
+        public PickUpItems ToiletCup => _toiletCup;
 
         [SerializeField, Required, SceneObjectsOnly]
         private Collider _toiletOneWayDoor;
@@ -112,6 +92,61 @@ namespace Main.Eventer
                 if (collider == null) return;
 
                 collider.gameObject.SetActive(false);
+            }
+        }
+
+        [Serializable]
+        public sealed class PickUpItems
+        {
+            [SerializeField, Required, SceneObjectsOnly]
+            private Collider _itemCollider;
+
+            public bool IsEnabled
+            {
+                get
+                {
+                    if (_itemCollider == null) return false;
+                    return _itemCollider.gameObject.activeSelf;
+                }
+                set
+                {
+                    if (_itemCollider == null) return;
+                    _itemCollider.gameObject.SetActive(value);
+                }
+            }
+        }
+
+        [Serializable]
+        public sealed class DeersClass
+        {
+            [SerializeField, Required, SceneObjectsOnly, Tooltip("最初は重力をオフにしておくこと")]
+            private Rigidbody _fallDeer;
+
+            [SerializeField, Required, SceneObjectsOnly]
+            private ParticleSystem _injuredDeer;
+
+            private bool _hasFalled = false;
+            public bool HasFalled => _hasFalled;
+
+            private bool _hasBeenHurtByKnife = false;
+            public bool HasBeenHurtByKnife => _hasBeenHurtByKnife;
+
+            public void Fall()
+            {
+                if (_fallDeer == null) return;
+                if (_hasFalled is true) return;
+
+                _hasFalled = true;
+                _fallDeer.useGravity = true;
+            }
+
+            public void HurtByKnife()
+            {
+                if (_injuredDeer == null) return;
+                if (_hasBeenHurtByKnife is true) return;
+
+                _hasBeenHurtByKnife = true;
+                _injuredDeer.Play();
             }
         }
     }
