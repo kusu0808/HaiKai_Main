@@ -17,8 +17,8 @@ namespace Main.Eventer
         public DeersClass Deers => _deers;
 
         [SerializeField, Required, SceneObjectsOnly]
-        private PickUpItems _butaiSideKey;
-        public PickUpItems ButaiSideKey => _butaiSideKey;
+        private PickUpItems _warehouseeKey;
+        public PickUpItems WarehouseKey => _warehouseeKey;
 
         [SerializeField, Required, SceneObjectsOnly]
         private PickUpItems _toiletCup;
