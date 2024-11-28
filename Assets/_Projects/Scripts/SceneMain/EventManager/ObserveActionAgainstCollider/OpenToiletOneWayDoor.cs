@@ -14,8 +14,8 @@ namespace Main.EventManager
             }
 
             _objects.IsToiletOneWayDoorEnabled = false;
-            _toiletDoorMover.RotateDoor(ct).Forget();
             _uiElements.NewlyShowLogText("ドアを開けた");
+            _toiletDoor.PlayDoorOnce(ct).Forget();
         }
     }
 }

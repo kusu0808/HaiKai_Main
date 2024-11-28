@@ -55,6 +55,9 @@ namespace Main.Eventer
             set
             {
                 if (_toiletOneWayDoor == null) return;
+
+                // コライダー自体を有効/無効化
+                // 当たり判定とRayCast判定を同時に有効/無効化
                 _toiletOneWayDoor.enabled = value;
             }
         }
@@ -71,6 +74,9 @@ namespace Main.Eventer
             set
             {
                 if (_warehouseLockedDoor == null) return;
+
+                // コライダー自体を有効/無効化
+                // 当たり判定とRayCast判定を同時に有効/無効化
                 _warehouseLockedDoor.enabled = value;
             }
         }
