@@ -1,8 +1,8 @@
 using System.Threading;
 using Cysharp.Threading.Tasks;
 using General;
-using Main.Eventer;
 using UnityEngine;
+using MultiBorders = Main.Eventer.Borders.MultiBorders;
 
 namespace Main.EventManager
 {
@@ -10,7 +10,7 @@ namespace Main.EventManager
     {
         private async UniTaskVoid HousePlayWalkTatamiSound(CancellationToken ct)
         {
-            Borders.MultiBorders cache = _borders.HouseTatami;
+            MultiBorders cache = _borders.HouseTatami;
 
             bool IsMovingOnCorridor() => cache.IsInAny(_player.Position) is true && _player.IsMoving is true;
 

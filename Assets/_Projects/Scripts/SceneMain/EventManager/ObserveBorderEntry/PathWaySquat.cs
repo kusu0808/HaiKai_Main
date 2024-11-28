@@ -1,8 +1,8 @@
 using Cysharp.Threading.Tasks;
 using System.Threading;
 using IA;
-using Main.Eventer;
 using General;
+using TeleportBorder = Main.Eventer.Borders.TeleportBorder;
 
 namespace Main.EventManager
 {
@@ -21,7 +21,7 @@ namespace Main.EventManager
                 bool isGoingToTheBack = i is 0; // 奥の道に向かっているか
                 bool isFarewellTurn = isGoingToTheBack is true && isSeparatedFromDaughter is false; // 娘と別れるターンか
 
-                Borders.TeleportBorder cache = isGoingToTheBack ? _borders.PathWaySquat1 : _borders.PathWaySquat2;
+                TeleportBorder cache = isGoingToTheBack ? _borders.PathWaySquat1 : _borders.PathWaySquat2;
 
                 string text = isFarewellTurn ? "ここ、すごく狭いね (アクション長押しで通る)" : "(アクション長押しで通る)";
                 _uiElements.LogText.ShowManually(text);
