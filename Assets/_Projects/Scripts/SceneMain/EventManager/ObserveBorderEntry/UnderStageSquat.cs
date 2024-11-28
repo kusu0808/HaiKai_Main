@@ -2,7 +2,7 @@ using Cysharp.Threading.Tasks;
 using System;
 using System.Threading;
 using IA;
-using Main.Eventer;
+using Element = Main.Eventer.Borders.TeleportBorders.Element;
 
 namespace Main.EventManager
 {
@@ -15,9 +15,9 @@ namespace Main.EventManager
 
             async UniTaskVoid Impl(bool isEnter, CancellationToken ct)
             {
-                bool IsInAny(out Borders.TeleportBorders.Element element)
+                bool IsInAny(out Element element)
                 {
-                    Func<Borders.TeleportBorders.Element> f = _borders.IsFromUnderStageToShrineWayBorderEnabled ?
+                    Func<Element> f = _borders.IsFromUnderStageToShrineWayBorderEnabled ?
                     () => _borders.UnderStageSquat.IsInAny(_player.Position, isEnter) :
                     () => _borders.UnderStageSquat.IsInAny(_player.Position, isEnter, 0);
 
@@ -25,7 +25,7 @@ namespace Main.EventManager
                     return element is not null;
                 }
 
-                async UniTask<Borders.TeleportBorders.Element> WaitUntilIsInAny(CancellationToken ct)
+                async UniTask<Element> WaitUntilIsInAny(CancellationToken ct)
                 {
                     while (true)
                     {

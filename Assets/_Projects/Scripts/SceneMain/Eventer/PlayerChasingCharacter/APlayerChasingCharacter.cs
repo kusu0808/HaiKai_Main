@@ -52,15 +52,18 @@ namespace Main.Eventer.PlayerChasingCharacter
             }
         }
 
-        protected virtual void ChasePlayerOnUpdateIfAvailable(Transform playerTransform)
+        private void ChasePlayerOnUpdateIfAvailable(Transform playerTransform)
         {
             if (_isEnabled is false) return;
             if (_navMeshAgent == null) return;
             if (playerTransform == null) return;
             if (_navMeshAgent.isOnNavMesh is false) return;
+            RetargetPlayerWithoutNullCheck(playerTransform);
+        }
 
+        protected virtual void RetargetPlayerWithoutNullCheck(Transform playerTransform)
+        {
             _navMeshAgent.SetDestination(playerTransform.position);
-
             _navMeshAgent.transform.LookAt(playerTransform);
         }
 

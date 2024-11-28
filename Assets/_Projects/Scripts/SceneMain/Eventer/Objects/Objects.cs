@@ -1,0 +1,50 @@
+using System;
+using Sirenix.OdinInspector;
+using UnityEngine;
+
+namespace Main.Eventer.Objects
+{
+    [Serializable]
+    public sealed class Objects
+    {
+        [SerializeField, Required, SceneObjectsOnly]
+        private BigIviesClass _bigIvies;
+        public BigIviesClass BigIvies => _bigIvies;
+
+        [SerializeField, Required, SceneObjectsOnly]
+        private DeersClass _deers;
+        public DeersClass Deers => _deers;
+
+        [SerializeField, Required, SceneObjectsOnly]
+        private PlacedItemClass _warehouseeKey;
+        public PlacedItemClass WarehouseKey => _warehouseeKey;
+
+        [SerializeField, Required, SceneObjectsOnly]
+        private PlacedItemClass _toiletCup;
+        public PlacedItemClass ToiletCup => _toiletCup;
+
+        [SerializeField, Required, SceneObjectsOnly]
+        private RotateDoor _toiletOneWayDoor;
+        public AMovableDoor ToiletOneWayDoor => _toiletOneWayDoor;
+
+        [SerializeField, Required, SceneObjectsOnly]
+        private SlideDoor _warehouseLookedDoor;
+        public AMovableDoor WarehouseLookedDoor => _warehouseLookedDoor;
+
+        [SerializeField, Required, SceneObjectsOnly]
+        private SlideDoor _warehouseOneWayDoor;
+        public AMovableDoor WarehouseOneWayDoor => _warehouseOneWayDoor;
+
+        [SerializeField, Required, SceneObjectsOnly]
+        private BlockingVolumeClass _villageWayCannotGoBackAfterWarehouse;
+        public BlockingVolumeClass VillageWayCannotGoBackAfterWarehouse => _villageWayCannotGoBackAfterWarehouse;
+
+        [SerializeField, Required, SceneObjectsOnly]
+        private PlacedItemClass _kokeshiSecretKey;
+        public PlacedItemClass KokeshiSecretKey => _kokeshiSecretKey;
+
+        [SerializeField, Required, SceneObjectsOnly]
+        private PlacedItemClass _glassShard;
+        public PlacedItemClass GlassShard => _glassShard;
+    }
+}

@@ -1,5 +1,5 @@
 using General;
-using IvyType = Main.Eventer.BigIviesClass.Type;
+using IvyType = Main.Eventer.Objects.BigIviesClass.Type;
 
 namespace Main.EventManager
 {

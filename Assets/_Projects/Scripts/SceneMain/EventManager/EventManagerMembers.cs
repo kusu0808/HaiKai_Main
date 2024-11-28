@@ -2,6 +2,8 @@ using UnityEngine;
 using SO;
 using Sirenix.OdinInspector;
 using Main.Eventer;
+using Main.Eventer.Objects;
+using Main.Eventer.Borders;
 using Main.Eventer.PlayerChasingCharacter;
 using Main.Eventer.UIElements;
 

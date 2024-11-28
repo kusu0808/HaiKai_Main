@@ -61,6 +61,10 @@ namespace SO
             [SerializeField, Required, AssetsOnly, LabelText("鳥の鳴き声")]
             private AudioClip _birdCry;
             public AudioClip BirdCry => _birdCry;
+
+            [SerializeField, Required, AssetsOnly, LabelText("ヤツが娘の声真似をする")]
+            private AudioClip _yatsuImitateDaughterVoice;
+            public AudioClip YaTsuImitateDaughterVoice => _yatsuImitateDaughterVoice;
         }
 
         [Serializable]

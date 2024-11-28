@@ -38,12 +38,27 @@ namespace Main.Eventer.UIElements
         private UIItemClass _cup;
         public UIItemClass Cup => _cup;
 
+        [SerializeField, Required, AssetsOnly]
+        private UIItemClass _cupFilledWithBlood;
+        public UIItemClass CupFilledWithBlood => _cupFilledWithBlood;
+
+        [SerializeField, Required, AssetsOnly]
+        private UIItemClass _kokeshiSecretKey;
+        public UIItemClass KokeshiSecretKey => _kokeshiSecretKey;
+
+        [SerializeField, Required, AssetsOnly]
+        private UIItemClass _glassShard;
+        public UIItemClass GlassShard => _glassShard;
+
         // 最初に呼ぶこと！
         public void Init()
         {
             _daughterKnife.Init(_managePlayerUI, 0);
             _warehouseKey.Init(_managePlayerUI, 1);
             _cup.Init(_managePlayerUI, 2);
+            _cupFilledWithBlood.Init(_managePlayerUI, 1);
+            _kokeshiSecretKey.Init(_managePlayerUI, 2);
+            _glassShard.Init(_managePlayerUI, 1);
         }
 
         public void ActivateUIManagers(CancellationToken ct)

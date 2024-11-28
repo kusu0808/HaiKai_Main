@@ -13,17 +13,11 @@ namespace Main.Eventer.PlayerChasingCharacter
 
         private static readonly float DistanceFromPlayer = 2;
 
-        protected override void ChasePlayerOnUpdateIfAvailable(Transform playerTransform)
+        protected override void RetargetPlayerWithoutNullCheck(Transform playerTransform)
         {
-            if (_isEnabled is false) return;
-            if (_navMeshAgent == null) return;
-            if (playerTransform == null) return;
-            if (_navMeshAgent.isOnNavMesh is false) return;
-
             Vector2 daughterPos = _navMeshAgent.transform.position.WithoutY(out float daughterY);
             Vector2 playerPos = playerTransform.position.WithoutY(out _);
             Vector2 daughterToPlayer = playerPos - daughterPos;
-
             if (daughterToPlayer.sqrMagnitude > DistanceFromPlayer * DistanceFromPlayer)
             {
                 Vector3 targetPos = (playerPos - daughterToPlayer.normalized * DistanceFromPlayer).WithY(daughterY);
