@@ -9,12 +9,12 @@ namespace Main.EventManager
         {
             if (_borders.IsFromUnderStageToShrineWayBorderEnabled is true)
             {
-                _uiElements.NewlyShowLogText("開かない");
+                _uiElements.LogText.ShowAutomatically("開かない");
                 return;
             }
 
             _objects.IsToiletOneWayDoorEnabled = false;
-            _uiElements.NewlyShowLogText("ドアを開けた");
+            _uiElements.LogText.ShowAutomatically("ドアを開けた");
             _toiletDoor.PlayDoorOnce(ct).Forget();
         }
     }
