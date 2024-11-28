@@ -25,10 +25,19 @@ namespace Main.EventManager
                     return element is not null;
                 }
 
+                async UniTask<Borders.TeleportBorders.Element> WaitUntilIsInAny(CancellationToken ct)
+                {
+                    while (true)
+                    {
+                        bool ret = IsInAny(out var element);
+                        if (ret) return element;
+                        await UniTask.NextFrame(ct);
+                    }
+                }
+
                 while (true)
                 {
-                    Borders.TeleportBorders.Element element = null;
-                    await UniTask.WaitUntil(() => IsInAny(out var element), cancellationToken: ct);
+                    var element = await WaitUntilIsInAny(ct);
 
                     _uiElements.LogText.ShowManually(isEnter ? "(アクション長押しで入る)" : "(アクション長押しで出る)");
                     int j = await UniTask.WhenAny(

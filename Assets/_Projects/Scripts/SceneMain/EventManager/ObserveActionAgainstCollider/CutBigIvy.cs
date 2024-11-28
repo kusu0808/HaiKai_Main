@@ -1,11 +1,11 @@
 using General;
-using Type = Main.Eventer.Objects.BigIviesClass.Type;
+using IvyType = Main.Eventer.BigIviesClass.Type;
 
 namespace Main.EventManager
 {
     public sealed partial class EventManager
     {
-        private void CutBigIvy(Type type)
+        private void CutBigIvy(IvyType type)
         {
             if (_uiElements.DaughterKnife.IsHolding())
             {

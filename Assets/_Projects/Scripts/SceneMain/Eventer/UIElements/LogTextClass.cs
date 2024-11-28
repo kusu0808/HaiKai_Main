@@ -49,7 +49,7 @@ namespace Main.Eventer.UIElements
         /// 自動でログの表示と非表示を行う。
         /// </summary>
         public void ShowAutomatically(
-            string text, float duration = SHOW_DURATION_DEFAULT, float fadeoutDuration = FADEOUT_DURATION_DEFAULT, bool isGetOffInput = true)
+            string text, float duration = SHOW_DURATION_DEFAULT, float fadeoutDuration = FADEOUT_DURATION_DEFAULT, bool isGetOffInput = false)
         {
             if (_logText == null) return;
             if (_isShowingForcibly) return;
@@ -59,7 +59,7 @@ namespace Main.Eventer.UIElements
             ShowLogText(_logText, text, duration, fadeoutDuration, _cts.Token, isGetOffInput).Forget();
 
             static async UniTaskVoid ShowLogText
-                (TextMeshProUGUI logText, string text, float duration, float fadeoutDuration, CancellationToken ct, bool isGetOffInput = true)
+                (TextMeshProUGUI logText, string text, float duration, float fadeoutDuration, CancellationToken ct, bool isGetOffInput = false)
             {
                 logText.text = text;
                 if (isGetOffInput) await UniTask.WhenAny(WaitUntilOffInput(ct),

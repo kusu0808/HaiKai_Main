@@ -1,8 +1,10 @@
 using UnityEngine;
 using Sirenix.OdinInspector;
+using System;
 
 namespace Main.Eventer.UIElements
 {
+    [Serializable]
     public sealed class UIItemClass
     {
         [SerializeField, Required, AssetsOnly]

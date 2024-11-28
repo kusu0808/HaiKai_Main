@@ -1,6 +1,7 @@
 using System;
 using Sirenix.OdinInspector;
 using UnityEngine;
+using Main.Eventer.MovableDoor;
 
 namespace Main.Eventer
 {
@@ -16,138 +17,19 @@ namespace Main.Eventer
         public DeersClass Deers => _deers;
 
         [SerializeField, Required, SceneObjectsOnly]
-        private PickUpItems _butaiSideKey;
-        public PickUpItems ButaiSideKey => _butaiSideKey;
+        private PickUpItems _warehouseeKey;
+        public PickUpItems WarehouseKey => _warehouseeKey;
 
         [SerializeField, Required, SceneObjectsOnly]
         private PickUpItems _toiletCup;
         public PickUpItems ToiletCup => _toiletCup;
 
         [SerializeField, Required, SceneObjectsOnly]
-        private Collider _toiletOneWayDoor;
-        public bool IsToiletOneWayDoorEnabled
-        {
-            get
-            {
-                if (_toiletOneWayDoor == null) return false;
-                return _toiletOneWayDoor.enabled;
-            }
-            set
-            {
-                if (_toiletOneWayDoor == null) return;
-
-                // コライダー自体を有効/無効化
-                // 当たり判定とRayCast判定を同時に有効/無効化
-                _toiletOneWayDoor.enabled = value;
-            }
-        }
+        private RotateDoor _toiletClosedDoor;
+        public AMovableDoor ToiletOneWayDoor => _toiletClosedDoor;
 
         [SerializeField, Required, SceneObjectsOnly]
-        private Collider _warehouseLockedDoor;
-        public bool IsWarehouseLockedDoorEnabled
-        {
-            get
-            {
-                if (_warehouseLockedDoor == null) return false;
-                return _warehouseLockedDoor.enabled;
-            }
-            set
-            {
-                if (_warehouseLockedDoor == null) return;
-
-                // コライダー自体を有効/無効化
-                // 当たり判定とRayCast判定を同時に有効/無効化
-                _warehouseLockedDoor.enabled = value;
-            }
-        }
-
-        [Serializable]
-        public sealed class BigIviesClass
-        {
-            public enum Type
-            {
-                PathWay,
-                ShrineStair,
-                CaveEntrance
-            }
-
-            [SerializeField, Required, SceneObjectsOnly, LabelText("PathWay")]
-            private Collider _pathWay;
-
-            [SerializeField, Required, SceneObjectsOnly, LabelText("ShrineStair")]
-            private Collider _shrineStair;
-
-            [SerializeField, Required, SceneObjectsOnly, LabelText("CaveEntrance")]
-            private Collider _caveEntrance;
-
-            public void DeactivateThis(Type type)
-            {
-                Collider collider = type switch
-                {
-                    Type.PathWay => _pathWay,
-                    Type.ShrineStair => _shrineStair,
-                    Type.CaveEntrance => _caveEntrance,
-                    _ => null
-                };
-                if (collider == null) return;
-
-                collider.gameObject.SetActive(false);
-            }
-        }
-
-        [Serializable]
-        public sealed class PickUpItems
-        {
-            [SerializeField, Required, SceneObjectsOnly]
-            private Collider _itemCollider;
-
-            public bool IsEnabled
-            {
-                get
-                {
-                    if (_itemCollider == null) return false;
-                    return _itemCollider.gameObject.activeSelf;
-                }
-                set
-                {
-                    if (_itemCollider == null) return;
-                    _itemCollider.gameObject.SetActive(value);
-                }
-            }
-        }
-
-        [Serializable]
-        public sealed class DeersClass
-        {
-            [SerializeField, Required, SceneObjectsOnly, Tooltip("最初は重力をオフにしておくこと")]
-            private Rigidbody _fallDeer;
-
-            [SerializeField, Required, SceneObjectsOnly]
-            private ParticleSystem _injuredDeer;
-
-            private bool _hasFalled = false;
-            public bool HasFalled => _hasFalled;
-
-            private bool _hasBeenHurtByKnife = false;
-            public bool HasBeenHurtByKnife => _hasBeenHurtByKnife;
-
-            public void Fall()
-            {
-                if (_fallDeer == null) return;
-                if (_hasFalled is true) return;
-
-                _hasFalled = true;
-                _fallDeer.useGravity = true;
-            }
-
-            public void HurtByKnife()
-            {
-                if (_injuredDeer == null) return;
-                if (_hasBeenHurtByKnife is true) return;
-
-                _hasBeenHurtByKnife = true;
-                _injuredDeer.Play();
-            }
-        }
+        private SlideDoor _warehouseLookedDoor;
+        public AMovableDoor WarehouseLookedDoor => _warehouseLookedDoor;
     }
 }
