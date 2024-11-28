@@ -50,12 +50,15 @@ namespace Main.Eventer
             get
             {
                 if (_toiletOneWayDoor == null) return false;
-                return _toiletOneWayDoor.gameObject.activeSelf;
+                return _toiletOneWayDoor.enabled;
             }
             set
             {
                 if (_toiletOneWayDoor == null) return;
-                _toiletOneWayDoor.gameObject.SetActive(value);
+
+                // コライダー自体を有効/無効化
+                // 当たり判定とRayCast判定を同時に有効/無効化
+                _toiletOneWayDoor.enabled = value;
             }
         }
 
@@ -66,12 +69,15 @@ namespace Main.Eventer
             get
             {
                 if (_warehouseLockedDoor == null) return false;
-                return _warehouseLockedDoor.gameObject.activeSelf;
+                return _warehouseLockedDoor.enabled;
             }
             set
             {
                 if (_warehouseLockedDoor == null) return;
-                _warehouseLockedDoor.gameObject.SetActive(value);
+
+                // コライダー自体を有効/無効化
+                // 当たり判定とRayCast判定を同時に有効/無効化
+                _warehouseLockedDoor.enabled = value;
             }
         }
 
