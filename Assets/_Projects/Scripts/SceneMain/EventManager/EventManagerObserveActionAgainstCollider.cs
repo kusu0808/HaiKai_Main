@@ -3,7 +3,7 @@ using System.Threading;
 using UnityEngine;
 using IA;
 using System;
-using Type = Main.Eventer.Objects.BigIviesClass.Type;
+using IvyType = Main.Eventer.BigIviesClass.Type;
 
 namespace Main.EventManager
 {
@@ -47,14 +47,14 @@ namespace Main.EventManager
             Action GetEvent(string tag, CancellationToken ctIfNeeded) => tag switch
             {
                 "ActionAgainstCollider/Event/DaughterKnife" => () => PickUpDaughterKnife(ctIfNeeded).Forget(),
-                "ActionAgainstCollider/Event/BigIvyOnPathWay" => () => CutBigIvy(Type.PathWay),
-                "ActionAgainstCollider/Event/BigIvyOnShrineStair" => () => CutBigIvy(Type.ShrineStair),
-                "ActionAgainstCollider/Event/BigIvyOnCaveEntrance" => () => CutBigIvy(Type.CaveEntrance),
+                "ActionAgainstCollider/Event/BigIvyOnPathWay" => () => CutBigIvy(IvyType.PathWay),
+                "ActionAgainstCollider/Event/BigIvyOnShrineStair" => () => CutBigIvy(IvyType.ShrineStair),
+                "ActionAgainstCollider/Event/BigIvyOnCaveEntrance" => () => CutBigIvy(IvyType.CaveEntrance),
                 "ActionAgainstCollider/Event/PuzzleHintScroll" => () => ReadPuzzleHintScroll(ctIfNeeded).Forget(),
                 "ActionAgainstCollider/Event/ButaisideKey" => () => PickUpButaiSideKey(ctIfNeeded).Forget(),
                 "ActionAgainstCollider/Event/Cup" => () => PickUpCup(ctIfNeeded).Forget(),
-                "ActionAgainstCollider/Event/ToiletOneWayDoor" => () => OpenToiletOneWayDoor(ctIfNeeded),
-                "ActionAgainstCollider/Event/WarehouseLockedDoor" => () => OpenWarehouseLockedDoor(ctIfNeeded),
+                "ActionAgainstCollider/Event/ToiletOneWayDoor" => () => OpenToiletOneWayDoor(),
+                "ActionAgainstCollider/Event/WarehouseLockedDoor" => () => OpenWarehouseLockedDoor(),
                 _ => null
             };
         }

@@ -4,7 +4,7 @@ using System;
 using System.Threading;
 using UnityEngine;
 
-namespace Main.Eventer
+namespace Main.Eventer.MovableDoor
 {
     [Serializable]
     public sealed class RotateDoor : AMovableDoor
@@ -12,15 +12,11 @@ namespace Main.Eventer
         [SerializeField, Tooltip("回転角度")]
         private Vector3 _angle;
 
-        public async override UniTask PlayDoorOnce(CancellationToken ct)
-        {
-            await base.PlayDoorOnce(ct);
-
-            await _doorTf
+        protected override async UniTaskVoid DoMoveWithoutNullCheck(Transform transform, CancellationToken ct) =>
+            await transform
                 .DOLocalRotate(_angle, _duration)
                 .SetEase(_ease)
                 .SetRelative()
                 .ToUniTask(cancellationToken: ct);
-        }
     }
 }

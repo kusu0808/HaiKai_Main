@@ -1,11 +1,8 @@
-using System.Threading;
-using Cysharp.Threading.Tasks;
-
 namespace Main.EventManager
 {
     public sealed partial class EventManager
     {
-        private void OpenToiletOneWayDoor(CancellationToken ct)
+        private void OpenToiletOneWayDoor()
         {
             if (_borders.IsFromUnderStageToShrineWayBorderEnabled is true)
             {
@@ -13,9 +10,8 @@ namespace Main.EventManager
                 return;
             }
 
-            _objects.IsToiletOneWayDoorEnabled = false;
+            _objects.ToiletOneWayDoor.Open();
             _uiElements.LogText.ShowAutomatically("ドアを開けた");
-            _toiletDoor.PlayDoorOnce(ct).Forget();
         }
     }
 }
