@@ -14,10 +14,10 @@ namespace Main.Eventer.PlayerChasingCharacter
         protected sealed class MonoBehaviourComponent : MonoBehaviour { }
 
         [SerializeField, Required, SceneObjectsOnly]
-        protected NavMeshAgent _navMeshAgent;
+        protected Transform _playerTransform;
 
         [SerializeField, Required, SceneObjectsOnly]
-        protected Transform _playerTransform;
+        protected NavMeshAgent _navMeshAgent;
 
         protected virtual float InitSpeed => 3.5f;
         protected virtual float InitAngularSpeed => 120.0f;
@@ -55,17 +55,20 @@ namespace Main.Eventer.PlayerChasingCharacter
         private void ChasePlayerOnUpdateIfAvailable(Transform playerTransform)
         {
             if (_isEnabled is false) return;
-            if (_navMeshAgent == null) return;
             if (playerTransform == null) return;
+            if (_navMeshAgent == null) return;
             if (_navMeshAgent.isOnNavMesh is false) return;
-            RetargetPlayerWithoutNullCheck(playerTransform);
+            ChasePlayerOnUpdateIfAvailableWithoutNullCheck(playerTransform);
         }
 
-        protected virtual void RetargetPlayerWithoutNullCheck(Transform playerTransform)
+        protected virtual void ChasePlayerOnUpdateIfAvailableWithoutNullCheck(Transform playerTransform)
         {
             _navMeshAgent.SetDestination(playerTransform.position);
             _navMeshAgent.transform.LookAt(playerTransform);
         }
+
+        protected virtual void OnSpawn() { }
+        protected virtual void OnDespawn() { }
 
         public void InitNavMeshAgent()
         {
@@ -82,12 +85,14 @@ namespace Main.Eventer.PlayerChasingCharacter
             _navMeshAgent.Warp(transform.position);
             _navMeshAgent.transform.rotation = transform.rotation;
             isEnabled = true;
+            OnSpawn();
         }
 
         public void Despawn()
         {
             if (_navMeshAgent == null) return;
             isEnabled = false;
+            OnDespawn();
         }
 
         public float Speed
