@@ -19,13 +19,17 @@ namespace Main.Eventer.Objects.DoorPuzzleSolving
         private Collider _key2;
 
         [SerializeField, Required, SceneObjectsOnly]
-        private RotateDoor _door;
+        private RotateDoor _door1;
+
+        [SerializeField, Required, SceneObjectsOnly]
+        private RotateDoor _door2;
 
         public void Unlock()
         {
             if (_key1 != null) _key1.gameObject.SetActive(true);
             if (_key2 != null) _key2.gameObject.SetActive(true);
-            _door?.Open();
+            _door1?.Open();
+            _door2?.Open();
         }
     }
 }

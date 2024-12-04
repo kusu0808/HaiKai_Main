@@ -18,6 +18,8 @@ namespace Main.Eventer.Objects.DoorPuzzleSolving
         [SerializeField, Required, SceneObjectsOnly]
         private SlideDoor _door;
 
+        public bool IsOpen => (_key == null) ? false : _key.gameObject.activeSelf;
+
         public void Trigger()
         {
             if (_key != null) _key.gameObject.SetActive(_key.gameObject.activeSelf);

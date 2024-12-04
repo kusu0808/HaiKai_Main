@@ -17,11 +17,15 @@ namespace Main.Eventer.Objects.DoorPuzzleSolving
         public Border Border2 => _border2;
 
         [SerializeField, Required, SceneObjectsOnly]
-        private SlideDoor _door;
+        private SlideDoor _door1;
+
+        [SerializeField, Required, SceneObjectsOnly]
+        private SlideDoor _door2;
 
         public void Unlock()
         {
-            _door?.Open();
+            _door1?.Open();
+            _door2?.Open();
         }
     }
 }
