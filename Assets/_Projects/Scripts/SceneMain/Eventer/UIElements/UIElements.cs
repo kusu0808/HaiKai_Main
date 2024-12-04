@@ -53,12 +53,14 @@ namespace Main.Eventer.UIElements
         // 最初に呼ぶこと！
         public void Init()
         {
-            _daughterKnife.Init(_managePlayerUI, 0);
-            _warehouseKey.Init(_managePlayerUI, 1);
-            _cup.Init(_managePlayerUI, 2);
-            _cupFilledWithBlood.Init(_managePlayerUI, 1);
-            _kokeshiSecretKey.Init(_managePlayerUI, 2);
-            _glassShard.Init(_managePlayerUI, 1);
+            Init(_daughterKnife);
+            Init(_warehouseKey);
+            Init(_cup);
+            Init(_cupFilledWithBlood);
+            Init(_kokeshiSecretKey);
+            Init(_glassShard);
+
+            void Init(UIItemClass uiItemClass) => uiItemClass?.Init(_managePlayerUI);
         }
 
         public void ActivateUIManagers(CancellationToken ct)

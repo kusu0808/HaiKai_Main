@@ -21,7 +21,6 @@ namespace Main.EventManager
             _player.SlopLimit = EventManagerConst.SlopLimitInit;
             _player.CheckDeviation(_points.Init, ct).Forget();
             _player.SubscribeYatsuCollision();
-            _uiElements.DaughterKnife.IsShow = false;
             _daughter.SpawnHere(_points.RoadWayDaughterSpawnPoint);
             _daughter.IsKnifeEnabled = false;
 
