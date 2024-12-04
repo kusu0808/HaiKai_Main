@@ -6,7 +6,7 @@ using UnityEngine;
 namespace Main.Eventer.Objects.DoorPuzzleSolving
 {
     [Serializable]
-    public sealed class Key1
+    public sealed class Key1Door
     {
         [SerializeField, Required, SceneObjectsOnly, Tooltip("アクションできる範囲")]
         private Border _border;
@@ -18,10 +18,10 @@ namespace Main.Eventer.Objects.DoorPuzzleSolving
         [SerializeField, Required, SceneObjectsOnly]
         private SlideDoor _door;
 
-        public void Unlock()
+        public void Trigger()
         {
-            if (_key != null) _key.gameObject.SetActive(true);
-            _door.Open();
+            if (_key != null) _key.gameObject.SetActive(_key.gameObject.activeSelf);
+            _door?.Trigger();
         }
     }
 }

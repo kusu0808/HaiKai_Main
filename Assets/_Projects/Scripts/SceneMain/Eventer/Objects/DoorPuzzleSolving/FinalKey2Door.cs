@@ -6,7 +6,7 @@ using UnityEngine;
 namespace Main.Eventer.Objects.DoorPuzzleSolving
 {
     [Serializable]
-    public sealed class FinalKey2
+    public sealed class FinalKey2Door
     {
         [SerializeField, Required, SceneObjectsOnly, Tooltip("アクションできる範囲")]
         private Border _border;
@@ -25,7 +25,7 @@ namespace Main.Eventer.Objects.DoorPuzzleSolving
         {
             if (_key1 != null) _key1.gameObject.SetActive(true);
             if (_key2 != null) _key2.gameObject.SetActive(true);
-            _door.Open();
+            _door?.Open();
         }
     }
 }
