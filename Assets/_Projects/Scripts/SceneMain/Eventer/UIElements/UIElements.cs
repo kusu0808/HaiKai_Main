@@ -10,6 +10,10 @@ namespace Main.Eventer.UIElements
     public sealed class UIElements
     {
         [SerializeField, Required, SceneObjectsOnly]
+        private ReticleClass _reticle;
+        public ReticleClass Reticle => _reticle;
+
+        [SerializeField, Required, SceneObjectsOnly]
         private BlackImageClass _blackImage;
         public BlackImageClass BlackImage => _blackImage;
 

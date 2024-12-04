@@ -1,6 +1,7 @@
 using Cysharp.Threading.Tasks;
 using System.Threading;
 using General;
+using ReticleType = Main.Eventer.UIElements.ReticleClass.Type;
 
 namespace Main.EventManager
 {
@@ -16,6 +17,7 @@ namespace Main.EventManager
             _yatsu.InitNavMeshAgent();
 
             _uiElements.SetCursor(false);
+            _uiElements.Reticle.SetType(ReticleType.Normal);
             _player.IsPlayerControlEnabled = false;
             _player.SetTransform(_points.Init);
             _player.SlopLimit = EventManagerConst.SlopLimitInit;
