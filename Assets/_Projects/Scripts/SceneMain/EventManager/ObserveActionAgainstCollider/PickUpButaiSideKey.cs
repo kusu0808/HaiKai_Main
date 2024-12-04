@@ -16,9 +16,8 @@ namespace Main.EventManager
             "舞台横の鍵入手終了".Warn();
             PauseState.IsPaused = false;
 
-            _playerItem.HasButaiSideKey = true;
+            _uiElements.WarehouseKey.Obtain();
             _objects.WarehouseKey.IsEnabled = false;
-            _uiElements.WarehouseKey.IsShow = true;
         }
     }
 }
