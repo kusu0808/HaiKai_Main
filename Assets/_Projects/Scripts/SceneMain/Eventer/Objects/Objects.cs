@@ -1,6 +1,7 @@
 using System;
 using Sirenix.OdinInspector;
 using UnityEngine;
+using Main.Eventer.Objects.DoorPuzzleSolving;
 
 namespace Main.Eventer.Objects
 {
@@ -46,5 +47,9 @@ namespace Main.Eventer.Objects
         [SerializeField, Required, SceneObjectsOnly]
         private PlacedItemClass _glassShard;
         public PlacedItemClass GlassShard => _glassShard;
+
+        [SerializeField, Required, SceneObjectsOnly]
+        private DoorPuzzleSolvingClass _doorPuzzleSolving;
+        public DoorPuzzleSolvingClass DoorPuzzleSolving => _doorPuzzleSolving;
     }
 }
