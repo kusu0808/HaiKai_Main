@@ -49,6 +49,10 @@ namespace Main.Eventer.Objects
         public PlacedItemClass GlassShard => _glassShard;
 
         [SerializeField, Required, SceneObjectsOnly]
+        private PlacedItemClass _keyInDoorPuzzleSolving;
+        public PlacedItemClass KeyInDoorPuzzleSolving => _keyInDoorPuzzleSolving;
+
+        [SerializeField, Required, SceneObjectsOnly]
         private DoorPuzzleSolvingClass _doorPuzzleSolving;
         public DoorPuzzleSolvingClass DoorPuzzleSolving => _doorPuzzleSolving;
     }
