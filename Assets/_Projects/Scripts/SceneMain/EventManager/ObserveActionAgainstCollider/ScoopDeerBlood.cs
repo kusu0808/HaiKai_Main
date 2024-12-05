@@ -8,8 +8,6 @@ namespace Main.EventManager
     {
         private async UniTaskVoid ScoopDeerBlood(CancellationToken ct)
         {
-            if (_objects.CupFilledWithBlood.IsEnabled is false) return;
-
             if (_uiElements.Cup.IsHolding() is true)
             {
                 _uiElements.Cup.Release();
@@ -21,7 +19,6 @@ namespace Main.EventManager
                 PauseState.IsPaused = false;
 
                 _uiElements.CupFilledWithBlood.Obtain();
-                _objects.CupFilledWithBlood.IsEnabled = false;
             }
         }
     }
