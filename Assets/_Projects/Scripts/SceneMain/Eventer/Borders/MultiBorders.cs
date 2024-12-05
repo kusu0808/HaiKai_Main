@@ -15,7 +15,11 @@ namespace Main.Eventer.Borders
         public bool IsInAny(Vector3 pos)
         {
             if (_elements is null) return false;
-            foreach (Border border in _elements) if (border.IsIn(pos) is true) return true;
+            foreach (Border border in _elements)
+            {
+                if (border == null) continue;
+                if (border.IsIn(pos) is true) return true;
+            }
             return false;
         }
     }

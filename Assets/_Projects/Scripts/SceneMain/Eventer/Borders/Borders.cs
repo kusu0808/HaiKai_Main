@@ -120,6 +120,10 @@ namespace Main.Eventer.Borders
         private Border _villageFarWayScatterGlassPiece;
         public Border VillageFarWayScatterGlassPiece => _villageFarWayScatterGlassPiece;
 
+        [SerializeField, Required, SceneObjectsOnly, Tooltip("洞窟：階段だけ登れる角度が変わる")]
+        private MultiBorders _enableGoUpOnCaveStairs;
+        public MultiBorders EnableGoUpOnCaveStairs => _enableGoUpOnCaveStairs;
+
         public bool IsFromUnderStageToShrineWayBorderEnabled { get; set; } = true;
     }
 }
