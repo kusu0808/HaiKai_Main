@@ -13,6 +13,9 @@ namespace Main.Eventer.Objects
         [SerializeField, Required, SceneObjectsOnly]
         private ParticleSystem _injuredDeer;
 
+        [SerializeField, Required, SceneObjectsOnly, Tooltip("血のコライダー")]
+        private Collider _injuredDeerBloodCollider;
+
         private bool _hasFalled = false;
         public bool HasFalled => _hasFalled;
 
@@ -31,10 +34,12 @@ namespace Main.Eventer.Objects
         public void HurtByKnife()
         {
             if (_injuredDeer == null) return;
+            if (_injuredDeerBloodCollider == null) return;
             if (_hasBeenHurtByKnife is true) return;
 
             _hasBeenHurtByKnife = true;
             _injuredDeer.Play();
+            _injuredDeerBloodCollider.enabled = true;
         }
     }
 }
