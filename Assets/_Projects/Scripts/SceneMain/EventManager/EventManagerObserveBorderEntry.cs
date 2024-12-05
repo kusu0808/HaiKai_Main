@@ -31,6 +31,7 @@ namespace Main.EventManager
             HousePlayWalkTatamiSound(ct).Forget();
             UnderStageSquat(ct);
             EnableGoUpOnShrineWay(ct).Forget();
+            EnableGoUpOnWarehouseStairs(ct).Forget();
         }
 
         // 後方置換されるかも
