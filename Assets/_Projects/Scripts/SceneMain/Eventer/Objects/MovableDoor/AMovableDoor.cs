@@ -10,7 +10,7 @@ namespace Main.Eventer.Objects
     public abstract class AMovableDoor
     {
         [SerializeField, Required, SceneObjectsOnly, Tooltip("コライダー")]
-        private Collider _collider;
+        protected Collider _collider;
 
         [SerializeField, Required, Tooltip("補間方法")]
         protected Ease _ease;
@@ -18,12 +18,12 @@ namespace Main.Eventer.Objects
         [SerializeField, Range(0.1f, 20.0f), Tooltip("アニメーション時間")]
         protected float _duration;
 
-        private bool _hasPlayed = false;
+        protected bool _hasPlayed = false;
 
         /// <summary>
         /// 一回限り
         /// </summary>
-        public void Open()
+        public virtual void Open()
         {
             if (_collider == null) return;
             if (_hasPlayed is true) return;

@@ -54,6 +54,10 @@ namespace Main.Eventer.UIElements
         private UIItemClass _glassShard;
         public UIItemClass GlassShard => _glassShard;
 
+        [SerializeField, Required, AssetsOnly]
+        private UIItemClass _keyInDoorPuzzleSolving;
+        public UIItemClass KeyInDoorPuzzleSolving => _keyInDoorPuzzleSolving;
+
         // 最初に呼ぶこと！
         public void Init()
         {
