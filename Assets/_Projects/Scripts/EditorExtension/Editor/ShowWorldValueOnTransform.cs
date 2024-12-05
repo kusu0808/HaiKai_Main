@@ -36,7 +36,9 @@ namespace EditorExtension
 
             EditorGUILayout.Space(25);
 
+            EditorGUILayout.LabelField("ツール", EditorStyles.boldLabel);
             DoResetAllValue();
+            EditorGUILayout.Space(5);
             DoClearAllCache();
 
             EditorGUIUtility.labelWidth = EditorGUIUtility.currentViewWidth;
@@ -194,7 +196,7 @@ namespace EditorExtension
 
         private void DoResetAllValue()
         {
-            if (GUILayout.Button("Reset All Values to Default"))
+            if (GUILayout.Button("デフォルトの値に全てリセット"))
             {
                 Undo.RecordObject(_target, "Reset All Values to Default");
                 _target.localPosition = Vector3.zero;
@@ -205,7 +207,7 @@ namespace EditorExtension
 
         private void DoClearAllCache()
         {
-            if (GUILayout.Button("Clear All Copied Values"))
+            if (GUILayout.Button("コピーした値を全てクリア"))
             {
                 _cachedWorldPosition = null;
                 _cachedWorldEulerAngles = null;
