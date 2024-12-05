@@ -1,3 +1,4 @@
+using System;
 using System.Threading;
 using Cysharp.Threading.Tasks;
 using DG.Tweening;
@@ -5,10 +6,14 @@ using UnityEngine;
 
 namespace Main.Eventer.Objects.DoorPuzzleSolving
 {
+    [Serializable]
     public sealed class SlideDoor : AMovableDoor
     {
-        [SerializeField, Range(0.1f, 100.0f), Tooltip("移動距離\nx座標のみを移動する")]
-        private float _distance;
+        [SerializeField, Range(-100.0f, 100.0f), Tooltip("移動距離\nx座標")]
+        private float _distanceX;
+
+        [SerializeField, Range(-100.0f, 100.0f), Tooltip("移動距離\nz座標")]
+        private float _distanceZ;
 
         public override void Open() => Trigger();
 
@@ -25,7 +30,7 @@ namespace Main.Eventer.Objects.DoorPuzzleSolving
 
         protected override async UniTaskVoid DoMoveWithoutNullCheck(Transform transform, CancellationToken ct) =>
             await transform
-                .DOLocalMoveX(_hasPlayed ? _distance : -_distance, _duration) // 開→閉→開→...
+                .DOLocalMove(new(_hasPlayed ? _distanceX : -_distanceX, transform.localPosition.y, _hasPlayed ? _distanceZ : -_distanceZ), _duration) // 開→閉→開→...
                 .SetEase(_ease)
                 .SetRelative()
                 .ToUniTask(cancellationToken: ct);
