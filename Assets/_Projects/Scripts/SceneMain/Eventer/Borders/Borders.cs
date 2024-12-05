@@ -124,6 +124,18 @@ namespace Main.Eventer.Borders
         private MultiBorders _enableGoUpOnCaveStairs;
         public MultiBorders EnableGoUpOnCaveStairs => _enableGoUpOnCaveStairs;
 
+        [SerializeField, Required, SceneObjectsOnly, Tooltip("洞窟：ゴキちゃん出現1")]
+        private Border _caveGokiChanAppear1;
+        public Border CaveGokiChanAppear1 => _caveGokiChanAppear1;
+
+        [SerializeField, Required, SceneObjectsOnly, Tooltip("洞窟：ゴキちゃん出現2")]
+        private Border _caveGokiChanAppear2;
+        public Border CaveGokiChanAppear2 => _caveGokiChanAppear2;
+
+        [SerializeField, Required, SceneObjectsOnly, Tooltip("洞窟：ゴキちゃん出現3")]
+        private Border _caveGokiChanAppear3;
+        public Border CaveGokiChanAppear3 => _caveGokiChanAppear3;
+
         public bool IsFromUnderStageToShrineWayBorderEnabled { get; set; } = true;
     }
 }
