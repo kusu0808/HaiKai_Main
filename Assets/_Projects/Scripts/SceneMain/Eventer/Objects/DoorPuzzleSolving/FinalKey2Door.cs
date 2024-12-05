@@ -13,10 +13,10 @@ namespace Main.Eventer.Objects.DoorPuzzleSolving
         public Border Border => _border;
 
         [SerializeField, Required, SceneObjectsOnly, Tooltip("予め鍵穴に刺しておいた鍵1")]
-        private Collider _key1;
+        private MeshRenderer _key1;
 
         [SerializeField, Required, SceneObjectsOnly, Tooltip("予め鍵穴に刺しておいた鍵2")]
-        private Collider _key2;
+        private MeshRenderer _key2;
 
         [SerializeField, Required, SceneObjectsOnly]
         private RotateDoor _door1;
@@ -26,8 +26,8 @@ namespace Main.Eventer.Objects.DoorPuzzleSolving
 
         public void Unlock()
         {
-            if (_key1 != null) _key1.gameObject.SetActive(true);
-            if (_key2 != null) _key2.gameObject.SetActive(true);
+            if (_key1 != null) _key1.enabled = true;
+            if (_key2 != null) _key2.enabled = true;
             _door1?.Open();
             _door2?.Open();
         }

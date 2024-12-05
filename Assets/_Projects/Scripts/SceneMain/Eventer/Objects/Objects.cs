@@ -55,5 +55,9 @@ namespace Main.Eventer.Objects
         [SerializeField, Required, SceneObjectsOnly]
         private DoorPuzzleSolvingClass _doorPuzzleSolving;
         public DoorPuzzleSolvingClass DoorPuzzleSolving => _doorPuzzleSolving;
+
+        [SerializeField, Required, SceneObjectsOnly]
+        private GokiChanClass _gokiChan;
+        public GokiChanClass GokiChan => _gokiChan;
     }
 }

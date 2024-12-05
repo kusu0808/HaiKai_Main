@@ -13,7 +13,7 @@ namespace Main.Eventer.Objects.DoorPuzzleSolving
         public Border Border => _border;
 
         [SerializeField, Required, SceneObjectsOnly, Tooltip("予め鍵穴に刺しておいた鍵")]
-        private Collider _key;
+        private MeshRenderer _key;
 
         [SerializeField, Required, SceneObjectsOnly]
         private SlideDoor _door;
@@ -22,7 +22,7 @@ namespace Main.Eventer.Objects.DoorPuzzleSolving
 
         public void Trigger()
         {
-            if (_key != null) _key.gameObject.SetActive(_key.gameObject.activeSelf);
+            if (_key != null) _key.enabled = !_key.enabled;
             _door?.Trigger();
         }
     }

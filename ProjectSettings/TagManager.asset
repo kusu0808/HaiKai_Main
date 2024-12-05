@@ -25,6 +25,11 @@ TagManager:
   - ActionAgainstCollider/Event/BigIvyOnCaveEntrance
   - ActionAgainstCollider/Event/ToiletOneWayDoor
   - ActionAgainstCollider/Event/WarehouseLockedDoor
+  - ActionAgainstCollider/Event/DoorPuzzleSolvingKey
+  - ActionAgainstCollider/Event/DoorPuzzleSolvingKey1FirstDoorKnob
+  - ActionAgainstCollider/Event/DoorPuzzleSolvingOneWayDoorKnob
+  - ActionAgainstCollider/Event/DoorPuzzleSolvingKey1SecondDoorKnob
+  - ActionAgainstCollider/Event/DoorPuzzleSolvingFinalKey2DoorKnob
   layers:
   - Default
   - TransparentFX
