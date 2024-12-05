@@ -196,7 +196,7 @@ namespace EditorExtension
 
         private void DoResetAllValue()
         {
-            if (GUILayout.Button("デフォルトの値に全てリセット"))
+            if (GUILayout.Button("デフォルトの値にリセット"))
             {
                 Undo.RecordObject(_target, "Reset All Values to Default");
                 _target.localPosition = Vector3.zero;
@@ -207,7 +207,7 @@ namespace EditorExtension
 
         private void DoClearAllCache()
         {
-            if (GUILayout.Button("コピーした値を全てクリア"))
+            if (GUILayout.Button("コピーした値をクリア"))
             {
                 _cachedWorldPosition = null;
                 _cachedWorldEulerAngles = null;
