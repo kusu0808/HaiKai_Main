@@ -20,6 +20,7 @@ namespace Main.EventManager
             FromShrineUpWayToVillageFarWayEscapeFromYatsu(ct).Forget();
             RunIntoToilet(ct).Forget();
             VillageFarWayYatsuStopToiletKnock(ct).Forget();
+            WarehouseDeerFall(ct).Forget();
 
             // 繰り返し
             BusStopCannotMove(ct).Forget();
