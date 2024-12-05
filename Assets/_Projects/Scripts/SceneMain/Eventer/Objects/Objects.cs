@@ -25,6 +25,10 @@ namespace Main.Eventer.Objects
         public PlacedItemClass ToiletCup => _toiletCup;
 
         [SerializeField, Required, SceneObjectsOnly]
+        private PlacedItemClass _cupFilledWithBlood;
+        public PlacedItemClass CupFilledWithBlood => _cupFilledWithBlood;
+
+        [SerializeField, Required, SceneObjectsOnly]
         private RotateDoor _toiletOneWayDoor;
         public AMovableDoor ToiletOneWayDoor => _toiletOneWayDoor;
 
