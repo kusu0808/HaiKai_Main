@@ -33,6 +33,7 @@ namespace Main.EventManager
             UnderStageSquat(ct);
             EnableGoUpOnShrineWay(ct).Forget();
             EnableGoUpOnWarehouseStairs(ct).Forget();
+            VillageWayCannotGoBackAfterWarehouse(ct).Forget();
         }
 
         // 後方置換されるかも
