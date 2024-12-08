@@ -7,7 +7,7 @@ namespace Main.EventManager
     {
         private void CutBigIvy(IvyType type)
         {
-            if (_uiElements.DaughterKnife.IsHolding())
+            if (_uiElements.DaughterKnife.IsHolding() is true)
             {
                 _audioSources.GetNew().Raise(_audioClips.SE.CutBigIvy, SoundType.SE);
                 _objects.BigIvies.DeactivateThis(type);

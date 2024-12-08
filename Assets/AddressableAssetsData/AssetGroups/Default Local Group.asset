@@ -16,7 +16,12 @@ MonoBehaviour:
   m_Data:
     m_SerializedData: []
   m_GUID: 8eec8dbcd6ce8674cba073c09f860c5a
-  m_SerializeEntries: []
+  m_SerializeEntries:
+  - m_GUID: d2d5d9c79041790418dc630ec00a62f1
+    m_Address: Assets/_Projects/Models/Yashiki/Materials/Japan_kaoku_03_wood02_M_AlbedoTransparency.1001.mat
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
   m_ReadOnly: 0
   m_Settings: {fileID: 11400000, guid: bee1779e02fc64b409363f2fbc45134c, type: 2}
   m_SchemaSet:

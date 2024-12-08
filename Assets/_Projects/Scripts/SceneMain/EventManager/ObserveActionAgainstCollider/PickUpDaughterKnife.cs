@@ -16,9 +16,8 @@ namespace Main.EventManager
             "ナイフのUI表示終了".Warn();
             PauseState.IsPaused = false;
 
-            _playerItem.HasKnife = true;
+            _uiElements.DaughterKnife.Obtain();
             _daughter.IsKnifeEnabled = false;
-            _uiElements.DaughterKnife.IsShow = true;
         }
     }
 }

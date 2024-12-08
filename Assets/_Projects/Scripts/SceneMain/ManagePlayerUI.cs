@@ -11,7 +11,6 @@ namespace Main
 {
     /// <summary>
     /// 最初にRollItem()を呼ぶこと
-    /// アイテムの個数や種類などは、他の場所で管理すること
     /// </summary>
     public class ManagePlayerUI : MonoBehaviour
     {
@@ -20,7 +19,6 @@ namespace Main
         [SerializeField] private Image[] _itemImages;
 
         private LoopedInt _itemIndex;
-        public int ItemIndex => _itemIndex.Value;
 
         private GameObject _playerUI => _playerUICanvas.gameObject;
         private float _selectInput => InputGetter.Instance.PlayerSelect.Float;
@@ -54,19 +52,58 @@ namespace Main
         }
 
         /// <summary>
-        /// 非表示にしたいときは、spriteにnullを入れる
+        /// ターゲットとするspriteを指定
         /// </summary>
-        public void SetSprite(int index, Sprite sprite)
+        public void SetSprite(Sprite sprite, bool isShow)
         {
-            if (_itemImages is null) return;
-            if (!(0 <= index && index < _itemImages.Length)) return;
+            if (isShow)
+            {
+                if (sprite == null) return;
+                if (_itemImages is null) return;
 
-            Image image = _itemImages[index];
-            if (image == null) return;
+                foreach (Image img in _itemImages)
+                {
+                    if (img == null) continue;
 
-            // index番目にspriteの画像をセット
-            image.sprite = sprite;
-            SetAlpha(image, (sprite == null) ? 0 : 1);
+                    if (img.sprite != null) continue;
+                    img.sprite = sprite;
+                    SetAlpha(img, 1);
+                    break;
+                }
+            }
+            else
+            {
+                if (sprite == null) return;
+                if (_itemImages is null) return;
+
+                int len = _itemImages.Length;
+
+                for (int i = 0; i < len; i++)
+                {
+                    Image img = _itemImages[i];
+                    if (img == null) continue;
+
+                    if (img.sprite != sprite) continue;
+                    img.sprite = null;
+                    SetAlpha(img, 0);
+
+                    for (int j = i + 1; j < len; j++)
+                    {
+                        Image nextImg = _itemImages[j];
+                        if (nextImg == null) continue;
+
+                        Sprite nextSprite = nextImg.sprite;
+                        if (nextSprite == null) continue;
+
+                        img.sprite = nextImg.sprite;
+                        SetAlpha(img, 1);
+                        nextImg.sprite = null;
+                        SetAlpha(nextImg, 0);
+                    }
+
+                    break;
+                }
+            }
 
             static void SetAlpha(Image image, float alpha)
             {
@@ -75,6 +112,20 @@ namespace Main
                 color.a = alpha;
                 image.color = color;
             }
+        }
+
+        /// <summary>
+        /// spriteがセットされていて、かつそのアイテムをセレクトしているか
+        /// </summary>
+        public bool IsHolding(Sprite sprite)
+        {
+            if (_itemImages is null) return false;
+            if (sprite == null) return false;
+
+            Sprite nowSprite = _itemImages[_itemIndex.Value].sprite;
+            if (nowSprite == null) return false;
+
+            return nowSprite == sprite;
         }
     }
 }

@@ -16,9 +16,8 @@ namespace Main.EventManager
             "コップ入手終了".Warn();
             PauseState.IsPaused = false;
 
-            _playerItem.HasCup = true;
+            _uiElements.Cup.Obtain();
             _objects.ToiletCup.IsEnabled = false;
-            _uiElements.Cup.IsShow = true;
         }
     }
 }
