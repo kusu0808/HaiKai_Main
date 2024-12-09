@@ -59,6 +59,7 @@ namespace Main.EventManager
                 "ActionAgainstCollider/Event/CupBlood" => () => ScoopDeerBlood(ctIfNeeded).Forget(),
                 "ActionAgainstCollider/Event/WarehouseOneWayDoor" => () => OpenWarehouseOneWayDoor(),
                 "ActionAgainstCollider/Event/KokeshiBlood" => () => PourDeerBlood(ctIfNeeded).Forget(),
+                "ActionAgainstCollider/Event/KokeshiKey" => () => PickUpSecretKey(ctIfNeeded).Forget(),
                 _ => null
             };
         }
