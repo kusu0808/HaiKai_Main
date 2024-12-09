@@ -10,7 +10,7 @@ namespace Main.EventManager
                 return;
             }
 
-            _objects.ToiletOneWayDoor.Open();
+            _objects.ToiletOneWayDoor.Trigger();
             _uiElements.LogText.ShowAutomatically("ドアを開けた");
         }
     }

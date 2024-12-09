@@ -39,8 +39,6 @@ namespace Main.EventManager
             {
                 "ActionAgainstCollider/Message/BusSign" => "古びた標識だ",
                 "ActionAgainstCollider/Message/PathWaySign" => "汚れていて見えない",
-                "ActionAgainstCollider/Message/ClosedDoor" => "開かない",
-                "ActionAgainstCollider/Message/LockedDoor" => "鍵がかかっている",
                 _ => string.Empty
             };
 

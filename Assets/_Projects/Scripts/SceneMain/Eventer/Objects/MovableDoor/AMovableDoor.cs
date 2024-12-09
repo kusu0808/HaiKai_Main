@@ -7,10 +7,17 @@ using UnityEngine;
 
 namespace Main.Eventer.Objects
 {
-    public abstract class AMovableDoor
+    public abstract class AMovableDoor<T> where T : AMovableDoor<T>
     {
+        private static readonly string ClassName = typeof(T).Name;
+        [ReadOnly, ShowInInspector, LabelText("Class Name")]
+        private string _ => ClassName;
+
         [SerializeField, Required, SceneObjectsOnly, Tooltip("コライダー")]
-        protected Collider _collider;
+        private Collider _collider;
+
+        [SerializeField, Required, Tooltip("開く時の、ローカル変化量")]
+        private Vector3 _delta;
 
         [SerializeField, Required, Tooltip("補間方法")]
         protected Ease _ease;
@@ -18,20 +25,41 @@ namespace Main.Eventer.Objects
         [SerializeField, Range(0.1f, 20.0f), Tooltip("アニメーション時間")]
         protected float _duration;
 
-        protected bool _hasPlayed = false;
+        [SerializeField, Tooltip("trueなら1回限り、falseなら何回も動く")]
+        private bool _isMoveOnce;
 
-        /// <summary>
-        /// 一回限り
-        /// </summary>
-        public virtual void Open()
+        private bool _hasPlayedIfMoveOnce = false;
+        private bool _hasOpenedIfNotMoveOnce = false;
+
+        public void Trigger()
         {
             if (_collider == null) return;
-            if (_hasPlayed is true) return;
-            _hasPlayed = true;
-            _collider.enabled = false; // 当たり判定とRayCast判定が同時に無効化される
-            DoMoveWithoutNullCheck(_collider.transform, _collider.GetCancellationTokenOnDestroy()).Forget();
+
+            if (_isMoveOnce)
+            {
+                if (_hasPlayedIfMoveOnce is true) return;
+                UpdateColliderAndDoMove(true);
+                _hasPlayedIfMoveOnce = true;
+            }
+            else
+            {
+                UpdateColliderAndDoMove(!_hasOpenedIfNotMoveOnce);
+                Inverse(ref _hasOpenedIfNotMoveOnce);
+            }
+
+            static void Inverse(ref bool value) => value = !value;
+            void UpdateColliderAndDoMove(bool isOpen)
+            {
+                _collider.enabled = !isOpen; // 当たり判定とRayCast判定が同時に有効/無効化
+
+                DoMove(
+                    _collider.transform,
+                    isOpen ? _delta : -_delta,
+                    _collider.GetCancellationTokenOnDestroy()
+                    ).Forget();
+            }
         }
 
-        protected abstract UniTaskVoid DoMoveWithoutNullCheck(Transform transform, CancellationToken ct);
+        protected abstract UniTaskVoid DoMove(Transform transform, Vector3 delta, CancellationToken ct);
     }
 }
