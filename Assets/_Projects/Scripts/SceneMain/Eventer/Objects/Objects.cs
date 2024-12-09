@@ -41,6 +41,10 @@ namespace Main.Eventer.Objects
         public BlockingVolumeClass VillageWayCannotGoBackAfterWarehouse => _villageWayCannotGoBackAfterWarehouse;
 
         [SerializeField, Required, SceneObjectsOnly]
+        private PlacedItemClass _kokeshiHead;
+        public PlacedItemClass KokeshiHead => _kokeshiHead;
+
+        [SerializeField, Required, SceneObjectsOnly]
         private PlacedItemClass _kokeshiSecretKey;
         public PlacedItemClass KokeshiSecretKey => _kokeshiSecretKey;
 
