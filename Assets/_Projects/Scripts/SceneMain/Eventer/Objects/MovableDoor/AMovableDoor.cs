@@ -9,9 +9,10 @@ namespace Main.Eventer.Objects
 {
     public abstract class AMovableDoor<T> where T : AMovableDoor<T>
     {
+#if UNITY_EDITOR
+        [ReadOnly, ShowInInspector]
         private static readonly string ClassName = typeof(T).Name;
-        [ReadOnly, ShowInInspector, LabelText("Class Name")]
-        private string _ => ClassName;
+#endif
 
         [SerializeField, Required, SceneObjectsOnly, Tooltip("コライダー")]
         private Collider _collider;
