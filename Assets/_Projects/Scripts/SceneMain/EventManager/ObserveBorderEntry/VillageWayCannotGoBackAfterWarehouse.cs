@@ -13,6 +13,8 @@ namespace Main.EventManager
 
             while (true)
             {
+                await UniTask.WaitUntil(() => _borders.IsFromUnderStageToShrineWayBorderEnabled is false,
+                cancellationToken: ct);
                 await UniTask.WaitUntil(() => cache.IsIn(_player.Position) is false, cancellationToken: ct);
                 await UniTask.WaitUntil(() => cache.IsIn(_player.Position) is true, cancellationToken: ct);
                 _uiElements.LogText.ShowAutomatically("娘を助けなくては…");

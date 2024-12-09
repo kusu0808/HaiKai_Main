@@ -19,6 +19,7 @@ namespace Main.EventManager
                 PauseState.IsPaused = false;
 
                 _uiElements.Cup.Obtain();
+                _objects.KokeshiHead.IsEnabled = false;
             }
         }
     }
