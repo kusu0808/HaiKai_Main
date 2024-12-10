@@ -28,8 +28,8 @@ namespace Main.Eventer.Objects.DoorPuzzleSolving
         {
             if (_key1 != null) _key1.enabled = true;
             if (_key2 != null) _key2.enabled = true;
-            _door1?.Open();
-            _door2?.Open();
+            _door1?.Trigger();
+            _door2?.Trigger();
         }
     }
 }

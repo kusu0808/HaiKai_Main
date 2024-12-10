@@ -12,7 +12,7 @@ namespace Main.EventManager
 
             _uiElements.WarehouseKey.Release();
 
-            _objects.WarehouseLookedDoor.Open();
+            _objects.WarehouseLookedDoor.Trigger();
             _uiElements.LogText.ShowAutomatically("鍵を開けた");
         }
     }

@@ -7,16 +7,12 @@ using UnityEngine;
 namespace Main.Eventer.Objects
 {
     [Serializable]
-    public sealed class SlideDoor : AMovableDoor
+    public sealed class SlideDoor : AMovableDoor<SlideDoor>
     {
-        [SerializeField, Range(-100.0f, 100.0f), Tooltip("移動距離\nx座標のみを移動する")]
-        private float _distance;
-
-        protected override async UniTaskVoid DoMoveWithoutNullCheck(Transform transform, CancellationToken ct) =>
-            await transform
-                .DOLocalMoveX(_distance, _duration)
-                .SetEase(_ease)
-                .SetRelative()
-                .ToUniTask(cancellationToken: ct);
+        protected override async UniTaskVoid DoMove(Transform transform, Vector3 delta, CancellationToken ct)
+        {
+            if (transform == null) return;
+            await transform.DOLocalMove(delta, _duration).SetEase(_ease).SetRelative().ToUniTask(cancellationToken: ct);
+        }
     }
 }

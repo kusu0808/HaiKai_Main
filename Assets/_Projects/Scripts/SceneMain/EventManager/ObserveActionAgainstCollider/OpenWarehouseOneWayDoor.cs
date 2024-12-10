@@ -10,7 +10,7 @@ namespace Main.EventManager
                 return;
             }
 
-            _objects.WarehouseOneWayDoor.Open();
+            _objects.WarehouseOneWayDoor.Trigger();
             _uiElements.LogText.ShowAutomatically("ドアを開けた");
         }
     }

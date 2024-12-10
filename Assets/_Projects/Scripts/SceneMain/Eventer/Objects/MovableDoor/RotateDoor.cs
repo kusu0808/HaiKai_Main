@@ -7,16 +7,12 @@ using UnityEngine;
 namespace Main.Eventer.Objects
 {
     [Serializable]
-    public sealed class RotateDoor : AMovableDoor
+    public sealed class RotateDoor : AMovableDoor<RotateDoor>
     {
-        [SerializeField, Tooltip("回転角度")]
-        private Vector3 _angle;
-
-        protected override async UniTaskVoid DoMoveWithoutNullCheck(Transform transform, CancellationToken ct) =>
-            await transform
-                .DOLocalRotate(_angle, _duration)
-                .SetEase(_ease)
-                .SetRelative()
-                .ToUniTask(cancellationToken: ct);
+        protected override async UniTaskVoid DoMove(Transform transform, Vector3 delta, CancellationToken ct)
+        {
+            if (transform == null) return;
+            await transform.DOLocalRotate(delta, _duration).SetEase(_ease).SetRelative().ToUniTask(cancellationToken: ct);
+        }
     }
 }

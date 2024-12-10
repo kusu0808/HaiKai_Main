@@ -15,6 +15,7 @@ namespace Main.EventManager
             await UniTask.Delay(3000, cancellationToken: ct);
             "岩で参道を下れないようにする".Warn();
             _borders.IsFromUnderStageToShrineWayBorderEnabled = false;
+            _objects.VillageWayCannotGoBackAfterWarehouse.IsEnabled = true;
             _yatsu.SpawnHere(_points.ShrineWayYatsuSpawnPoint);
             "ヤツの方を向かせた方がいいか？".Warn();
             _player.IsPlayerControlEnabled = true;

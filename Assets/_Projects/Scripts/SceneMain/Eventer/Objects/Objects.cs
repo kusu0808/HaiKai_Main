@@ -26,15 +26,15 @@ namespace Main.Eventer.Objects
 
         [SerializeField, Required, SceneObjectsOnly]
         private RotateDoor _toiletOneWayDoor;
-        public AMovableDoor ToiletOneWayDoor => _toiletOneWayDoor;
+        public AMovableDoor<RotateDoor> ToiletOneWayDoor => _toiletOneWayDoor;
 
         [SerializeField, Required, SceneObjectsOnly]
         private SlideDoor _warehouseLookedDoor;
-        public AMovableDoor WarehouseLookedDoor => _warehouseLookedDoor;
+        public AMovableDoor<SlideDoor> WarehouseLookedDoor => _warehouseLookedDoor;
 
         [SerializeField, Required, SceneObjectsOnly]
         private SlideDoor _warehouseOneWayDoor;
-        public AMovableDoor WarehouseOneWayDoor => _warehouseOneWayDoor;
+        public AMovableDoor<SlideDoor> WarehouseOneWayDoor => _warehouseOneWayDoor;
 
         [SerializeField, Required, SceneObjectsOnly]
         private BlockingVolumeClass _villageWayCannotGoBackAfterWarehouse;
