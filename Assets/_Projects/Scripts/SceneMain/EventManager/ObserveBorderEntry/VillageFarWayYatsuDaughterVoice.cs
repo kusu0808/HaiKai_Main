@@ -8,7 +8,8 @@ namespace Main.EventManager
     {
         private async UniTaskVoid VillageFarWayYatsuDaughterVoice(CancellationToken ct)
         {
-            await UniTask.WaitUntil(() => _uiElements.KokeshiSecretKey.IsHolding() is true, cancellationToken: ct);
+            await UniTask.WaitUntil(() => _borders.IsFromUnderStageToShrineWayBorderEnabled is false,
+            cancellationToken: ct);
             await UniTask.WaitUntil(() => _borders.VillageFarWayYatsuDaughterVoice.IsIn(_player.Position) is true, cancellationToken: ct);
             _audioSources.GetNew().Raise(_audioClips.Voice.YaTsuImitateDaughterVoice, SoundType.Voice);
         }
