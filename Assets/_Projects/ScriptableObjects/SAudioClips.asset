@@ -15,8 +15,12 @@ MonoBehaviour:
   _bgm:
     _moveOnBrokenDish: {fileID: 0}
     _bridgeCreak: {fileID: 0}
-    _walkOnCorridorInHouse: {fileID: 0}
+    _walkOnCorridorInHouse: {fileID: 8300000, guid: 5c1d8185e2ac0ae419d397394d9e93ab,
+      type: 3}
     _walkOnTatamiInHouse: {fileID: 0}
+    _walkNationalHighway: {fileID: 8300000, guid: 6b50c1687710e48ae9f0be92d641f119,
+      type: 3}
+    _walkOnSoil: {fileID: 8300000, guid: 2b63f1d93eebade4490fa51fcb67e70f, type: 3}
     _yatsuKnockToiletDoor: {fileID: 0}
   _voice:
     _daughterScream: {fileID: 8300000, guid: 6defbb0a96465411195ae2776b919116, type: 3}
