@@ -102,6 +102,10 @@ namespace SO
             [SerializeField, Required, AssetsOnly, LabelText("家の中でヤツの気配がする(3回目)")]
             private AudioClip _feelingYatsuInHouse3;
             public AudioClip FeelingYatsuInHouse3 => _feelingYatsuInHouse3;
+
+            [SerializeField, Required, AssetsOnly, LabelText("鍵を開ける音")]
+            private AudioClip _keyOpen;
+            public AudioClip KeyOpen => _keyOpen;
         }
 
         [Serializable]

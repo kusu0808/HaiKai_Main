@@ -13,35 +13,26 @@ MonoBehaviour:
   m_Name: SAudioClips
   m_EditorClassIdentifier: 
   _bgm:
-    _title: {fileID: 0}
-    _mainChapter1: {fileID: 0}
-    _mainChapter2: {fileID: 0}
-    _mainChapter3: {fileID: 0}
-    _waterSurfaceWave: {fileID: 0}
-    _busStop: {fileID: 0}
     _moveOnBrokenDish: {fileID: 0}
     _bridgeCreak: {fileID: 0}
+    _walkOnCorridorInHouse: {fileID: 0}
+    _walkOnTatamiInHouse: {fileID: 0}
+    _yatsuKnockToiletDoor: {fileID: 0}
   _voice:
-    _daughterBreath: {fileID: 0}
     _daughterScream: {fileID: 8300000, guid: 6defbb0a96465411195ae2776b919116, type: 3}
-    _daughterResist: {fileID: 0}
-    _yatsuBreath: {fileID: 0}
-    _yatsuGroan: {fileID: 0}
-    _yatsuRoar: {fileID: 0}
+    _deerCry: {fileID: 0}
+    _birdCry: {fileID: 0}
+    _yatsuImitateDaughterVoice: {fileID: 0}
   _se:
-    _submit: {fileID: 0}
-    _cancel: {fileID: 0}
-    _pause: {fileID: 0}
-    _cannotSubmit: {fileID: 0}
-    _getItem: {fileID: 0}
-    _busBeginMove: {fileID: 0}
-    _windCut: {fileID: 0}
     _dishBreak: {fileID: 0}
-    _cutBigIvy: {fileID: 0}
-  _seRough:
-    _moveOnRoad: {fileID: 0}
-    _moveOnPathWay: {fileID: 0}
-    _moveInHouse: {fileID: 0}
-    _moveInCave: {fileID: 0}
-    _jumpOffPathWay: {fileID: 0}
-    _moveDaughter: {fileID: 0}
+    _cutBigIvy: {fileID: 8300000, guid: 18c5ff3b711545c4b9a56b26815413e2, type: 3}
+    _deerJumpOut: {fileID: 0}
+    _deerRunAway: {fileID: 0}
+    _birdFlyAway: {fileID: 0}
+    _feelingYatsuInHouse1: {fileID: 8300000, guid: ef71f143f9ad2a043886bedcd6e93d33,
+      type: 3}
+    _feelingYatsuInHouse2: {fileID: 8300000, guid: 95fa9f1f8e5cb37469f8e7273a1b1638,
+      type: 3}
+    _feelingYatsuInHouse3: {fileID: 8300000, guid: 6a51c8919c347774c9a0d7f97484b4b5,
+      type: 3}
+    _keyOpen: {fileID: 0}
