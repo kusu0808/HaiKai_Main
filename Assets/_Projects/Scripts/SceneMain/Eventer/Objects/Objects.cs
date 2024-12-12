@@ -25,16 +25,16 @@ namespace Main.Eventer.Objects
         public PlacedItemClass ToiletCup => _toiletCup;
 
         [SerializeField, Required, SceneObjectsOnly]
-        private RotateDoor _toiletLokedDoor;
-        public AMovableDoor<RotateDoor> ToiletLokedDoor => _toiletLokedDoor;
+        private RotateDoor _toiletLockedDoor;
+        public AMovableDoor<RotateDoor> ToiletLockedDoor => _toiletLockedDoor;
 
         [SerializeField, Required, SceneObjectsOnly]
         private RotateDoor _toiletOneWayDoor;
         public AMovableDoor<RotateDoor> ToiletOneWayDoor => _toiletOneWayDoor;
 
         [SerializeField, Required, SceneObjectsOnly]
-        private SlideDoor _warehouseLookedDoor;
-        public AMovableDoor<SlideDoor> WarehouseLookedDoor => _warehouseLookedDoor;
+        private SlideDoor _warehouseLockedDoor;
+        public AMovableDoor<SlideDoor> WarehouseLockedDoor => _warehouseLockedDoor;
 
         [SerializeField, Required, SceneObjectsOnly]
         private SlideDoor _warehouseOneWayDoor;
