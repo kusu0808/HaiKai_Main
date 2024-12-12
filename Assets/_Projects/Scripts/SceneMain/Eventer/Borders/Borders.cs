@@ -92,10 +92,6 @@ namespace Main.Eventer.Borders
         private Border _villageFarWayYatsuComeFromCave;
         public Border VillageFarWayYatsuComeFromCave => _villageFarWayYatsuComeFromCave;
 
-        [SerializeField, Required, SceneObjectsOnly, Tooltip("奥の村道：トイレに駆け込んで逃げ切る")]
-        private Border _villageFarWayRunIntoToilet;
-        public Border VillageFarWayRunIntoToilet => _villageFarWayRunIntoToilet;
-
         [SerializeField, Required, SceneObjectsOnly, Tooltip("奥の村道：ヤツがトイレを叩く音が止む")]
         private Border _villageFarWayYatsuStopToiletSound;
         public Border VillageFarWayYatsuStopToiletSound => _villageFarWayYatsuStopToiletSound;
@@ -112,9 +108,13 @@ namespace Main.Eventer.Borders
         private Border _villageWayCannotGoBackAfterWarehouse;
         public Border VillageWayCannotGoBackAfterWarehouse => _villageWayCannotGoBackAfterWarehouse;
 
-        [SerializeField, Required, SceneObjectsOnly, Tooltip("奥の村道：洞窟に向かうとき、ヤツが娘の声真似をする")]
-        private Border _villageFarWayYatsuDaughterVoice;
-        public Border VillageFarWayYatsuDaughterVoice => _villageFarWayYatsuDaughterVoice;
+        [SerializeField, Required, SceneObjectsOnly, Tooltip("奥の村道：洞窟に向かうとき、ヤツが娘の声真似をする1")]
+        private Border _villageFarWayYatsuDaughterVoice1;
+        public Border VillageFarWayYatsuDaughterVoice1 => _villageFarWayYatsuDaughterVoice1;
+
+        [SerializeField, Required, SceneObjectsOnly, Tooltip("奥の村道：洞窟に向かうとき、ヤツが娘の声真似をする2")]
+        private Border _villageFarWayYatsuDaughterVoice2;
+        public Border VillageFarWayYatsuDaughterVoice2 => _villageFarWayYatsuDaughterVoice2;
 
         [SerializeField, Required, SceneObjectsOnly, Tooltip("奥の村道：ガラス片を撒ける")]
         private Border _villageFarWayScatterGlassPiece;
