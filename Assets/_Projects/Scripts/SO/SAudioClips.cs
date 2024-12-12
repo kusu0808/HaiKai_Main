@@ -46,6 +46,10 @@ namespace SO
             private AudioClip _walkNationalHighway;
             public AudioClip WalkNationalHighway => _walkNationalHighway;
 
+            [SerializeField, Required, AssetsOnly, LabelText("石階段を歩く")]
+            private AudioClip _walkOnStoneStairs;
+            public AudioClip WalkOnStoneStairs => _walkOnStoneStairs;
+
             [SerializeField, Required, AssetsOnly, LabelText("土の上を歩く")]
             private AudioClip _walkOnSoil;
             public AudioClip WalkOnSoil => _walkOnSoil;
@@ -73,6 +77,20 @@ namespace SO
             [SerializeField, Required, AssetsOnly, LabelText("ヤツが娘の声真似をする")]
             private AudioClip _yatsuImitateDaughterVoice;
             public AudioClip YaTsuImitateDaughterVoice => _yatsuImitateDaughterVoice;
+
+            [SerializeField, Required, AssetsOnly, LabelText("ヤツ雄たけび")]
+            private AudioClip _yatsuShoutingVoice;
+            public AudioClip YaTsuShoutingVoice => _yatsuShoutingVoice;
+
+            [SerializeField, Required, AssetsOnly, LabelText("ヤツガラス踏んだ時")]
+            private AudioClip _yatsuDamagedVoice;
+            public AudioClip YaTsuDamagedVoice => _yatsuDamagedVoice;
+
+
+            [SerializeField, Required, AssetsOnly, LabelText("ヤツ追跡中")]
+            private AudioClip _yatsuChasingVoice;
+            public AudioClip YaTsuChasingVoice => _yatsuChasingVoice;
+
         }
 
         [Serializable]
@@ -111,9 +129,29 @@ namespace SO
             private AudioClip _feelingYatsuInHouse3;
             public AudioClip FeelingYatsuInHouse3 => _feelingYatsuInHouse3;
 
-            [SerializeField, Required, AssetsOnly, LabelText("鍵を開ける音")]
+            [SerializeField, Required, AssetsOnly, LabelText("アイテム入手")]
+            private AudioClip _itemGetSound;
+            public AudioClip ItemGetSond => _itemGetSound;
+
+            [SerializeField, Required, AssetsOnly, LabelText("アイテム鍵を開ける音")]
             private AudioClip _keyOpen;
             public AudioClip KeyOpen => _keyOpen;
+
+            [SerializeField, Required, AssetsOnly, LabelText("アイテム鹿の血すくう")]
+            private AudioClip _cupGetBlood;
+            public AudioClip CupGetBlood => _cupGetBlood;
+
+            [SerializeField, Required, AssetsOnly, LabelText("アイテム鹿の血かける")]
+            private AudioClip _cupPourBlood;
+            public AudioClip CupPourBlood => _cupPourBlood;
+
+            [SerializeField, Required, AssetsOnly, LabelText("アイテムコップ壊す")]
+            private AudioClip _cupBreaking;
+            public AudioClip CupBreaking => _cupBreaking;
+
+            [SerializeField, Required, AssetsOnly, LabelText("アイテムガラス片まく")]
+            private AudioClip _setBreakedCup;
+            public AudioClip SetBreakedCup => _setBreakedCup;
         }
 
         [Serializable]

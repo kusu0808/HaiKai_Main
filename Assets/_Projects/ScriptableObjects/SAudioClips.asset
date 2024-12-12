@@ -17,16 +17,22 @@ MonoBehaviour:
     _bridgeCreak: {fileID: 0}
     _walkOnCorridorInHouse: {fileID: 8300000, guid: 5c1d8185e2ac0ae419d397394d9e93ab,
       type: 3}
-    _walkOnTatamiInHouse: {fileID: 0}
+    _walkOnTatamiInHouse: {fileID: 8300000, guid: f4e8878163dbc6c48bfc81d1bf59f215,
+      type: 3}
     _walkNationalHighway: {fileID: 8300000, guid: 6b50c1687710e48ae9f0be92d641f119,
+      type: 3}
+    _walkOnStoneStairs: {fileID: 8300000, guid: 6b50c1687710e48ae9f0be92d641f119,
       type: 3}
     _walkOnSoil: {fileID: 8300000, guid: 2b63f1d93eebade4490fa51fcb67e70f, type: 3}
     _yatsuKnockToiletDoor: {fileID: 0}
   _voice:
     _daughterScream: {fileID: 8300000, guid: 6defbb0a96465411195ae2776b919116, type: 3}
     _deerCry: {fileID: 0}
-    _birdCry: {fileID: 0}
+    _birdCry: {fileID: 8300000, guid: 0460d830f2b5e2b489d5c8f30e63144f, type: 3}
     _yatsuImitateDaughterVoice: {fileID: 0}
+    _yatsuShoutingVoice: {fileID: 0}
+    _yatsuDamagedVoice: {fileID: 0}
+    _yatsuChasingVoice: {fileID: 0}
   _se:
     _dishBreak: {fileID: 0}
     _cutBigIvy: {fileID: 8300000, guid: 18c5ff3b711545c4b9a56b26815413e2, type: 3}
@@ -39,4 +45,9 @@ MonoBehaviour:
       type: 3}
     _feelingYatsuInHouse3: {fileID: 8300000, guid: 6a51c8919c347774c9a0d7f97484b4b5,
       type: 3}
-    _keyOpen: {fileID: 0}
+    _itemGetSound: {fileID: 8300000, guid: 97123134b6e00c443a9738188b4a9553, type: 3}
+    _keyOpen: {fileID: 8300000, guid: 2f8ea79eafa4749409eca9c15b310928, type: 3}
+    _cupGetBlood: {fileID: 0}
+    _cupPourBlood: {fileID: 0}
+    _cupBreaking: {fileID: 8300000, guid: 2797b458065377148af63f98329aeab9, type: 3}
+    _setBreakedCup: {fileID: 0}
