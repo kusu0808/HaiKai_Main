@@ -35,6 +35,10 @@ namespace Main.Eventer.UIElements
         public UIItemClass DaughterKnife => _daughterKnife;
 
         [SerializeField, Required, AssetsOnly]
+        private UIItemClass _warehouseKeyDoubled;
+        public UIItemClass WarehouseKeyDoubled => _warehouseKeyDoubled;
+
+        [SerializeField, Required, AssetsOnly]
         private UIItemClass _warehouseKey;
         public UIItemClass WarehouseKey => _warehouseKey;
 
@@ -62,6 +66,7 @@ namespace Main.Eventer.UIElements
         public void Init()
         {
             Init(_daughterKnife);
+            Init(_warehouseKeyDoubled);
             Init(_warehouseKey);
             Init(_cup);
             Init(_cupFilledWithBlood);

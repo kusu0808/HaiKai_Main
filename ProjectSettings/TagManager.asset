@@ -29,6 +29,7 @@ TagManager:
   - ActionAgainstCollider/Event/DoorPuzzleSolvingKey1SecondDoorKnob
   - ActionAgainstCollider/Event/DoorPuzzleSolvingFinalKey2DoorKnob
   - ActionAgainstCollider/Event/WarehouseOneWayDoor
+  - ActionAgainstCollider/Event/ToiletLockedDoor
   layers:
   - Default
   - TransparentFX

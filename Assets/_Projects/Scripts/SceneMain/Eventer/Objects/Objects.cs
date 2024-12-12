@@ -17,20 +17,24 @@ namespace Main.Eventer.Objects
         public DeersClass Deers => _deers;
 
         [SerializeField, Required, SceneObjectsOnly]
-        private PlacedItemClass _warehouseeKey;
-        public PlacedItemClass WarehouseKey => _warehouseeKey;
+        private PlacedItemClass _warehouseKeyDoubled;
+        public PlacedItemClass WarehouseKeyDoubled => _warehouseKeyDoubled;
 
         [SerializeField, Required, SceneObjectsOnly]
         private PlacedItemClass _toiletCup;
         public PlacedItemClass ToiletCup => _toiletCup;
 
         [SerializeField, Required, SceneObjectsOnly]
+        private RotateDoor _toiletLockedDoor;
+        public AMovableDoor<RotateDoor> ToiletLockedDoor => _toiletLockedDoor;
+
+        [SerializeField, Required, SceneObjectsOnly]
         private RotateDoor _toiletOneWayDoor;
         public AMovableDoor<RotateDoor> ToiletOneWayDoor => _toiletOneWayDoor;
 
         [SerializeField, Required, SceneObjectsOnly]
-        private SlideDoor _warehouseLookedDoor;
-        public AMovableDoor<SlideDoor> WarehouseLookedDoor => _warehouseLookedDoor;
+        private SlideDoor _warehouseLockedDoor;
+        public AMovableDoor<SlideDoor> WarehouseLockedDoor => _warehouseLockedDoor;
 
         [SerializeField, Required, SceneObjectsOnly]
         private SlideDoor _warehouseOneWayDoor;
