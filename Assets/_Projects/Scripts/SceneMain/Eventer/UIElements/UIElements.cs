@@ -67,6 +67,7 @@ namespace Main.Eventer.UIElements
         {
             Init(_daughterKnife);
             Init(_warehouseKeyDoubled);
+            Init(_warehouseKey);
             Init(_cup);
             Init(_cupFilledWithBlood);
             Init(_kokeshiSecretKey);
