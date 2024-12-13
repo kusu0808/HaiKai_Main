@@ -21,7 +21,8 @@ namespace Main.EventManager
             RunIntoToilet(ct).Forget();
             VillageFarWayYatsuStopToiletKnock(ct).Forget();
             WarehouseDeerFall(ct).Forget();
-            VillageFarWayYatsuDaughterVoice(ct).Forget();
+            VillageFarWayYatsuDaughterVoice1(ct).Forget();
+            VillageFarWayYatsuDaughterVoice2(ct).Forget();
 
             // 繰り返し
             BusStopCannotMove(ct).Forget();
