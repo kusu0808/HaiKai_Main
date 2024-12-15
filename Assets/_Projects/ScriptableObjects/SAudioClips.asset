@@ -48,6 +48,12 @@ MonoBehaviour:
       type: 3}
     _feelingYatsuInHouse3: {fileID: 8300000, guid: 6a51c8919c347774c9a0d7f97484b4b5,
       type: 3}
+    _vehicleSoundBusBeginToMove: {fileID: 8300000, guid: c23ce5cde1e9243cb96c6c766eb8c9f0,
+      type: 3}
+    _vehicleSoundBusDoor: {fileID: 8300000, guid: 146eedc0dd93e4a5581121e6f9aa52f5,
+      type: 3}
+    _vehicleSoundPassingCar: {fileID: 8300000, guid: 6f2376f443c510740a62da7482a4ed7b,
+      type: 3}
     _itemGetSound: {fileID: 8300000, guid: 97123134b6e00c443a9738188b4a9553, type: 3}
     _cutBigIvy: {fileID: 8300000, guid: 18c5ff3b711545c4b9a56b26815413e2, type: 3}
     _cutDeerNeck: {fileID: 8300000, guid: 0fcb003b6ae8c0f4885a1f5a955b027b, type: 3}

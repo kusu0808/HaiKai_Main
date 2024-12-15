@@ -133,6 +133,18 @@ namespace SO
             private AudioClip _feelingYatsuInHouse3;
             public AudioClip FeelingYatsuInHouse3 => _feelingYatsuInHouse3;
 
+            [SerializeField, Required, AssetsOnly, LabelText("乗り物、バス出発")]
+            private AudioClip _vehicleSoundBusBeginToMove;
+            public AudioClip VehicleSoundBusBeginToMove => _vehicleSoundBusBeginToMove;
+
+            [SerializeField, Required, AssetsOnly, LabelText("乗り物、バスのドアの開閉")]
+            private AudioClip _vehicleSoundBusDoor;
+            public AudioClip VehicleSoundBusDoor => _vehicleSoundBusDoor;
+
+            [SerializeField, Required, AssetsOnly, LabelText("乗り物、車が通りすぎる")]
+            private AudioClip _vehicleSoundPassingCar;
+            public AudioClip VehicleSoundPassingCar => _vehicleSoundPassingCar;
+
             [SerializeField, Required, AssetsOnly, LabelText("アイテム入手")]
             private AudioClip _itemGetSound;
             public AudioClip ItemGetSond => _itemGetSound;
