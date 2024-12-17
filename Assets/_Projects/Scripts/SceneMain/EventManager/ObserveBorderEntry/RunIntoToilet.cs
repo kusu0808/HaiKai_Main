@@ -9,6 +9,7 @@ namespace Main.EventManager
         private async UniTaskVoid RunIntoToilet(CancellationToken ct)
         {
             "未修正".Warn();
+            return;
             //await UniTask.WaitUntil(() => _borders.VillageFarWayRunIntoToilet.IsIn(_player.Position) is true, cancellationToken: ct);
 
             _yatsu.Despawn();
