@@ -121,17 +121,21 @@ namespace SO
             private AudioClip _birdFlyAway;
             public AudioClip BirdFlyAway => _birdFlyAway;
 
-            [SerializeField, Required, AssetsOnly, LabelText("家の中でヤツの気配がする(1回目)")]
+            [SerializeField, Required, AssetsOnly, LabelText("ヤツの気配、家の中(1回目)")]
             private AudioClip _feelingYatsuInHouse1;
             public AudioClip FeelingYatsuInHouse1 => _feelingYatsuInHouse1;
 
-            [SerializeField, Required, AssetsOnly, LabelText("家の中でヤツの気配がする(2回目)")]
+            [SerializeField, Required, AssetsOnly, LabelText("ヤツの気配、家の中(2回目)")]
             private AudioClip _feelingYatsuInHouse2;
             public AudioClip FeelingYatsuInHouse2 => _feelingYatsuInHouse2;
 
-            [SerializeField, Required, AssetsOnly, LabelText("家の中でヤツの気配がする(3回目)")]
+            [SerializeField, Required, AssetsOnly, LabelText("ヤツの気配、家の中(3回目)")]
             private AudioClip _feelingYatsuInHouse3;
             public AudioClip FeelingYatsuInHouse3 => _feelingYatsuInHouse3;
+
+            [SerializeField, Required, AssetsOnly, LabelText("ヤツの気配、舞台")]
+            private AudioClip _feelingYatsuInButai;
+            public AudioClip FeelingYatsuInButai => _feelingYatsuInButai;
 
             [SerializeField, Required, AssetsOnly, LabelText("乗り物、バス出発")]
             private AudioClip _vehicleSoundBusBeginToMove;

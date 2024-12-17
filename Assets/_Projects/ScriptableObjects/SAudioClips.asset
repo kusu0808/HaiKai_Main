@@ -34,9 +34,12 @@ MonoBehaviour:
     _deerCry: {fileID: 0}
     _birdCry: {fileID: 8300000, guid: 0460d830f2b5e2b489d5c8f30e63144f, type: 3}
     _yatsuImitateDaughterVoice: {fileID: 0}
-    _yatsuShoutingVoice: {fileID: 0}
-    _yatsuDamagedVoice: {fileID: 0}
-    _yatsuChasingVoice: {fileID: 0}
+    _yatsuShoutingVoice: {fileID: 8300000, guid: 62a58acdf2f1cf3428d9078018bebc02,
+      type: 3}
+    _yatsuDamagedVoice: {fileID: 8300000, guid: e1528ad84d0df1546b84ac5477d8cde5,
+      type: 3}
+    _yatsuChasingVoice: {fileID: 8300000, guid: a56885af16718214b80acf4b73552d68,
+      type: 3}
   _se:
     _dishBreak: {fileID: 8300000, guid: 09ca79232c079294e81d78a2ee5ee9a2, type: 3}
     _deerJumpOut: {fileID: 0}
@@ -47,6 +50,8 @@ MonoBehaviour:
     _feelingYatsuInHouse2: {fileID: 8300000, guid: 95fa9f1f8e5cb37469f8e7273a1b1638,
       type: 3}
     _feelingYatsuInHouse3: {fileID: 8300000, guid: 6a51c8919c347774c9a0d7f97484b4b5,
+      type: 3}
+    _feelingYatsuInButai: {fileID: 8300000, guid: f1729b4eae3b64f429cfe183e492a190,
       type: 3}
     _vehicleSoundBusBeginToMove: {fileID: 8300000, guid: c23ce5cde1e9243cb96c6c766eb8c9f0,
       type: 3}
