@@ -23,5 +23,14 @@ namespace Main
             string jsonData = ES3.Load<string>(KEY);
             playerItem = JsonUtility.FromJson<PlayerItem>(jsonData);
         }
+
+        public int GetItemNum()
+        {
+            int itemNum = 0;
+            if (HasKnife) itemNum++;
+            if (HasButaiSideKey) itemNum++;
+            if (HasCup) itemNum++;
+            return itemNum;
+        }
     }
 }
