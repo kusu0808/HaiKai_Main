@@ -23,6 +23,7 @@ namespace Main.EventManager
             WarehouseDeerFall(ct).Forget();
             VillageFarWayYatsuDaughterVoice1(ct).Forget();
             VillageFarWayYatsuDaughterVoice2(ct).Forget();
+            VillageFarWayCutIvyYatsuComeFromCave(ct).Forget();
 
             // 繰り返し
             BusStopCannotMove(ct).Forget();
