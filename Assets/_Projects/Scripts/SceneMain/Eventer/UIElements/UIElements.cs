@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Threading;
 using UnityEngine;
+using UnityEngine.UI;
 using SceneGeneral;
 using Sirenix.OdinInspector;
 
@@ -16,6 +17,14 @@ namespace Main.Eventer.UIElements
         [SerializeField, Required, SceneObjectsOnly]
         private LogTextClass _logText;
         public LogTextClass LogText => _logText;
+
+        [SerializeField, Required, SceneObjectsOnly]
+        private ReticleUI _reticle;
+        public ReticleUI Reticle => _reticle;
+
+        [SerializeField, Required, SceneObjectsOnly]
+        private ItemNumUI _itemNumUI;
+        public ItemNumUI ItemNumUI => _itemNumUI;
 
         [SerializeField, Required, SceneObjectsOnly]
         private ManagePlayerUI _managePlayerUI;
