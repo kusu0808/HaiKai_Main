@@ -14,7 +14,7 @@ namespace Main.Eventer.UIElements
         void Start()
         {
             _cts = new CancellationTokenSource();
-            SavingAnimation(_cts.Token).Forget();
+           //SavingAnimation(_cts.Token).Forget();
         }
 
         private async UniTask SavingAnimation(CancellationToken token)
