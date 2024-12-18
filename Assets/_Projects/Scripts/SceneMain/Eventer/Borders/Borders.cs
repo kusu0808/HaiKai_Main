@@ -120,6 +120,10 @@ namespace Main.Eventer.Borders
         private Border _villageFarWayCutIvyYatsuComeFromCave;
         public Border VillageFarWayCutIvyYatsuComeFromCave => _villageFarWayCutIvyYatsuComeFromCave;
 
+        [SerializeField, Required, SceneObjectsOnly, Tooltip("奥の村道：ヤツがガラス片を踏む")]
+        private Border _villageFarWayYatsuStepOnGlassPiece;
+        public Border VillageFarWayYatsuStepOnGlassPiece => _villageFarWayYatsuStepOnGlassPiece;
+
         [SerializeField, Required, SceneObjectsOnly, Tooltip("洞窟：階段だけ登れる角度が変わる")]
         private MultiBorders _enableGoUpOnCaveStairs;
         public MultiBorders EnableGoUpOnCaveStairs => _enableGoUpOnCaveStairs;
