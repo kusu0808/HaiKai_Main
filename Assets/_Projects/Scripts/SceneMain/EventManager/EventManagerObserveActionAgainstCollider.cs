@@ -59,6 +59,7 @@ namespace Main.EventManager
                 "ActionAgainstCollider/Event/KokeshiBlood" => () => PourDeerBlood(ctIfNeeded).Forget(),
                 "ActionAgainstCollider/Event/KokeshiKey" => () => PickUpSecretKey(ctIfNeeded).Forget(),
                 "ActionAgainstCollider/Event/CupCrash" => () => CrashCup(ctIfNeeded).Forget(),
+                "ActionAgainstCollider/Event/SetCrashedCup" => () => ScatterGlassPiece(),
                 _ => null
             };
         }

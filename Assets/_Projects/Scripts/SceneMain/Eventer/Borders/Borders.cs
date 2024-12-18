@@ -116,10 +116,6 @@ namespace Main.Eventer.Borders
         private Border _villageFarWayYatsuDaughterVoice2;
         public Border VillageFarWayYatsuDaughterVoice2 => _villageFarWayYatsuDaughterVoice2;
 
-        [SerializeField, Required, SceneObjectsOnly, Tooltip("奥の村道：ガラス片を撒ける")]
-        private Border _villageFarWayScatterGlassPiece;
-        public Border VillageFarWayScatterGlassPiece => _villageFarWayScatterGlassPiece;
-        
         [SerializeField, Required, SceneObjectsOnly, Tooltip("奥の村道：ツタを切った後、ヤツが洞窟の方から来る")]
         private Border _villageFarWayCutIvyYatsuComeFromCave;
         public Border VillageFarWayCutIvyYatsuComeFromCave => _villageFarWayCutIvyYatsuComeFromCave;
