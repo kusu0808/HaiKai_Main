@@ -6,6 +6,8 @@ namespace Main.EventManager
 {
     public sealed partial class EventManager
     {
+        
+
         private async UniTaskVoid PickUpDaughterKnife(CancellationToken ct)
         {
             if (_daughter.IsKnifeEnabled is false) return;
@@ -19,6 +21,8 @@ namespace Main.EventManager
             _playerItem.HasKnife = true;
             _daughter.IsKnifeEnabled = false;
             _uiElements.DaughterKnife.IsShow = true;
+
+            _uiElements.ItemNumUI.ChangeItemNum(_playerItem.GetItemNum());
         }
     }
 }
