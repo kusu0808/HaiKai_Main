@@ -18,7 +18,7 @@ MonoBehaviour:
     _natureSoundDropOfWater: {fileID: 8300000, guid: 448182d0174fd3a428aa9b45b4601b0e,
       type: 3}
     _moveOnBrokenDish: {fileID: 8300000, guid: 09ca79232c079294e81d78a2ee5ee9a2, type: 3}
-    _bridgeCreak: {fileID: 8300000, guid: b66ecd77865b54d36a69aa738f5bf948, type: 3}
+    _bridgeCreak: {fileID: 8300000, guid: 5c1d8185e2ac0ae419d397394d9e93ab, type: 3}
     _walkOnCorridorInHouse: {fileID: 8300000, guid: 5c1d8185e2ac0ae419d397394d9e93ab,
       type: 3}
     _walkOnTatamiInHouse: {fileID: 8300000, guid: f4e8878163dbc6c48bfc81d1bf59f215,
