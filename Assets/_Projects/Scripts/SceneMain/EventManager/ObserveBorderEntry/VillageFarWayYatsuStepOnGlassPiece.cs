@@ -14,7 +14,7 @@ namespace Main.EventManager
 
             Border cache = _borders.VillageFarWayYatsuStepOnGlassPiece;
 
-            bool IsMovingOnClassPiece() => cache.IsIn(_yatsu.Position) is true && _yatsu.IsMoving is true;
+            bool IsMovingOnClassPiece() => cache.IsIn(_yatsu.Position) is true;
 
             while (true)
             {

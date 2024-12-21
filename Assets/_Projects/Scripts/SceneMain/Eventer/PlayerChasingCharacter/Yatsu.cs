@@ -10,26 +10,10 @@ namespace Main.Eventer.PlayerChasingCharacter
     {
         [SerializeField, Required, SceneObjectsOnly]
         private Animator _animator;
-        [SerializeField, Required, SceneObjectsOnly]
-        private Transform _transform;
 
         protected override float InitSpeed => 0.5f;
 
         public bool IsSteppingOnGlassShard { get; set; } = false;
-
-        public Vector3 Position
-        {
-            get
-            {
-                if (_transform == null) return Vector3.zero;
-                return _transform.position;
-            }
-            set
-            {
-                if (_transform == null) return;
-                _transform.position = value;
-            }
-        }
 
         protected override void ChasePlayerOnUpdateIfAvailableWithoutNullCheck(Transform playerTransform)
         {
@@ -50,7 +34,5 @@ namespace Main.Eventer.PlayerChasingCharacter
             if (_animator == null) return;
             _animator.SetBool("IsMoving", false);
         }
-
-        public bool IsMoving => Mathf.Abs(Speed) > 0.01f;
     }
 }
