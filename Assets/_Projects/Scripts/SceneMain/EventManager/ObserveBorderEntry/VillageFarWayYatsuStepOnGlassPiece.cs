@@ -10,7 +10,7 @@ namespace Main.EventManager
     {
         private async UniTaskVoid VillageFarWayYatsuStepOnGlassPiece(CancellationToken ct)
         {
-            if (_objects.VillageFarWayScatterGlassPiece.IsScatteredGlassPiece is false) return;
+            if (_objects.VillageFarWayScatteredGlassPiece.IsEnabled is true) return;
 
             Border cache = _borders.VillageFarWayYatsuStepOnGlassPiece;
 
