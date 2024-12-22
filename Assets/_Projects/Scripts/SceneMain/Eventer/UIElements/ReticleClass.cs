@@ -36,5 +36,11 @@ namespace Main.Eventer.UIElements
             if (_reticleImage == null) return;
             _reticleImage.sprite = newSprite;
         }
+
+        public void ChangeColor(bool red)
+        {
+            if (_reticleImage == null) return;
+            _reticleImage.color = red ? Color.red : Color.white;
+        }
     }
 }
