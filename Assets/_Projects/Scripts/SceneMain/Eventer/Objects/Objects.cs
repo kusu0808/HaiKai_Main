@@ -65,8 +65,8 @@ namespace Main.Eventer.Objects
         public DoorPuzzleSolvingClass DoorPuzzleSolving => _doorPuzzleSolving;
 
         [SerializeField, Required, SceneObjectsOnly]
-        private GlassPieceWayClass _villageFarWayScatterGlassPiece;
-        public GlassPieceWayClass VillageFarWayScatterGlassPiece => _villageFarWayScatterGlassPiece;
+        private BlockingVolumeClass _villageFarWayScatteredGlassPiece;
+        public BlockingVolumeClass VillageFarWayScatteredGlassPiece => _villageFarWayScatteredGlassPiece;
 
         [SerializeField, Required, SceneObjectsOnly]
         private GokiChanClass _gokiChan;

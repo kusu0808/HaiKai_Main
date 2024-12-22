@@ -10,8 +10,6 @@ namespace Main.Eventer.PlayerChasingCharacter
     {
         [SerializeField, Required, SceneObjectsOnly]
         private Animator _animator;
-        [SerializeField, Required, SceneObjectsOnly]
-        private Transform _transform;
 
         protected override float InitSpeed => 0.5f;
 
@@ -21,13 +19,8 @@ namespace Main.Eventer.PlayerChasingCharacter
         {
             get
             {
-                if (_transform == null) return Vector3.zero;
-                return _transform.position;
-            }
-            set
-            {
-                if (_transform == null) return;
-                _transform.position = value;
+                if (_navMeshAgent == null) return Vector3.zero;
+                return _navMeshAgent.transform.position;
             }
         }
 
@@ -50,7 +43,5 @@ namespace Main.Eventer.PlayerChasingCharacter
             if (_animator == null) return;
             _animator.SetBool("IsMoving", false);
         }
-
-        public bool IsMoving => Mathf.Abs(Speed) > 0.01f;
     }
 }

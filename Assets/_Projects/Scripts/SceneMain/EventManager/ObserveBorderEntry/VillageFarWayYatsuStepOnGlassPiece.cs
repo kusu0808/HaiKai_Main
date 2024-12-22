@@ -10,11 +10,11 @@ namespace Main.EventManager
     {
         private async UniTaskVoid VillageFarWayYatsuStepOnGlassPiece(CancellationToken ct)
         {
-            if (_objects.VillageFarWayScatterGlassPiece.IsScatteredGlassPiece is false) return;
+            if (_objects.VillageFarWayScatteredGlassPiece.IsEnabled is false) return;
 
             Border cache = _borders.VillageFarWayYatsuStepOnGlassPiece;
 
-            bool IsMovingOnClassPiece() => cache.IsIn(_yatsu.Position) is true && _yatsu.IsMoving is true;
+            bool IsMovingOnClassPiece() => cache.IsIn(_yatsu.Position) is true;
 
             while (true)
             {
