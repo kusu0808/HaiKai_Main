@@ -23,10 +23,6 @@ namespace Main.Eventer.UIElements
         public LogTextClass LogText => _logText;
 
         [SerializeField, Required, SceneObjectsOnly]
-        private ReticleUI _reticle;
-        public ReticleUI Reticle => _reticle;
-
-        [SerializeField, Required, SceneObjectsOnly]
         private ItemNumUI _itemNumUI;
         public ItemNumUI ItemNumUI => _itemNumUI;
 
