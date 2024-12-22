@@ -15,6 +15,15 @@ namespace Main.Eventer.PlayerChasingCharacter
 
         public bool IsSteppingOnGlassShard { get; set; } = false;
 
+        public Vector3 Position
+        {
+            get
+            {
+                if (_navMeshAgent == null) return Vector3.zero;
+                return _navMeshAgent.transform.position;
+            }
+        }
+
         protected override void ChasePlayerOnUpdateIfAvailableWithoutNullCheck(Transform playerTransform)
         {
             if (IsSteppingOnGlassShard is true) return;

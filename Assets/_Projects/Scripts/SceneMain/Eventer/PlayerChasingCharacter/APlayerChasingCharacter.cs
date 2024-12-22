@@ -139,14 +139,5 @@ namespace Main.Eventer.PlayerChasingCharacter
                 _navMeshAgent.acceleration = value;
             }
         }
-
-        public Vector3 Position
-        {
-            get
-            {
-                if (_navMeshAgent == null) return Vector3.zero;
-                return _navMeshAgent.nextPosition;
-            }
-        }
     }
 }
