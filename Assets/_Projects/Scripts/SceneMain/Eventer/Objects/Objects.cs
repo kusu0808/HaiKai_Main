@@ -17,28 +17,36 @@ namespace Main.Eventer.Objects
         public DeersClass Deers => _deers;
 
         [SerializeField, Required, SceneObjectsOnly]
-        private PlacedItemClass _warehouseeKey;
-        public PlacedItemClass WarehouseKey => _warehouseeKey;
+        private PlacedItemClass _warehouseKeyDoubled;
+        public PlacedItemClass WarehouseKeyDoubled => _warehouseKeyDoubled;
 
         [SerializeField, Required, SceneObjectsOnly]
         private PlacedItemClass _toiletCup;
         public PlacedItemClass ToiletCup => _toiletCup;
 
         [SerializeField, Required, SceneObjectsOnly]
-        private RotateDoor _toiletOneWayDoor;
-        public AMovableDoor ToiletOneWayDoor => _toiletOneWayDoor;
+        private RotateDoor _toiletLockedDoor;
+        public AMovableDoor<RotateDoor> ToiletLockedDoor => _toiletLockedDoor;
 
         [SerializeField, Required, SceneObjectsOnly]
-        private SlideDoor _warehouseLookedDoor;
-        public AMovableDoor WarehouseLookedDoor => _warehouseLookedDoor;
+        private RotateDoor _toiletOneWayDoor;
+        public AMovableDoor<RotateDoor> ToiletOneWayDoor => _toiletOneWayDoor;
+
+        [SerializeField, Required, SceneObjectsOnly]
+        private SlideDoor _warehouseLockedDoor;
+        public AMovableDoor<SlideDoor> WarehouseLockedDoor => _warehouseLockedDoor;
 
         [SerializeField, Required, SceneObjectsOnly]
         private SlideDoor _warehouseOneWayDoor;
-        public AMovableDoor WarehouseOneWayDoor => _warehouseOneWayDoor;
+        public AMovableDoor<SlideDoor> WarehouseOneWayDoor => _warehouseOneWayDoor;
 
         [SerializeField, Required, SceneObjectsOnly]
         private BlockingVolumeClass _villageWayCannotGoBackAfterWarehouse;
         public BlockingVolumeClass VillageWayCannotGoBackAfterWarehouse => _villageWayCannotGoBackAfterWarehouse;
+
+        [SerializeField, Required, SceneObjectsOnly]
+        private PlacedItemClass _kokeshiHead;
+        public PlacedItemClass KokeshiHead => _kokeshiHead;
 
         [SerializeField, Required, SceneObjectsOnly]
         private PlacedItemClass _kokeshiSecretKey;
@@ -55,6 +63,10 @@ namespace Main.Eventer.Objects
         [SerializeField, Required, SceneObjectsOnly]
         private DoorPuzzleSolvingClass _doorPuzzleSolving;
         public DoorPuzzleSolvingClass DoorPuzzleSolving => _doorPuzzleSolving;
+
+        [SerializeField, Required, SceneObjectsOnly]
+        private GlassPieceWayClass _villageFarWayScatterGlassPiece;
+        public GlassPieceWayClass VillageFarWayScatterGlassPiece => _villageFarWayScatterGlassPiece;
 
         [SerializeField, Required, SceneObjectsOnly]
         private GokiChanClass _gokiChan;

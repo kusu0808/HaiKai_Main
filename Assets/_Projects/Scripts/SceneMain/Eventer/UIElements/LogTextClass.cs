@@ -4,6 +4,7 @@ using Cysharp.Threading.Tasks;
 using DG.Tweening;
 using Sirenix.OdinInspector;
 using UnityEngine;
+using UnityEngine.UI;
 using TMPro;
 using IA;
 
@@ -14,6 +15,9 @@ namespace Main.Eventer.UIElements
     {
         [SerializeField, Required, SceneObjectsOnly]
         private TextMeshProUGUI _logText;
+        [SerializeField, Required, SceneObjectsOnly]
+        private Image _logTextImage; 
+
 
         private const float SHOW_DURATION_DEFAULT = 3;
         private const float FADEOUT_DURATION_DEFAULT = 1;
@@ -56,11 +60,12 @@ namespace Main.Eventer.UIElements
 
             ResetCts();
             _logText.text = string.Empty;
-            ShowLogText(_logText, text, duration, fadeoutDuration, _cts.Token, isGetOffInput).Forget();
+            ShowLogText(_logText, _logTextImage, text, duration, fadeoutDuration, _cts.Token, isGetOffInput).Forget();
 
             static async UniTaskVoid ShowLogText
-                (TextMeshProUGUI logText, string text, float duration, float fadeoutDuration, CancellationToken ct, bool isGetOffInput = false)
+                (TextMeshProUGUI logText, Image logTextImage, string text, float duration, float fadeoutDuration, CancellationToken ct, bool isGetOffInput = false)
             {
+                logTextImage.color = new Color(0,0,0,0.5f);
                 logText.text = text;
                 if (isGetOffInput) await UniTask.WhenAny(WaitUntilOffInput(ct),
                     UniTask.Delay(TimeSpan.FromSeconds(duration), cancellationToken: ct));
@@ -68,6 +73,7 @@ namespace Main.Eventer.UIElements
                 await logText.DOFade(0, fadeoutDuration).ToUniTask(cancellationToken: ct);
                 logText.text = string.Empty;
                 logText.alpha = 1;
+                logTextImage.color = Color.clear;
             }
 
             static async UniTask WaitUntilOffInput(CancellationToken ct) =>

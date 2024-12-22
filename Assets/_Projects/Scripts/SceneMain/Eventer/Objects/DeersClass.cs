@@ -29,6 +29,9 @@ namespace Main.Eventer.Objects
 
             _hasFalled = true;
             _fallDeer.useGravity = true;
+
+            Vector3 forceDirection = _fallDeer.transform.forward + _fallDeer.transform.right;
+            _fallDeer.AddForce(forceDirection * 0.1f, ForceMode.Impulse);
         }
 
         public void HurtByKnife()

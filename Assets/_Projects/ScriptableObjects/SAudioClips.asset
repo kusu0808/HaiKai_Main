@@ -13,35 +13,66 @@ MonoBehaviour:
   m_Name: SAudioClips
   m_EditorClassIdentifier: 
   _bgm:
-    _title: {fileID: 0}
-    _mainChapter1: {fileID: 0}
-    _mainChapter2: {fileID: 0}
-    _mainChapter3: {fileID: 0}
-    _waterSurfaceWave: {fileID: 0}
-    _busStop: {fileID: 0}
-    _moveOnBrokenDish: {fileID: 0}
-    _bridgeCreak: {fileID: 0}
+    _natureSoundWindOfMountain: {fileID: 8300000, guid: ff12a07754352f6419ea887e02be9f81,
+      type: 3}
+    _natureSoundDropOfWater: {fileID: 8300000, guid: 448182d0174fd3a428aa9b45b4601b0e,
+      type: 3}
+    _moveOnBrokenDish: {fileID: 8300000, guid: 09ca79232c079294e81d78a2ee5ee9a2, type: 3}
+    _bridgeCreak: {fileID: 8300000, guid: 5c1d8185e2ac0ae419d397394d9e93ab, type: 3}
+    _walkOnCorridorInHouse: {fileID: 8300000, guid: 5c1d8185e2ac0ae419d397394d9e93ab,
+      type: 3}
+    _walkOnTatamiInHouse: {fileID: 8300000, guid: f4e8878163dbc6c48bfc81d1bf59f215,
+      type: 3}
+    _walkNationalHighway: {fileID: 8300000, guid: 6b50c1687710e48ae9f0be92d641f119,
+      type: 3}
+    _walkOnStoneStairs: {fileID: 8300000, guid: 6b50c1687710e48ae9f0be92d641f119,
+      type: 3}
+    _walkOnSoil: {fileID: 8300000, guid: 2b63f1d93eebade4490fa51fcb67e70f, type: 3}
+    _yatsuKnockToiletDoor: {fileID: 0}
   _voice:
-    _daughterBreath: {fileID: 0}
     _daughterScream: {fileID: 8300000, guid: 6defbb0a96465411195ae2776b919116, type: 3}
-    _daughterResist: {fileID: 0}
-    _yatsuBreath: {fileID: 0}
-    _yatsuGroan: {fileID: 0}
-    _yatsuRoar: {fileID: 0}
+    _deerCry: {fileID: 0}
+    _birdCry: {fileID: 8300000, guid: 0460d830f2b5e2b489d5c8f30e63144f, type: 3}
+    _yatsuImitateDaughterVoice: {fileID: 0}
+    _yatsuShoutingVoice: {fileID: 8300000, guid: 62a58acdf2f1cf3428d9078018bebc02,
+      type: 3}
+    _yatsuDamagedVoice: {fileID: 8300000, guid: e1528ad84d0df1546b84ac5477d8cde5,
+      type: 3}
+    _yatsuChasingVoice: {fileID: 8300000, guid: a56885af16718214b80acf4b73552d68,
+      type: 3}
   _se:
-    _submit: {fileID: 0}
-    _cancel: {fileID: 0}
-    _pause: {fileID: 0}
-    _cannotSubmit: {fileID: 0}
-    _getItem: {fileID: 0}
-    _busBeginMove: {fileID: 0}
-    _windCut: {fileID: 0}
-    _dishBreak: {fileID: 0}
-    _cutBigIvy: {fileID: 0}
-  _seRough:
-    _moveOnRoad: {fileID: 0}
-    _moveOnPathWay: {fileID: 0}
-    _moveInHouse: {fileID: 0}
-    _moveInCave: {fileID: 0}
-    _jumpOffPathWay: {fileID: 0}
-    _moveDaughter: {fileID: 0}
+    _dishBreak: {fileID: 8300000, guid: 09ca79232c079294e81d78a2ee5ee9a2, type: 3}
+    _deerJumpOut: {fileID: 0}
+    _deerRunAway: {fileID: 0}
+    _birdFlyAway: {fileID: 0}
+    _feelingYatsuInHouse1: {fileID: 8300000, guid: ef71f143f9ad2a043886bedcd6e93d33,
+      type: 3}
+    _feelingYatsuInHouse2: {fileID: 8300000, guid: 95fa9f1f8e5cb37469f8e7273a1b1638,
+      type: 3}
+    _feelingYatsuInHouse3: {fileID: 8300000, guid: 6a51c8919c347774c9a0d7f97484b4b5,
+      type: 3}
+    _feelingYatsuInButai: {fileID: 8300000, guid: f1729b4eae3b64f429cfe183e492a190,
+      type: 3}
+    _vehicleSoundBusBeginToMove: {fileID: 8300000, guid: c23ce5cde1e9243cb96c6c766eb8c9f0,
+      type: 3}
+    _vehicleSoundBusDoor: {fileID: 8300000, guid: 146eedc0dd93e4a5581121e6f9aa52f5,
+      type: 3}
+    _vehicleSoundPassingCar: {fileID: 8300000, guid: 6f2376f443c510740a62da7482a4ed7b,
+      type: 3}
+    _itemGetSound: {fileID: 8300000, guid: 97123134b6e00c443a9738188b4a9553, type: 3}
+    _cutBigIvy: {fileID: 8300000, guid: 18c5ff3b711545c4b9a56b26815413e2, type: 3}
+    _cutDeerNeck: {fileID: 8300000, guid: 0fcb003b6ae8c0f4885a1f5a955b027b, type: 3}
+    _keyOpen: {fileID: 8300000, guid: 2f8ea79eafa4749409eca9c15b310928, type: 3}
+    _cupGetBlood: {fileID: 8300000, guid: 97123134b6e00c443a9738188b4a9553, type: 3}
+    _cupPourBlood: {fileID: 8300000, guid: 9190f64b3dcc4fa4680287176941502e, type: 3}
+    _cupBreaking: {fileID: 8300000, guid: 2797b458065377148af63f98329aeab9, type: 3}
+    _setBreakedCup: {fileID: 8300000, guid: c217065fee99e0a43999492c1b2aaf8b, type: 3}
+    _playerLandingGround: {fileID: 8300000, guid: a543f877c094187479d381dd24ad8c01,
+      type: 3}
+    _playerGoThroughHole: {fileID: 8300000, guid: 329f080d912efaf46bb2e2eedea45989,
+      type: 3}
+    _playerGetOutHole: {fileID: 8300000, guid: 329f080d912efaf46bb2e2eedea45989, type: 3}
+    _playerOpenJapaneseDoor: {fileID: 8300000, guid: 5ab6711c7a1111749afe6e1c6e543f34,
+      type: 3}
+    _playerOpenIronDoor: {fileID: 8300000, guid: 140e570b5af4947aa8fce03b5b788b2c,
+      type: 3}

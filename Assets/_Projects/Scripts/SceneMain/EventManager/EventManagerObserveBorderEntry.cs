@@ -21,6 +21,9 @@ namespace Main.EventManager
             RunIntoToilet(ct).Forget();
             VillageFarWayYatsuStopToiletKnock(ct).Forget();
             WarehouseDeerFall(ct).Forget();
+            VillageFarWayYatsuDaughterVoice1(ct).Forget();
+            VillageFarWayYatsuDaughterVoice2(ct).Forget();
+            VillageFarWayCutIvyYatsuComeFromCave(ct).Forget();
 
             // 繰り返し
             BusStopCannotMove(ct).Forget();
@@ -33,6 +36,8 @@ namespace Main.EventManager
             UnderStageSquat(ct);
             EnableGoUpOnShrineWay(ct).Forget();
             EnableGoUpOnWarehouseStairs(ct).Forget();
+            VillageWayCannotGoBackAfterWarehouse(ct).Forget();
+            VillageFarWayYatsuStepOnGlassPiece(ct).Forget();
         }
 
         // 後方置換されるかも

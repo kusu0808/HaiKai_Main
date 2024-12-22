@@ -4,15 +4,15 @@ namespace Main.EventManager
     {
         private void OpenWarehouseLockedDoor()
         {
-            if (_uiElements.WarehouseKey.IsHolding() is false)
+            if (_uiElements.WarehouseKeyDoubled.IsHolding() is false)
             {
                 _uiElements.LogText.ShowAutomatically("鍵がかかっている");
                 return;
             }
 
-            _uiElements.WarehouseKey.Release();
+            _uiElements.WarehouseKeyDoubled.Release();
 
-            _objects.WarehouseLookedDoor.Open();
+            _objects.WarehouseLockedDoor.Trigger();
             _uiElements.LogText.ShowAutomatically("鍵を開けた");
         }
     }

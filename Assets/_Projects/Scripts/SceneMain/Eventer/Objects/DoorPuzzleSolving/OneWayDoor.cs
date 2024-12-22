@@ -17,7 +17,7 @@ namespace Main.Eventer.Objects.DoorPuzzleSolving
 
         public void Unlock()
         {
-            _door?.Open();
+            _door?.Trigger();
         }
     }
 }

@@ -39,8 +39,6 @@ namespace Main.EventManager
             {
                 "ActionAgainstCollider/Message/BusSign" => "古びた標識だ",
                 "ActionAgainstCollider/Message/PathWaySign" => "汚れていて見えない",
-                "ActionAgainstCollider/Message/ClosedDoor" => "開かない",
-                "ActionAgainstCollider/Message/LockedDoor" => "鍵がかかっている",
                 _ => string.Empty
             };
 
@@ -57,6 +55,11 @@ namespace Main.EventManager
                 "ActionAgainstCollider/Event/WarehouseLockedDoor" => () => OpenWarehouseLockedDoor(),
                 "ActionAgainstCollider/Event/DeerBlood" => () => CutDeer(),
                 "ActionAgainstCollider/Event/CupBlood" => () => ScoopDeerBlood(ctIfNeeded).Forget(),
+                "ActionAgainstCollider/Event/WarehouseOneWayDoor" => () => OpenWarehouseOneWayDoor(),
+                "ActionAgainstCollider/Event/KokeshiBlood" => () => PourDeerBlood(ctIfNeeded).Forget(),
+                "ActionAgainstCollider/Event/KokeshiKey" => () => PickUpSecretKey(ctIfNeeded).Forget(),
+                "ActionAgainstCollider/Event/CupCrash" => () => CrashCup(ctIfNeeded).Forget(),
+                "ActionAgainstCollider/Event/SetCrashedCup" => () => ScatterGlassPiece(),
                 _ => null
             };
         }

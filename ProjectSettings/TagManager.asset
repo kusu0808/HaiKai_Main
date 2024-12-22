@@ -8,8 +8,6 @@ TagManager:
   - ActionAgainstCollider/Event/PuzzleHintScroll
   - ActionAgainstCollider/Message/BusSign
   - ActionAgainstCollider/Message/PathWaySign
-  - ActionAgainstCollider/Message/ClosedDoor
-  - ActionAgainstCollider/Message/LockedDoor
   - ActionAgainstCollider/Event/DaughterKnife
   - ActionAgainstCollider/Event/DeerBlood
   - ActionAgainstCollider/Event/CupBlood
@@ -30,6 +28,8 @@ TagManager:
   - ActionAgainstCollider/Event/DoorPuzzleSolvingOneWayDoorKnob
   - ActionAgainstCollider/Event/DoorPuzzleSolvingKey1SecondDoorKnob
   - ActionAgainstCollider/Event/DoorPuzzleSolvingFinalKey2DoorKnob
+  - ActionAgainstCollider/Event/WarehouseOneWayDoor
+  - ActionAgainstCollider/Event/ToiletLockedDoor
   layers:
   - Default
   - TransparentFX
@@ -43,7 +43,7 @@ TagManager:
   - Daughter
   - Yatsu
   - Player
-  - 
+  - Deer
   - 
   - 
   - 
