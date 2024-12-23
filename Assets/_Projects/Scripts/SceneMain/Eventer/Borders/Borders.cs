@@ -8,17 +8,17 @@ namespace Main.Eventer.Borders
     [Serializable]
     public sealed class Borders
     {
+        [SerializeField, Required, SceneObjectsOnly, Tooltip("歩く音")]
+        private WalkingSounds _walkingSounds;
+        public WalkingSounds WalkingSounds => _walkingSounds;
+
         [SerializeField, Required, SceneObjectsOnly, Tooltip("バス停：ここから先には行けない！")]
         private MultiBorders _busStopCannotMove;
         public MultiBorders BusStopCannotMove => _busStopCannotMove;
 
-        [SerializeField, Required, SceneObjectsOnly, Tooltip("小道：割れた皿を踏む")]
-        private Border _footOnDish;
-        public Border FootOnDish => _footOnDish;
-
-        [SerializeField, Required, SceneObjectsOnly, Tooltip("小道：橋がきしむ音を立てる")]
-        private Border _bridgePlaySound;
-        public Border BridgePlaySound => _bridgePlaySound;
+        [SerializeField, Required, SceneObjectsOnly, Tooltip("小道：初めて割れた皿を踏む")]
+        private Border _pathWayFirstFootOnDish;
+        public Border PathWayFirstFootOnDish => _pathWayFirstFootOnDish;
 
         [SerializeField, Required, SceneObjectsOnly, Tooltip("小道：しゃがんで通り抜ける 1")]
         private TeleportBorder _pathWaySquat1;
@@ -136,9 +136,37 @@ namespace Main.Eventer.Borders
         private Border _caveGokiChanAppear2;
         public Border CaveGokiChanAppear2 => _caveGokiChanAppear2;
 
-        [SerializeField, Required, SceneObjectsOnly, Tooltip("洞窟：ゴキちゃん出現3")]
-        private Border _caveGokiChanAppear3;
-        public Border CaveGokiChanAppear3 => _caveGokiChanAppear3;
+        [SerializeField, Required, SceneObjectsOnly, Tooltip("洞窟：ゴキちゃんが広がって消える(未実装)")]
+        private Border _caveGokiChanSpreadAndDisappear;
+        public Border CaveGokiChanSpreadAndDisappear => _caveGokiChanSpreadAndDisappear;
+
+        [SerializeField, Required, SceneObjectsOnly, Tooltip("洞窟出口：階段だけ登れる角度が変わる")]
+        private MultiBorders _enableGoUpOnCaveExitStairs;
+        public MultiBorders EnableGoUpOnCaveExitStairs => _enableGoUpOnCaveExitStairs;
+
+        [SerializeField, Required, SceneObjectsOnly, Tooltip("洞窟出口：ヤツの声がする")]
+        private Border _caveExitYatsuVoice;
+        public Border CaveExitYatsuVoice => _caveExitYatsuVoice;
+
+        [SerializeField, Required, SceneObjectsOnly, Tooltip("神社：鎖を切ったあと、娘に近づく")]
+        private Border _shrineApproachDaughter;
+        public Border ShrineApproachDaughter => _shrineApproachDaughter;
+
+        [SerializeField, Required, SceneObjectsOnly, Tooltip("神社上の道：最後の脱出時にヤツが現れる")]
+        private Border _shrineUpWayYatsuAppearAtLastEscape;
+        public Border ShrineUpWayYatsuAppearAtLastEscape => _shrineUpWayYatsuAppearAtLastEscape;
+
+        [SerializeField, Required, SceneObjectsOnly, Tooltip("神社上の道：娘にこっちじゃないと言われる")]
+        private Border _shrineUpWayDaughterSaysNotHere;
+        public Border ShrineUpWayDaughterSaysNotHere => _shrineUpWayDaughterSaysNotHere;
+
+        [SerializeField, Required, SceneObjectsOnly, Tooltip("小道：娘にこっちじゃないと言われる")]
+        private Border _pathWayDaughterSaysNotHere;
+        public Border PathWayDaughterSaysNotHere => _pathWayDaughterSaysNotHere;
+
+        [SerializeField, Required, SceneObjectsOnly, Tooltip("バス停：脱出")]
+        private Border _busStopEscape;
+        public Border BusStopEscape => _busStopEscape;
 
         public bool IsFromUnderStageToShrineWayBorderEnabled { get; set; } = true;
     }

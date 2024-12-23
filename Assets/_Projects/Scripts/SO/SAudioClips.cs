@@ -35,24 +35,24 @@ namespace SO
             public AudioClip NatureSoundDropOfWater => _natureSoundDropOfWater;
 
             [SerializeField, Required, AssetsOnly, LabelText("移動、割れた皿")]
-            private AudioClip _moveOnBrokenDish;
-            public AudioClip MoveOnBrokenDish => _moveOnBrokenDish;
+            private AudioClip _walkOnBrokenDish;
+            public AudioClip WalkOnBrokenDish => _walkOnBrokenDish;
 
             [SerializeField, Required, AssetsOnly, LabelText("移動、橋")]
-            private AudioClip _bridgeCreak;
-            public AudioClip BridgeCreak => _bridgeCreak;
+            private AudioClip _walkOnBridge;
+            public AudioClip WalkOnBridge => _walkOnBridge;
 
             [SerializeField, Required, AssetsOnly, LabelText("移動、廊下")]
-            private AudioClip _walkOnCorridorInHouse;
-            public AudioClip WalkOnCorridorInHouse => _walkOnCorridorInHouse;
+            private AudioClip _walkOnCorridor;
+            public AudioClip WalkOnCorridor => _walkOnCorridor;
 
             [SerializeField, Required, AssetsOnly, LabelText("移動、畳")]
-            private AudioClip _walkOnTatamiInHouse;
-            public AudioClip WalkOnTatamiInHouse => _walkOnTatamiInHouse;
+            private AudioClip _walkOnTatami;
+            public AudioClip WalkOnTatami => _walkOnTatami;
 
             [SerializeField, Required, AssetsOnly, LabelText("移動、国道")]
-            private AudioClip _walkNationalHighway;
-            public AudioClip WalkNationalHighway => _walkNationalHighway;
+            private AudioClip _walkOnRoad;
+            public AudioClip WalkOnRoad => _walkOnRoad;
 
             [SerializeField, Required, AssetsOnly, LabelText("移動、石階段")]
             private AudioClip _walkOnStoneStairs;

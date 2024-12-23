@@ -11,16 +11,20 @@ namespace Main.Eventer.PlayerChasingCharacter
         [SerializeField, Required, SceneObjectsOnly]
         private Animator _animator;
 
-        [SerializeField, Required, SceneObjectsOnly, Tooltip("ナイフ(小道に散らばる予定)")]
-        private GameObject _knife;
+        private enum AnimationMode
+        {
+            Enter,
+            Escape
+        }
 
         private enum MoveState
         {
             Idle,
-            Moving,
-            TiredOnMoving
+            Walk,
+            WalkTiredly // 逃走時には、この状態にはならない
         }
 
+        private AnimationMode _animationMode = AnimationMode.Enter;
         private MoveState _moveState = MoveState.Idle;
         private float _movingTime = 0;
         private float _cachedSpeed = 0; // 足が遅くなる前のスピードを、一時的に保存
@@ -51,55 +55,64 @@ namespace Main.Eventer.PlayerChasingCharacter
             UpdateAnimatorParams();
         }
 
+        /// <summary>
+        /// 常にMoveStateを更新し、その後パラメーターを更新する
+        /// </summary>
         private void UpdateAnimation()
         {
             if (_animator == null) return;
 
-            switch (_moveState)
+            Action action = (_moveState, _animationMode) switch
             {
-                case MoveState.Idle:
-                    {
-                        if (GetIsMoving() is true)
-                        {
-                            _moveState = MoveState.Moving;
-                            break;
-                        }
-                    }
-                    break;
-                case MoveState.Moving:
-                    {
-                        if (GetIsMoving() is false)
-                        {
-                            _movingTime = 0;
-                            _moveState = MoveState.Idle;
-                            break;
-                        }
+                (MoveState.Idle, _) => DoIdle,
+                (MoveState.Walk, AnimationMode.Enter) => DoWalkOnEnter,
+                (MoveState.Walk, AnimationMode.Escape) => DoWalkOnEscape,
+                (MoveState.WalkTiredly, _) => DoWalkTiredly,
+                _ => null
+            };
 
-                        _movingTime += Time.deltaTime;
-                        if (_movingTime >= TimeUntilBecomeTired)
-                        {
-                            _movingTime = 0;
-                            _moveState = MoveState.TiredOnMoving;
-                            _cachedSpeed = Speed;
-                            Speed *= 0.5f;
-                            break;
-                        }
-                    }
-                    break;
-                case MoveState.TiredOnMoving:
-                    {
-                        if (GetIsMoving() is false)
-                        {
-                            _moveState = MoveState.Idle;
-                            Speed = _cachedSpeed;
-                            _cachedSpeed = 0;
-                            break;
-                        }
-                    }
-                    break;
+            action?.Invoke();
+            UpdateAnimatorParams();
+
+
+
+            void DoIdle()
+            {
+                if (GetIsMoving() is false) return;
+                _moveState = MoveState.Walk;
             }
 
-            UpdateAnimatorParams();
+            void DoWalkOnEnter()
+            {
+                if (GetIsMoving() is false)
+                {
+                    _movingTime = 0;
+                    _moveState = MoveState.Idle;
+                }
+
+                _movingTime += Time.deltaTime;
+                if (_movingTime >= TimeUntilBecomeTired)
+                {
+                    _movingTime = 0;
+                    _moveState = MoveState.WalkTiredly;
+                    _cachedSpeed = Speed;
+                    Speed *= 0.5f;
+                }
+            }
+
+            void DoWalkOnEscape()
+            {
+                if (GetIsMoving() is true) return;
+                _moveState = MoveState.Idle;
+            }
+
+            void DoWalkTiredly()
+            {
+                if (GetIsMoving() is true) return;
+                _moveState = MoveState.Idle;
+                Speed = _cachedSpeed;
+                _cachedSpeed = 0;
+            }
 
             bool GetIsMoving()
             {
@@ -108,6 +121,10 @@ namespace Main.Eventer.PlayerChasingCharacter
             }
         }
 
+        /// <summary>
+        /// アニメーションのステートを切り替える
+        /// MoveStateを元に、パラメーターを更新する
+        /// </summary>
         private void UpdateAnimatorParams()
         {
             if (_animator == null) return;
@@ -115,24 +132,24 @@ namespace Main.Eventer.PlayerChasingCharacter
             _animator.SetInteger("MoveState", _moveState switch
             {
                 MoveState.Idle => 0,
-                MoveState.Moving => 1,
-                MoveState.TiredOnMoving => 2,
+                MoveState.Walk => 1,
+                MoveState.WalkTiredly => 2,
                 _ => 0
             });
         }
 
-        public bool IsKnifeEnabled
+        /// <summary>
+        /// アニメーションのサブステートマシンを切り替える(入山時→逃走時)
+        /// AnimationModeとパラメーターを同時に更新する
+        /// </summary>
+        public void ChangeAnimationModeFromEnterToEscape()
         {
-            get
-            {
-                if (_knife == null) return false;
-                return _knife.activeSelf;
-            }
-            set
-            {
-                if (_knife == null) return;
-                _knife.SetActive(value);
-            }
+            if (_animator == null) return;
+            if (_animationMode is not AnimationMode.Enter) return;
+
+            _animationMode = AnimationMode.Escape;
+            _animator.SetTrigger("DoEndEnter");
+            _animator.SetTrigger("DoStartEscape");
         }
     }
 }

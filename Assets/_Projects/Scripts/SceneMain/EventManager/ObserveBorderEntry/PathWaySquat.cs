@@ -38,7 +38,7 @@ namespace Main.EventManager
                 if (isFarewellTurn is false) continue;
                 isSeparatedFromDaughter = true;
                 _daughter.Despawn();
-                _daughter.IsKnifeEnabled = true;
+                _objects.DaughterKnife.IsEnabled = true;
                 _audioSources.GetNew().Raise(_audioClips.Voice.DaughterScream, SoundType.Voice);
             }
         }

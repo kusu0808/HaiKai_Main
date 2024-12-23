@@ -9,6 +9,10 @@ namespace Main.Eventer.Objects
     public sealed class Objects
     {
         [SerializeField, Required, SceneObjectsOnly]
+        private PlacedItemClass _daughterKnife;
+        public PlacedItemClass DaughterKnife => _daughterKnife;
+
+        [SerializeField, Required, SceneObjectsOnly]
         private BigIviesClass _bigIvies;
         public BigIviesClass BigIvies => _bigIvies;
 
@@ -53,10 +57,6 @@ namespace Main.Eventer.Objects
         public PlacedItemClass KokeshiSecretKey => _kokeshiSecretKey;
 
         [SerializeField, Required, SceneObjectsOnly]
-        private PlacedItemClass _glassShard;
-        public PlacedItemClass GlassShard => _glassShard;
-
-        [SerializeField, Required, SceneObjectsOnly]
         private PlacedItemClass _keyInDoorPuzzleSolving;
         public PlacedItemClass KeyInDoorPuzzleSolving => _keyInDoorPuzzleSolving;
 
@@ -71,5 +71,13 @@ namespace Main.Eventer.Objects
         [SerializeField, Required, SceneObjectsOnly]
         private GokiChanClass _gokiChan;
         public GokiChanClass GokiChan => _gokiChan;
+
+        [SerializeField, Required, SceneObjectsOnly]
+        private BlockingVolumeClass _shrineUpWayCannotGoAtLastEscape;
+        public BlockingVolumeClass ShrineUpWayCannotGoAtLastEscape => _shrineUpWayCannotGoAtLastEscape;
+
+        [SerializeField, Required, SceneObjectsOnly]
+        private BlockingVolumeClass _pathWayCannotGoAtLastEscape;
+        public BlockingVolumeClass PathWayCannotGoAtLastEscape => _pathWayCannotGoAtLastEscape;
     }
 }
