@@ -30,6 +30,7 @@ TagManager:
   - ActionAgainstCollider/Event/DoorPuzzleSolvingFinalKey2DoorKnob
   - ActionAgainstCollider/Event/WarehouseOneWayDoor
   - ActionAgainstCollider/Event/ToiletLockedDoor
+  - ActionAgainstCollider/Event/Jinjya_Chain
   layers:
   - Default
   - TransparentFX
