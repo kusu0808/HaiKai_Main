@@ -8,7 +8,7 @@ namespace Main.EventManager
     {
         private async UniTaskVoid PickUpDaughterKnife(CancellationToken ct)
         {
-            if (_daughter.IsKnifeEnabled is false) return;
+            if (_objects.DaughterKnife.IsEnabled is false) return;
 
             PauseState.IsPaused = true;
             "ナイフのUI表示開始".Warn();
@@ -17,7 +17,7 @@ namespace Main.EventManager
             PauseState.IsPaused = false;
 
             _uiElements.DaughterKnife.Obtain();
-            _daughter.IsKnifeEnabled = false;
+            _objects.DaughterKnife.IsEnabled = false;
         }
     }
 }

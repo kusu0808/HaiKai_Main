@@ -24,7 +24,6 @@ namespace Main.EventManager
             _player.CheckDeviation(_points.Init, ct).Forget();
             _player.SubscribeYatsuCollision();
             _daughter.SpawnHere(_points.RoadWayDaughterSpawnPoint);
-            _daughter.IsKnifeEnabled = false;
 
             if (_debug.IsEnabled) InitializeDebugProperty();
 

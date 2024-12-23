@@ -20,7 +20,7 @@ namespace Main.EventManager
             {
                 await UniTask.WaitUntil(() => IsMovingOnClassPiece() is true, cancellationToken: ct);
                 AudioSource audioSource = _audioSources.GetNew();
-                audioSource.Raise(_audioClips.BGM.BridgeCreak, SoundType.BGM);
+                audioSource.Raise(_audioClips.BGM.WalkOnBridge, SoundType.BGM);
                 await UniTask.WaitUntil(() => IsMovingOnClassPiece() is false, cancellationToken: ct);
                 audioSource.Stop();
             }

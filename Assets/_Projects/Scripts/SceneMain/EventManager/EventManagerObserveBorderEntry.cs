@@ -10,7 +10,7 @@ namespace Main.EventManager
         private void ObserveBorderEntry(CancellationToken ct)
         {
             // 一回だけ
-            FootOnDishOnce(ct).Forget();
+            PathWayFirstFootOnDish(ct).Forget();
             PathWayCannotGo(ct).Forget();
             VillageWayDeerCry(ct).Forget();
             VillageWayDeerAppear(ct).Forget();
@@ -25,13 +25,10 @@ namespace Main.EventManager
             VillageFarWayCutIvyYatsuComeFromCave(ct).Forget();
 
             // 繰り返し
+            PlayWalkingSounds(ct);
             BusStopCannotMove(ct).Forget();
-            FootOnDish(ct).Forget();
-            BridgePlaySound(ct).Forget();
             PathWaySquat(ct).Forget();
             EnableGoUpOnEnteringHouse(ct).Forget();
-            HousePlayWalkCorridorSound(ct).Forget();
-            HousePlayWalkTatamiSound(ct).Forget();
             UnderStageSquat(ct);
             EnableGoUpOnShrineWay(ct).Forget();
             EnableGoUpOnWarehouseStairs(ct).Forget();
