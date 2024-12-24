@@ -83,7 +83,7 @@ namespace Main.Eventer
         public float SlopLimit { set => _firstPersonController.SlopeLimit = value; }
 
         // 最初に呼んで欲しい、委譲するだけ
-        public void SubscribeGrounded(Action action) => _firstPersonController.GroundedSubject.Subscribe(_ => action?.Invoke());
+        public void SubscribeGrounded(Action action) => _firstPersonController.GroundedSubject.Subscribe(_ => action?.Invoke()).AddTo(_firstPersonController);
 
         /// <summary>
         /// 完全にデバッグ用。戻すことはできない。
