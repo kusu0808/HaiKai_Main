@@ -2,7 +2,10 @@
     "name": "Unity.StarterAssets",
     "rootNamespace": "",
     "references": [
-        "GUID:75469ad4d38634e559750d17036d5f7c"
+        "GUID:75469ad4d38634e559750d17036d5f7c",
+        "GUID:560b04d1a97f54a4e82edc0cbbb69285",
+        "GUID:f51ebe6a0ceec4240a699833d6309b23",
+        "GUID:117ae6f80c2344fc1a331262f1d66b91"
     ],
     "includePlatforms": [],
     "excludePlatforms": [],

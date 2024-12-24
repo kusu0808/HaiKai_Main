@@ -104,6 +104,9 @@ namespace SO
         [Serializable]
         public sealed class AudioClipsSE
         {
+            [SerializeField, Required, AssetsOnly, LabelText("落下して着地した")]
+            private AudioClip _grounded;
+            public AudioClip Grounded => _grounded;
 
             [SerializeField, Required, AssetsOnly, LabelText("皿が割れる")]
             private AudioClip _dishBreak;
