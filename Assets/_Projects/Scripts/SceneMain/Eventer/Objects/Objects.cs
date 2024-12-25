@@ -73,6 +73,14 @@ namespace Main.Eventer.Objects
         public GokiChanClass GokiChan => _gokiChan;
 
         [SerializeField, Required, SceneObjectsOnly]
+        private PlacedItemClass _shrineChainedDaughter;
+        public PlacedItemClass ShrineChainedDaughter => _shrineChainedDaughter;
+
+        [SerializeField, Required, SceneObjectsOnly]
+        private DaughterChainClass _daughterChain;
+        public DaughterChainClass DaughterChain => _daughterChain;
+
+        [SerializeField, Required, SceneObjectsOnly]
         private BlockingVolumeClass _shrineUpWayCannotGoAtLastEscape;
         public BlockingVolumeClass ShrineUpWayCannotGoAtLastEscape => _shrineUpWayCannotGoAtLastEscape;
 

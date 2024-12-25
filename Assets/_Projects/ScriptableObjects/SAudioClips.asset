@@ -38,6 +38,7 @@ MonoBehaviour:
     _yatsuChasingVoice: {fileID: 8300000, guid: a56885af16718214b80acf4b73552d68,
       type: 3}
   _se:
+    _grounded: {fileID: 0}
     _dishBreak: {fileID: 8300000, guid: 09ca79232c079294e81d78a2ee5ee9a2, type: 3}
     _deerJumpOut: {fileID: 0}
     _deerRunAway: {fileID: 0}

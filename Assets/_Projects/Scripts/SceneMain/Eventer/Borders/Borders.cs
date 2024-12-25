@@ -148,10 +148,6 @@ namespace Main.Eventer.Borders
         private Border _caveExitYatsuVoice;
         public Border CaveExitYatsuVoice => _caveExitYatsuVoice;
 
-        [SerializeField, Required, SceneObjectsOnly, Tooltip("神社：鎖を切ったあと、娘に近づく")]
-        private Border _shrineApproachDaughter;
-        public Border ShrineApproachDaughter => _shrineApproachDaughter;
-
         [SerializeField, Required, SceneObjectsOnly, Tooltip("神社上の道：最後の脱出時にヤツが現れる")]
         private Border _shrineUpWayYatsuAppearAtLastEscape;
         public Border ShrineUpWayYatsuAppearAtLastEscape => _shrineUpWayYatsuAppearAtLastEscape;

@@ -1,11 +1,13 @@
 ﻿using Cysharp.Threading.Tasks;
+using Cysharp.Threading.Tasks.Linq;
+using Cysharp.Threading.Tasks.Triggers;
 using StarterAssets;
 using System;
 using System.Threading;
+using UniRx;
 using UnityEngine;
 using Main.EventManager;
-using Cysharp.Threading.Tasks.Triggers;
-using Cysharp.Threading.Tasks.Linq;
+
 using General;
 using Sirenix.OdinInspector;
 
@@ -79,6 +81,9 @@ namespace Main.Eventer
 
         // 委譲するだけ
         public float SlopLimit { set => _firstPersonController.SlopeLimit = value; }
+
+        // 最初に呼んで欲しい、委譲するだけ
+        public void SubscribeGrounded(Action action) => _firstPersonController.GroundedSubject.Subscribe(_ => action?.Invoke()).AddTo(_firstPersonController);
 
         /// <summary>
         /// 完全にデバッグ用。戻すことはできない。

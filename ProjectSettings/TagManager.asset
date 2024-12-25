@@ -30,7 +30,9 @@ TagManager:
   - ActionAgainstCollider/Event/DoorPuzzleSolvingFinalKey2DoorKnob
   - ActionAgainstCollider/Event/WarehouseOneWayDoor
   - ActionAgainstCollider/Event/ToiletLockedDoor
-  - ActionAgainstCollider/Event/Jinjya_Chain
+  - ActionAgainstCollider/Event/DaughterChain1
+  - ActionAgainstCollider/Event/DaughterChain2
+  - ActionAgainstCollider/Event/DaughterChain3
   layers:
   - Default
   - TransparentFX
@@ -45,8 +47,8 @@ TagManager:
   - Yatsu
   - Player
   - Deer
-  - 
-  - 
+  - ChainedDaughter
+  - DaughterChain
   - 
   - 
   - 

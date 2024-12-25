@@ -1,4 +1,3 @@
-using BorderSystem;
 using Cysharp.Threading.Tasks;
 using General;
 using Main.Eventer.Borders;
@@ -36,5 +35,7 @@ namespace Main.EventManager
                 }
             }
         }
+
+        private void PlayGroundedSound() => _audioSources.GetNew().Raise(_audioClips.SE.Grounded, SoundType.SE);
     }
 }

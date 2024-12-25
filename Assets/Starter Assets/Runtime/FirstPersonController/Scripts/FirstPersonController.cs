@@ -1,7 +1,14 @@
-﻿using UnityEngine;
+﻿using System;
+using System.Threading;
+using Cysharp.Threading.Tasks;
+using UniRx;
+using UnityEditor;
+using UnityEngine;
 #if ENABLE_INPUT_SYSTEM
 using UnityEngine.InputSystem;
 #endif
+
+using PauseState = Main.PauseState;
 
 namespace StarterAssets
 {
@@ -69,6 +76,8 @@ namespace StarterAssets
         public bool IsJumpEnabled { get; set; } = true;
         private static readonly bool IsSprintEnabled = false;
 
+        #region 主な追加部分
+
         public float SlopeLimit
         {
             set
@@ -78,6 +87,29 @@ namespace StarterAssets
                 _controller.slopeLimit = value;
             }
         }
+
+        public readonly Subject<Unit> GroundedSubject = new(); // 引数は使わない
+
+        private async UniTaskVoid CheckGrounded(CancellationToken ct)
+        {
+            // 初期化処理などがあるので、ゲーム開始から3秒間待つ
+            await UniTask.Delay(TimeSpan.FromSeconds(3), ignoreTimeScale: true, cancellationToken: ct);
+
+            while (true)
+            {
+                await UniTask.WaitUntil(() => PauseState.IsPaused is false && _controller.isGrounded is false, cancellationToken: ct);
+
+                // ポーズ解除後に設置した判定になってしまう（おそらく、_controllerの内部実装的に）ので、一定秒数以上対空する、という条件を設けている
+                await UniTask.Delay(TimeSpan.FromSeconds(0.2f), cancellationToken: ct);
+                if (_controller.isGrounded is true) continue;
+
+                await UniTask.WaitUntil(() => PauseState.IsPaused is false && _controller.isGrounded is true, cancellationToken: ct);
+
+                GroundedSubject.OnNext(Unit.Default);
+            }
+        }
+
+        #endregion
 
 #if ENABLE_INPUT_SYSTEM
         private PlayerInput _playerInput;
@@ -122,6 +154,8 @@ namespace StarterAssets
             // reset our timeouts on start
             _jumpTimeoutDelta = JumpTimeout;
             _fallTimeoutDelta = FallTimeout;
+
+            CheckGrounded(destroyCancellationToken).Forget();
         }
 
         private void Update()
