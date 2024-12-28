@@ -8,7 +8,7 @@ namespace Main.EventManager
     {
         private async UniTaskVoid OpenToiletLockedDoor(CancellationToken ct)
         {
-            if (_objects.IsOpenToiletLockedDoorEventEnabled is true)
+            if (_isOpenToiletLockedDoorEventEnabled is true)
             {
                 if (_uiElements.WarehouseKeyDoubled.IsHolding() is false)
                 {
@@ -16,7 +16,7 @@ namespace Main.EventManager
                     return;
                 }
 
-                _objects.IsOpenToiletLockedDoorEventEnabled = false;
+                _isOpenToiletLockedDoorEventEnabled = false;
 
                 _uiElements.WarehouseKeyDoubled.Release();
                 _uiElements.WarehouseKey.Obtain();
@@ -32,7 +32,7 @@ namespace Main.EventManager
             }
             else
             {
-                if (_objects.IsPickUpSecretKeyEventEnabled is true)
+                if (_isPickUpSecretKeyEventEnabled is true)
                 {
                     _uiElements.LogText.ShowAutomatically("化け物がいる、出るわけにはいかない");
                     return;

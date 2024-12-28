@@ -87,8 +87,5 @@ namespace Main.Eventer.Objects
         [SerializeField, Required, SceneObjectsOnly]
         private BlockingVolumeClass _pathWayCannotGoAtLastEscape;
         public BlockingVolumeClass PathWayCannotGoAtLastEscape => _pathWayCannotGoAtLastEscape;
-
-        public bool IsOpenToiletLockedDoorEventEnabled { get; set; } = true;
-        public bool IsPickUpSecretKeyEventEnabled { get; set; } = true;
     }
 }
