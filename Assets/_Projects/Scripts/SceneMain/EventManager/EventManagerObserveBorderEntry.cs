@@ -18,7 +18,6 @@ namespace Main.EventManager
             HouseFeelYatsu(ct).Forget();
             ShrineWayFoundedByYatsu(ct).Forget();
             FromShrineUpWayToVillageFarWayEscapeFromYatsu(ct).Forget();
-            RunIntoToilet(ct).Forget();
             VillageFarWayYatsuStopToiletKnock(ct).Forget();
             WarehouseDeerFall(ct).Forget();
             VillageFarWayYatsuDaughterVoice(ct).Forget();
