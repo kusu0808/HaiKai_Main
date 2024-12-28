@@ -18,6 +18,8 @@ namespace Main.EventManager
 
             _uiElements.KokeshiSecretKey.Obtain();
             _objects.KokeshiSecretKey.IsEnabled = false;
+
+            _objects.IsPickUpSecretKeyEventEnabled = false;
         }
     }
 }

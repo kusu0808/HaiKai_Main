@@ -8,23 +8,40 @@ namespace Main.EventManager
     {
         private async UniTaskVoid OpenToiletLockedDoor(CancellationToken ct)
         {
-            if (_uiElements.WarehouseKeyDoubled.IsHolding() is false)
+            if (_objects.IsOpenToiletLockedDoorEventEnabled is true)
             {
-                _uiElements.LogText.ShowAutomatically("鍵がかかっている");
-                return;
+                if (_uiElements.WarehouseKeyDoubled.IsHolding() is false)
+                {
+                    _uiElements.LogText.ShowAutomatically("鍵がかかっている");
+                    return;
+                }
+
+                _objects.IsOpenToiletLockedDoorEventEnabled = false;
+
+                _uiElements.WarehouseKeyDoubled.Release();
+                _uiElements.WarehouseKey.Obtain();
+
+                _uiElements.LogText.ShowAutomatically("鍵を開けた");
+
+                _yatsu.Despawn();
+                await _TeleportPlayer(_points.VillageFarWayInsideToiletPoint, ct);
+
+                if (_yatsuKnockToiletDoorAudioSource != null) return;
+                _yatsuKnockToiletDoorAudioSource = _audioSources.GetNew();
+                _yatsuKnockToiletDoorAudioSource.Raise(_audioClips.BGM.YatsuKnockToiletDoor, SoundType.BGM);
             }
+            else
+            {
+                if (_objects.IsPickUpSecretKeyEventEnabled is true)
+                {
+                    _uiElements.LogText.ShowAutomatically("化け物がいる、出るわけにはいかない");
+                    return;
+                }
 
-            _uiElements.WarehouseKeyDoubled.Release();
-            _uiElements.WarehouseKey.Obtain();
+                _uiElements.LogText.ShowAutomatically("ここまで来たらもう引き返せない");
 
-            _uiElements.LogText.ShowAutomatically("鍵を開けた");
-
-            _yatsu.Despawn();
-            await _TeleportPlayer(_points.VillageFarWayInsideToiletPoint, ct);
-
-            if (_yatsuKnockToiletDoorAudioSource != null) return;
-            _yatsuKnockToiletDoorAudioSource = _audioSources.GetNew();
-            _yatsuKnockToiletDoorAudioSource.Raise(_audioClips.BGM.YatsuKnockToiletDoor, SoundType.BGM);
+                await _TeleportPlayer(_points.VillageFarWayOutsideToiletPoint, ct);
+            }
         }
     }
 }

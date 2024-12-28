@@ -31,6 +31,10 @@ namespace Main.Eventer
         private Transform _villageFarWayInsideToiletPoint;
         public Transform VillageFarWayInsideToiletPoint => _villageFarWayInsideToiletPoint;
 
+        [SerializeField, Required, SceneObjectsOnly, Tooltip("奥の村道で、謎を解いてトイレのドアを開けた後の、テレポート先")]
+        private Transform _villageFarWayOutsideToiletPoint;
+        public Transform VillageFarWayOutsideToiletPoint => _villageFarWayOutsideToiletPoint;
+
         [SerializeField, Required, SceneObjectsOnly, Tooltip("奥の村道で、洞窟の蔦を切った時の、ヤツのスポーン場所")]
         private Transform _villageFarWayOnCutIvyYatsuSpawnPoint;
         public Transform VillageFarWayOnCutIvyYatsuSpawnPoint => _villageFarWayOnCutIvyYatsuSpawnPoint;
