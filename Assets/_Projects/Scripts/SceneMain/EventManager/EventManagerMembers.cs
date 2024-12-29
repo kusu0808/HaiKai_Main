@@ -28,5 +28,8 @@ namespace Main.EventManager
         [SerializeField] private BusMover _busMover;
 
         private AudioSource _yatsuKnockToiletDoorAudioSource = null;
+
+        private bool _isOpenToiletLockedDoorEventEnabled = true;
+        private bool _isPickUpSecretKeyEventEnabled = true;
     }
 }

@@ -51,6 +51,7 @@ namespace Main.EventManager
                 "ActionAgainstCollider/Event/PuzzleHintScroll" => () => ReadPuzzleHintScroll(ctIfNeeded).Forget(),
                 "ActionAgainstCollider/Event/ButaisideKey" => () => PickUpButaiSideKey(ctIfNeeded).Forget(),
                 "ActionAgainstCollider/Event/Cup" => () => PickUpCup(ctIfNeeded).Forget(),
+                "ActionAgainstCollider/Event/ToiletLockedDoor" => () => OpenToiletLockedDoor(ctIfNeeded).Forget(),
                 "ActionAgainstCollider/Event/ToiletOneWayDoor" => () => OpenToiletOneWayDoor(),
                 "ActionAgainstCollider/Event/WarehouseLockedDoor" => () => OpenWarehouseLockedDoor(),
                 "ActionAgainstCollider/Event/DeerBlood" => () => CutDeer(),
