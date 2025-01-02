@@ -164,6 +164,10 @@ namespace SO
             private AudioClip _cutDeerNeck;
             public AudioClip CutDeerNeck => _cutDeerNeck;
 
+            [SerializeField, Required, AssetsOnly, LabelText("アイテムナイフで鎖を切る")]
+            private AudioClip _cutShionChain;
+            public AudioClip CutShionChain => _cutShionChain;
+
             [SerializeField, Required, AssetsOnly, LabelText("アイテム鍵を開ける音")]
             private AudioClip _keyOpen;
             public AudioClip KeyOpen => _keyOpen;
