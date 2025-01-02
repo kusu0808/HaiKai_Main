@@ -86,6 +86,14 @@ namespace SO
             private AudioClip _yatsuImitateDaughterVoice;
             public AudioClip YaTsuImitateDaughterVoice => _yatsuImitateDaughterVoice;
 
+            [SerializeField, Required, AssetsOnly, LabelText("ヤツが娘の声真似をする2")]
+            private AudioClip _yatsuImitateDaughterVoiceSecond;
+            public AudioClip YaTsuImitateDaughterVoiceSecond => _yatsuImitateDaughterVoiceSecond;
+
+            [SerializeField, Required, AssetsOnly, LabelText("ヤツが娘の声真似をする3")]
+            private AudioClip _yatsuImitateDaughterVoiceSecondThird;
+            public AudioClip YaTsuImitateDaughterVoiceSecondThird => _yatsuImitateDaughterVoiceSecondThird;
+
             [SerializeField, Required, AssetsOnly, LabelText("ヤツ雄たけび")]
             private AudioClip _yatsuShoutingVoice;
             public AudioClip YaTsuShoutingVoice => _yatsuShoutingVoice;

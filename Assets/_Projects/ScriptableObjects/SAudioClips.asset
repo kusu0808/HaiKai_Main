@@ -30,7 +30,12 @@ MonoBehaviour:
     _daughterScream: {fileID: 8300000, guid: 6defbb0a96465411195ae2776b919116, type: 3}
     _deerCry: {fileID: 0}
     _birdCry: {fileID: 8300000, guid: 0460d830f2b5e2b489d5c8f30e63144f, type: 3}
-    _yatsuImitateDaughterVoice: {fileID: 0}
+    _yatsuImitateDaughterVoice: {fileID: 8300000, guid: af14c43878ea2a742bb22c689999305b,
+      type: 3}
+    _yatsuImitateDaughterVoiceSecond: {fileID: 8300000, guid: 9297dc08d4f7f5643bfd05c4ebe67901,
+      type: 3}
+    _yatsuImitateDaughterVoiceSecondThird: {fileID: 8300000, guid: 839b054a8d50b20499b7f2783763cb3d,
+      type: 3}
     _yatsuShoutingVoice: {fileID: 8300000, guid: 62a58acdf2f1cf3428d9078018bebc02,
       type: 3}
     _yatsuDamagedVoice: {fileID: 8300000, guid: e1528ad84d0df1546b84ac5477d8cde5,
