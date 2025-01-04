@@ -4,8 +4,8 @@ using UnityEngine;
 using IA;
 using System;
 using IvyType = Main.Eventer.Objects.BigIviesClass.Type;
-using Key1DoorType = Main.Eventer.Objects.DoorPuzzleSolving.DoorPuzzleSolvingClass.Key1DoorType;
-using FinalKey2DoorType = Main.Eventer.Objects.DoorPuzzleSolving.DoorPuzzleSolvingClass.FinalKey2DoorType;
+using Key1DoorType = Main.Eventer.Objects.DoorPuzzleSolving.Key1Door.Type;
+using FinalKey2DoorType = Main.Eventer.Objects.DoorPuzzleSolving.FinalKey2Door.Type;
 
 namespace Main.EventManager
 {
@@ -67,8 +67,8 @@ namespace Main.EventManager
                 "ActionAgainstCollider/Event/DoorPuzzleSovingKey1FirstDoorKnob" => () => OpenCaveKey1Door(Key1DoorType.First),
                 "ActionAgainstCollider/Event/DoorPuzzleSovingKey1SecondDoorKnob" => () => OpenCaveKey1Door(Key1DoorType.Second),
                 "ActionAgainstCollider/Event/DoorPuzzleSovingOneWayDoorKnob" => () => OpenCaveOneWayDoor(),
-                "ActionAgainstCollider/Event/DoorPuzzleSovingFinalKey2FirstDoorKnob" => () => OpenCaveFinalKey2Door(FinalKey2DoorType.First),
-                "ActionAgainstCollider/Event/DoorPuzzleSovingFinalKey2SecondDoorKnob" => () => OpenCaveFinalKey2Door(FinalKey2DoorType.Second),
+                "ActionAgainstCollider/Event/DoorPuzzleSovingFinalKey2RightDoorKnob" => () => OpenCaveFinalKey2Door(FinalKey2DoorType.Right),
+                "ActionAgainstCollider/Event/DoorPuzzleSovingFinalKey2LeftDoorKnob" => () => OpenCaveFinalKey2Door(FinalKey2DoorType.Left),
                 _ => null
             };
         }

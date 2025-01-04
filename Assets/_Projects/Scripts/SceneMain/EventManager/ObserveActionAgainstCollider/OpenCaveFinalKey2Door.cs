@@ -1,27 +1,31 @@
 using Main.Eventer.Objects.DoorPuzzleSolving;
 using Main.Eventer.UIElements;
-using DoorType = Main.Eventer.Objects.DoorPuzzleSolving.DoorPuzzleSolvingClass.FinalKey2DoorType;
+using FinalKey2DoorType = Main.Eventer.Objects.DoorPuzzleSolving.FinalKey2Door.Type;
 
 namespace Main.EventManager
 {
     public sealed partial class EventManager
     {
-        private void OpenCaveFinalKey2Door(DoorType type)
+        private void OpenCaveFinalKey2Door(FinalKey2DoorType type)
         {
             FinalKey2Door door = _objects.DoorPuzzleSolving.FinalKey2;
-            UIItemClass key = _uiElements.GetFinalKey(type);
+            UIItemClass[] keys = _uiElements.GetFinal2DoorKeys();
 
             if (door.Border.IsIn(_player.Position) is false) return;
 
-            if (key.IsHolding() is false)
+            foreach (var key in keys)
             {
-                _uiElements.LogText.ShowAutomatically("鍵がかかっている");
+                if (key.IsHolding() is false)
+                {
+                    _uiElements.LogText.ShowAutomatically("鍵がかかっている");
+                    continue;
+                }
+
+                key.Release();
+
+                door.Unlock(type);
                 return;
             }
-
-            key.Release();
-
-            door.Unlock(true);
 
             if (!door.IsOpenable()) return;
 

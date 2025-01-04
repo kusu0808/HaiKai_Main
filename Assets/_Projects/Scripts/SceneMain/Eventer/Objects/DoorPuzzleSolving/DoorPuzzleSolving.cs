@@ -1,24 +1,13 @@
 using System;
 using Sirenix.OdinInspector;
 using UnityEngine;
+using Key1DoorType = Main.Eventer.Objects.DoorPuzzleSolving.Key1Door.Type;
 
 namespace Main.Eventer.Objects.DoorPuzzleSolving
 {
     [Serializable]
     public sealed class DoorPuzzleSolvingClass
     {
-        public enum Key1DoorType
-        {
-            First,
-            Second
-        }
-
-        public enum FinalKey2DoorType
-        {
-            First,
-            Second
-        }
-
         [SerializeField, Required, SceneObjectsOnly]
         private Key1Door _key1First;
         public Key1Door Key1First => _key1First;

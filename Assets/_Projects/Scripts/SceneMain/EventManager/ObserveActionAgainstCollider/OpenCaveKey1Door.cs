@@ -1,11 +1,11 @@
 using Main.Eventer.Objects.DoorPuzzleSolving;
-using DoorType = Main.Eventer.Objects.DoorPuzzleSolving.DoorPuzzleSolvingClass.Key1DoorType;
+using Key1DoorType = Main.Eventer.Objects.DoorPuzzleSolving.Key1Door.Type;
 
 namespace Main.EventManager
 {
     public sealed partial class EventManager
     {
-        private void OpenCaveKey1Door(DoorType type)
+        private void OpenCaveKey1Door(Key1DoorType type)
         {
             Key1Door door = _objects.DoorPuzzleSolving.GetKey1Door(type);
 
