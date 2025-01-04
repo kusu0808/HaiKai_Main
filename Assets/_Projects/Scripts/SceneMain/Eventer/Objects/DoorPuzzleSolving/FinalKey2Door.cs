@@ -24,10 +24,17 @@ namespace Main.Eventer.Objects.DoorPuzzleSolving
         [SerializeField, Required, SceneObjectsOnly]
         private RotateDoor _door2;
 
-        public void Unlock()
+        public bool IsOpenable() => _key1 != null && _key2 != null;
+
+        public void Unlock(bool isKey)
         {
-            if (_key1 != null) _key1.enabled = true;
-            if (_key2 != null) _key2.enabled = true;
+            var key = isKey ? _key1 : _key2;
+            if (key != null) return;
+            key.enabled = true;
+        }
+
+        public void Trigger()
+        {
             _door1?.Trigger();
             _door2?.Trigger();
         }

@@ -1,9 +1,9 @@
 ﻿using System;
 using System.Threading;
 using UnityEngine;
-using UnityEngine.UI;
 using SceneGeneral;
 using Sirenix.OdinInspector;
+using FinalKey2DoorType = Main.Eventer.Objects.DoorPuzzleSolving.DoorPuzzleSolvingClass.FinalKey2DoorType;
 
 namespace Main.Eventer.UIElements
 {
@@ -93,5 +93,12 @@ namespace Main.Eventer.UIElements
             if (_triggerPauseUI == null) return;
             _triggerPauseUI.SetCursor(isActive);
         }
+
+        public UIItemClass GetFinalKey(FinalKey2DoorType type) => type switch
+        {
+            FinalKey2DoorType.First => _warehouseKey,
+            FinalKey2DoorType.Second => _keyInDoorPuzzleSolving,
+            _ => null
+        };
     }
 }

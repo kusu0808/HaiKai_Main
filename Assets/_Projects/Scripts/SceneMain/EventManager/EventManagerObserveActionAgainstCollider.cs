@@ -4,6 +4,8 @@ using UnityEngine;
 using IA;
 using System;
 using IvyType = Main.Eventer.Objects.BigIviesClass.Type;
+using Key1DoorType = Main.Eventer.Objects.DoorPuzzleSolving.DoorPuzzleSolvingClass.Key1DoorType;
+using FinalKey2DoorType = Main.Eventer.Objects.DoorPuzzleSolving.DoorPuzzleSolvingClass.FinalKey2DoorType;
 
 namespace Main.EventManager
 {
@@ -61,6 +63,12 @@ namespace Main.EventManager
                 "ActionAgainstCollider/Event/KokeshiKey" => () => PickUpSecretKey(ctIfNeeded).Forget(),
                 "ActionAgainstCollider/Event/CupCrash" => () => CrashCup(ctIfNeeded).Forget(),
                 "ActionAgainstCollider/Event/SetCrashedCup" => () => ScatterGlassPiece(),
+                "ActionAgainstCollider/Event/DoorPuzzleSovingKey" => () => PickUpKeyInDoorPuzzleSolving(ctIfNeeded).Forget(),
+                "ActionAgainstCollider/Event/DoorPuzzleSovingKey1FirstDoorKnob" => () => OpenCaveKey1Door(Key1DoorType.First),
+                "ActionAgainstCollider/Event/DoorPuzzleSovingKey1SecondDoorKnob" => () => OpenCaveKey1Door(Key1DoorType.Second),
+                "ActionAgainstCollider/Event/DoorPuzzleSovingOneWayDoorKnob" => () => OpenCaveOneWayDoor(),
+                "ActionAgainstCollider/Event/DoorPuzzleSovingFinalKey2FirstDoorKnob" => () => OpenCaveFinalKey2Door(FinalKey2DoorType.First),
+                "ActionAgainstCollider/Event/DoorPuzzleSovingFinalKey2SecondDoorKnob" => () => OpenCaveFinalKey2Door(FinalKey2DoorType.Second),
                 _ => null
             };
         }
