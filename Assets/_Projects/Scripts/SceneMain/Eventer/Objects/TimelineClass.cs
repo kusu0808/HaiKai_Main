@@ -1,4 +1,6 @@
 using System;
+using System.Threading;
+using Cysharp.Threading.Tasks;
 using Sirenix.OdinInspector;
 using UnityEngine;
 using UnityEngine.Playables;
@@ -13,5 +15,20 @@ namespace Main.Eventer.Objects
 
         [SerializeField, Required, SceneObjectsOnly]
         private PlayableDirector _playableDirector;
+
+        private bool _hasPlayed = false;
+
+        /// <summary>
+        /// 一回のみ再生
+        /// </summary>
+        public async UniTask PlayOnce(CancellationToken ct)
+        {
+            if (_hasPlayed) return;
+            _hasPlayed = true;
+
+            _root.SetActive(true);
+            await UniTask.WaitUntil(() => _playableDirector.time >= _playableDirector.duration, cancellationToken: ct);
+            _root.SetActive(false);
+        }
     }
 }
