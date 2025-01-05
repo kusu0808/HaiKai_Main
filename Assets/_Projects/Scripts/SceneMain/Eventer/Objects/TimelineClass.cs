@@ -24,6 +24,9 @@ namespace Main.Eventer.Objects
         public async UniTask PlayOnce(CancellationToken ct)
         {
             if (_hasPlayed) return;
+            if (_root == null) return;
+            if (_playableDirector == null) return;
+
             _hasPlayed = true;
 
             _root.SetActive(true);
