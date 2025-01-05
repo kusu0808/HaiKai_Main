@@ -87,5 +87,9 @@ namespace Main.Eventer.Objects
         [SerializeField, Required, SceneObjectsOnly]
         private BlockingVolumeClass _pathWayCannotGoAtLastEscape;
         public BlockingVolumeClass PathWayCannotGoAtLastEscape => _pathWayCannotGoAtLastEscape;
+
+        [SerializeField, Required, SceneObjectsOnly]
+        private TimelineClass _shrineWayFoundByYatsuTimeline;
+        public TimelineClass ShrineWayFoundByYatsuTimeline => _shrineWayFoundByYatsuTimeline;
     }
 }
