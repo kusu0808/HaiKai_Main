@@ -66,6 +66,9 @@ namespace Main.Eventer.UIElements
         private UIItemClass _keyInDoorPuzzleSolving;
         public UIItemClass KeyInDoorPuzzleSolving => _keyInDoorPuzzleSolving;
 
+        private UIItemClass[] _keysInFinalKey2Door;
+        public UIItemClass[] KeysInFinalKey2Door => _keysInFinalKey2Door;
+
         // 最初に呼ぶこと！
         public void Init()
         {
@@ -78,6 +81,8 @@ namespace Main.Eventer.UIElements
             Init(_glassShard);
 
             void Init(UIItemClass uiItemClass) => uiItemClass?.Init(_managePlayerUI);
+
+            _keysInFinalKey2Door = new UIItemClass[] { _warehouseKey, _keyInDoorPuzzleSolving };
         }
 
         public void ActivateUIManagers(CancellationToken ct)
@@ -92,7 +97,5 @@ namespace Main.Eventer.UIElements
             if (_triggerPauseUI == null) return;
             _triggerPauseUI.SetCursor(isActive);
         }
-
-        public UIItemClass[] GetFinal2DoorKeys() => new UIItemClass[] { _warehouseKey, _keyInDoorPuzzleSolving };
     }
 }
