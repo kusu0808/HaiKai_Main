@@ -6,9 +6,15 @@ namespace Main.EventManager
     {
         private void CutChain(Type type)
         {
+            var chain = _objects.DaughterChain;
+
             if (_uiElements.DaughterKnife.IsHolding() is true)
             {
-                _objects.DaughterChain.Cut(type);
+                chain.Cut(type);
+
+                if (chain.IsAllCut() is false) return;
+
+                _daughter.SpawnHere(_points.ShrineDaughterSpawnPoint);
             }
         }
     }
