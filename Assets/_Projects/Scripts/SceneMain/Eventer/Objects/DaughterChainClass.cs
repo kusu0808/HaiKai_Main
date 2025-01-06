@@ -7,6 +7,13 @@ namespace Main.Eventer.Objects
     [Serializable]
     public sealed class DaughterChainClass
     {
+        public enum Type
+        {
+            Chain1,
+            Chain2,
+            Chain3
+        }
+
         [SerializeField, Required, SceneObjectsOnly]
         private PlacedItemClass _chain1;
 
@@ -16,9 +23,12 @@ namespace Main.Eventer.Objects
         [SerializeField, Required, SceneObjectsOnly]
         private PlacedItemClass _chain3;
 
-        public void Cut1() => _chain1.IsEnabled = false;
-        public void Cut2() => _chain2.IsEnabled = false;
-        public void Cut3() => _chain3.IsEnabled = false;
+        public void Cut(Type type)
+        {
+            var chain = GetChain(type);
+            if (chain == null) return;
+            chain.IsEnabled = false;
+        }
 
         public bool IsAllCut()
         {
@@ -27,5 +37,13 @@ namespace Main.Eventer.Objects
             if (_chain3.IsEnabled) return false;
             return true;
         }
+
+        private PlacedItemClass GetChain(Type type) => type switch
+        {
+            Type.Chain1 => _chain1,
+            Type.Chain2 => _chain2,
+            Type.Chain3 => _chain3,
+            _ => null
+        };
     }
 }
