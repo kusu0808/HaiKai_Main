@@ -31,11 +31,11 @@ namespace Main.Eventer.Objects.DoorPuzzleSolving
         [SerializeField, Required, FormerlySerializedAs("_door2"), SceneObjectsOnly]
         private RotateDoor _doorLeft;
 
-        public bool GetIsKeyInDoorInserted(Type type)
+        public bool GetIsDoorLocked(Type type)
         {
             var key = GetKey(type);
-            if (key == null) return true;
-            return key.enabled;
+            if (key == null) return false;
+            return !key.enabled;
         }
 
         public bool Trigger(Type type)
@@ -44,7 +44,7 @@ namespace Main.Eventer.Objects.DoorPuzzleSolving
             if (key == null) return false;
             key.enabled = true;
 
-            if (_keyRight == null || _keyLeft == null) return false;
+            if (GetIsDoorLocked(Type.Right) is true || GetIsDoorLocked(Type.Left) is true) return false;
 
             _doorRight?.Trigger();
             _doorLeft?.Trigger();

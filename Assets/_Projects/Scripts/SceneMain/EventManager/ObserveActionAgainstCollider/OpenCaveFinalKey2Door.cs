@@ -12,7 +12,7 @@ namespace Main.EventManager
             UIItemClass[] keys = _uiElements.KeysInFinalKey2Door;
 
             if (door.Border.IsIn(_player.Position) is false) return;
-            if (door.GetIsKeyInDoorInserted(type) is true) return;
+            if (door.GetIsDoorLocked(type) is false) return;
 
             foreach (var key in keys)
             {
@@ -20,8 +20,8 @@ namespace Main.EventManager
                 {
                     key.Release();
 
-                    var isOpenable = door.Trigger(type);
-                    if (isOpenable is true) _uiElements.LogText.ShowAutomatically("鍵を開けた");
+                    var hasOpened = door.Trigger(type);
+                    if (hasOpened is true) _uiElements.LogText.ShowAutomatically("鍵を開けた");
                     else _uiElements.LogText.ShowAutomatically("鍵を差し込んだ");
 
                     return;
