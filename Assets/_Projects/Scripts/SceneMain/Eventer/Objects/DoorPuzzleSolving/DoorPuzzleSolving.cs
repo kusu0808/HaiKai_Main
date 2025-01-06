@@ -10,7 +10,6 @@ namespace Main.Eventer.Objects.DoorPuzzleSolving
     {
         [SerializeField, Required, SceneObjectsOnly]
         private Key1Door _key1First;
-        public Key1Door Key1First => _key1First;
 
         [SerializeField, Required, SceneObjectsOnly]
         private OneWayDoor _oneWay;
@@ -18,7 +17,6 @@ namespace Main.Eventer.Objects.DoorPuzzleSolving
 
         [SerializeField, Required, SceneObjectsOnly]
         private Key1Door _key1Second;
-        public Key1Door Key1Second => _key1Second;
 
         [SerializeField, Required, SceneObjectsOnly]
         private FinalKey2Door _finalKey2;
