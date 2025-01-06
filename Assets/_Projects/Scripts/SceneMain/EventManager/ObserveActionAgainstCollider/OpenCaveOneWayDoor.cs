@@ -10,7 +10,7 @@ namespace Main.EventManager
 
             if (door.Border.IsIn(_player.Position) is false) return;
 
-            door.Unlock();
+            door.Trigger();
             _uiElements.LogText.ShowAutomatically("ドアを開けた");
         }
     }
