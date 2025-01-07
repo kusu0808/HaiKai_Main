@@ -1,6 +1,5 @@
 using System.Threading;
 using Cysharp.Threading.Tasks;
-using General;
 
 namespace Main.EventManager
 {
@@ -10,15 +9,26 @@ namespace Main.EventManager
         {
             _borders.IsFromUnderStageToShrineWayBorderEnabled = true;
             await UniTask.WaitUntil(() => _borders.ShrineWayFoundedEvent.IsIn(_player.Position) is true, cancellationToken: ct);
+
             _player.IsPlayerControlEnabled = false;
-            "ヤツに見つかったイベントを再生する！(とりあえず、適当に3秒待つ)".Warn();
-            await UniTask.Delay(3000, cancellationToken: ct);
-            "岩で参道を下れないようにする".Warn();
-            _borders.IsFromUnderStageToShrineWayBorderEnabled = false;
-            _objects.VillageWayCannotGoBackAfterWarehouse.IsEnabled = true;
+            await UniTask.WhenAll(
+                _objects.ShrineWayFoundByYatsuTimeline.PlayOnce(ct),
+                WhenCutScene(ct)
+            );
             _yatsu.SpawnHere(_points.ShrineWayYatsuSpawnPoint);
-            "ヤツの方を向かせた方がいいか？".Warn();
+            _player.SetTransform(_points.ShrineWayPlayerTeleportPoint);
             _player.IsPlayerControlEnabled = true;
+
+
+
+            async UniTask WhenCutScene(CancellationToken ct)
+            {
+                await UniTask.NextFrame(cancellationToken: ct);
+
+                _objects.ShrineWayRock.IsEnabled = true;
+                _borders.IsFromUnderStageToShrineWayBorderEnabled = false;
+                _objects.VillageWayCannotGoBackAfterWarehouse.IsEnabled = true;
+            }
         }
     }
 }

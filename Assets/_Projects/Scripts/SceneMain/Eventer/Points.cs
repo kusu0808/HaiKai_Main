@@ -19,6 +19,10 @@ namespace Main.Eventer
         private Transform _shrineWayYatsuSpawnPoint;
         public Transform ShrineWayYatsuSpawnPoint => _shrineWayYatsuSpawnPoint;
 
+        [SerializeField, Required, SceneObjectsOnly, Tooltip("神社の道でヤツに見つかるイベントで、プレイヤーがテレポートする場所")]
+        private Transform _shrineWayPlayerTeleportPoint;
+        public Transform ShrineWayPlayerTeleportPoint => _shrineWayPlayerTeleportPoint;
+
         [SerializeField, Required, SceneObjectsOnly, Tooltip("神社上の道で、ヤツが脱出経路から来る時の、スポーン場所")]
         private Transform _shrineUpWayYatsuComeFromEscapeRouteSpawnPoint;
         public Transform ShrineUpWayYatsuComeFromEscapeRouteSpawnPoint => _shrineUpWayYatsuComeFromEscapeRouteSpawnPoint;
