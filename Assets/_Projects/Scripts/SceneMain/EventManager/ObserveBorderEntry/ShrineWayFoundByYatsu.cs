@@ -9,21 +9,28 @@ namespace Main.EventManager
         {
             _borders.IsFromUnderStageToShrineWayBorderEnabled = true;
             await UniTask.WaitUntil(() => _borders.ShrineWayFoundedEvent.IsIn(_player.Position) is true, cancellationToken: ct);
+            await DoEvent(ct);
 
-            _player.IsPlayerControlEnabled = false;
-            await UniTask.WhenAll(
-                _objects.ShrineWayFoundByYatsuTimeline.PlayOnce(ct),
-                WhenCutScene(ct)
-            );
-            _yatsu.SpawnHere(_points.ShrineWayYatsuSpawnPoint);
-            _player.SetTransform(_points.ShrineWayPlayerTeleportPoint);
-            _player.IsPlayerControlEnabled = true;
+            async UniTask DoEvent(CancellationToken ct)
+            {
+                _player.IsPlayerControlEnabled = false;
+                _player.IsVisible = false;
 
+                await UniTask.WhenAll(
+                    _objects.ShrineWayFoundByYatsuTimeline.PlayOnce(ct),
+                    OnPlaying(ct)
+                );
+                _yatsu.SpawnHere(_points.ShrineWayYatsuSpawnPoint);
 
+                _player.IsVisible = true;
+                _player.IsPlayerControlEnabled = true;
+            }
 
-            async UniTask WhenCutScene(CancellationToken ct)
+            async UniTask OnPlaying(CancellationToken ct)
             {
                 await UniTask.NextFrame(cancellationToken: ct);
+
+                _player.SetTransform(_points.ShrineWayPlayerTeleportPoint);
 
                 _objects.ShrineWayRock.IsEnabled = true;
                 _borders.IsFromUnderStageToShrineWayBorderEnabled = false;
