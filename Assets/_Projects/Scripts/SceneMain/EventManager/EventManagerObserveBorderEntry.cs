@@ -37,6 +37,7 @@ namespace Main.EventManager
             VillageFarWayYatsuStepOnGlassPiece(ct).Forget();
             EnableGoUpOnCaveStairs(ct).Forget();
             EnableGoUpOnCaveExitStairs(ct).Forget();
+            PathWayDaughterSaysNotHere(ct).Forget();
         }
 
         // 後方置換されるかも
