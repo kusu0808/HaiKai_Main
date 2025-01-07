@@ -6,7 +6,7 @@ namespace Main.EventManager
 {
     public sealed partial class EventManager
     {
-        private async UniTaskVoid ShrineWayFoundedByYatsu(CancellationToken ct)
+        private async UniTaskVoid ShrineWayFoundByYatsu(CancellationToken ct)
         {
             _borders.IsFromUnderStageToShrineWayBorderEnabled = true;
             await UniTask.WaitUntil(() => _borders.ShrineWayFoundedEvent.IsIn(_player.Position) is true, cancellationToken: ct);
