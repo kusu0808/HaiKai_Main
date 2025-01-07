@@ -34,6 +34,8 @@ namespace Main.EventManager
             EnableGoUpOnWarehouseStairs(ct).Forget();
             VillageWayCannotGoBackAfterWarehouse(ct).Forget();
             VillageFarWayYatsuStepOnGlassPiece(ct).Forget();
+            EnableGoUpOnCaveStairs(ct).Forget();
+            EnableGoUpOnCaveExitStairs(ct).Forget();
         }
 
         // 後方置換されるかも
