@@ -22,6 +22,7 @@ namespace Main.EventManager
             WarehouseDeerFall(ct).Forget();
             VillageFarWayYatsuDaughterVoice(ct).Forget();
             VillageFarWayCutIvyYatsuComeFromCave(ct).Forget();
+            CaveGokiChanAppear(ct).Forget();
 
             // 繰り返し
             PlayWalkingSounds(ct);

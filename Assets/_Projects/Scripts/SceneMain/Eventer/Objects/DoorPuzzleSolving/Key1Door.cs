@@ -8,6 +8,12 @@ namespace Main.Eventer.Objects.DoorPuzzleSolving
     [Serializable]
     public sealed class Key1Door
     {
+        public enum Type
+        {
+            First,
+            Second
+        }
+
         [SerializeField, Required, SceneObjectsOnly, Tooltip("アクションできる範囲")]
         private Border _border;
         public Border Border => _border;

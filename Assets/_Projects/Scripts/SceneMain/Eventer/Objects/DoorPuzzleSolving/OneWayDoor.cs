@@ -15,7 +15,7 @@ namespace Main.Eventer.Objects.DoorPuzzleSolving
         [SerializeField, Required, SceneObjectsOnly]
         private SlideDoor _door;
 
-        public void Unlock()
+        public void Trigger()
         {
             _door?.Trigger();
         }
