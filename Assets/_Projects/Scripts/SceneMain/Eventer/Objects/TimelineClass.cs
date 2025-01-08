@@ -27,11 +27,17 @@ namespace Main.Eventer.Objects
             if (_root == null) return;
             if (_playableDirector == null) return;
 
-            _hasPlayed = true;
-
+            _playableDirector.stopped += OnStopped;
             _root.SetActive(true);
-            await UniTask.WaitUntil(() => _playableDirector.time >= _playableDirector.duration, cancellationToken: ct);
+            await UniTask.WaitUntil(() => _hasPlayed is true, cancellationToken: ct);
             _root.SetActive(false);
+            _playableDirector.stopped -= OnStopped;
+        }
+
+        private void OnStopped(PlayableDirector playableDirector)
+        {
+            if (playableDirector != _playableDirector) return;
+            _hasPlayed = true;
         }
     }
 }

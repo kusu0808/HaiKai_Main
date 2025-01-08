@@ -20,6 +20,7 @@ namespace Main.Eventer
         [SerializeField, Required, SceneObjectsOnly] private CharacterController _characterController;
         [SerializeField, Required, SceneObjectsOnly] private FirstPersonController _firstPersonController;
         [SerializeField, Required, SceneObjectsOnly] private Camera _camera;
+        [SerializeField, Required, SceneObjectsOnly] private MeshRenderer _meshRenderer;
 
         public Vector3 Position
         {
@@ -74,6 +75,20 @@ namespace Main.Eventer
             {
                 if (_transform == null) return;
                 _transform.localEulerAngles = value;
+            }
+        }
+
+        public bool IsVisible
+        {
+            get
+            {
+                if (_meshRenderer == null) return false;
+                return _meshRenderer.enabled;
+            }
+            set
+            {
+                if (_meshRenderer == null) return;
+                _meshRenderer.enabled = value;
             }
         }
 

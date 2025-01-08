@@ -16,7 +16,7 @@ namespace Main.EventManager
             VillageWayDeerAppear(ct).Forget();
             VillageWayBirdAppear(ct).Forget();
             HouseFeelYatsu(ct).Forget();
-            ShrineWayFoundedByYatsu(ct).Forget();
+            ShrineWayFoundByYatsu(ct).Forget();
             FromShrineUpWayToVillageFarWayEscapeFromYatsu(ct).Forget();
             VillageFarWayYatsuStopToiletKnock(ct).Forget();
             WarehouseDeerFall(ct).Forget();

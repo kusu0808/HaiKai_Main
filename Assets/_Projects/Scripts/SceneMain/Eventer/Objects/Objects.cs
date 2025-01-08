@@ -17,6 +17,10 @@ namespace Main.Eventer.Objects
         public BigIviesClass BigIvies => _bigIvies;
 
         [SerializeField, Required, SceneObjectsOnly]
+        private PlacedItemClass _shrineWayRock;
+        public PlacedItemClass ShrineWayRock => _shrineWayRock;
+
+        [SerializeField, Required, SceneObjectsOnly]
         private DeersClass _deers;
         public DeersClass Deers => _deers;
 
