@@ -6,6 +6,7 @@ using System;
 using IvyType = Main.Eventer.Objects.BigIviesClass.Type;
 using Key1DoorType = Main.Eventer.Objects.DoorPuzzleSolving.Key1Door.Type;
 using FinalKey2DoorType = Main.Eventer.Objects.DoorPuzzleSolving.FinalKey2Door.Type;
+using ChainType = Main.Eventer.Objects.DaughterChainClass.Type;
 
 namespace Main.EventManager
 {
@@ -69,6 +70,9 @@ namespace Main.EventManager
                 "ActionAgainstCollider/Event/DoorPuzzleSovingOneWayDoorKnob" => () => OpenCaveOneWayDoor(),
                 "ActionAgainstCollider/Event/DoorPuzzleSovingFinalKey2RightDoorKnob" => () => OpenCaveFinalKey2Door(FinalKey2DoorType.Right),
                 "ActionAgainstCollider/Event/DoorPuzzleSovingFinalKey2LeftDoorKnob" => () => OpenCaveFinalKey2Door(FinalKey2DoorType.Left),
+                "ActionAgainstCollider/Event/DaughterChain1" => () => CutChain(ChainType.Chain1),
+                "ActionAgainstCollider/Event/DaughterChain2" => () => CutChain(ChainType.Chain2),
+                "ActionAgainstCollider/Event/DaughterChain3" => () => CutChain(ChainType.Chain3),
                 _ => null
             };
         }
