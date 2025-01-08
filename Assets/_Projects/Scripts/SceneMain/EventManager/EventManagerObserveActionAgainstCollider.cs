@@ -70,9 +70,9 @@ namespace Main.EventManager
                 "ActionAgainstCollider/Event/DoorPuzzleSovingOneWayDoorKnob" => () => OpenCaveOneWayDoor(),
                 "ActionAgainstCollider/Event/DoorPuzzleSovingFinalKey2RightDoorKnob" => () => OpenCaveFinalKey2Door(FinalKey2DoorType.Right),
                 "ActionAgainstCollider/Event/DoorPuzzleSovingFinalKey2LeftDoorKnob" => () => OpenCaveFinalKey2Door(FinalKey2DoorType.Left),
-                "ActionAgainstCollider/Event/DaughterChain1" => () => CutChain(ChainType.Chain1),
-                "ActionAgainstCollider/Event/DaughterChain2" => () => CutChain(ChainType.Chain2),
-                "ActionAgainstCollider/Event/DaughterChain3" => () => CutChain(ChainType.Chain3),
+                "ActionAgainstCollider/Event/DaughterChain1" => () => CutChain(ChainType.Chain1, ctIfNeeded).Forget(),
+                "ActionAgainstCollider/Event/DaughterChain2" => () => CutChain(ChainType.Chain2, ctIfNeeded).Forget(),
+                "ActionAgainstCollider/Event/DaughterChain3" => () => CutChain(ChainType.Chain3, ctIfNeeded).Forget(),
                 _ => null
             };
         }
