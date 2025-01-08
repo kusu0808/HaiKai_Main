@@ -8,6 +8,7 @@ namespace Main.EventManager
     {
         private async UniTaskVoid BusStopEscape(CancellationToken ct)
         {
+            await UniTask.WaitUntil(() => _borders.IsFromUnderStageToShrineWayBorderEnabled is false, cancellationToken: ct);
             await UniTask.WaitUntil(() => _borders.BusStopEscape.IsIn(_player.Position) is true, cancellationToken: ct);
 
             //ヤツが車に轢かれるムービー再生
