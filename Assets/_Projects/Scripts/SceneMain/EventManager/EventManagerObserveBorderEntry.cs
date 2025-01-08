@@ -23,6 +23,7 @@ namespace Main.EventManager
             VillageFarWayYatsuDaughterVoice(ct).Forget();
             VillageFarWayCutIvyYatsuComeFromCave(ct).Forget();
             CaveGokiChanAppear(ct).Forget();
+            ShrineUpWayYatsuAppearAtLastEscape(ct).Forget();
 
             // 繰り返し
             PlayWalkingSounds(ct);
@@ -34,6 +35,9 @@ namespace Main.EventManager
             EnableGoUpOnWarehouseStairs(ct).Forget();
             VillageWayCannotGoBackAfterWarehouse(ct).Forget();
             VillageFarWayYatsuStepOnGlassPiece(ct).Forget();
+            EnableGoUpOnCaveStairs(ct).Forget();
+            EnableGoUpOnCaveExitStairs(ct).Forget();
+            PathWayDaughterSaysNotHere(ct).Forget();
         }
 
         // 後方置換されるかも

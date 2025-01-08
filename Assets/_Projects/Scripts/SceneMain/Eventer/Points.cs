@@ -43,6 +43,10 @@ namespace Main.Eventer
         private Transform _villageFarWayOnCutIvyYatsuSpawnPoint;
         public Transform VillageFarWayOnCutIvyYatsuSpawnPoint => _villageFarWayOnCutIvyYatsuSpawnPoint;
 
+        [SerializeField, Required, SceneObjectsOnly, Tooltip("神社で、鎖を切った時の、娘が出現する場所")]
+        private Transform _shrineDaughterSpawnPoint;
+        public Transform ShrineDaughterSpawnPoint => _shrineDaughterSpawnPoint;
+
         [SerializeField, Required, SceneObjectsOnly, Tooltip("神社上の道で、最後の脱出時にヤツが現れる時の、スポーン場所")]
         private Transform _shrineUpWayYatsuComeAtLastEscapeSpawnPoint;
         public Transform ShrineUpWayYatsuComeAtLastEscapeSpawnPoint => _shrineUpWayYatsuComeAtLastEscapeSpawnPoint;
