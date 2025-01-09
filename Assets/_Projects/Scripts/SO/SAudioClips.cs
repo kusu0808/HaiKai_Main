@@ -38,29 +38,17 @@ namespace SO
             private AudioClip _walkOnBrokenDish;
             public AudioClip WalkOnBrokenDish => _walkOnBrokenDish;
 
-            [SerializeField, Required, AssetsOnly, LabelText("移動、橋")]
-            private AudioClip _walkOnBridge;
-            public AudioClip WalkOnBridge => _walkOnBridge;
-
-            [SerializeField, Required, AssetsOnly, LabelText("移動、廊下")]
-            private AudioClip _walkOnCorridor;
-            public AudioClip WalkOnCorridor => _walkOnCorridor;
-
-            [SerializeField, Required, AssetsOnly, LabelText("移動、畳")]
-            private AudioClip _walkOnTatami;
-            public AudioClip WalkOnTatami => _walkOnTatami;
-
-            [SerializeField, Required, AssetsOnly, LabelText("移動、国道")]
-            private AudioClip _walkOnRoad;
-            public AudioClip WalkOnRoad => _walkOnRoad;
-
-            [SerializeField, Required, AssetsOnly, LabelText("移動、石階段")]
-            private AudioClip _walkOnStoneStairs;
-            public AudioClip WalkOnStoneStairs => _walkOnStoneStairs;
+             [SerializeField, Required, AssetsOnly, LabelText("移動、アスファルト")]
+            private AudioClip _walkOnAsphalt;
+            public AudioClip WalkOnAsphalt => _walkOnAsphalt;
 
             [SerializeField, Required, AssetsOnly, LabelText("移動、土")]
             private AudioClip _walkOnSoil;
             public AudioClip WalkOnSoil => _walkOnSoil;
+
+            [SerializeField, Required, AssetsOnly, LabelText("移動、廊下")]
+            private AudioClip _walkOnCorridor;
+            public AudioClip WalkOnCorridor => _walkOnCorridor;
 
             [SerializeField, Required, AssetsOnly, LabelText("ヤツがトイレのドアを叩く")]
             private AudioClip _yatsuKnockToiletDoor;
