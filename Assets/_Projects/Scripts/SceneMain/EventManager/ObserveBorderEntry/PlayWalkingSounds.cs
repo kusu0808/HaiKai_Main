@@ -14,28 +14,25 @@ namespace Main.EventManager
 {
     public sealed partial class EventManager
     {
-        private async void PlayWalkingSounds(CancellationToken ct)
+        private async UniTaskVoid PlayWalkingSounds(CancellationToken ct)
         {
-            // ずっと使い続けるので、特別に生成
-            AudioSource asphaltAS = gameObject.AddComponent<AudioSource>();
-            AudioSource soilAS = gameObject.AddComponent<AudioSource>();
-            AudioSource corridorAS = gameObject.AddComponent<AudioSource>();
+            Func<ReadOnlyCollection<Border>, bool> getIsInAndMoving = (borders) => borders.IsInAny(_player.Position) && _player.IsMoving;
 
             WalkingSound asphalt =
                 new WalkingSound(
                     MultiBorders.JoinAll(_borders.WalkingSounds.Road, _borders.WalkingSounds.StoneStairs),
-                    (borders) => borders.IsInAny(_player.Position) && _player.IsMoving, _audioClips.BGM.WalkOnAsphalt, asphaltAS)
-                .AddTo(asphaltAS);
+                    getIsInAndMoving, _audioClips.BGM.WalkOnAsphalt, gameObject)
+                .AddTo(gameObject);
             WalkingSound soil =
                 new WalkingSound(
                     MultiBorders.JoinAll(_borders.WalkingSounds.Soil),
-                    (borders) => borders.IsInAny(_player.Position) && _player.IsMoving, _audioClips.BGM.WalkOnSoil, soilAS)
-                .AddTo(soilAS);
+                    getIsInAndMoving, _audioClips.BGM.WalkOnSoil, gameObject)
+                .AddTo(gameObject);
             WalkingSound corridor =
                 new WalkingSound(
                     MultiBorders.JoinAll(_borders.WalkingSounds.Bridge, _borders.WalkingSounds.Corridor),
-                    (borders) => borders.IsInAny(_player.Position) && _player.IsMoving, _audioClips.BGM.WalkOnCorridor, corridorAS)
-                .AddTo(corridorAS);
+                    getIsInAndMoving, _audioClips.BGM.WalkOnCorridor, gameObject)
+                .AddTo(gameObject);
 
             try
             {
@@ -89,12 +86,12 @@ namespace Main.EventManager
 
             public WalkingSound(
                 ReadOnlyCollection<Border> borders,
-                Func<ReadOnlyCollection<Border>, bool> getIsInAndMoving, AudioClip audioClip, AudioSource audioSource
+                Func<ReadOnlyCollection<Border>, bool> getIsInAndMoving, AudioClip audioClip, GameObject audioSourceRoot
             )
             {
                 _borders = borders;
                 _audioClip = audioClip;
-                _audioSource = audioSource;
+                _audioSource = audioSourceRoot.AddComponent<AudioSource>(); // ずっと使い続けるので、特別に生成
 
                 ObserveMovingInBorder(getIsInAndMoving, cts.Token).Forget();
 
@@ -130,9 +127,11 @@ namespace Main.EventManager
                 cts?.Dispose();
                 _isPlaying?.Dispose();
 
+                Destroy(_audioSource);
+                _audioSource = null;
+
                 _borders = null;
                 _audioClip = null;
-                _audioSource = null;
             }
         }
     }
