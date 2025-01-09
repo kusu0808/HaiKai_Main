@@ -128,9 +128,11 @@ namespace Main.EventManager
             {
                 cts?.Cancel();
                 cts?.Dispose();
+                _isPlaying?.Dispose();
 
                 _borders = null;
                 _audioClip = null;
+                _audioSource = null;
             }
         }
     }
