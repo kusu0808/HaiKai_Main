@@ -30,12 +30,18 @@ namespace Main.EventManager
                 if (_yatsuKnockToiletDoorAudioSource != null) return;
                 _yatsuKnockToiletDoorAudioSource = _audioSources.GetNew();
                 _yatsuKnockToiletDoorAudioSource.Raise(_audioClips.BGM.YatsuKnockToiletDoor, SoundType.BGM);
+
+                _hasRunAwayFromFirstYatsu = true;
             }
             else
             {
                 if (_isPickUpSecretKeyEventEnabled is true)
                 {
-                    _uiElements.LogText.ShowAutomatically("化け物がいる、出るわけにはいかない");
+                    if (_hasRunAwayFromFirstYatsu is true)
+                    {
+                        _uiElements.LogText.ShowAutomatically("化け物がいる、出るわけにはいかない");
+                    }
+
                     return;
                 }
 

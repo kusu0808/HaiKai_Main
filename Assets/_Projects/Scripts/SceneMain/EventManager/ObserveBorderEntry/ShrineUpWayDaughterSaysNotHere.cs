@@ -13,7 +13,7 @@ namespace Main.EventManager
 
             while (true)
             {
-                await UniTask.WaitUntil(() => _borders.IsFromUnderStageToShrineWayBorderEnabled is false,
+                await UniTask.WaitUntil(() => _isPickUpSecretKeyEventEnabled is false,
                 cancellationToken: ct);
                 await UniTask.WaitUntil(() => cache.IsIn(_player.Position) is false, cancellationToken: ct);
                 await UniTask.WaitUntil(() => cache.IsIn(_player.Position) is true, cancellationToken: ct);

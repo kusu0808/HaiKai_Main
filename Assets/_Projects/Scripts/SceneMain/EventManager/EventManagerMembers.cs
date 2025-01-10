@@ -29,6 +29,7 @@ namespace Main.EventManager
 
         private AudioSource _yatsuKnockToiletDoorAudioSource = null;
 
+        private bool _hasRunAwayFromFirstYatsu = false; // 最初にヤツから逃げ切った段階でtrueになる
         private bool _isOpenToiletLockedDoorEventEnabled = true;
         private bool _isPickUpSecretKeyEventEnabled = true;
     }
