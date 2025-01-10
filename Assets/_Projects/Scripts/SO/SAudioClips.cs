@@ -38,7 +38,7 @@ namespace SO
             private AudioClip _walkOnBrokenDish;
             public AudioClip WalkOnBrokenDish => _walkOnBrokenDish;
 
-             [SerializeField, Required, AssetsOnly, LabelText("移動、アスファルト")]
+            [SerializeField, Required, AssetsOnly, LabelText("移動、アスファルト")]
             private AudioClip _walkOnAsphalt;
             public AudioClip WalkOnAsphalt => _walkOnAsphalt;
 
@@ -53,6 +53,10 @@ namespace SO
             [SerializeField, Required, AssetsOnly, LabelText("ヤツがトイレのドアを叩く")]
             private AudioClip _yatsuKnockToiletDoor;
             public AudioClip YatsuKnockToiletDoor => _yatsuKnockToiletDoor;
+
+            [SerializeField, Required, AssetsOnly, LabelText("ヤツに追われている")]
+            private AudioClip _chasedByYatsu;
+            public AudioClip ChasedByYatsu => _chasedByYatsu;
         }
 
         [Serializable]
