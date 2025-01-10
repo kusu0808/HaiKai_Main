@@ -62,7 +62,7 @@ namespace BorderSystem
             {
                 if (reference.IsNullExist())
                 {
-                    Debug.LogError("インスペクタでアタッチされていない参照が存在します。" +
+                    Debug.LogError($"{gameObject.name}: インスペクタでアタッチされていない参照が存在します。" +
                         "エラーが付随している場合、まずこの可能性を検討して下さい");
                     return;
                 }
@@ -87,7 +87,7 @@ namespace BorderSystem
                 // ピンの配置が適切かどうか、チェック
                 var posList = pinList.Select(e => e.position.XOZ_To_XY()).ToList();
                 string s = IsPinOK(posList.AsReadOnly());
-                if (s != null) Debug.LogWarning($"{s}。計算が正常に行われていない場合、まずこの可能性を検討してください");
+                if (s != null) Debug.LogWarning($"{gameObject.name}: {s}。計算が正常に行われていない場合、まずこの可能性を検討してください");
 
                 // アクティブなら、マテリアルと色を設定し、線を描画する
                 if (!isActive) return;
@@ -99,7 +99,7 @@ namespace BorderSystem
                 for (int i = 0; i < pinNum; i++) reference.LineRenderer.SetPosition(i, pinList[i].position);
                 reference.LineRenderer.SetPosition(pinNum, pinList[0].position);
             }
-            catch (Exception e) { Debug.LogError($"エラーがスローされました：{e}"); }
+            catch (Exception e) { Debug.LogError($"{gameObject.name}: エラーがスローされました：{e}"); }
         }
 
         /// <summary>

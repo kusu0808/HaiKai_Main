@@ -20,7 +20,6 @@ namespace Main
 
         private LoopedInt _itemIndex;
 
-        private GameObject _playerUI => _playerUICanvas.gameObject;
         private float _selectInput => InputGetter.Instance.PlayerSelect.Float;
 
         private static readonly Color32 LightWhite = new(255, 255, 255, 100);
@@ -28,7 +27,8 @@ namespace Main
 
         public async UniTaskVoid RollItem(CancellationToken ct)
         {
-            _playerUI.SetActive(true);
+            if (_playerUICanvas == null) return;
+            _playerUICanvas.gameObject.SetActive(true);
 
             _itemIndex = new(_itemSlots.Length, 0);
             UpdateItemSlots(Array.AsReadOnly(_itemSlots), 0);

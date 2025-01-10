@@ -7,10 +7,6 @@ namespace Main.Eventer.Borders
     [Serializable]
     public sealed class WalkingSounds
     {
-        [SerializeField, Required, SceneObjectsOnly, Tooltip("割れた皿(初回以外)")]
-        private MultiBorders _brokenDish;
-        public MultiBorders BrokenDish => _brokenDish;
-
         [SerializeField, Required, SceneObjectsOnly, Tooltip("橋")]
         private MultiBorders _bridge;
         public MultiBorders Bridge => _bridge;
@@ -18,10 +14,6 @@ namespace Main.Eventer.Borders
         [SerializeField, Required, SceneObjectsOnly, Tooltip("廊下")]
         private MultiBorders _corridor;
         public MultiBorders Corridor => _corridor;
-
-        [SerializeField, Required, SceneObjectsOnly, Tooltip("畳")]
-        private MultiBorders _tatami;
-        public MultiBorders Tatami => _tatami;
 
         [SerializeField, Required, SceneObjectsOnly, Tooltip("道路")]
         private MultiBorders _road;
