@@ -6,18 +6,13 @@ namespace Main.EventManager
 {
     public sealed partial class EventManager
     {
-        private async UniTaskVoid PickUpCup(CancellationToken ct)
+        private async UniTaskVoid VillageHouseReadPuzzleHintScroll(CancellationToken ct)
         {
-            if (_objects.ToiletCup.IsEnabled is false) return;
-
             PauseState.IsPaused = true;
-            "コップ入手開始".Warn();
+            "巻物を読み始める".Warn();
             await UniTask.Delay(1000, ignoreTimeScale: true, cancellationToken: ct);
-            "コップ入手終了".Warn();
+            "巻物を読み終わる".Warn();
             PauseState.IsPaused = false;
-
-            _uiElements.Cup.Obtain();
-            _objects.ToiletCup.IsEnabled = false;
         }
     }
 }

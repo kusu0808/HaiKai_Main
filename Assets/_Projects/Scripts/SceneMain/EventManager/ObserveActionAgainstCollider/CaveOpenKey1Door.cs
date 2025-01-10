@@ -5,7 +5,7 @@ namespace Main.EventManager
 {
     public sealed partial class EventManager
     {
-        private void OpenCaveKey1Door(Key1DoorType type)
+        private void CaveOpenKey1Door(Key1DoorType type)
         {
             Key1Door door = _objects.DoorPuzzleSolving.GetKey1Door(type);
 

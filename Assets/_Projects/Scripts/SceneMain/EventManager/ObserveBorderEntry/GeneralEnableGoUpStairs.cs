@@ -6,7 +6,7 @@ namespace Main.EventManager
 {
     public sealed partial class EventManager
     {
-        private async UniTaskVoid EnableGoUpStairs(CancellationToken ct)
+        private async UniTaskVoid GeneralEnableGoUpStairs(CancellationToken ct)
         {
             var borders = MultiBorders.New(
                 _borders.EnableGoUpOnEnteringHouse,

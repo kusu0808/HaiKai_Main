@@ -6,7 +6,7 @@ namespace Main.EventManager
 {
     public sealed partial class EventManager
     {
-        private async UniTaskVoid PickUpButaiSideKey(CancellationToken ct)
+        private async UniTaskVoid ShrineUpWayPickUpButaiSideKey(CancellationToken ct)
         {
             if (_objects.WarehouseKeyDoubled.IsEnabled is false) return;
 

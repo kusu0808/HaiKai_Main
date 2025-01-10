@@ -5,7 +5,7 @@ namespace Main.EventManager
 {
     public sealed partial class EventManager
     {
-        private void CutBigIvy(IvyType type)
+        private void GeneralCutBigIvy(IvyType type)
         {
             if (_uiElements.DaughterKnife.IsHolding() is true)
             {

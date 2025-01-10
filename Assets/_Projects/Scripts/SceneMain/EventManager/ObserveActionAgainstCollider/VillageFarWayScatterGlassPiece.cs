@@ -2,7 +2,7 @@ namespace Main.EventManager
 {
     public sealed partial class EventManager
     {
-        private void ScatterGlassPiece()
+        private void VillageFarWayScatterGlassPiece()
         {
             if (_uiElements.GlassShard.IsHolding() is true)
             {

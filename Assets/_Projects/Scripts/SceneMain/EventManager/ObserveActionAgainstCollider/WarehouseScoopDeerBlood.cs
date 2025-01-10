@@ -6,19 +6,19 @@ namespace Main.EventManager
 {
     public sealed partial class EventManager
     {
-        private async UniTaskVoid CrashCup(CancellationToken ct)
+        private async UniTaskVoid WarehouseScoopDeerBlood(CancellationToken ct)
         {
             if (_uiElements.Cup.IsHolding() is true)
             {
                 _uiElements.Cup.Release();
 
                 PauseState.IsPaused = true;
-                "ガラス片入手開始".Warn();
+                "血入りコップ入手開始".Warn();
                 await UniTask.Delay(1000, ignoreTimeScale: true, cancellationToken: ct);
-                "ガラス片入手終了".Warn();
+                "血入りコップ入手終了".Warn();
                 PauseState.IsPaused = false;
 
-                _uiElements.GlassShard.Obtain();
+                _uiElements.CupFilledWithBlood.Obtain();
             }
         }
     }

@@ -4,7 +4,7 @@ namespace Main.EventManager
 {
     public sealed partial class EventManager
     {
-        private void OpenCaveOneWayDoor()
+        private void CaveOpenOneWayDoor()
         {
             OneWayDoor door = _objects.DoorPuzzleSolving.OneWay;
 

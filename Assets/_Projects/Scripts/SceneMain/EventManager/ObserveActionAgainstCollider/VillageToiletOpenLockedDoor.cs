@@ -6,7 +6,7 @@ namespace Main.EventManager
 {
     public sealed partial class EventManager
     {
-        private async UniTaskVoid OpenToiletLockedDoor(CancellationToken ct)
+        private async UniTaskVoid VillageToiletOpenLockedDoor(CancellationToken ct)
         {
             if (_isOpenToiletLockedDoorEventEnabled is true)
             {

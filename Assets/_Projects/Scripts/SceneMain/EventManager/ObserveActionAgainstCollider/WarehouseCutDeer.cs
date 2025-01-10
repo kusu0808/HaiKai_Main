@@ -2,7 +2,7 @@ namespace Main.EventManager
 {
     public sealed partial class EventManager
     {
-        private void CutDeer()
+        private void WarehouseCutDeer()
         {
             if (_uiElements.DaughterKnife.IsHolding() is true)
             {

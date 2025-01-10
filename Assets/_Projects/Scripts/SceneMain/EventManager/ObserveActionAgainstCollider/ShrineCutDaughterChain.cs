@@ -6,7 +6,7 @@ namespace Main.EventManager
 {
     public sealed partial class EventManager
     {
-        private async UniTaskVoid CutChain(Type type, CancellationToken ct)
+        private async UniTaskVoid ShrineCutDaughterChain(Type type, CancellationToken ct)
         {
             var chain = _objects.DaughterChain;
 

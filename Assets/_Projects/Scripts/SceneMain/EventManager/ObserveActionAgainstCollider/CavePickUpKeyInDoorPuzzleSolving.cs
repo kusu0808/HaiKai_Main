@@ -6,7 +6,7 @@ namespace Main.EventManager
 {
     public sealed partial class EventManager
     {
-        private async UniTaskVoid PickUpKeyInDoorPuzzleSolving(CancellationToken ct)
+        private async UniTaskVoid CavePickUpKeyInDoorPuzzleSolving(CancellationToken ct)
         {
             if (_objects.KeyInDoorPuzzleSolving.IsEnabled is false) return;
 

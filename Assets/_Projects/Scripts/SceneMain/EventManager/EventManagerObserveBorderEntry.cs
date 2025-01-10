@@ -15,9 +15,9 @@ namespace Main.EventManager
             VillageWayDeerCry(ct).Forget();
             VillageWayDeerAppear(ct).Forget();
             VillageWayBirdAppear(ct).Forget();
-            HouseFeelYatsu(ct).Forget();
+            VillageHouseFeelYatsu(ct).Forget();
             ShrineWayFoundByYatsu(ct).Forget();
-            FromShrineUpWayToVillageFarWayEscapeFromYatsu(ct).Forget();
+            ShrineUpWayYatsuAppearOneByOne(ct).Forget();
             VillageFarWayYatsuStopToiletKnock(ct).Forget();
             WarehouseDeerFall(ct).Forget();
             VillageFarWayYatsuDaughterVoice(ct).Forget();
@@ -29,11 +29,11 @@ namespace Main.EventManager
             BusStopEscape(ct).Forget();
 
             // 繰り返し
-            PlayWalkingSounds(ct).Forget();
-            EnableGoUpStairs(ct).Forget();
+            GeneralPlayWalkingSounds(ct).Forget();
+            GeneralEnableGoUpStairs(ct).Forget();
             BusStopCannotMove(ct).Forget();
             PathWaySquat(ct).Forget();
-            UnderStageSquat(ct);
+            VillageUnderStageSquatAndGoThrough(ct);
             VillageWayCannotGoBackAfterWarehouse(ct).Forget();
             ShrineUpWayDaughterSaysNotHere(ct).Forget();
             PathWayDaughterSaysNotHere(ct).Forget();

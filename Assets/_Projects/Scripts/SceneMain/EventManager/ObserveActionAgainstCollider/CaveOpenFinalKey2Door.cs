@@ -6,7 +6,7 @@ namespace Main.EventManager
 {
     public sealed partial class EventManager
     {
-        private void OpenCaveFinalKey2Door(FinalKey2DoorType type)
+        private void CaveOpenFinalKey2Door(FinalKey2DoorType type)
         {
             FinalKey2Door door = _objects.DoorPuzzleSolving.FinalKey2;
             UIItemClass[] keys = _uiElements.KeysInFinalKey2Door;

@@ -12,7 +12,7 @@ namespace Main.EventManager
 {
     public sealed partial class EventManager
     {
-        private async UniTaskVoid PlayWalkingSounds(CancellationToken ct)
+        private async UniTaskVoid GeneralPlayWalkingSounds(CancellationToken ct)
         {
             Func<MultiBorders, bool> getIsInAndMoving = (borders) =>
             {

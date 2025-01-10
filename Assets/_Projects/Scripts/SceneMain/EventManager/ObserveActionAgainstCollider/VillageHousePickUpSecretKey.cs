@@ -6,7 +6,7 @@ namespace Main.EventManager
 {
     public sealed partial class EventManager
     {
-        private async UniTaskVoid PickUpSecretKey(CancellationToken ct)
+        private async UniTaskVoid VillageHousePickUpSecretKey(CancellationToken ct)
         {
             if (_objects.KokeshiSecretKey.IsEnabled is false) return;
 

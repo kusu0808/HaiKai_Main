@@ -2,7 +2,7 @@ namespace Main.EventManager
 {
     public sealed partial class EventManager
     {
-        private void OpenWarehouseOneWayDoor()
+        private void WarehouseOpenOneWayDoor()
         {
             if (_borders.IsFromUnderStageToShrineWayBorderEnabled is true)
             {

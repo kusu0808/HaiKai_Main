@@ -1,17 +1,15 @@
-using System;
 using System.Threading;
 using Cysharp.Threading.Tasks;
-using ES3Types;
-using General;
-using IA;
 using UnityEngine;
 
 namespace Main.EventManager
 {
     public sealed partial class EventManager
     {
-        private async UniTaskVoid ObserveRaycast(CancellationToken ct)
+        private async UniTaskVoid __ObserveRaycast(CancellationToken ct)
         {
+            // よく分からないのでオフにしておく
+#if false
             while (true)
             {
                 await UniTask.Yield(ct);
@@ -19,7 +17,7 @@ namespace Main.EventManager
                 Collider collider = _player.GetHitColliderFromCamera();
                 if (collider == null) {
                     _uiElements.Reticle.ChangeColor(false);
-                    continue;  
+                    continue;
                 }
 
                 bool flag = IfChangeReticle(collider.tag);
@@ -37,7 +35,9 @@ namespace Main.EventManager
                 "ActionAgainstCollider/Event/DaughterKnife" => true,
                 _ => false
             };
-
+#else
+            await UniTask.NextFrame(ct);
+#endif
         }
     }
 }

@@ -8,7 +8,7 @@ namespace Main.EventManager
 {
     public sealed partial class EventManager
     {
-        private void UnderStageSquat(CancellationToken ct)
+        private void VillageUnderStageSquatAndGoThrough(CancellationToken ct)
         {
             Impl(true, ct).Forget();
             Impl(false, ct).Forget();

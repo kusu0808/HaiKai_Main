@@ -2,7 +2,7 @@ namespace Main.EventManager
 {
     public sealed partial class EventManager
     {
-        private void OpenWarehouseLockedDoor()
+        private void WarehouseOpenLockedDoor()
         {
             if (_uiElements.WarehouseKey.IsHolding() is false)
             {

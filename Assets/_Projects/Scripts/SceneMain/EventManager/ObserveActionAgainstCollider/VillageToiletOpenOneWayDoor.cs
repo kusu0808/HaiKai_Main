@@ -2,7 +2,7 @@ namespace Main.EventManager
 {
     public sealed partial class EventManager
     {
-        private void OpenToiletOneWayDoor()
+        private void VillageToiletOpenOneWayDoor()
         {
             if (_borders.IsFromUnderStageToShrineWayBorderEnabled is true)
             {
