@@ -14,14 +14,28 @@ namespace Main.Eventer.Borders
         [SerializeField, Required, SceneObjectsOnly]
         private Border[] _elements;
 
-        public bool IsInAny(Vector3 pos)
+        /// <param name="layers">この中に入っていないものに関しては、判定を行わない(無視する)。空の場合は、レイヤーを考慮しないでメソッドの処理を行う</param>
+        public bool IsInAny(Vector3 pos, params int[] layers)
         {
             if (_elements is null) return false;
+            if (_elements.Length <= 0) return false;
+            if (layers is null) return false;
+
             foreach (Border border in _elements)
             {
                 if (border == null) continue;
-                if (border.IsIn(pos) is true) return true;
+
+                if (layers.Length > 0)
+                {
+                    foreach (int layer in layers)
+                        if (border.IsIn(pos, layer) is true) return true;
+                }
+                else
+                {
+                    if (border.IsIn(pos) is true) return true;
+                }
             }
+
             return false;
         }
 
@@ -47,14 +61,28 @@ namespace Main.Eventer.Borders
 
     public static class ReadOnlyCollectionBorderEx
     {
-        public static bool IsInAny(this ReadOnlyCollection<Border> borders, Vector3 pos)
+        /// <param name="layers">この中に入っていないものに関しては、判定を行わない(無視する)。空の場合は、レイヤーを考慮しないでメソッドの処理を行う</param>
+        public static bool IsInAny(this ReadOnlyCollection<Border> borders, Vector3 pos, params int[] layers)
         {
             if (borders is null) return false;
+            if (borders.Count <= 0) return false;
+            if (layers is null) return false;
+
             foreach (Border border in borders)
             {
                 if (border == null) continue;
-                if (border.IsIn(pos) is true) return true;
+
+                if (layers.Length > 0)
+                {
+                    foreach (int layer in layers)
+                        if (border.IsIn(pos, layer) is true) return true;
+                }
+                else
+                {
+                    if (border.IsIn(pos) is true) return true;
+                }
             }
+
             return false;
         }
     }

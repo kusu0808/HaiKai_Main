@@ -33,5 +33,8 @@ namespace Main.EventManager
         public static readonly float SlopLimitOnWarehouseStairs = 75;
         public static readonly float SlopLimitOnCaveStairs = 75;
         public static readonly float SlopLimitOnCaveExitStairs = 75;
+
+        public static readonly int WalkingSoundBorderLayerGeneral = 0;
+        public static readonly int WalkingSoundBorderLayerPathWayBridge = 1;
     }
 }

@@ -16,7 +16,27 @@ namespace Main.EventManager
     {
         private async UniTaskVoid PlayWalkingSounds(CancellationToken ct)
         {
-            Func<ReadOnlyCollection<Border>, bool> getIsInAndMoving = (borders) => borders.IsInAny(_player.Position) && _player.IsMoving;
+            Func<ReadOnlyCollection<Border>, bool> getIsInAndMoving = (borders) =>
+            {
+                if (borders is null) return false;
+
+                if (_player.IsMoving is false) return false;
+
+                if (_borders.IsFromUnderStageToShrineWayBorderEnabled)
+                {
+                    return borders.IsInAny(
+                        _player.Position,
+                        EventManagerConst.WalkingSoundBorderLayerGeneral, EventManagerConst.WalkingSoundBorderLayerPathWayBridge
+                    );
+                }
+                else
+                {
+                    return borders.IsInAny(
+                        _player.Position,
+                        EventManagerConst.WalkingSoundBorderLayerGeneral
+                    );
+                }
+            };
 
             WalkingSound asphalt =
                 new WalkingSound(
