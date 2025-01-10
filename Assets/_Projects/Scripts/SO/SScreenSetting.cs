@@ -3,8 +3,8 @@ using UnityEngine;
 
 namespace SO
 {
-    [CreateAssetMenu(fileName = "ScreenSetting", menuName = "SO/ScreenSetting")]
-    public class SScreenSetting : ScriptableObject
+    [CreateAssetMenu(fileName = "SScreenSetting", menuName = "SO/SScreenSetting")]
+    public sealed class SScreenSetting : AScriptableObjectInResourcesFolder<SScreenSetting>
     {
         [SerializeField, Header("スクリーン設定")]
         private SerializedScreenSetting _serializedScreenSetting;

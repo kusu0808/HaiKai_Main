@@ -1,4 +1,5 @@
 ﻿using System;
+using SO;
 using UnityEngine;
 using UnityEngine.Audio;
 
@@ -71,23 +72,23 @@ namespace General
             set => SetVolume(SoundType.SERough, value);
         }
 
-        public static AudioMixer AM { get; set; } = null;
+        private static AudioMixer AudioMixer => SAudioClips.Entity.AudioMixer;
 
         private static float GetVolume(SoundType type)
         {
-            if (AM == null) return default;
+            if (AudioMixer == null) return default;
             string paramName = type.ToParamNameString();
             if (string.IsNullOrEmpty(paramName)) return default;
-            AM.GetFloat(paramName, out float volume);
+            AudioMixer.GetFloat(paramName, out float volume);
             return volume;
         }
 
         private static void SetVolume(SoundType type, float newVolume)
         {
-            if (AM == null) return;
+            if (AudioMixer == null) return;
             string paramName = type.ToParamNameString();
             if (string.IsNullOrEmpty(paramName)) return;
-            AM.SetFloat(paramName, newVolume);
+            AudioMixer.SetFloat(paramName, newVolume);
         }
 
         private static string ToParamNameString(this SoundType type) => type switch

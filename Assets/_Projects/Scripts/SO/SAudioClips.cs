@@ -1,12 +1,17 @@
 using System;
 using Sirenix.OdinInspector;
 using UnityEngine;
+using UnityEngine.Audio;
 
 namespace SO
 {
     [CreateAssetMenu(fileName = "SAudioClips", menuName = "SO/SAudioClips")]
-    public sealed class SAudioClips : ScriptableObject
+    public sealed class SAudioClips : AScriptableObjectInResourcesFolder<SAudioClips>
     {
+        [SerializeField, Required, AssetsOnly]
+        private AudioMixer _audioMixer;
+        public AudioMixer AudioMixer => _audioMixer;
+
         [SerializeField, Required, LabelText("BGM")]
         private AudioClipsBGM _bgm;
         public AudioClipsBGM BGM => _bgm;
