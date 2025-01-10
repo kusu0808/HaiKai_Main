@@ -36,51 +36,51 @@ namespace Main.EventManager
                 }
             };
 
-            WalkingSound asphalt =
-                new WalkingSound(
+            WalkingSound asphalt = new WalkingSound(
                     MultiBorders.New(_borders.WalkingSounds.Road, _borders.WalkingSounds.StoneStairs),
-                    getIsInAndMoving, _audioClips.BGM.WalkOnAsphalt, gameObject)
+                    getIsInAndMoving, _audioClips.BGM.WalkOnAsphalt, gameObject
+                )
                 .AddTo(gameObject);
-            WalkingSound soil =
-                new WalkingSound(
+            WalkingSound soil = new WalkingSound(
                     MultiBorders.New(_borders.WalkingSounds.Soil),
-                    getIsInAndMoving, _audioClips.BGM.WalkOnSoil, gameObject)
+                    getIsInAndMoving, _audioClips.BGM.WalkOnSoil, gameObject
+                )
                 .AddTo(gameObject);
-            WalkingSound corridor =
-                new WalkingSound(
+            WalkingSound corridor = new WalkingSound(
                     MultiBorders.New(_borders.WalkingSounds.Bridge, _borders.WalkingSounds.Corridor),
-                    getIsInAndMoving, _audioClips.BGM.WalkOnCorridor, gameObject)
+                    getIsInAndMoving, _audioClips.BGM.WalkOnCorridor, gameObject
+                )
                 .AddTo(gameObject);
 
-            try
+            while (true)
             {
-                while (true)
+                CheckPriority(new WalkingSound[] { corridor, asphalt, soil });
+                await UniTask.NextFrame(ct);
+            }
+
+            static void CheckPriority(WalkingSound[] priority, int head = 0)
+            {
+                if (priority is null) return;
+
+                int len = priority.Length;
+                if (head >= len) return;
+
+                WalkingSound curr = priority[head];
+                curr.IsPressed = false;
+                if (head == len - 1) return;
+
+                if (curr.IsPlaying)
                 {
-                    corridor.IsPressed = false; // 第一優先
-
-                    if (corridor.IsPlaying) // 他の音は鳴らしてはいけない
+                    for (int i = head + 1; i < len; i++)
                     {
-                        asphalt.IsPressed = true;
-                        soil.IsPressed = true;
+                        priority[i].IsPressed = true;
                     }
-                    else
-                    {
-                        asphalt.IsPressed = false; // 第二優先
-
-                        if (asphalt.IsPlaying) // 他の音は鳴らしてはいけない
-                        {
-                            soil.IsPressed = true;
-                        }
-                        else
-                        {
-                            soil.IsPressed = false; // 第三優先
-                        }
-                    }
-
-                    await UniTask.NextFrame(ct);
+                }
+                else
+                {
+                    CheckPriority(priority, head + 1);
                 }
             }
-            catch (OperationCanceledException) { } // なぜかこれがスローされる
         }
 
         private void PlayGroundedSound() => _audioSources.GetNew().Raise(_audioClips.SE.Grounded, SoundType.SE);
