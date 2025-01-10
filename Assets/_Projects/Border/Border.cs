@@ -383,13 +383,13 @@ namespace BorderSystem
     [Serializable]
     public sealed class Property
     {
-        [SerializeField, Header("線を表示するか\n(ランタイム時は強制非表示)\nデフォルト：true")] private bool isShow = true;
+        [SerializeField, Header("線を表示するか(ランタイム時は強制非表示)(true)")] private bool isShow = true;
         public bool IsShow => isShow;
-        [SerializeField, Header("レイヤー\nデフォルト：0")] private int layer = 0;
+        [SerializeField, Header("レイヤー(0)")] private int layer = 0;
         public int Layer => layer;
-        [SerializeField, Range(0.0f, 10.0f), Header("線の太さ\nデフォルト：1.0f")] private float thin = 1.0f;
+        [SerializeField, Range(0.0f, 10.0f), Header("線の太さ(1.0f)")] private float thin = 1.0f;
         public float Thin => thin;
-        [SerializeField, Header("線の色\nデフォルト：0x83c35d")] private Color32 color = new(0x83, 0xc3, 0x5d, 0xff);
+        [SerializeField, Header("線の色(0x83c35d)")] private Color32 color = new(0x83, 0xc3, 0x5d, 0xff);
         public Color32 Color32 => color;
         public Color Color => color;
     }
@@ -397,13 +397,13 @@ namespace BorderSystem
     [Serializable]
     public sealed class Debugger
     {
-        [SerializeField, Header("以下の全ての設定を無効にする\nデフォルト：true")]
+        [SerializeField, Header("以下の全ての設定を無効にする(true)")]
         private bool isActive = true;
 
-        [SerializeField, Header("エディタでプレイモード中にもBorderを表示する\nデフォルト：false")]
+        [SerializeField, Header("エディタでプレイモード中にもBorderを表示する(false)")]
         private bool isShowBorderOnEditor_Playing = false;
         public bool IsShowBorderOnEditor_Playing => !isActive && isShowBorderOnEditor_Playing;
-        [SerializeField, Header("ランタイム中、毎フレームBorderを更新する\nデフォルト：false")]
+        [SerializeField, Header("ランタイム中、毎フレームBorderを更新する(false)")]
         private bool isUpdateBorderEveryFrameOnRunTime = false;
         public bool IsUpdateBorderEveryFrameOnRunTime => isUpdateBorderEveryFrameOnRunTime;
     }
