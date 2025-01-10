@@ -1,9 +1,7 @@
-using BorderSystem;
 using Cysharp.Threading.Tasks;
 using General;
 using Main.Eventer.Borders;
 using System;
-using System.Collections.ObjectModel;
 using System.Threading;
 using UniRx;
 using UnityEngine;
@@ -16,7 +14,7 @@ namespace Main.EventManager
     {
         private async UniTaskVoid PlayWalkingSounds(CancellationToken ct)
         {
-            Func<ReadOnlyCollection<Border>, bool> getIsInAndMoving = (borders) =>
+            Func<MultiBorders, bool> getIsInAndMoving = (borders) =>
             {
                 if (borders is null) return false;
 
@@ -40,17 +38,17 @@ namespace Main.EventManager
 
             WalkingSound asphalt =
                 new WalkingSound(
-                    MultiBorders.JoinAll(_borders.WalkingSounds.Road, _borders.WalkingSounds.StoneStairs),
+                    MultiBorders.New(_borders.WalkingSounds.Road, _borders.WalkingSounds.StoneStairs),
                     getIsInAndMoving, _audioClips.BGM.WalkOnAsphalt, gameObject)
                 .AddTo(gameObject);
             WalkingSound soil =
                 new WalkingSound(
-                    MultiBorders.JoinAll(_borders.WalkingSounds.Soil),
+                    MultiBorders.New(_borders.WalkingSounds.Soil),
                     getIsInAndMoving, _audioClips.BGM.WalkOnSoil, gameObject)
                 .AddTo(gameObject);
             WalkingSound corridor =
                 new WalkingSound(
-                    MultiBorders.JoinAll(_borders.WalkingSounds.Bridge, _borders.WalkingSounds.Corridor),
+                    MultiBorders.New(_borders.WalkingSounds.Bridge, _borders.WalkingSounds.Corridor),
                     getIsInAndMoving, _audioClips.BGM.WalkOnCorridor, gameObject)
                 .AddTo(gameObject);
 
@@ -89,7 +87,7 @@ namespace Main.EventManager
 
         private sealed class WalkingSound : IDisposable
         {
-            private ReadOnlyCollection<Border> _borders;
+            private MultiBorders _borders;
             private AudioClip _audioClip;
             private AudioSource _audioSource;
             private readonly CancellationTokenSource cts = new();
@@ -105,8 +103,8 @@ namespace Main.EventManager
             }
 
             public WalkingSound(
-                ReadOnlyCollection<Border> borders,
-                Func<ReadOnlyCollection<Border>, bool> getIsInAndMoving, AudioClip audioClip, GameObject audioSourceRoot
+                MultiBorders borders,
+                Func<MultiBorders, bool> getIsInAndMoving, AudioClip audioClip, GameObject audioSourceRoot
             )
             {
                 _borders = borders;
@@ -130,7 +128,7 @@ namespace Main.EventManager
                 });
             }
 
-            private async UniTask ObserveMovingInBorder(Func<ReadOnlyCollection<Border>, bool> getIsInAndMoving, CancellationToken ct)
+            private async UniTask ObserveMovingInBorder(Func<MultiBorders, bool> getIsInAndMoving, CancellationToken ct)
             {
                 while (true)
                 {

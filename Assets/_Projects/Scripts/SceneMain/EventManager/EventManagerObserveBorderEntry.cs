@@ -30,15 +30,11 @@ namespace Main.EventManager
 
             // 繰り返し
             PlayWalkingSounds(ct).Forget();
+            EnableGoUpStairs(ct).Forget();
             BusStopCannotMove(ct).Forget();
             PathWaySquat(ct).Forget();
-            EnableGoUpOnEnteringHouse(ct).Forget();
             UnderStageSquat(ct);
-            EnableGoUpOnShrineWay(ct).Forget();
-            EnableGoUpOnWarehouseStairs(ct).Forget();
             VillageWayCannotGoBackAfterWarehouse(ct).Forget();
-            EnableGoUpOnCaveStairs(ct).Forget();
-            EnableGoUpOnCaveExitStairs(ct).Forget();
             ShrineUpWayDaughterSaysNotHere(ct).Forget();
             PathWayDaughterSaysNotHere(ct).Forget();
         }

@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Linq;
+using Main.Eventer.Borders;
 using UnityEngine;
 
 namespace BorderSystem
@@ -375,6 +376,8 @@ namespace BorderSystem
             }
             catch (Exception) { return null; }
         }
+
+        public static implicit operator MultiBorders(Border border) => MultiBorders.New(border);
     }
 
     [Serializable]
