@@ -28,7 +28,7 @@ namespace Main.EventManager
             BusStopEscape(ct).Forget();
 
             // 繰り返し
-            PlayWalkingSounds(ct);
+            PlayWalkingSounds(ct).Forget();
             BusStopCannotMove(ct).Forget();
             PathWaySquat(ct).Forget();
             EnableGoUpOnEnteringHouse(ct).Forget();

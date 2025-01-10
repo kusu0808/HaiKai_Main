@@ -12,7 +12,7 @@ namespace Main.EventManager
             await Initialize(ct);
             ObserveActionAgainstCollider(ct).Forget();
             ObserveBorderEntry(ct);
-            ObserveRaycast(ct).Forget();       
+            ObserveRaycast(ct).Forget();
         }
     }
 }
