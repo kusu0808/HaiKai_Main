@@ -23,6 +23,7 @@ namespace Main.EventManager
                 _daughter.SpawnHere(_points.ShrineDaughterSpawnPoint);
                 _daughter.ChangeAnimationModeFromEnterToEscape();
                 await _uiElements.BlackImage.FadeIn(EventManagerConst.FadeInDuration, ct);
+                _hasSavedDaughter = true;
             }
         }
     }

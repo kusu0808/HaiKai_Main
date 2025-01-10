@@ -7,7 +7,7 @@ namespace Main.EventManager
     {
         private async UniTaskVoid ShrineUpWayYatsuAppearAtLastEscape(CancellationToken ct)
         {
-            await UniTask.WaitUntil(() => _isPickUpSecretKeyEventEnabled is false, cancellationToken: ct);
+            await UniTask.WaitUntil(() => _hasSavedDaughter is true, cancellationToken: ct);
             await UniTask.WaitUntil(() => _borders.ShrineUpWayYatsuAppearAtLastEscape.IsIn(_player.Position) is true, cancellationToken: ct);
             _yatsu.SpawnHere(_points.ShrineUpWayYatsuComeAtLastEscapeSpawnPoint);
         }
