@@ -45,6 +45,9 @@ namespace Main.EventManager
                     return;
                 }
 
+                if (_hasDecidedNotToTurnBack is true) return;
+                _hasDecidedNotToTurnBack = true;
+
                 _uiElements.LogText.ShowAutomatically("ここまで来たらもう引き返せない");
 
                 await UniTask.Delay(1000, ignoreTimeScale: true, cancellationToken: ct);
