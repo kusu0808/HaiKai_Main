@@ -1,5 +1,4 @@
 
-using System;
 using System.Threading;
 using Cysharp.Threading.Tasks;
 using Cysharp.Threading.Tasks.Linq;
@@ -101,7 +100,7 @@ namespace Main.Eventer.PlayerChasingCharacter
             OnDespawn();
         }
 
-        public float Speed
+        protected float Speed
         {
             get
             {
@@ -116,7 +115,7 @@ namespace Main.Eventer.PlayerChasingCharacter
             }
         }
 
-        public float AngularSpeed
+        protected float AngularSpeed
         {
             get
             {
@@ -131,7 +130,7 @@ namespace Main.Eventer.PlayerChasingCharacter
             }
         }
 
-        public float Acceleration
+        protected float Acceleration
         {
             get
             {

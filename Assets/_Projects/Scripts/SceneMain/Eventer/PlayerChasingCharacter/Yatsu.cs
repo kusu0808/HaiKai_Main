@@ -32,6 +32,9 @@ namespace Main.Eventer.PlayerChasingCharacter
             }
         }
 
+        public bool IsSlow { set { Speed = value ? 0 : InitSpeed; } }
+        public bool IsFast { set { Speed = value ? InitSpeed * 3 : InitSpeed; } }
+
         protected override void ChasePlayerOnUpdateIfAvailableWithoutNullCheck(Transform playerTransform)
         {
             if (IsSteppingOnGlassShard is true) return;
