@@ -13,9 +13,7 @@ namespace Main.EventManager
     {
         [SerializeField] private Debug _debug;
         [Space(25)]
-        [SerializeField, AssetsOnly, InlineEditor(InlineEditorModes.FullEditor)] private SAudioClips _audioClips;
         [SerializeField, SceneObjectsOnly] private AudioSources _audioSources;
-        [Space(25)]
         [SerializeField] private PlayerCollision _playerCollision;
         [SerializeField] private Objects _objects;
         [SerializeField] private Points _points;
@@ -27,9 +25,14 @@ namespace Main.EventManager
         [Space(25)]
         [SerializeField] private BusMover _busMover;
 
+        private SAudioClips _audioClips => SAudioClips.Entity;
+
         private AudioSource _yatsuKnockToiletDoorAudioSource = null;
 
+        private bool _hasRunAwayFromFirstYatsu = false; // 最初にヤツから逃げ切った段階でtrueになる
         private bool _isOpenToiletLockedDoorEventEnabled = true;
         private bool _isPickUpSecretKeyEventEnabled = true;
+        private bool _hasDecidedNotToTurnBack = false; // 秘密の鍵を入手後、トイレのドアをくぐった段階でtrueになる
+        private bool _hasSavedDaughter = false; // 娘を助けた段階でtrueになる
     }
 }

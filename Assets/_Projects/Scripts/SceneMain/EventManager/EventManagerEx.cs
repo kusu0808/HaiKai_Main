@@ -28,10 +28,9 @@ namespace Main.EventManager
         public static readonly float RayMaxDistance = 2;
 
         public static readonly float SlopLimitInit = 45.1f;
-        public static readonly float SlopLimitOnEnteringHouse = 89;
-        public static readonly float SlopLimitOnShrineWay = 75;
-        public static readonly float SlopLimitOnWarehouseStairs = 75;
-        public static readonly float SlopLimitOnCaveStairs = 75;
-        public static readonly float SlopLimitOnCaveExitStairs = 75;
+        public static readonly float SlopLimitOnStairs = 85;
+
+        public static readonly int WalkingSoundBorderLayerGeneral = 0;
+        public static readonly int WalkingSoundBorderLayerPathWayBridge = 1;
     }
 }

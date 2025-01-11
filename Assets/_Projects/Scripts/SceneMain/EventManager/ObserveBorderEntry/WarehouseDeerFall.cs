@@ -9,7 +9,6 @@ namespace Main.EventManager
         private async UniTaskVoid WarehouseDeerFall(CancellationToken ct)
         {
             await UniTask.WaitUntil(() => _borders.WarehouseDeerFall.IsIn(_player.Position) is true, cancellationToken: ct);
-            "鎖付きの鹿を落下させる".Warn();
             _objects.Deers.Fall();
         }
     }

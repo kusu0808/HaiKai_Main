@@ -15,30 +15,26 @@ namespace Main.EventManager
             VillageWayDeerCry(ct).Forget();
             VillageWayDeerAppear(ct).Forget();
             VillageWayBirdAppear(ct).Forget();
-            HouseFeelYatsu(ct).Forget();
+            VillageHouseFeelYatsu(ct).Forget();
             ShrineWayFoundByYatsu(ct).Forget();
-            FromShrineUpWayToVillageFarWayEscapeFromYatsu(ct).Forget();
+            ShrineUpWayYatsuAppearOneByOne(ct).Forget();
             VillageFarWayYatsuStopToiletKnock(ct).Forget();
             WarehouseDeerFall(ct).Forget();
             VillageFarWayYatsuDaughterVoice(ct).Forget();
             VillageFarWayCutIvyYatsuComeFromCave(ct).Forget();
+            VillageFarWayYatsuStepOnGlassPiece(ct).Forget();
             CaveGokiChanAppear(ct).Forget();
             CaveExitYatsuVoice(ct).Forget();
             ShrineUpWayYatsuAppearAtLastEscape(ct).Forget();
             BusStopEscape(ct).Forget();
 
             // 繰り返し
-            PlayWalkingSounds(ct);
+            GeneralPlayWalkingSounds(ct).Forget();
+            GeneralEnableGoUpStairs(ct).Forget();
             BusStopCannotMove(ct).Forget();
             PathWaySquat(ct).Forget();
-            EnableGoUpOnEnteringHouse(ct).Forget();
-            UnderStageSquat(ct);
-            EnableGoUpOnShrineWay(ct).Forget();
-            EnableGoUpOnWarehouseStairs(ct).Forget();
+            VillageUnderStageSquatAndGoThrough(ct);
             VillageWayCannotGoBackAfterWarehouse(ct).Forget();
-            VillageFarWayYatsuStepOnGlassPiece(ct).Forget();
-            EnableGoUpOnCaveStairs(ct).Forget();
-            EnableGoUpOnCaveExitStairs(ct).Forget();
             ShrineUpWayDaughterSaysNotHere(ct).Forget();
             PathWayDaughterSaysNotHere(ct).Forget();
         }

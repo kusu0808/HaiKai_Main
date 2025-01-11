@@ -17,23 +17,23 @@ namespace Main.Eventer.Borders
         public Element IsInAny(Vector3 pos, bool isBorderInType, params int[] layers)
         {
             if (_elements is null) return null;
+            if (_elements.Length <= 0) return null;
             if (layers is null) return null;
-
-            int len = _elements.Length;
-            if (len <= 0) return null;
-
-            bool isLayerConsidered = layers.Length > 0;
 
             foreach (Element element in _elements)
             {
-                if (isLayerConsidered)
+                if (element is null) continue;
+                Border border = element.GetBorder(isBorderInType);
+                if (border == null) continue;
+
+                if (layers.Length > 0)
                 {
                     foreach (int layer in layers)
-                        if (element.GetBorder(isBorderInType).IsIn(pos, layer) is true) return element;
+                        if (border.IsIn(pos, layer) is true) return element;
                 }
                 else
                 {
-                    if (element.GetBorder(isBorderInType).IsIn(pos) is true) return element;
+                    if (border.IsIn(pos) is true) return element;
                 }
             }
 

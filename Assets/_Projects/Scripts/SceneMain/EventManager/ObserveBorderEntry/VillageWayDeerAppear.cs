@@ -12,7 +12,7 @@ namespace Main.EventManager
             _audioSources.GetNew().Raise(_audioClips.Voice.DeerCry, SoundType.Voice);
             _audioSources.GetNew().Raise(_audioClips.SE.DeerJumpOut, SoundType.SE);
 
-            "適当に1秒待ってから逃げていくSEを再生、鹿が逃げていく".Warn();
+            "鹿が逃げていく".Warn();
             await UniTask.Delay(1000, cancellationToken: ct);
             _audioSources.GetNew().Raise(_audioClips.SE.DeerRunAway, SoundType.SE);
         }

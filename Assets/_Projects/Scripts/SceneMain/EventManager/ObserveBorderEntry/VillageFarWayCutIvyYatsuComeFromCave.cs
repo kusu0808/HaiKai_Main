@@ -7,6 +7,7 @@ namespace Main.EventManager
     {
         private async UniTaskVoid VillageFarWayCutIvyYatsuComeFromCave(CancellationToken ct)
         {
+            await UniTask.WaitUntil(() => _borders.IsFromUnderStageToShrineWayBorderEnabled is false, cancellationToken: ct);
             await UniTask.WaitUntil(() => _borders.VillageFarWayCutIvyYatsuComeFromCave.IsIn(_player.Position) is true, cancellationToken: ct);
             _yatsu.SpawnHere(_points.VillageFarWayOnCutIvyYatsuSpawnPoint);
         }

@@ -1,8 +1,6 @@
 using Cysharp.Threading.Tasks;
 using System.Threading;
-using BorderSystem;
 using General;
-using UnityEngine;
 
 namespace Main.EventManager
 {
@@ -10,20 +8,14 @@ namespace Main.EventManager
     {
         private async UniTaskVoid VillageFarWayYatsuStepOnGlassPiece(CancellationToken ct)
         {
-            if (_objects.VillageFarWayScatteredGlassPiece.IsEnabled is false) return;
+            await UniTask.WaitUntil(() => _objects.VillageFarWayScatteredGlassPiece.IsEnabled is true, cancellationToken: ct);
+            await UniTask.WaitUntil(() => _borders.VillageFarWayYatsuStepOnGlassPiece.IsIn(_yatsu.Position) is true, cancellationToken: ct);
 
-            Border cache = _borders.VillageFarWayYatsuStepOnGlassPiece;
-
-            bool IsMovingOnClassPiece() => cache.IsIn(_yatsu.Position) is true;
-
-            while (true)
-            {
-                await UniTask.WaitUntil(() => IsMovingOnClassPiece() is true, cancellationToken: ct);
-                AudioSource audioSource = _audioSources.GetNew();
-                audioSource.Raise(_audioClips.BGM.WalkOnBrokenDish, SoundType.BGM);
-                await UniTask.WaitUntil(() => IsMovingOnClassPiece() is false, cancellationToken: ct);
-                audioSource.Stop();
-            }
+            _yatsu.IsSlow = true;
+            _audioSources.GetNew().Raise(_audioClips.Voice.YaTsuDamagedVoice, SoundType.Voice);
+            await UniTask.WaitForSeconds(1.0f, cancellationToken: ct);
+            _yatsu.Despawn();
+            _yatsu.IsSlow = false;
         }
     }
 }

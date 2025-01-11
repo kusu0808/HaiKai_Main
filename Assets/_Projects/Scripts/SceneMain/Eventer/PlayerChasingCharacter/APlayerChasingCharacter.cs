@@ -1,5 +1,5 @@
 
-using System;
+using System.Threading;
 using Cysharp.Threading.Tasks;
 using Cysharp.Threading.Tasks.Linq;
 using Cysharp.Threading.Tasks.Triggers;
@@ -44,9 +44,12 @@ namespace Main.Eventer.PlayerChasingCharacter
 
                     if (monoBehaviourComponent != null)
                     {
-                        monoBehaviourComponent.GetAsyncUpdateTrigger().
-                        Subscribe(_ => ChasePlayerOnUpdateIfAvailable(_playerTransform)).
-                        AddTo(monoBehaviourComponent.destroyCancellationToken);
+                        OnEnable();
+
+                        CancellationToken ct = monoBehaviourComponent.destroyCancellationToken;
+
+                        monoBehaviourComponent.GetAsyncUpdateTrigger().Subscribe(_ => ChasePlayerOnUpdateIfAvailable(_playerTransform)).AddTo(ct);
+                        monoBehaviourComponent.GetAsyncDisableTrigger().Subscribe(_ => OnDisable()).AddTo(ct);
                     }
                 }
             }
@@ -69,6 +72,8 @@ namespace Main.Eventer.PlayerChasingCharacter
 
         protected virtual void OnSpawn() { }
         protected virtual void OnDespawn() { }
+        protected virtual void OnEnable() { }
+        protected virtual void OnDisable() { }
 
         public void InitNavMeshAgent()
         {
@@ -95,7 +100,7 @@ namespace Main.Eventer.PlayerChasingCharacter
             OnDespawn();
         }
 
-        public float Speed
+        protected float Speed
         {
             get
             {
@@ -110,7 +115,7 @@ namespace Main.Eventer.PlayerChasingCharacter
             }
         }
 
-        public float AngularSpeed
+        protected float AngularSpeed
         {
             get
             {
@@ -125,7 +130,7 @@ namespace Main.Eventer.PlayerChasingCharacter
             }
         }
 
-        public float Acceleration
+        protected float Acceleration
         {
             get
             {

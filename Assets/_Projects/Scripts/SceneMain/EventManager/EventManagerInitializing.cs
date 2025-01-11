@@ -25,6 +25,7 @@ namespace Main.EventManager
             _player.SubscribeYatsuCollision();
             _daughter.SpawnHere(_points.RoadWayDaughterSpawnPoint);
             _player.SubscribeGrounded(PlayGroundedSound);
+            _yatsu.ChasedBGM = _audioClips.BGM.ChasedByYatsu;
 
             if (_debug.IsEnabled) InitializeDebugProperty();
 

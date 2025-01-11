@@ -39,7 +39,7 @@ namespace General
 
         [SerializeField, Header("垂直同期はオンか？")]
         private bool _isVsyncOn;
-        [SerializeField, Range(30, 240), Header("垂直同期がオフなら、\nターゲットフレームレートはいくつか？")]
+        [SerializeField, Range(30, 240), Header("(垂直同期がオフの場合)ターゲットフレームレート")]
         private int _targetFrameRate;
         public (bool isVsyncOn, int targetFrameRate) Display => (_isVsyncOn, _targetFrameRate);
     }
