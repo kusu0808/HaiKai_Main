@@ -11,36 +11,21 @@ namespace Main.Eventer.UIElements
         [SerializeField, Required, SceneObjectsOnly]
         private Image _reticleImage;
 
-        [SerializeField, Required, AssetsOnly]
-        private Sprite _normalSprite;
+        public static Color ColorNormal => Color.white;
+        public static Color ColorActionAgainstCollider => Color.red;
 
-        [SerializeField, Required, AssetsOnly]
-        private Sprite _clickSprite;
-
-        public enum Type
+        public Color Color
         {
-            Normal,
-            Click
-        }
-
-        public void SetType(Type type)
-        {
-            Sprite newSprite = type switch
+            get
             {
-                Type.Normal => _normalSprite,
-                Type.Click => _clickSprite,
-                _ => null
-            };
-            if (newSprite == null) return;
-
-            if (_reticleImage == null) return;
-            _reticleImage.sprite = newSprite;
-        }
-
-        public void ChangeColor(bool red)
-        {
-            if (_reticleImage == null) return;
-            _reticleImage.color = red ? Color.red : Color.white;
+                if (_reticleImage == null) return default;
+                return _reticleImage.color;
+            }
+            set
+            {
+                if (_reticleImage == null) return;
+                _reticleImage.color = value;
+            }
         }
     }
 }
