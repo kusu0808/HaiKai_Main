@@ -1,3 +1,5 @@
+using UnityEngine;
+
 namespace Main.EventManager
 {
     public sealed partial class EventManager
@@ -10,6 +12,9 @@ namespace Main.EventManager
                 _uiElements.CupFilledWithBlood.Release();
                 _uiElements.Cup.Obtain();
                 _objects.KokeshiHead.IsEnabled = false;
+
+                AudioSource audioSource = _audioSources.VillageToiletYatsuKnockDoor;
+                if (audioSource != null) audioSource.Stop();
             }
         }
     }

@@ -114,7 +114,7 @@ namespace IA
                 {
                     ""name"": """",
                     ""id"": ""28949c21-3b1b-4bb6-8a07-afc49ec9de20"",
-                    ""path"": ""<Keyboard>/space"",
+                    ""path"": ""<Keyboard>/w"",
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": """",

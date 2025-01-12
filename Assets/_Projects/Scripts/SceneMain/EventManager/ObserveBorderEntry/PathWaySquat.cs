@@ -23,8 +23,8 @@ namespace Main.EventManager
 
                 TeleportBorder cache = isGoingToTheBack ? _borders.PathWaySquat1 : _borders.PathWaySquat2;
 
-                string text = isFarewellTurn ? "ここ、すごく狭いね (アクション長押しで通る)" : "(アクション長押しで通る)";
-                _uiElements.LogText.ShowManually(text);
+                _uiElements.LogText.ShowManually("[くぐる(Wキー長押し)]");
+                await UniTask.WaitForSeconds(0.5f, cancellationToken: ct);
                 int j = await UniTask.WhenAny(
                     UniTask.WaitUntil(() => cache.In.IsIn(_player.Position) is false, cancellationToken: ct),
                     UniTask.WaitUntil(() => InputGetter.Instance.PlayerSpecialAction.Bool, cancellationToken: ct));

@@ -11,6 +11,10 @@ namespace Main.Eventer
         [SerializeField, Required, SceneObjectsOnly, LabelText("ルート"), Tooltip("この配下の子オブジェクトは全て、AudioSourceコンポーネントのみを持っている前提")]
         private GameObject _root;
 
+        [SerializeField, Required, SceneObjectsOnly]
+        private AudioSource _villageToiletYatsuKnockDoor;
+        public AudioSource VillageToiletYatsuKnockDoor => _villageToiletYatsuKnockDoor;
+
         private AudioSource[] _audioSources = null;
 
         public AudioSource GetNew()

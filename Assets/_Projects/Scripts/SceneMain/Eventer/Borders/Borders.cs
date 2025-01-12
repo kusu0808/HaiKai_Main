@@ -92,10 +92,6 @@ namespace Main.Eventer.Borders
         private Border _villageFarWayYatsuComeFromCave;
         public Border VillageFarWayYatsuComeFromCave => _villageFarWayYatsuComeFromCave;
 
-        [SerializeField, Required, SceneObjectsOnly, Tooltip("奥の村道：ヤツがトイレを叩く音が止む")]
-        private Border _villageFarWayYatsuStopToiletSound;
-        public Border VillageFarWayYatsuStopToiletSound => _villageFarWayYatsuStopToiletSound;
-
         [SerializeField, Required, SceneObjectsOnly, Tooltip("倉庫：階段だけ登れる角度が変わる")]
         private Border _enableGoUpOnWarehouseStairs;
         public Border EnableGoUpOnWarehouseStairs => _enableGoUpOnWarehouseStairs;
