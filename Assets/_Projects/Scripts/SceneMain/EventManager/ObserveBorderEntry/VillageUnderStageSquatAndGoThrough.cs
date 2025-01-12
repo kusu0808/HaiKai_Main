@@ -39,7 +39,8 @@ namespace Main.EventManager
                 {
                     var element = await WaitUntilIsInAny(ct);
 
-                    _uiElements.LogText.ShowManually(isEnter ? "(アクション長押しで入る)" : "(アクション長押しで出る)");
+                    _uiElements.LogText.ShowManually(isEnter ? "[くぐる(Wキー長押し)]" : "[ぬける(Wキー長押し)]");
+                    await UniTask.WaitForSeconds(0.5f, cancellationToken: ct);
                     int j = await UniTask.WhenAny(
                         UniTask.WaitUntil(() => element.GetBorder(isEnter).IsIn(_player.Position) is false, cancellationToken: ct),
                         UniTask.WaitUntil(() => InputGetter.Instance.PlayerSpecialAction.Bool, cancellationToken: ct));
