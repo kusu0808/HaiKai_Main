@@ -62,6 +62,10 @@ namespace Main.Eventer.UIElements
         private UIItemClass _keyInDoorPuzzleSolving;
         public UIItemClass KeyInDoorPuzzleSolving => _keyInDoorPuzzleSolving;
 
+        [SerializeField, Required, SceneObjectsOnly]
+        private ViewingItemClass _kokeshiScroll;
+        public ViewingItemClass KokeshiScroll => _kokeshiScroll;
+
         private UIItemClass[] _keysInFinalKey2Door;
         public UIItemClass[] KeysInFinalKey2Door => _keysInFinalKey2Door;
 

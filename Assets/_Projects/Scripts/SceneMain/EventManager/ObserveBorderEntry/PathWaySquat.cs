@@ -39,7 +39,7 @@ namespace Main.EventManager
                 isSeparatedFromDaughter = true;
                 _daughter.Despawn();
                 _objects.DaughterKnife.IsEnabled = true;
-                _audioSources.GetNew().Raise(_audioClips.Voice.DaughterScream, SoundType.Voice);
+                _audioSources.GetNew().Raise(_audioClips.Voice.DaughterKidnapped, SoundType.Voice);
             }
         }
     }

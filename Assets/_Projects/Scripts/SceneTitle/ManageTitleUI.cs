@@ -15,25 +15,12 @@ namespace Title
 
         private void OnEnable()
         {
-            _startButton.onClick.AddListener(StartFromBeginning);
-            _continueButton.onClick.AddListener(ContinueAndStart);
+            _startButton.onClick.AddListener(() => Scene.ID.Main.LoadAsync().Forget());
+            _continueButton.onClick.AddListener(() => Scene.ID.Main.LoadAsync().Forget());
             _settingButton.onClick.AddListener(_triggerSettingUI.Open);
             _quitButton.onClick.AddListener(QuitGame);
         }
 
-        /// <summary>
-        /// 後方互換
-        /// </summary>
-        private void StartFromBeginning() => Scene.ID.Main.LoadAsync().Forget();
-
-        /// <summary>
-        /// 後方互換
-        /// </summary>
-        private void ContinueAndStart() => Scene.ID.Main.LoadAsync().Forget();
-
-        /// <summary>
-        /// 後方互換
-        /// </summary>
         private void QuitGame()
         {
 #if UNITY_EDITOR

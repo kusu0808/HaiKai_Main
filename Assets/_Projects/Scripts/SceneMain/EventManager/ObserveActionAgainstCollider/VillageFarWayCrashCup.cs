@@ -1,23 +1,16 @@
-using System.Threading;
-using Cysharp.Threading.Tasks;
 using General;
 
 namespace Main.EventManager
 {
     public sealed partial class EventManager
     {
-        private async UniTaskVoid VillageFarWayCrashCup(CancellationToken ct)
+        private void VillageFarWayCrashCup()
         {
             if (_uiElements.Cup.IsHolding() is true)
             {
+                _audioSources.GetNew().Raise(_audioClips.SE.CupBreaking, SoundType.SE);
+                _uiElements.LogText.ShowAutomatically("コップを割った");
                 _uiElements.Cup.Release();
-
-                PauseState.IsPaused = true;
-                "ガラス片入手開始".Warn();
-                await UniTask.Delay(1000, ignoreTimeScale: true, cancellationToken: ct);
-                "ガラス片入手終了".Warn();
-                PauseState.IsPaused = false;
-
                 _uiElements.GlassShard.Obtain();
             }
         }

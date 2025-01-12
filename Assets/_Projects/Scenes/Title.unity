@@ -625,6 +625,11 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 1201073585983525576, guid: adc89608486bce74c96695d3ac6984e2,
+        type: 3}
+      propertyPath: m_AnchoredPosition.y
+      value: -184
+      objectReference: {fileID: 0}
     - target: {fileID: 2880717016277239731, guid: adc89608486bce74c96695d3ac6984e2,
         type: 3}
       propertyPath: m_fontAsset
@@ -702,6 +707,11 @@ PrefabInstance:
       propertyPath: _triggerSettingUI
       value: 
       objectReference: {fileID: 758137909}
+    - target: {fileID: 6658389007682165105, guid: adc89608486bce74c96695d3ac6984e2,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 6659543832924193731, guid: adc89608486bce74c96695d3ac6984e2,
         type: 3}
       propertyPath: m_fontAsset

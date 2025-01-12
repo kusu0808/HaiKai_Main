@@ -1,6 +1,6 @@
 using System.Threading;
 using Cysharp.Threading.Tasks;
-using General;
+using IA;
 
 namespace Main.EventManager
 {
@@ -9,9 +9,9 @@ namespace Main.EventManager
         private async UniTaskVoid VillageHouseReadPuzzleHintScroll(CancellationToken ct)
         {
             PauseState.IsPaused = true;
-            "巻物を読み始める".Warn();
-            await UniTask.Delay(1000, ignoreTimeScale: true, cancellationToken: ct);
-            "巻物を読み終わる".Warn();
+            _uiElements.KokeshiScroll.IsEnabled = true;
+            await UniTask.WaitUntil(() => InputGetter.Instance.PlayerAction.Bool, cancellationToken: ct);
+            _uiElements.KokeshiScroll.IsEnabled = false;
             PauseState.IsPaused = false;
         }
     }
