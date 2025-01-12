@@ -52,6 +52,13 @@ namespace Main.EventManager
                 )
                 .AddTo(gameObject);
 
+            _isWalkingSoundMuted.Subscribe(value =>
+            {
+                asphalt.IsMuted = value;
+                soil.IsMuted = value;
+                corridor.IsMuted = value;
+            });
+
             while (true)
             {
                 CheckPriority(new WalkingSound[] { corridor, asphalt, soil });
@@ -100,6 +107,15 @@ namespace Main.EventManager
             {
                 get => _isPlaying.Value;
                 private set => _isPlaying.Value = IsPressed ? false : value;
+            }
+
+            public bool IsMuted
+            {
+                set
+                {
+                    if (_audioSource == null) return;
+                    _audioSource.mute = value;
+                }
             }
 
             public WalkingSound(

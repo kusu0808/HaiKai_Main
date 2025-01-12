@@ -18,6 +18,7 @@ namespace Main.EventManager
 
             _uiElements.SetCursor(false);
             _uiElements.Reticle.Color = ReticleClass.ColorNormal;
+            _player.IsCameraEaseCut = false;
             _player.IsPlayerControlEnabled = false;
             _player.SetTransform(_points.Init);
             _player.SlopLimit = EventManagerConst.SlopLimitInit;

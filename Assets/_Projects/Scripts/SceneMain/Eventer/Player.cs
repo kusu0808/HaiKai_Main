@@ -10,6 +10,7 @@ using Main.EventManager;
 
 using General;
 using Sirenix.OdinInspector;
+using Cinemachine;
 
 namespace Main.Eventer
 {
@@ -21,6 +22,7 @@ namespace Main.Eventer
         [SerializeField, Required, SceneObjectsOnly] private FirstPersonController _firstPersonController;
         [SerializeField, Required, SceneObjectsOnly] private Camera _camera;
         [SerializeField, Required, SceneObjectsOnly] private MeshRenderer _meshRenderer;
+        [SerializeField, Required, SceneObjectsOnly] private CinemachineBrain _cinemachineBrain;
 
         public Vector3 Position
         {
@@ -89,6 +91,20 @@ namespace Main.Eventer
             {
                 if (_meshRenderer == null) return;
                 _meshRenderer.enabled = value;
+            }
+        }
+
+        /// <summary>
+        /// カメラを即時に移動させるかどうか
+        /// </summary>
+        public bool IsCameraEaseCut
+        {
+            set
+            {
+                if (_cinemachineBrain == null) return;
+                (CinemachineBlendDefinition.Style style, float duration) =
+                    value ? (CinemachineBlendDefinition.Style.Cut, 0) : (CinemachineBlendDefinition.Style.EaseInOut, 2);
+                _cinemachineBrain.m_DefaultBlend = new CinemachineBlendDefinition(style, duration);
             }
         }
 

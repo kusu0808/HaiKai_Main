@@ -6,6 +6,7 @@ using Main.Eventer.Objects;
 using Main.Eventer.Borders;
 using Main.Eventer.PlayerChasingCharacter;
 using Main.Eventer.UIElements;
+using UniRx;
 
 namespace Main.EventManager
 {
@@ -28,6 +29,8 @@ namespace Main.EventManager
         private SAudioClips _audioClips => SAudioClips.Entity;
 
         private AudioSource _yatsuKnockToiletDoorAudioSource = null;
+
+        private readonly ReactiveProperty<bool> _isWalkingSoundMuted = new ReactiveProperty<bool>(false);
 
         private bool _hasRunAwayFromFirstYatsu = false; // 最初にヤツから逃げ切った段階でtrueになる
         private bool _isOpenToiletLockedDoorEventEnabled = true;
