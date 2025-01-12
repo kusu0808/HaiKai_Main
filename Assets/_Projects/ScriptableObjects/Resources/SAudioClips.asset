@@ -26,6 +26,8 @@ MonoBehaviour:
     _chasedByYatsu: {fileID: 8300000, guid: 09ca79232c079294e81d78a2ee5ee9a2, type: 3}
   _voice:
     _daughterScream: {fileID: 8300000, guid: 6defbb0a96465411195ae2776b919116, type: 3}
+    _daughterKidnapped: {fileID: 8300000, guid: b23ac6cab3d1946c3855a4e8b55c84ef,
+      type: 3}
     _deerCry: {fileID: 0}
     _birdCry: {fileID: 8300000, guid: 0460d830f2b5e2b489d5c8f30e63144f, type: 3}
     _yatsuImitateDaughterVoice: {fileID: 8300000, guid: af14c43878ea2a742bb22c689999305b,

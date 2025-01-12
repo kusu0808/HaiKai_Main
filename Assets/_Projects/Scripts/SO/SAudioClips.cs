@@ -71,6 +71,10 @@ namespace SO
             private AudioClip _daughterScream;
             public AudioClip DaughterScream => _daughterScream;
 
+            [SerializeField, Required, AssetsOnly, LabelText("娘が攫われる")]
+            private AudioClip _daughterKidnapped;
+            public AudioClip DaughterKidnapped => _daughterKidnapped;
+
             [SerializeField, Required, AssetsOnly, LabelText("鹿の鳴き声")]
             private AudioClip _deerCry;
             public AudioClip DeerCry => _deerCry;
