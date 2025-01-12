@@ -22,10 +22,6 @@ namespace Main.Eventer.UIElements
         public LogTextClass LogText => _logText;
 
         [SerializeField, Required, SceneObjectsOnly]
-        private ItemNumUI _itemNumUI;
-        public ItemNumUI ItemNumUI => _itemNumUI;
-
-        [SerializeField, Required, SceneObjectsOnly]
         private ManagePlayerUI _managePlayerUI;
 
         [SerializeField, Required, SceneObjectsOnly]

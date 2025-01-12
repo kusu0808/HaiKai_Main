@@ -1,5 +1,6 @@
 using Cysharp.Threading.Tasks;
 using System.Threading;
+using UniRx;
 using General;
 using Main.Eventer.UIElements;
 
@@ -18,6 +19,7 @@ namespace Main.EventManager
 
             _uiElements.SetCursor(false);
             _uiElements.Reticle.Color = ReticleClass.ColorNormal;
+            _uiElements.Reticle.IsInvisible = false;
             _player.IsCameraEaseCut = false;
             _player.IsPlayerControlEnabled = false;
             _player.SetTransform(_points.Init);
@@ -26,6 +28,8 @@ namespace Main.EventManager
             _player.SubscribeYatsuCollision();
             _daughter.SpawnHere(_points.RoadWayDaughterSpawnPoint);
             _player.SubscribeGrounded(PlayGroundedSound);
+            TriggerPauseUI.OnPauseBegin.Subscribe(_ => _uiElements.Reticle.IsInvisible = true).AddTo(gameObject);
+            TriggerPauseUI.OnPauseEnd.Subscribe(_ => _uiElements.Reticle.IsInvisible = false).AddTo(gameObject);
             _yatsu.ChasedBGM = _audioClips.BGM.ChasedByYatsu;
 
             if (_debug.IsEnabled) InitializeDebugProperty();
