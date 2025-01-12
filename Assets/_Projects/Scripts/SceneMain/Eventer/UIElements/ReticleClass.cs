@@ -1,4 +1,5 @@
 using System;
+using General;
 using Sirenix.OdinInspector;
 using UnityEngine;
 using UnityEngine.UI;
@@ -25,6 +26,20 @@ namespace Main.Eventer.UIElements
             {
                 if (_reticleImage == null) return;
                 _reticleImage.color = value;
+            }
+        }
+
+        public bool IsInvisible
+        {
+            get
+            {
+                if (_reticleImage == null) return default;
+                return !_reticleImage.enabled;
+            }
+            set
+            {
+                if (_reticleImage == null) return;
+                _reticleImage.enabled = !value;
             }
         }
     }

@@ -5,6 +5,7 @@ using System.Threading;
 using UnityEngine;
 using UnityEngine.UI;
 using SceneGeneral;
+using UniRx;
 
 namespace Main
 {
@@ -22,6 +23,9 @@ namespace Main
         private GameObject _pauseUI => _pauseUICanvas.gameObject;
         private bool _isPauseTrigger => InputGetter.Instance.Pause.Bool && !_triggerSettingUI.IsActive;
 
+        public static Subject<Unit> OnPauseBegin { get; set; } = new Subject<Unit>();
+        public static Subject<Unit> OnPauseEnd { get; set; } = new Subject<Unit>();
+
         private void OnEnable()
         {
             _pauseUI.SetActive(false);
@@ -37,9 +41,13 @@ namespace Main
             while (true)
             {
                 await UniTask.WaitUntil(() => _isPauseTrigger, cancellationToken: ct);
-                _pauseUI.SetActive(!_pauseUI.activeSelf);
-                PauseState.IsPaused = _pauseUI.activeSelf;
-                SetCursor(_pauseUI.activeSelf);
+                bool isPauseBegin = !_pauseUI.activeSelf;
+                _pauseUI.SetActive(isPauseBegin);
+                PauseState.IsPaused = isPauseBegin;
+                SetCursor(isPauseBegin);
+
+                if (isPauseBegin) OnPauseBegin?.OnNext(Unit.Default);
+                else OnPauseEnd?.OnNext(Unit.Default);
             }
         }
 
