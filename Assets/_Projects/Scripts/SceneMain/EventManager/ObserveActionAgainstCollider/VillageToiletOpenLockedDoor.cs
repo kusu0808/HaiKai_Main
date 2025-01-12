@@ -1,6 +1,7 @@
 using System.Threading;
 using Cysharp.Threading.Tasks;
 using General;
+using UnityEngine;
 
 namespace Main.EventManager
 {
@@ -27,9 +28,8 @@ namespace Main.EventManager
                 await UniTask.Delay(1000, ignoreTimeScale: true, cancellationToken: ct);
                 await _TeleportPlayer(_points.VillageFarWayInsideToiletPoint, ct);
 
-                if (_yatsuKnockToiletDoorAudioSource != null) return;
-                _yatsuKnockToiletDoorAudioSource = _audioSources.GetNew();
-                _yatsuKnockToiletDoorAudioSource.Raise(_audioClips.BGM.YatsuKnockToiletDoor, SoundType.BGM);
+                AudioSource audioSource = _audioSources.VillageToiletYatsuKnockDoor;
+                if (audioSource != null) audioSource.Raise(_audioClips.BGM.YatsuKnockToiletDoor, SoundType.BGM);
 
                 _hasRunAwayFromFirstYatsu = true;
             }
