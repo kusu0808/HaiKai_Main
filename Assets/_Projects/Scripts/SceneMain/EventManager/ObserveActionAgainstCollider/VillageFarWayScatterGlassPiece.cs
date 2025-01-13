@@ -9,6 +9,7 @@ namespace Main.EventManager
                 _uiElements.GlassShard.Release();
 
                 _objects.VillageFarWayScatteredGlassPiece.IsEnabled = true;
+                _objects.VillageFarWayCanScatterGlassPieceArea.IsEnabled = false;
             }
         }
     }
