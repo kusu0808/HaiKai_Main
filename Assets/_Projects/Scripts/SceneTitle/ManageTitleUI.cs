@@ -15,6 +15,9 @@ namespace Title
 
         private void OnEnable()
         {
+            Cursor.lockState = CursorLockMode.None;
+            Cursor.visible = true;
+
             _startButton.onClick.AddListener(() => Scene.ID.Main.LoadAsync().Forget());
             _continueButton.onClick.AddListener(() => Scene.ID.Main.LoadAsync().Forget());
             _settingButton.onClick.AddListener(_triggerSettingUI.Open);
