@@ -14,7 +14,7 @@ namespace Main.Eventer.PlayerChasingCharacter
         [SerializeField, Required, SceneObjectsOnly]
         private Animator _animator;
 
-        protected override float InitSpeed => 0.5f;
+        protected override float InitSpeed => 1.0f;
 
         public bool IsSteppingOnGlassShard { get; set; } = false;
         public AudioClip ChasedBGM { get; set; } = null;
