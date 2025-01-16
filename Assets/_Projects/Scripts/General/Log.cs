@@ -10,6 +10,7 @@ namespace General
             Debug.Log($"<color=#{colorCode}>{s}</color>");
             return s;
 #endif
+            return null;
         }
 
         public static T Show<T>(this T obj)
@@ -18,6 +19,7 @@ namespace General
             Debug.Log(obj);
             return obj;
 #endif
+            return default(T);
         }
 
         public static void Warn(this object obj)
