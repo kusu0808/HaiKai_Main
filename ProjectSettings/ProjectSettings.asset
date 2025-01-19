@@ -12,7 +12,7 @@ PlayerSettings:
   targetDevice: 2
   useOnDemandResources: 0
   accelerometerFrequency: 60
-  companyName: DefaultCompany
+  companyName: HaikaiBoys
   productName: HaiKai
   defaultCursor: {fileID: 0}
   cursorHotspot: {x: 0, y: 0}
@@ -137,7 +137,7 @@ PlayerSettings:
   vulkanEnableLateAcquireNextImage: 0
   vulkanEnableCommandBufferRecycling: 1
   loadStoreDebugModeEnabled: 0
-  bundleVersion: 0.1.0
+  bundleVersion: 1.0.0
   preloadedAssets: []
   metroInputSource: 0
   wsaTransparentSwapchain: 0
@@ -812,12 +812,31 @@ PlayerSettings:
   webGLWebAssemblyTable: 0
   webGLWebAssemblyBigInt: 0
   webGLCloseOnQuit: 0
-  scriptingDefineSymbols: {}
+  scriptingDefineSymbols:
+    Android: DOTWEEN;UNITY_VISUAL_SCRIPTING
+    Bratwurst: DOTWEEN;UNITY_VISUAL_SCRIPTING
+    EmbeddedLinux: DOTWEEN;UNITY_VISUAL_SCRIPTING
+    GameCoreScarlett: DOTWEEN
+    GameCoreXboxOne: DOTWEEN
+    LinuxHeadlessSimulation: DOTWEEN;UNITY_VISUAL_SCRIPTING
+    Nintendo Switch: DOTWEEN;UNITY_VISUAL_SCRIPTING
+    PS4: DOTWEEN;UNITY_VISUAL_SCRIPTING
+    PS5: DOTWEEN;UNITY_VISUAL_SCRIPTING
+    QNX: DOTWEEN;UNITY_VISUAL_SCRIPTING
+    Server: UNITY_VISUAL_SCRIPTING
+    Standalone: DOTWEEN;UNITASK_DOTWEEN_SUPPORT;UNITY_VISUAL_SCRIPTING;ODIN_INSPECTOR;ODIN_INSPECTOR_3;ODIN_INSPECTOR_3_1;ODIN_INSPECTOR_3_2;ODIN_INSPECTOR_3_3;ODIN_VALIDATOR;ODIN_VALIDATOR_3_1;ODIN_VALIDATOR_3_2;ODIN_VALIDATOR_3_3
+    WebGL: DOTWEEN;UNITY_VISUAL_SCRIPTING
+    Windows Store Apps: DOTWEEN;UNITY_VISUAL_SCRIPTING
+    XboxOne: DOTWEEN;UNITY_VISUAL_SCRIPTING
+    iPhone: DOTWEEN;UNITY_VISUAL_SCRIPTING
+    tvOS: DOTWEEN;UNITY_VISUAL_SCRIPTING
   additionalCompilerArguments: {}
   platformArchitecture: {}
   scriptingBackend:
     Android: 1
-  il2cppCompilerConfiguration: {}
+    Standalone: 1
+  il2cppCompilerConfiguration:
+    Standalone: 2
   il2cppCodeGeneration: {}
   il2cppStacktraceInformation: {}
   managedStrippingLevel:
@@ -830,6 +849,7 @@ PlayerSettings:
     PS4: 1
     PS5: 1
     QNX: 1
+    Standalone: 3
     WebGL: 1
     Windows Store Apps: 1
     XboxOne: 1
@@ -924,7 +944,7 @@ PlayerSettings:
   qnxGraphicConfPath: 
   apiCompatibilityLevel: 6
   captureStartupLogs: {}
-  activeInputHandler: 0
+  activeInputHandler: 1
   windowsGamepadBackendHint: 0
   cloudProjectId: 
   framebufferDepthMemorylessMode: 0

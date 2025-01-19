@@ -1,0 +1,249 @@
+{
+    "name": "IA",
+    "maps": [
+        {
+            "name": "Player",
+            "id": "e3183171-cb8f-482e-b3d6-515490c0e640",
+            "actions": [
+                {
+                    "name": "Action",
+                    "type": "Button",
+                    "id": "6c633444-23a3-4b53-93ba-3014dc9105b7",
+                    "expectedControlType": "",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
+                },
+                {
+                    "name": "Select",
+                    "type": "Value",
+                    "id": "226ae46c-d0e3-4a4b-9e04-8fea3c55c821",
+                    "expectedControlType": "Axis",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": true
+                },
+                {
+                    "name": "SpecialAction",
+                    "type": "Button",
+                    "id": "1570db01-b7a8-4714-9dfd-00d2efbf23ba",
+                    "expectedControlType": "",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
+                },
+                {
+                    "name": "Cancel",
+                    "type": "Button",
+                    "id": "fb6ad0fe-8520-4606-862f-199985bb4143",
+                    "expectedControlType": "",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
+                }
+            ],
+            "bindings": [
+                {
+                    "name": "",
+                    "id": "9dea5d92-c00b-403c-a42b-94175f42bd0f",
+                    "path": "<Mouse>/leftButton",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Action",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "1D Axis",
+                    "id": "731ad829-1a11-4624-9128-866f3e3ab784",
+                    "path": "1DAxis",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Select",
+                    "isComposite": true,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "negative",
+                    "id": "93467072-cd0a-4856-9577-87c6fa78f081",
+                    "path": "<Mouse>/scroll/down",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Select",
+                    "isComposite": false,
+                    "isPartOfComposite": true
+                },
+                {
+                    "name": "positive",
+                    "id": "da9793e3-17c0-4ee5-9d2a-f73a0378b981",
+                    "path": "<Mouse>/scroll/up",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Select",
+                    "isComposite": false,
+                    "isPartOfComposite": true
+                },
+                {
+                    "name": "",
+                    "id": "28949c21-3b1b-4bb6-8a07-afc49ec9de20",
+                    "path": "<Keyboard>/w",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "SpecialAction",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "3304f57c-0f3f-46a4-b951-8814f74aadaa",
+                    "path": "<Mouse>/rightButton",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Cancel",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                }
+            ]
+        },
+        {
+            "name": "General",
+            "id": "bce01126-98c7-4d1b-824e-d6fbd2726694",
+            "actions": [
+                {
+                    "name": "Pause",
+                    "type": "Button",
+                    "id": "43352296-5e3a-4560-b3a1-9d33e6ba7708",
+                    "expectedControlType": "",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
+                }
+            ],
+            "bindings": [
+                {
+                    "name": "",
+                    "id": "d3e65889-e9a9-4e78-9161-b8dae8c1deed",
+                    "path": "<Keyboard>/escape",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Pause",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                }
+            ]
+        },
+        {
+            "name": "Debug",
+            "id": "e110ff4c-b346-4d01-8198-f22feb074555",
+            "actions": [
+                {
+                    "name": "TriggerBenchmarkText",
+                    "type": "Button",
+                    "id": "cbc02209-c1e7-468e-82b7-5adfd47235ad",
+                    "expectedControlType": "",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
+                }
+            ],
+            "bindings": [
+                {
+                    "name": "Two Modifiers",
+                    "id": "6ec6072e-3836-45ed-b1d0-6499c6297c68",
+                    "path": "TwoModifiers",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "TriggerBenchmarkText",
+                    "isComposite": true,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "modifier1",
+                    "id": "2b6a71a7-b735-4176-b99c-af479448b2e3",
+                    "path": "<Keyboard>/leftCtrl",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "TriggerBenchmarkText",
+                    "isComposite": false,
+                    "isPartOfComposite": true
+                },
+                {
+                    "name": "modifier2",
+                    "id": "50021667-f7fe-4a10-80dd-68971cbaea5c",
+                    "path": "<Keyboard>/leftShift",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "TriggerBenchmarkText",
+                    "isComposite": false,
+                    "isPartOfComposite": true
+                },
+                {
+                    "name": "binding",
+                    "id": "a87c535c-7254-4934-9809-4ec7726e75ea",
+                    "path": "<Keyboard>/1",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "TriggerBenchmarkText",
+                    "isComposite": false,
+                    "isPartOfComposite": true
+                },
+                {
+                    "name": "Two Modifiers",
+                    "id": "22384266-e2c1-4af4-8acc-ee71b758acbb",
+                    "path": "TwoModifiers",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "TriggerBenchmarkText",
+                    "isComposite": true,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "modifier1",
+                    "id": "0399577e-7f19-442e-8cc2-4c0d29fc2e9c",
+                    "path": "<Keyboard>/leftMeta",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "TriggerBenchmarkText",
+                    "isComposite": false,
+                    "isPartOfComposite": true
+                },
+                {
+                    "name": "modifier2",
+                    "id": "16ed2a39-9ed0-44d6-9b63-c8f6627ab3c3",
+                    "path": "<Keyboard>/leftShift",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "TriggerBenchmarkText",
+                    "isComposite": false,
+                    "isPartOfComposite": true
+                },
+                {
+                    "name": "binding",
+                    "id": "97179bb6-9bc2-49f4-bd1e-4fb4a1c8dfbc",
+                    "path": "<Keyboard>/1",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "TriggerBenchmarkText",
+                    "isComposite": false,
+                    "isPartOfComposite": true
+                }
+            ]
+        }
+    ],
+    "controlSchemes": []
+}
