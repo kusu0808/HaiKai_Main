@@ -34,6 +34,17 @@ namespace Main.Eventer.Objects
             _playableDirector.stopped -= OnStopped;
         }
 
+        public void StopForcibly()
+        {
+            if (_root == null) return;
+            if (_playableDirector == null) return;
+
+            _root.SetActive(false);
+            _playableDirector.stopped -= OnStopped;
+
+            _hasPlayed = true;
+        }
+
         private void OnStopped(PlayableDirector playableDirector)
         {
             if (playableDirector != _playableDirector) return;
