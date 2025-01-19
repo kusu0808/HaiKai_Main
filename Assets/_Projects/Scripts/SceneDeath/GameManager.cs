@@ -34,6 +34,8 @@ namespace Death
 
         private async UniTaskVoid OnVideoEnd(CancellationToken ct)
         {
+            if (_goToTitleUI != null) _goToTitleUI.SetActive(false);
+
             await UniTask.WaitForSeconds(1, cancellationToken: ct);
 
             if (_goToTitleUI != null) _goToTitleUI.SetActive(true);
