@@ -58,17 +58,18 @@ namespace Main.EventManager
                 _objects.VillageWayCannotGoBackAfterWarehouse.IsEnabled = true;
             }
 
-            // 5フレーム待ってフェードインする（見えるようになる）
+            // 5フレーム待って、0.5秒かけてフェードインする（見えるようになる）
             async UniTask WaitForFadeInOnEventBegin(CancellationToken ct)
             {
                 await UniTask.DelayFrame(5, cancellationToken: ct);
                 await _uiElements.BlackImage.FadeIn(0.5f, ct);
             }
 
-            // 10フレーム待ってから、(カットシーンをキャンセルするための)キャンセル入力を受け付ける
+            // 10フレーム待って、さらに0.5秒待ってから、(カットシーンをキャンセルするための)キャンセル入力を受け付ける
             async UniTask WaitForCutSceneCancel(CancellationToken ct)
             {
                 await UniTask.DelayFrame(10, cancellationToken: ct);
+                await UniTask.WaitForSeconds(0.5f, cancellationToken: ct);
                 await UniTask.WaitUntil(() => InputGetter.Instance.PlayerCancel.Bool, cancellationToken: ct);
             }
 
