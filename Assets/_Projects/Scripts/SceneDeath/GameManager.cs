@@ -22,7 +22,7 @@ namespace Death
         [SerializeField, Required, SceneObjectsOnly]
         private TextMeshProUGUI _goToTitleText;
 
-        private async UniTaskVoid OnEnable()
+        private void OnEnable()
         {
             if (_videoPlayer == null) return;
             if (_renderTexture == null) return;

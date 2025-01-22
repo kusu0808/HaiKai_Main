@@ -3,6 +3,7 @@ using System.Threading;
 using UnityEngine;
 using SceneGeneral;
 using Sirenix.OdinInspector;
+using System.Collections.ObjectModel;
 
 namespace Main.Eventer.UIElements
 {
@@ -66,8 +67,15 @@ namespace Main.Eventer.UIElements
         private ViewingItemClass _kokeshiScroll;
         public ViewingItemClass KokeshiScroll => _kokeshiScroll;
 
-        private UIItemClass[] _keysInFinalKey2Door;
-        public UIItemClass[] KeysInFinalKey2Door => _keysInFinalKey2Door;
+        private UIItemClass[] _keysInFinalKey2Door = null;
+        public ReadOnlyCollection<UIItemClass> KeysInFinalKey2Door
+        {
+            get
+            {
+                _keysInFinalKey2Door ??= new UIItemClass[] { _kokeshiSecretKey, _keyInDoorPuzzleSolving };
+                return Array.AsReadOnly(_keysInFinalKey2Door);
+            }
+        }
 
         // 最初に呼ぶこと！
         public void Init()
@@ -79,10 +87,9 @@ namespace Main.Eventer.UIElements
             Init(_cupFilledWithBlood);
             Init(_kokeshiSecretKey);
             Init(_glassShard);
+            Init(_keyInDoorPuzzleSolving);
 
             void Init(UIItemClass uiItemClass) => uiItemClass?.Init(_managePlayerUI);
-
-            _keysInFinalKey2Door = new UIItemClass[] { _warehouseKey, _keyInDoorPuzzleSolving };
         }
 
         public void ActivateUIManagers(CancellationToken ct)
@@ -96,6 +103,19 @@ namespace Main.Eventer.UIElements
         {
             if (_triggerPauseUI == null) return;
             _triggerPauseUI.SetCursor(isActive);
+        }
+    }
+
+    public static class UIElementsEx
+    {
+        public static UIItemClass IsHoldingAny(this ReadOnlyCollection<UIItemClass> uiItemClasses)
+        {
+            foreach (var uiItemClass in uiItemClasses)
+            {
+                if (uiItemClass.IsHolding() is true) return uiItemClass;
+            }
+
+            return null;
         }
     }
 }

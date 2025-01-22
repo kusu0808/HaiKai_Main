@@ -44,6 +44,7 @@ namespace Main.Eventer.Objects
 
             private static readonly PathType PathType = PathType.CatmullRom;
             private static readonly PathMode PathMode = PathMode.Full3D;
+            private static readonly float lookAhead = 0;
 
             // ワールド座標
             private Vector3[] _positions = null;
@@ -78,7 +79,7 @@ namespace Main.Eventer.Objects
                 agent.position = positions[0];
                 if (agent.gameObject.activeSelf is false) agent.gameObject.SetActive(true);
 
-                await agent.DOPath(positions, _duration, PathType, PathMode).ToUniTask(cancellationToken: ct);
+                await agent.DOPath(positions, _duration, PathType, PathMode).SetLookAt(lookAhead).ToUniTask(cancellationToken: ct);
                 if (_isDeactivateOnEnd) agent.gameObject.SetActive(false);
             }
         }
