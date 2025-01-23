@@ -21,19 +21,27 @@ namespace Main.EventManager
                 bool isGoingToTheBack = i is 0; // 奥の道に向かっているか
                 bool isFarewellTurn = isGoingToTheBack is true && isSeparatedFromDaughter is false; // 娘と別れるターンか
 
-                TeleportBorder cache = isGoingToTheBack ? _borders.PathWaySquat1 : _borders.PathWaySquat2;
+                TeleportBorder border = isGoingToTheBack ? _borders.PathWaySquat1 : _borders.PathWaySquat2;
 
-                _uiElements.LogText.ShowManually("[くぐる(Wキー長押し)]");
-                await UniTask.WaitForSeconds(0.5f, cancellationToken: ct);
+                _uiElements.LogText.ShowManually("[ くぐる(右クリック) ]");
                 int j = await UniTask.WhenAny(
-                    UniTask.WaitUntil(() => cache.In.IsIn(_player.Position) is false, cancellationToken: ct),
-                    UniTask.WaitUntil(() => InputGetter.Instance.PlayerSpecialAction.Bool, cancellationToken: ct));
+                    UniTask.WaitUntil(() => border.In.IsIn(_player.Position) is false, cancellationToken: ct),
+                    UniTask.WaitUntil(() => InputGetter.Instance.PlayerCancel.Bool, cancellationToken: ct));
                 _uiElements.LogText.ShowManually(string.Empty);
                 if (j is not 1) continue;
 
-                await _TeleportPlayer(cache.FirstTf, ct);
-                await UniTask.WaitUntil(() => cache.Out.IsIn(_player.Position) is true, cancellationToken: ct);
-                await _TeleportPlayer(cache.SecondTf, ct);
+                await _TeleportPlayer(border.FirstTf, ct);
+                while (true)
+                {
+                    await UniTask.WaitUntil(() => border.Out.IsIn(_player.Position) is true, cancellationToken: ct);
+                    _uiElements.LogText.ShowManually("[ ぬける(右クリック) ]");
+                    int k = await UniTask.WhenAny(
+                        UniTask.WaitUntil(() => border.Out.IsIn(_player.Position) is false, cancellationToken: ct),
+                        UniTask.WaitUntil(() => InputGetter.Instance.PlayerCancel.Bool, cancellationToken: ct));
+                    _uiElements.LogText.ShowManually(string.Empty);
+                    if (k is 1) break;
+                }
+                await _TeleportPlayer(border.SecondTf, ct);
 
                 if (isFarewellTurn is false) continue;
                 isSeparatedFromDaughter = true;
