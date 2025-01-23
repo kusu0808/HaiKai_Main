@@ -13,6 +13,11 @@ MonoBehaviour:
   m_Name: SAudioClips
   m_EditorClassIdentifier: 
   _audioMixer: {fileID: 24100000, guid: 8dc28d6ff9cac894bb75b062ed535873, type: 2}
+  _masterMixerGroup: {fileID: 24300002, guid: 8dc28d6ff9cac894bb75b062ed535873, type: 2}
+  _bgmMixerGroup: {fileID: -6601038201499404773, guid: 8dc28d6ff9cac894bb75b062ed535873,
+    type: 2}
+  _seMixerGroup: {fileID: -2192650811841809601, guid: 8dc28d6ff9cac894bb75b062ed535873,
+    type: 2}
   _bgm:
     _natureSoundWindOfMountain: {fileID: 8300000, guid: ff12a07754352f6419ea887e02be9f81,
       type: 3}
