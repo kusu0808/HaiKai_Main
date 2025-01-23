@@ -24,15 +24,6 @@
                     "initialStateCheck": true
                 },
                 {
-                    "name": "SpecialAction",
-                    "type": "Button",
-                    "id": "1570db01-b7a8-4714-9dfd-00d2efbf23ba",
-                    "expectedControlType": "",
-                    "processors": "",
-                    "interactions": "",
-                    "initialStateCheck": false
-                },
-                {
                     "name": "Cancel",
                     "type": "Button",
                     "id": "fb6ad0fe-8520-4606-862f-199985bb4143",
@@ -86,17 +77,6 @@
                     "action": "Select",
                     "isComposite": false,
                     "isPartOfComposite": true
-                },
-                {
-                    "name": "",
-                    "id": "28949c21-3b1b-4bb6-8a07-afc49ec9de20",
-                    "path": "<Keyboard>/w",
-                    "interactions": "",
-                    "processors": "",
-                    "groups": "",
-                    "action": "SpecialAction",
-                    "isComposite": false,
-                    "isPartOfComposite": false
                 },
                 {
                     "name": "",
