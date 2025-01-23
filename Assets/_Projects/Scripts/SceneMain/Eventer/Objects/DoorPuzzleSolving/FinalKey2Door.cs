@@ -31,6 +31,8 @@ namespace Main.Eventer.Objects.DoorPuzzleSolving
         [SerializeField, Required, FormerlySerializedAs("_door2"), SceneObjectsOnly]
         private RotateDoor _doorLeft;
 
+        public bool IsMoving(Type type) => GetDoor(type)?.IsMoving ?? default;
+
         public bool IsOpen(Type type)
         {
             MeshRenderer key = GetKey(type);
@@ -57,6 +59,13 @@ namespace Main.Eventer.Objects.DoorPuzzleSolving
         {
             Type.Right => _keyRight,
             Type.Left => _keyLeft,
+            _ => null
+        };
+
+        private RotateDoor GetDoor(Type type) => type switch
+        {
+            Type.Right => _doorRight,
+            Type.Left => _doorLeft,
             _ => null
         };
     }

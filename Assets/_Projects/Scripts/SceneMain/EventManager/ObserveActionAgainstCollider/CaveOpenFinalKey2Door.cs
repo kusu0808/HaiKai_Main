@@ -27,6 +27,7 @@ namespace Main.EventManager
             }
 
             FinalKey2Door door = _objects.DoorPuzzleSolving.FinalKey2;
+            if (door.IsMoving(type) is true) return;
 
             if (door.IsOpenBoth is true) return;
 
