@@ -45,11 +45,10 @@ namespace Main.Eventer.PlayerChasingCharacter
                     if (monoBehaviourComponent != null)
                     {
                         OnEnable();
-
-                        CancellationToken ct = monoBehaviourComponent.destroyCancellationToken;
-
-                        monoBehaviourComponent.GetAsyncUpdateTrigger().Subscribe(_ => ChasePlayerOnUpdateIfAvailable(_playerTransform)).AddTo(ct);
-                        monoBehaviourComponent.GetAsyncDisableTrigger().Subscribe(_ => OnDisable()).AddTo(ct);
+                        monoBehaviourComponent
+                            .GetAsyncUpdateTrigger()
+                            .Subscribe(_ => ChasePlayerOnUpdateIfAvailable(_playerTransform))
+                            .AddTo(monoBehaviourComponent.destroyCancellationToken);
                     }
                 }
             }
@@ -73,7 +72,6 @@ namespace Main.Eventer.PlayerChasingCharacter
         protected virtual void OnSpawn() { }
         protected virtual void OnDespawn() { }
         protected virtual void OnEnable() { }
-        protected virtual void OnDisable() { }
 
         public void InitNavMeshAgent()
         {
