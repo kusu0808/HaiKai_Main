@@ -12,13 +12,13 @@ namespace Main.EventManager
         // バスの動きなど、行動の開始もここで
         private async UniTask Initialize(CancellationToken ct)
         {
-            _playerCollision.Init(col => OnPlayerTriggerEnter(col, ct));
             _uiElements.Init();
             _daughter.InitNavMeshAgent();
             _yatsu.InitNavMeshAgent();
 
             _uiElements.SetCursor(false);
             _uiElements.Reticle.Color = ReticleClass.ColorNormal;
+            _uiElements.Reticle.Size = ReticleClass.SizeDefault;
             _uiElements.Reticle.IsInvisible = false;
             _player.IsCameraEaseCut = false;
             _player.IsPlayerControlEnabled = false;

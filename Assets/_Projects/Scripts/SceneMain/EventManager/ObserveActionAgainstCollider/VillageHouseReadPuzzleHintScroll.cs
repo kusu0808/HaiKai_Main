@@ -10,7 +10,7 @@ namespace Main.EventManager
         {
             PauseState.IsPaused = true;
             _uiElements.KokeshiScroll.IsEnabled = true;
-            await UniTask.WaitUntil(() => InputGetter.Instance.PlayerAction.Bool, cancellationToken: ct);
+            await UniTask.WaitUntil(() => InputGetter.Instance.PlayerCancel.Bool, cancellationToken: ct);
             _uiElements.KokeshiScroll.IsEnabled = false;
             PauseState.IsPaused = false;
         }

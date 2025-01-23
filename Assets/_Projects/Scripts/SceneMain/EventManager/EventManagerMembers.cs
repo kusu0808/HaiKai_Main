@@ -15,7 +15,6 @@ namespace Main.EventManager
         [SerializeField] private Debug _debug;
         [Space(25)]
         [SerializeField, SceneObjectsOnly] private AudioSources _audioSources;
-        [SerializeField] private PlayerCollision _playerCollision;
         [SerializeField] private Objects _objects;
         [SerializeField] private Points _points;
         [SerializeField] private Borders _borders;

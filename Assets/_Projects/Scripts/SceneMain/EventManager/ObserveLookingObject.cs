@@ -7,21 +7,24 @@ namespace Main.EventManager
 {
     public sealed partial class EventManager
     {
-        private async UniTaskVoid ObserveRaycast(CancellationToken ct)
+        private async UniTaskVoid ObserveLookingObject(CancellationToken ct)
         {
             while (true)
             {
                 await UniTask.NextFrame(ct);
 
                 Collider collider = _player.GetHitColliderFromCamera();
-                if (collider == null)
+
+                if (collider != null && collider.tag.Contains("ActionAgainstCollider"))
+                {
+                    _uiElements.Reticle.Color = ReticleClass.ColorActionAgainstCollider;
+                    _uiElements.Reticle.Size = ReticleClass.SizeBig;
+                }
+                else
                 {
                     _uiElements.Reticle.Color = ReticleClass.ColorNormal;
-                    continue;
+                    _uiElements.Reticle.Size = ReticleClass.SizeDefault;
                 }
-                _uiElements.Reticle.Color =
-                    collider.tag.Contains("ActionAgainstCollider") ?
-                        ReticleClass.ColorActionAgainstCollider : ReticleClass.ColorNormal;
             }
         }
     }
