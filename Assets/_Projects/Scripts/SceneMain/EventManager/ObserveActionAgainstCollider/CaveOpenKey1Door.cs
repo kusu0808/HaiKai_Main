@@ -27,6 +27,7 @@ namespace Main.EventManager
             }
 
             Key1Door door = _objects.DoorPuzzleSolving.GetKey1Door(type);
+            if (door.IsMoving is true) return;
 
             if (door.IsOpen is true)
             {

@@ -11,6 +11,7 @@ namespace Main.EventManager
             if (_hasTriggeredCaveOneWayDoor is true) return;
 
             OneWayDoor door = _objects.DoorPuzzleSolving.OneWay;
+            if (door.IsMoving is true) return;
 
             if (door.Border.IsIn(_player.Position) is false)
             {

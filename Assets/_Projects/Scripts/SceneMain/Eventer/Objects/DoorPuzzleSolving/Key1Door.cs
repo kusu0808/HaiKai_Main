@@ -24,6 +24,8 @@ namespace Main.Eventer.Objects.DoorPuzzleSolving
         [SerializeField, Required, SceneObjectsOnly]
         private SlideDoor _door;
 
+        public bool IsMoving => _door?.IsMoving ?? default;
+
         public bool IsOpen => (_key == null) ? false : _key.enabled;
 
         public void Trigger()
