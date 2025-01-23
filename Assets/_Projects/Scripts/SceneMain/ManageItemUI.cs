@@ -9,10 +9,7 @@ using UnityEngine.UI;
 
 namespace Main
 {
-    /// <summary>
-    /// 最初にRollItem()を呼ぶこと
-    /// </summary>
-    public class ManagePlayerUI : MonoBehaviour
+    public class ManageItemUI : MonoBehaviour
     {
         [SerializeField] private Canvas _playerUICanvas;
         [SerializeField] private Image[] _itemSlots;
@@ -25,7 +22,9 @@ namespace Main
         private static readonly Color32 LightWhite = new(255, 255, 255, 100);
         private static readonly Color32 DarkWhite = new(255, 255, 255, 255);
 
-        public async UniTaskVoid RollItem(CancellationToken ct)
+        private void OnEnable() => RollItem(destroyCancellationToken).Forget();
+
+        private async UniTaskVoid RollItem(CancellationToken ct)
         {
             if (_playerUICanvas == null) return;
             _playerUICanvas.gameObject.SetActive(true);

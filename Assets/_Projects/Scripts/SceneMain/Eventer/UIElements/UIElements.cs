@@ -23,13 +23,7 @@ namespace Main.Eventer.UIElements
         public LogTextClass LogText => _logText;
 
         [SerializeField, Required, SceneObjectsOnly]
-        private ManagePlayerUI _managePlayerUI;
-
-        [SerializeField, Required, SceneObjectsOnly]
-        private TriggerPauseUI _triggerPauseUI;
-
-        [SerializeField, Required, SceneObjectsOnly]
-        private TriggerSettingUI _triggerSettingUI;
+        private ManageItemUI _managePlayerUI;
 
         [SerializeField, Required, AssetsOnly]
         private UIItemClass _daughterKnife;
@@ -90,19 +84,6 @@ namespace Main.Eventer.UIElements
             Init(_keyInDoorPuzzleSolving);
 
             void Init(UIItemClass uiItemClass) => uiItemClass?.Init(_managePlayerUI);
-        }
-
-        public void ActivateUIManagers(CancellationToken ct)
-        {
-            if (_managePlayerUI != null) _managePlayerUI.RollItem(ct).Forget();
-            if (_triggerPauseUI != null) _triggerPauseUI.Trigger(ct).Forget();
-            if (_triggerSettingUI != null) _triggerSettingUI.ChangeVolume(ct).Forget();
-        }
-
-        public void SetCursor(bool isActive)
-        {
-            if (_triggerPauseUI == null) return;
-            _triggerPauseUI.SetCursor(isActive);
         }
     }
 

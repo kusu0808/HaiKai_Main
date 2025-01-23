@@ -11,7 +11,6 @@ namespace Title
         [SerializeField] private Button _continueButton;
         [SerializeField] private Button _settingButton;
         [SerializeField] private Button _quitButton;
-        [SerializeField] private TriggerSettingUI _triggerSettingUI;
 
         private void OnEnable()
         {
@@ -20,7 +19,7 @@ namespace Title
 
             _startButton.onClick.AddListener(() => Scene.ID.Main.LoadAsync().Forget());
             _continueButton.onClick.AddListener(() => Scene.ID.Main.LoadAsync().Forget());
-            _settingButton.onClick.AddListener(_triggerSettingUI.Open);
+            //_settingButton.onClick.AddListener(_triggerSettingUI.Open);
             _quitButton.onClick.AddListener(QuitGame);
         }
 

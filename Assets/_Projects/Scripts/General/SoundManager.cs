@@ -28,6 +28,8 @@ namespace General
 
             if (type is SoundType.BGM)
             {
+                source.outputAudioMixerGroup = SAudioClips.Entity.BGMMixerGroup;
+
                 source.playOnAwake = false;
                 source.loop = true;
 
@@ -36,6 +38,8 @@ namespace General
             }
             else if (type is SoundType.Voice or SoundType.SE or SoundType.SERough)
             {
+                source.outputAudioMixerGroup = SAudioClips.Entity.SEMixerGroup;
+
                 source.playOnAwake = false;
                 source.loop = false;
 
@@ -44,6 +48,9 @@ namespace General
             }
             else throw new Exception("無効な種類です");
         }
+
+        public static readonly float VolumeMax = 20.0f;
+        public static readonly float VolumeMin = -80.0f;
 
         public static float BGMVolume
         {

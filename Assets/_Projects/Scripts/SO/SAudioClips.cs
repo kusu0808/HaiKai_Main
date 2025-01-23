@@ -12,6 +12,18 @@ namespace SO
         private AudioMixer _audioMixer;
         public AudioMixer AudioMixer => _audioMixer;
 
+        [SerializeField, Required, AssetsOnly]
+        private AudioMixerGroup _masterMixerGroup;
+        public AudioMixerGroup MasterMixerGroup => _masterMixerGroup;
+
+        [SerializeField, Required, AssetsOnly]
+        private AudioMixerGroup _bgmMixerGroup;
+        public AudioMixerGroup BGMMixerGroup => _bgmMixerGroup;
+
+        [SerializeField, Required, AssetsOnly]
+        private AudioMixerGroup _seMixerGroup;
+        public AudioMixerGroup SEMixerGroup => _seMixerGroup;
+
         [SerializeField, Required, LabelText("BGM")]
         private AudioClipsBGM _bgm;
         public AudioClipsBGM BGM => _bgm;

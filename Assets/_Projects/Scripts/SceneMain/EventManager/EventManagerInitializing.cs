@@ -16,7 +16,6 @@ namespace Main.EventManager
             _daughter.InitNavMeshAgent();
             _yatsu.InitNavMeshAgent();
 
-            _uiElements.SetCursor(false);
             _uiElements.Reticle.Color = ReticleClass.ColorNormal;
             _uiElements.Reticle.Size = ReticleClass.SizeDefault;
             _uiElements.Reticle.IsInvisible = false;
@@ -37,7 +36,6 @@ namespace Main.EventManager
             await _uiElements.BlackImage.FadeIn(EventManagerConst.FadeInDuration, ct);
             _player.IsPlayerControlEnabled = true;
 
-            _uiElements.ActivateUIManagers(ct);
             _busMover.MoveOnce(ct).Forget();
         }
 

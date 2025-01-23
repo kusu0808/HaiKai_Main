@@ -1,67 +1,155 @@
-﻿using Cysharp.Threading.Tasks;
-using General;
-using IA;
-using System.Threading;
-using UnityEngine;
+﻿using UnityEngine;
 using UnityEngine.UI;
-using SceneGeneral;
 using UniRx;
+using Sirenix.OdinInspector;
+using IA;
+using General;
 
 namespace Main
 {
-    /// <summary>
-    /// ゲームの一時停止、ポーズUIの表示切替
-    /// 最初にTrigger()を呼ぶこと
-    /// </summary>
     public sealed class TriggerPauseUI : MonoBehaviour
     {
-        [SerializeField] private Canvas _pauseUICanvas;
-        [SerializeField] private Button _settingButton;
-        [SerializeField] private Button _toTitleButton;
-        [SerializeField] private TriggerSettingUI _triggerSettingUI;
+        [Header("Pause UI")]
 
-        private GameObject _pauseUI => _pauseUICanvas.gameObject;
-        private bool _isPauseTrigger => InputGetter.Instance.Pause.Bool && !_triggerSettingUI.IsActive;
+        [SerializeField, Required, SceneObjectsOnly]
+        private Canvas _pauseCanvas;
+
+        [SerializeField, Required, SceneObjectsOnly]
+        private Button _toTitleButton;
+
+        [SerializeField, Required, SceneObjectsOnly]
+        private Button _settingButton;
+
+        [SerializeField, Required, SceneObjectsOnly]
+        private Button _closeButton;
+
+        [Header("Setting UI")]
+
+        [SerializeField, Required, SceneObjectsOnly]
+        private Canvas _settingCanvas;
+
+        [SerializeField, Required, SceneObjectsOnly]
+        private Slider _bgmVolumeSlider;
+
+        [SerializeField, Required, SceneObjectsOnly]
+        private Slider _seVolumeSlider;
+
+#if false
+        [SerializeField, Required, SceneObjectsOnly]
+        private Slider _mouseSensitivitySlider;
+#endif
+
+        [SerializeField, Required, SceneObjectsOnly]
+        private Button _closeSettingButton;
+
+        [Header("To Title UI")]
+
+        [SerializeField, Required, SceneObjectsOnly]
+        private Canvas _toTitleCanvas;
+
+        [SerializeField, Required, SceneObjectsOnly]
+        private Button _yesButton;
+
+        [SerializeField, Required, SceneObjectsOnly]
+        private Button _noButton;
 
         public static Subject<Unit> OnPauseBegin { get; set; } = new Subject<Unit>();
         public static Subject<Unit> OnPauseEnd { get; set; } = new Subject<Unit>();
 
-        private void OnEnable()
+        private enum State
         {
-            _pauseUI.SetActive(false);
-
-            _settingButton.onClick.AddListener(_triggerSettingUI.Open);
-            _toTitleButton.onClick.AddListener
-                (() => Scene.ID.Title.LoadAsync().Forget());
+            OnGame,
+            PauseUI,
+            SettingUI,
+            ToTitleUI
         }
 
-        /// <remarks>カーソルの状態も更新</remarks>
-        public async UniTaskVoid Trigger(CancellationToken ct)
-        {
-            while (true)
-            {
-                await UniTask.WaitUntil(() => _isPauseTrigger, cancellationToken: ct);
-                bool isPauseBegin = !_pauseUI.activeSelf;
-                _pauseUI.SetActive(isPauseBegin);
-                PauseState.IsPaused = isPauseBegin;
-                SetCursor(isPauseBegin);
+        private State _state = State.OnGame;
 
-                if (isPauseBegin) OnPauseBegin?.OnNext(Unit.Default);
-                else OnPauseEnd?.OnNext(Unit.Default);
-            }
-        }
-
-        public void SetCursor(bool isActive)
+        // UIを切り替え、ポーズとカーソルの状態を更新、ポーズ開始/終了時ならイベントを発火
+        private void ChangeUI(State state)
         {
-            if (isActive)
+            if (_pauseCanvas != null) _pauseCanvas.gameObject.SetActive(state == State.PauseUI);
+            if (_settingCanvas != null) _settingCanvas.gameObject.SetActive(state == State.SettingUI);
+            if (_toTitleCanvas != null) _toTitleCanvas.gameObject.SetActive(state == State.ToTitleUI);
+
+            if (state == State.OnGame)
             {
-                Cursor.lockState = CursorLockMode.None;
-                Cursor.visible = true;
+                PauseState.IsPaused = false;
+                Cursor.visible = false;
+                Cursor.lockState = CursorLockMode.Locked;
             }
             else
             {
-                Cursor.visible = false;
-                Cursor.lockState = CursorLockMode.Locked;
+                PauseState.IsPaused = true;
+                Cursor.lockState = CursorLockMode.None;
+                Cursor.visible = true;
+            }
+
+            if (_state == State.OnGame && state != State.OnGame) OnPauseBegin?.OnNext(Unit.Default);
+            else if (_state != State.OnGame && state == State.OnGame) OnPauseEnd?.OnNext(Unit.Default);
+
+            _state = state;
+        }
+
+        private void OnEnable()
+        {
+            _state = State.OnGame;
+            ChangeUI(State.OnGame);
+
+            _toTitleButton.onClick.AddListener(() => ChangeUI(State.ToTitleUI));
+            _settingButton.onClick.AddListener(() => ChangeUI(State.SettingUI));
+            _closeButton.onClick.AddListener(() => ChangeUI(State.OnGame));
+
+            _bgmVolumeSlider.onValueChanged.AddListener(value => SoundManager.BGMVolume = value);
+            _seVolumeSlider.onValueChanged.AddListener(value =>
+            {
+                SoundManager.VoiceVolume = value;
+                SoundManager.SEVolume = value;
+                SoundManager.SERoughVolume = value;
+            });
+            _closeSettingButton.onClick.AddListener(() => ChangeUI(State.PauseUI));
+
+            _yesButton.onClick.AddListener(() => Scene.ID.Title.LoadAsync().Forget());
+            _noButton.onClick.AddListener(() => ChangeUI(State.PauseUI));
+        }
+
+        private void Update()
+        {
+            if (InputGetter.Instance.Pause.Bool)
+            {
+                switch (_state)
+                {
+                    case State.OnGame:
+                        ChangeUI(State.PauseUI);
+                        break;
+                    case State.PauseUI:
+                        ChangeUI(State.OnGame);
+                        break;
+                    case State.SettingUI:
+                        ChangeUI(State.OnGame);
+                        break;
+                    case State.ToTitleUI:
+                        ChangeUI(State.OnGame);
+                        break;
+                }
+            }
+            else if (InputGetter.Instance.PlayerCancel.Bool)
+            {
+                switch (_state)
+                {
+                    case State.OnGame:
+                        break;
+                    case State.PauseUI:
+                        ChangeUI(State.OnGame);
+                        break;
+                    case State.SettingUI:
+                        ChangeUI(State.PauseUI);
+                        break;
+                    case State.ToTitleUI:
+                        ChangeUI(State.PauseUI);
+                        break;
+                }
             }
         }
     }
