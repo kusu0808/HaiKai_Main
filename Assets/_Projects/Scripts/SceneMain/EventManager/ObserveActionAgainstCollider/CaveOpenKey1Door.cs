@@ -67,7 +67,7 @@ namespace Main.EventManager
                 holdingKey.Release();
 
                 door.Trigger();
-                _uiElements.LogText.ShowAutomatically("ドアを開けた");
+                _uiElements.LogText.ShowAutomatically("鍵を差した");
             }
         }
     }

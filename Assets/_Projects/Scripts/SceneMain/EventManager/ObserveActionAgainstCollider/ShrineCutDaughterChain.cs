@@ -8,10 +8,10 @@ namespace Main.EventManager
     {
         private async UniTaskVoid ShrineCutDaughterChain(Type type, CancellationToken ct)
         {
-            var chain = _objects.DaughterChain;
-
             if (_uiElements.DaughterKnife.IsHolding() is true)
             {
+                var chain = _objects.DaughterChain;
+
                 chain.Cut(type);
 
                 if (chain.IsAllCut() is false) return;
@@ -24,6 +24,14 @@ namespace Main.EventManager
                 _daughter.BecomeEmergencyMode();
                 await _uiElements.BlackImage.FadeIn(EventManagerConst.FadeInDuration, ct);
                 _hasSavedDaughter = true;
+            }
+            else if (_uiElements.IsHoldingAnyItem() is true)
+            {
+                _uiElements.LogText.ShowAutomatically("鋭利なものが必要だ");
+            }
+            else
+            {
+                _uiElements.LogText.ShowAutomatically("鎖が娘の体をキツく締め上げている");
             }
         }
     }

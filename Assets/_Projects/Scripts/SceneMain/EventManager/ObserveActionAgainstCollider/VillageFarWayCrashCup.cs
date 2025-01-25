@@ -13,6 +13,14 @@ namespace Main.EventManager
                 _uiElements.Cup.Release();
                 _uiElements.GlassShard.Obtain();
             }
+            else if (_uiElements.IsHoldingAnyItem() is true)
+            {
+                _uiElements.LogText.ShowAutomatically("このアイテムを割るわけにはいかない！");
+            }
+            else
+            {
+                _uiElements.LogText.ShowAutomatically("何かが割られた形跡がある");
+            }
         }
     }
 }
