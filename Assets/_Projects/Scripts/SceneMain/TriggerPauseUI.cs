@@ -97,6 +97,9 @@ namespace Main
             _state = State.OnGame;
             ChangeUI(State.OnGame);
 
+            _bgmVolumeSlider.value = SoundManager.BGMVolume;
+            _seVolumeSlider.value = SoundManager.SEVolume;
+
             _toTitleButton.onClick.AddListener(() => ChangeUI(State.ToTitleUI));
             _settingButton.onClick.AddListener(() => ChangeUI(State.SettingUI));
             _closeButton.onClick.AddListener(() => ChangeUI(State.OnGame));

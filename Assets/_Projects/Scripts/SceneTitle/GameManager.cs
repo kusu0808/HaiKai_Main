@@ -72,6 +72,9 @@ namespace Title
             _state = State.TitleUI;
             ChangeUI(State.TitleUI);
 
+            _bgmVolumeSlider.value = SoundManager.BGMVolume;
+            _seVolumeSlider.value = SoundManager.SEVolume;
+
             _startButton.onClick.AddListener(() => ChangeUI(State.StartUI));
             _settingButton.onClick.AddListener(() => ChangeUI(State.SettingUI));
 
