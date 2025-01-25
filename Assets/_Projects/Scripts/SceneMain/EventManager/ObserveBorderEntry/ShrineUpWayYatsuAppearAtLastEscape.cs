@@ -26,7 +26,7 @@ namespace Main.EventManager
                 );
                 _objects.ShrineWayYatsuComeAtLastEscapeTimeline.StopForcibly();
 
-                _yatsu.SpawnHere(_points.ShrineWayYatsuSpawnPoint);
+                _yatsu.SpawnHere(_points.ShrineUpWayYatsuComeAtLastEscapeSpawnPoint);
 
                 _isWalkingSoundMuted.Value = false;
                 _player.IsVisible = true;
