@@ -64,7 +64,7 @@ namespace Main
             ToTitleUI
         }
 
-        private State _state = State.OnGame;
+        private State _state;
 
         // UIを切り替え、ポーズとカーソルの状態を更新、ポーズ開始/終了時ならイベントを発火
         private void ChangeUI(State state)
