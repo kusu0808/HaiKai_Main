@@ -116,18 +116,6 @@ namespace Main.Eventer.Borders
         private MultiBorders _enableGoUpOnCaveStairs;
         public MultiBorders EnableGoUpOnCaveStairs => _enableGoUpOnCaveStairs;
 
-        [SerializeField, Required, SceneObjectsOnly, Tooltip("洞窟：ゴキちゃん出現1")]
-        private Border _caveGokiChanAppear1;
-        public Border CaveGokiChanAppear1 => _caveGokiChanAppear1;
-
-        [SerializeField, Required, SceneObjectsOnly, Tooltip("洞窟：ゴキちゃん出現2")]
-        private Border _caveGokiChanAppear2;
-        public Border CaveGokiChanAppear2 => _caveGokiChanAppear2;
-
-        [SerializeField, Required, SceneObjectsOnly, Tooltip("洞窟：ゴキちゃんが広がって消える(未実装)")]
-        private Border _caveGokiChanSpreadAndDisappear;
-        public Border CaveGokiChanSpreadAndDisappear => _caveGokiChanSpreadAndDisappear;
-
         [SerializeField, Required, SceneObjectsOnly, Tooltip("洞窟出口：階段だけ登れる角度が変わる")]
         private MultiBorders _enableGoUpOnCaveExitStairs;
         public MultiBorders EnableGoUpOnCaveExitStairs => _enableGoUpOnCaveExitStairs;
@@ -143,6 +131,10 @@ namespace Main.Eventer.Borders
         [SerializeField, Required, SceneObjectsOnly, Tooltip("神社上の道：娘にこっちじゃないと言われる")]
         private Border _shrineUpWayDaughterSaysNotHere;
         public Border ShrineUpWayDaughterSaysNotHere => _shrineUpWayDaughterSaysNotHere;
+
+        [SerializeField, Required, SceneObjectsOnly, Tooltip("小道：最後の脱出時にヤツが現れる")]
+        private Border _pathWayYatsuAppearAtLastEscape;
+        public Border PathWayYatsuAppearAtLastEscape => _pathWayYatsuAppearAtLastEscape;
 
         [SerializeField, Required, SceneObjectsOnly, Tooltip("小道：娘にこっちじゃないと言われる")]
         private Border _pathWayDaughterSaysNotHere;

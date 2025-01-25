@@ -77,10 +77,6 @@ namespace Main.Eventer.Objects
         public PlacedItemClass VillageFarWayCanScatterGlassPieceArea => _villageFarWayCanScatterGlassPieceArea;
 
         [SerializeField, Required, SceneObjectsOnly]
-        private GokiChanClass _gokiChan;
-        public GokiChanClass GokiChan => _gokiChan;
-
-        [SerializeField, Required, SceneObjectsOnly]
         private PlacedItemClass _shrineChainedDaughter;
         public PlacedItemClass ShrineChainedDaughter => _shrineChainedDaughter;
 
@@ -99,5 +95,9 @@ namespace Main.Eventer.Objects
         [SerializeField, Required, SceneObjectsOnly]
         private TimelineClass _shrineWayFoundByYatsuTimeline;
         public TimelineClass ShrineWayFoundByYatsuTimeline => _shrineWayFoundByYatsuTimeline;
+
+        [SerializeField, Required, SceneObjectsOnly]
+        private TimelineClass _shrineWayYatsuComeAtLastEscapeTimeline;
+        public TimelineClass ShrineWayYatsuComeAtLastEscapeTimeline => _shrineWayYatsuComeAtLastEscapeTimeline;
     }
 }

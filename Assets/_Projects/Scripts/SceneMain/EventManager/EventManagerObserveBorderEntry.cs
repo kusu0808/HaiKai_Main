@@ -22,9 +22,9 @@ namespace Main.EventManager
             VillageFarWayYatsuDaughterVoice(ct).Forget();
             VillageFarWayCutIvyYatsuComeFromCave(ct).Forget();
             VillageFarWayYatsuStepOnGlassPiece(ct).Forget();
-            CaveGokiChanAppear(ct).Forget();
             CaveExitYatsuVoice(ct).Forget();
             ShrineUpWayYatsuAppearAtLastEscape(ct).Forget();
+            PathWayYatsuAppearAtLastEscape(ct).Forget();
             BusStopEscape(ct).Forget();
 
             // 繰り返し
