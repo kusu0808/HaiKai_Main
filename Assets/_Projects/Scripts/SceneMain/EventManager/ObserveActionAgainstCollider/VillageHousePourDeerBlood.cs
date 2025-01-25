@@ -16,6 +16,14 @@ namespace Main.EventManager
                 AudioSource audioSource = _audioSources.VillageToiletYatsuKnockDoor;
                 if (audioSource != null) audioSource.Stop();
             }
+            else if (_uiElements.IsHoldingAnyItem() is true)
+            {
+                _uiElements.LogText.ShowAutomatically("このこけしは血に濡れていないようだ");
+            }
+            else
+            {
+                _uiElements.LogText.ShowAutomatically("このこけしは血に濡れていないようだ");
+            }
         }
     }
 }

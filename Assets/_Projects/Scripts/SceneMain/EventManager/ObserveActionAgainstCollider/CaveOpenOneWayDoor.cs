@@ -15,7 +15,7 @@ namespace Main.EventManager
 
             if (door.Border.IsIn(_player.Position) is false)
             {
-                _uiElements.LogText.ShowAutomatically("届かない...");
+                _uiElements.LogText.ShowAutomatically("届かない");
                 return;
             }
 

@@ -13,6 +13,10 @@ namespace Main.EventManager
                 _objects.BigIvies.DeactivateThis(type);
                 _uiElements.LogText.ShowAutomatically("通れるようになった");
             }
+            else if (_uiElements.IsHoldingAnyItem() is true)
+            {
+                _uiElements.LogText.ShowAutomatically("鋭利なものが必要だ");
+            }
             else
             {
                 _uiElements.LogText.ShowAutomatically("大きな植物が道を遮っている");

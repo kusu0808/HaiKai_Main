@@ -85,6 +85,19 @@ namespace Main.Eventer.UIElements
 
             void Init(UIItemClass uiItemClass) => uiItemClass?.Init(_manageItemUI);
         }
+
+        public bool IsHoldingAnyItem()
+        {
+            if (_daughterKnife?.IsHolding() is true) return true;
+            if (_warehouseKeyDoubled?.IsHolding() is true) return true;
+            if (_warehouseKey?.IsHolding() is true) return true;
+            if (_cup?.IsHolding() is true) return true;
+            if (_cupFilledWithBlood?.IsHolding() is true) return true;
+            if (_kokeshiSecretKey?.IsHolding() is true) return true;
+            if (_glassShard?.IsHolding() is true) return true;
+            if (_keyInDoorPuzzleSolving?.IsHolding() is true) return true;
+            return false;
+        }
     }
 
     public static class UIElementsEx

@@ -16,6 +16,11 @@ namespace Main.EventManager
                     _uiElements.LogText.ShowAutomatically("鍵がかかっている");
                     return;
                 }
+                else if (_uiElements.IsHoldingAnyItem() is true)
+                {
+                    _uiElements.LogText.ShowAutomatically("鍵を開けられるものはないだろうか？");
+                    return;
+                }
 
                 _isOpenToiletLockedDoorEventEnabled = false;
 
@@ -48,7 +53,7 @@ namespace Main.EventManager
                 if (_hasDecidedNotToTurnBack is true) return;
                 _hasDecidedNotToTurnBack = true;
 
-                _uiElements.LogText.ShowAutomatically("ここまで来たらもう引き返せない");
+                _uiElements.LogText.ShowAutomatically("ここまで来たらもう引き返せない、先に進もう");
 
                 await UniTask.Delay(1000, ignoreTimeScale: true, cancellationToken: ct);
                 await _TeleportPlayer(_points.VillageFarWayOutsideToiletPoint, ct);
