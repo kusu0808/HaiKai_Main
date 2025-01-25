@@ -14,7 +14,7 @@ namespace Main.EventManager
             }
             else if (_uiElements.IsHoldingAnyItem() is true)
             {
-                _uiElements.LogText.ShowAutomatically("何かが割られている");
+                _uiElements.LogText.ShowAutomatically("ガラスが散らばっている");
             }
             else
             {

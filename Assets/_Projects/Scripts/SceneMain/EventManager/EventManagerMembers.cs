@@ -30,6 +30,7 @@ namespace Main.EventManager
         private readonly ReactiveProperty<bool> _isWalkingSoundMuted = new ReactiveProperty<bool>(false);
 
         private bool _hasRunAwayFromFirstYatsu = false; // 最初にヤツから逃げ切った段階でtrueになる
+        private bool _hasScoupedDeerBlood = false; // 鹿の血をコップにくんだ段階でtrueになる
         private bool _isOpenToiletLockedDoorEventEnabled = true;
         private bool _isPickUpSecretKeyEventEnabled = true;
         private bool _hasDecidedNotToTurnBack = false; // 秘密の鍵を入手後、トイレのドアをくぐった段階でtrueになる
