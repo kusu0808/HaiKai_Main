@@ -8,6 +8,7 @@ namespace General
     {
         public enum ID
         {
+            Init,
             Title,
             Main,
             Death,
@@ -38,6 +39,7 @@ namespace General
 
         private static string ToName(this ID id) => id switch
         {
+            ID.Init => "Init",
             ID.Title => "Title",
             ID.Main => "Main",
             ID.Death => "Death",
