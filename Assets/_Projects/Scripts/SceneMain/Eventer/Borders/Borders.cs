@@ -64,14 +64,6 @@ namespace Main.Eventer.Borders
         private Border _houseFeelingYatsu3;
         public Border HouseFeelingYatsu3 => _houseFeelingYatsu3;
 
-        [SerializeField, Required, SceneObjectsOnly, Tooltip("民家：廊下")]
-        private MultiBorders _houseCorridor;
-        public MultiBorders HouseCorridor => _houseCorridor;
-
-        [SerializeField, Required, SceneObjectsOnly, Tooltip("民家：畳")]
-        private MultiBorders _houseTatami;
-        public MultiBorders HouseTatami => _houseTatami;
-
         [SerializeField, Required, SceneObjectsOnly, Tooltip("神社：参道だけ登れる角度が変わる")]
         private Border _enableGoUpOnShrineWay;
         public Border EnableGoUpOnShrineWay => _enableGoUpOnShrineWay;
