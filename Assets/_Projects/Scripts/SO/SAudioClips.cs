@@ -43,6 +43,10 @@ namespace SO
         [Serializable]
         public sealed class AudioClipsBGM
         {
+            [SerializeField, Required, AssetsOnly, LabelText("タイトル")]
+            private AudioClip _title;
+            public AudioClip Title => _title;
+
             [SerializeField, Required, AssetsOnly, LabelText("環境音、山の風")]
             private AudioClip _natureSoundWindOfMountain;
             public AudioClip NatureSoundWindOfMountain => _natureSoundWindOfMountain;

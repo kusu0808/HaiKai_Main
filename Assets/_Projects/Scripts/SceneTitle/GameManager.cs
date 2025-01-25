@@ -1,6 +1,7 @@
 using General;
 using IA;
 using Sirenix.OdinInspector;
+using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -27,10 +28,17 @@ namespace Title
         [SerializeField, Required, SceneObjectsOnly]
         private Slider _seVolumeSlider;
 
-#if false
         [SerializeField, Required, SceneObjectsOnly]
         private Slider _mouseSensitivitySlider;
-#endif
+
+        [SerializeField, Required, SceneObjectsOnly]
+        private TextMeshProUGUI _bgmVolumeText;
+
+        [SerializeField, Required, SceneObjectsOnly]
+        private TextMeshProUGUI _seVolumeText;
+
+        [SerializeField, Required, SceneObjectsOnly]
+        private TextMeshProUGUI _mouseSensitivityText;
 
         [SerializeField, Required, SceneObjectsOnly]
         private Button _closeSettingButton;
@@ -74,16 +82,30 @@ namespace Title
 
             _bgmVolumeSlider.value = SoundManager.BGMVolume;
             _seVolumeSlider.value = SoundManager.SEVolume;
+            _mouseSensitivitySlider.value = Main.TriggerPauseUI.MouseSensitivity;
+            _bgmVolumeText.text = SoundManager.BGMVolume.ToString("F0");
+            _seVolumeText.text = SoundManager.SEVolume.ToString("F0");
+            _mouseSensitivityText.text = Main.TriggerPauseUI.MouseSensitivity.ToString("F1");
 
             _startButton.onClick.AddListener(() => ChangeUI(State.StartUI));
             _settingButton.onClick.AddListener(() => ChangeUI(State.SettingUI));
 
-            _bgmVolumeSlider.onValueChanged.AddListener(value => SoundManager.BGMVolume = value);
+            _bgmVolumeSlider.onValueChanged.AddListener(value =>
+            {
+                SoundManager.BGMVolume = value;
+                _bgmVolumeText.text = value.ToString("F0");
+            });
             _seVolumeSlider.onValueChanged.AddListener(value =>
             {
                 SoundManager.VoiceVolume = value;
                 SoundManager.SEVolume = value;
                 SoundManager.SERoughVolume = value;
+                _seVolumeText.text = value.ToString("F0");
+            });
+            _mouseSensitivitySlider.onValueChanged.AddListener(value =>
+            {
+                Main.TriggerPauseUI.MouseSensitivity = value;
+                _mouseSensitivityText.text = value.ToString("F1");
             });
             _closeSettingButton.onClick.AddListener(() => ChangeUI(State.TitleUI));
 
