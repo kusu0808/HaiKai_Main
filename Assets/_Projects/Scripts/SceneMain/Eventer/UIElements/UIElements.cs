@@ -23,7 +23,7 @@ namespace Main.Eventer.UIElements
         public LogTextClass LogText => _logText;
 
         [SerializeField, Required, SceneObjectsOnly]
-        private ManageItemUI _managePlayerUI;
+        private ManageItemUI _manageItemUI;
 
         [SerializeField, Required, AssetsOnly]
         private UIItemClass _daughterKnife;
@@ -83,7 +83,7 @@ namespace Main.Eventer.UIElements
             Init(_glassShard);
             Init(_keyInDoorPuzzleSolving);
 
-            void Init(UIItemClass uiItemClass) => uiItemClass?.Init(_managePlayerUI);
+            void Init(UIItemClass uiItemClass) => uiItemClass?.Init(_manageItemUI);
         }
     }
 
