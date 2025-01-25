@@ -25,6 +25,7 @@ namespace Main.EventManager
             CaveGokiChanAppear(ct).Forget();
             CaveExitYatsuVoice(ct).Forget();
             ShrineUpWayYatsuAppearAtLastEscape(ct).Forget();
+            PathWayYatsuAppearAtLastEscape(ct).Forget();
             BusStopEscape(ct).Forget();
 
             // 繰り返し
