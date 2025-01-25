@@ -144,6 +144,10 @@ namespace Main.Eventer.Borders
         private Border _shrineUpWayDaughterSaysNotHere;
         public Border ShrineUpWayDaughterSaysNotHere => _shrineUpWayDaughterSaysNotHere;
 
+        [SerializeField, Required, SceneObjectsOnly, Tooltip("小道：最後の脱出時にヤツが現れる")]
+        private Border _pathWayYatsuAppearAtLastEscape;
+        public Border PathWayYatsuAppearAtLastEscape => _pathWayYatsuAppearAtLastEscape;
+
         [SerializeField, Required, SceneObjectsOnly, Tooltip("小道：娘にこっちじゃないと言われる")]
         private Border _pathWayDaughterSaysNotHere;
         public Border PathWayDaughterSaysNotHere => _pathWayDaughterSaysNotHere;

@@ -21,7 +21,7 @@ namespace Main.EventManager
                 _objects.ShrineUpWayCannotGoAtLastEscape.IsEnabled = true;
                 _objects.PathWayCannotGoAtLastEscape.IsEnabled = true;
                 _daughter.SpawnHere(_points.ShrineDaughterSpawnPoint);
-                _daughter.ChangeAnimationModeFromEnterToEscape();
+                _daughter.BecomeEmergencyMode();
                 await _uiElements.BlackImage.FadeIn(EventManagerConst.FadeInDuration, ct);
                 _hasSavedDaughter = true;
             }
