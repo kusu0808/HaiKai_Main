@@ -4,6 +4,9 @@ using UniRx;
 using Sirenix.OdinInspector;
 using IA;
 using General;
+using TMPro;
+using StarterAssets;
+using Main.EventManager;
 
 namespace Main
 {
@@ -34,10 +37,17 @@ namespace Main
         [SerializeField, Required, SceneObjectsOnly]
         private Slider _seVolumeSlider;
 
-#if false
         [SerializeField, Required, SceneObjectsOnly]
         private Slider _mouseSensitivitySlider;
-#endif
+
+        [SerializeField, Required, SceneObjectsOnly]
+        private TextMeshProUGUI _bgmVolumeText;
+
+        [SerializeField, Required, SceneObjectsOnly]
+        private TextMeshProUGUI _seVolumeText;
+
+        [SerializeField, Required, SceneObjectsOnly]
+        private TextMeshProUGUI _mouseSensitivityText;
 
         [SerializeField, Required, SceneObjectsOnly]
         private Button _closeSettingButton;
@@ -52,6 +62,33 @@ namespace Main
 
         [SerializeField, Required, SceneObjectsOnly]
         private Button _noButton;
+
+        [Header("Others")]
+
+        [SerializeField, Required, SceneObjectsOnly]
+        private FirstPersonController _firstPersonController;
+
+        private static float _mouseSensitivity = EventManagerConst.RotationSpeedInit;
+        private static float mouseSensitivity
+        {
+            get => _mouseSensitivity;
+            set // 内部で変更→視点感度が変わる
+            {
+                _mouseSensitivity = value;
+                OnMouseSensitivityChangedFromInside?.OnNext(value);
+            }
+        }
+        public static float MouseSensitivity
+        {
+            get => _mouseSensitivity;
+            set // 外部で変更→視点感度は変わらない（外部で変更すること）
+            {
+                _mouseSensitivity = value;
+                OnMouseSensitivityChangedFromOutside?.OnNext(value);
+            }
+        }
+        private static Subject<float> OnMouseSensitivityChangedFromInside { get; set; } = new Subject<float>();
+        private static Subject<float> OnMouseSensitivityChangedFromOutside { get; set; } = new Subject<float>();
 
         public static Subject<Unit> OnPauseBegin { get; set; } = new Subject<Unit>();
         public static Subject<Unit> OnPauseEnd { get; set; } = new Subject<Unit>();
@@ -99,17 +136,41 @@ namespace Main
 
             _bgmVolumeSlider.value = SoundManager.BGMVolume;
             _seVolumeSlider.value = SoundManager.SEVolume;
+            _mouseSensitivitySlider.value = mouseSensitivity;
+            _bgmVolumeText.text = SoundManager.BGMVolume.ToString("F0");
+            _seVolumeText.text = SoundManager.SEVolume.ToString("F0");
+            _mouseSensitivityText.text = mouseSensitivity.ToString("F1");
+            if (_firstPersonController != null) _firstPersonController.RotationSpeed = mouseSensitivity;
+            OnMouseSensitivityChangedFromInside.Subscribe(value =>
+            {
+                _mouseSensitivityText.text = value.ToString("F1");
+            }).AddTo(this);
+            OnMouseSensitivityChangedFromOutside.Subscribe(value =>
+            {
+                _mouseSensitivitySlider.value = value;
+                _mouseSensitivityText.text = value.ToString("F1");
+            }).AddTo(this);
 
             _toTitleButton.onClick.AddListener(() => ChangeUI(State.ToTitleUI));
             _settingButton.onClick.AddListener(() => ChangeUI(State.SettingUI));
             _closeButton.onClick.AddListener(() => ChangeUI(State.OnGame));
 
-            _bgmVolumeSlider.onValueChanged.AddListener(value => SoundManager.BGMVolume = value);
+            _bgmVolumeSlider.onValueChanged.AddListener(value =>
+            {
+                SoundManager.BGMVolume = value;
+                _bgmVolumeText.text = value.ToString("F0");
+            });
             _seVolumeSlider.onValueChanged.AddListener(value =>
             {
                 SoundManager.VoiceVolume = value;
                 SoundManager.SEVolume = value;
                 SoundManager.SERoughVolume = value;
+                _seVolumeText.text = value.ToString("F0");
+            });
+            _mouseSensitivitySlider.onValueChanged.AddListener(value =>
+            {
+                mouseSensitivity = value;
+                if (_firstPersonController != null) _firstPersonController.RotationSpeed = value;
             });
             _closeSettingButton.onClick.AddListener(() => ChangeUI(State.PauseUI));
 

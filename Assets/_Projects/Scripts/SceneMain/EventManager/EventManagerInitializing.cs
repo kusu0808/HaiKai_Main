@@ -31,7 +31,7 @@ namespace Main.EventManager
             TriggerPauseUI.OnPauseEnd.Subscribe(_ => _uiElements.Reticle.IsInvisible = false).AddTo(gameObject);
             _yatsu.ChasedBGM = _audioClips.BGM.ChasedByYatsu;
 
-            if (_debug.IsEnabled) InitializeDebugProperty();
+            if (_debug.IsEnabled) InitializeDebugProperty(ct).Forget();
 
             await _uiElements.BlackImage.FadeIn(EventManagerConst.FadeInDuration, ct);
             _player.IsPlayerControlEnabled = true;
@@ -39,10 +39,11 @@ namespace Main.EventManager
             _busMover.MoveOnce(ct).Forget();
         }
 
-        private void InitializeDebugProperty()
+        private async UniTaskVoid InitializeDebugProperty(CancellationToken ct)
         {
             "デバッグ機能が有効になっています".Warn();
 
+            await UniTask.DelayFrame(5, cancellationToken: ct); // ポーズスクリプトのイベントバインドが終わるまで、十分待つ
             if (_debug.FastMove) _player.FastenPlayer();
             if (_debug.FastLook) _player.FastenLook();
         }

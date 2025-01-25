@@ -21,6 +21,8 @@ namespace Main.EventManager
 
     public static class EventManagerConst
     {
+        public static readonly float RotationSpeedInit = 1.0f;
+
         public static readonly float FadeInDuration = 0.5f;
         public static readonly float FadeOutDuration = 0.5f;
         public static readonly float FadeInOutInterval = 0.2f;
