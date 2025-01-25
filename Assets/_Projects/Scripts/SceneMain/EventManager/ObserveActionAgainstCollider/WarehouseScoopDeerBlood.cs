@@ -4,6 +4,8 @@ namespace Main.EventManager
     {
         private void WarehouseScoopDeerBlood()
         {
+            if (_objects.Deers.HasBeenHurtByKnife is false) return;
+
             if (_uiElements.Cup.IsHolding() is true)
             {
                 _uiElements.LogText.ShowAutomatically("コップが血て満たされた");

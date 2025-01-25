@@ -4,6 +4,8 @@ namespace Main.EventManager
     {
         private void WarehouseCutDeer()
         {
+            if (_objects.Deers.HasBeenHurtByKnife is true) return;
+
             if (_uiElements.DaughterKnife.IsHolding() is true)
             {
                 _objects.Deers.HurtByKnife();
