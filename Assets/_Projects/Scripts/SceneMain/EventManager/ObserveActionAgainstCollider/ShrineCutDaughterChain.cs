@@ -1,5 +1,6 @@
 using System.Threading;
 using Cysharp.Threading.Tasks;
+using General;
 using Type = Main.Eventer.Objects.DaughterChainClass.Type;
 
 namespace Main.EventManager
@@ -13,6 +14,7 @@ namespace Main.EventManager
                 var chain = _objects.DaughterChain;
 
                 chain.Cut(type);
+                _audioSources.GetNew().Raise(_audioClips.SE.CutDaugherChain, SoundType.SE);
 
                 if (chain.IsAllCut() is false) return;
 
