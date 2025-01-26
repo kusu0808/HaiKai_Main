@@ -15,14 +15,12 @@ namespace Main.EventManager
             while (true)
             {
                 await UniTask.WaitUntil(() => border.IsIn(_player.Position) is true, cancellationToken: ct);
-                TriggerPauseUI.IsInputEnabled = false;
-                _uiElements.LogText.ShowManually("[ ガラス片を撒く(右クリック) ]");
+                _uiElements.LogText.ShowManually("[ ガラス片を撒く(左クリック) ]");
                 int i = await UniTask.WhenAny(
-                    UniTask.WaitUntil(() => InputGetter.Instance.PlayerCancel.Bool is true, cancellationToken: ct),
+                    UniTask.WaitUntil(() => InputGetter.Instance.PlayerAction.Bool is true, cancellationToken: ct),
                     UniTask.WaitUntil(() => border.IsIn(_player.Position) is false, cancellationToken: ct)
                 );
                 _uiElements.LogText.ShowManually(string.Empty);
-                TriggerPauseUI.IsInputEnabled = true;
 
                 if (i == 0)
                 {
