@@ -21,7 +21,7 @@ namespace Main.EventManager
                     _uiElements.LogText.ShowAutomatically("鍵を開けた");
 
                     _yatsu.Despawn();
-                    await UniTask.Delay(1000, ignoreTimeScale: true, cancellationToken: ct);
+                    await UniTask.WaitForSeconds(0.5f, cancellationToken: ct);
                     await _TeleportPlayer(_points.VillageFarWayInsideToiletPoint, ct);
 
                     AudioSource audioSource = _audioSources.VillageToiletYatsuKnockDoor;
@@ -55,7 +55,7 @@ namespace Main.EventManager
 
                 _uiElements.LogText.ShowAutomatically("ここまで来たらもう引き返せない、先に進もう");
 
-                await UniTask.Delay(1000, ignoreTimeScale: true, cancellationToken: ct);
+                await UniTask.WaitForSeconds(0.5f, cancellationToken: ct);
                 await _TeleportPlayer(_points.VillageFarWayOutsideToiletPoint, ct);
             }
         }

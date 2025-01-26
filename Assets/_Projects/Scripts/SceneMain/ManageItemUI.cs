@@ -126,5 +126,19 @@ namespace Main
 
             return nowSprite == sprite;
         }
+
+        public bool HasItem(Sprite sprite)
+        {
+            if (_itemImages is null) return false;
+            if (sprite == null) return false;
+
+            foreach (Image img in _itemImages)
+            {
+                if (img == null) continue;
+                if (img.sprite == sprite) return true;
+            }
+
+            return false;
+        }
     }
 }

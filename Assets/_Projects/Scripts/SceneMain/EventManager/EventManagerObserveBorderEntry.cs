@@ -20,6 +20,7 @@ namespace Main.EventManager
             ShrineUpWayYatsuAppearOneByOne(ct).Forget();
             WarehouseDeerFall(ct).Forget();
             VillageFarWayYatsuDaughterVoice(ct).Forget();
+            VillageFarWayScatterGlassPiece(ct).Forget();
             VillageFarWayCutIvyYatsuComeFromCave(ct).Forget();
             VillageFarWayYatsuStepOnGlassPiece(ct).Forget();
             CaveExitYatsuVoice(ct).Forget();
@@ -42,11 +43,13 @@ namespace Main.EventManager
         async UniTask _TeleportPlayer(Transform transform, CancellationToken ct)
         {
             if (transform == null) return;
+            TriggerPauseUI.IsInputEnabled = false;
             _player.IsPlayerControlEnabled = false;
             await _uiElements.BlackImage.FadeOut(EventManagerConst.FadeOutDuration, ct);
             _player.SetTransform(transform);
             await _uiElements.BlackImage.FadeIn(EventManagerConst.FadeInDuration, ct);
             _player.IsPlayerControlEnabled = true;
+            TriggerPauseUI.IsInputEnabled = true;
         }
     }
 }

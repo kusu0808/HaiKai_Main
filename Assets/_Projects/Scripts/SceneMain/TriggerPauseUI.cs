@@ -93,6 +93,8 @@ namespace Main
         public static Subject<Unit> OnPauseBegin { get; set; } = new Subject<Unit>();
         public static Subject<Unit> OnPauseEnd { get; set; } = new Subject<Unit>();
 
+        public static bool IsInputEnabled { get; set; } = true;
+
         private enum State
         {
             OnGame,
@@ -180,6 +182,8 @@ namespace Main
 
         private void Update()
         {
+            if (IsInputEnabled is false) return;
+
             if (InputGetter.Instance.Pause.Bool)
             {
                 switch (_state)
