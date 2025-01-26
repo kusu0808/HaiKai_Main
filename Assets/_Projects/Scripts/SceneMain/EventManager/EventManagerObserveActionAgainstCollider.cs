@@ -63,7 +63,6 @@ namespace Main.EventManager
                 "ActionAgainstCollider/Event/KokeshiBlood" => () => VillageHousePourDeerBlood(),
                 "ActionAgainstCollider/Event/KokeshiKey" => () => VillageHousePickUpSecretKey(),
                 "ActionAgainstCollider/Event/CupCrash" => () => VillageFarWayCrashCup(),
-                "ActionAgainstCollider/Event/SetCrashedCup" => () => VillageFarWayScatterGlassPiece(),
                 "ActionAgainstCollider/Event/DoorPuzzleSolvingKey" => () => CavePickUpKeyInDoorPuzzleSolving(),
                 "ActionAgainstCollider/Event/DoorPuzzleSolvingKey1FirstDoorKnob" => () => CaveOpenKey1Door(Key1DoorType.First),
                 "ActionAgainstCollider/Event/DoorPuzzleSolvingKey1SecondDoorKnob" => () => CaveOpenKey1Door(Key1DoorType.Second),

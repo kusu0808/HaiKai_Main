@@ -73,10 +73,6 @@ namespace Main.Eventer.Objects
         public PlacedItemClass VillageFarWayScatteredGlassPiece => _villageFarWayScatteredGlassPiece;
 
         [SerializeField, Required, SceneObjectsOnly]
-        private PlacedItemClass _villageFarWayCanScatterGlassPieceArea;
-        public PlacedItemClass VillageFarWayCanScatterGlassPieceArea => _villageFarWayCanScatterGlassPieceArea;
-
-        [SerializeField, Required, SceneObjectsOnly]
         private PlacedItemClass _shrineChainedDaughter;
         public PlacedItemClass ShrineChainedDaughter => _shrineChainedDaughter;
 
