@@ -22,6 +22,7 @@ namespace Main.EventManager
         [SerializeField] private Daughter _daughter;
         [SerializeField] private Yatsu _yatsu;
         [SerializeField] private UIElements _uiElements;
+        [SerializeField] private PostProcessManager _postProcessManager;
         [Space(25)]
         [SerializeField] private BusMover _busMover;
 
