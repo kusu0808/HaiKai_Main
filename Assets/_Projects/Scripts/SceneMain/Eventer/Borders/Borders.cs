@@ -105,7 +105,7 @@ namespace Main.Eventer.Borders
         private Border _villageFarWayYatsuDaughterVoice2;
         public Border VillageFarWayYatsuDaughterVoice2 => _villageFarWayYatsuDaughterVoice2;
 
-        [SerializeField, Required, SceneObjectsOnly, Tooltip("奥の村道：ツタを切った後、ヤツが洞窟の方から来る")]
+        [SerializeField, Required, SceneObjectsOnly, Tooltip("奥の村道：ツタを切るところで、ヤツが洞窟の方から来る")]
         private Border _villageFarWayCutIvyYatsuComeFromCave;
         public Border VillageFarWayCutIvyYatsuComeFromCave => _villageFarWayCutIvyYatsuComeFromCave;
 
