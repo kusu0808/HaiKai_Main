@@ -14,6 +14,7 @@ namespace Main.EventManager
 
             async UniTask DoEvent(CancellationToken ct)
             {
+                TriggerPauseUI.IsInputEnabled = false;
                 _player.IsPlayerControlEnabled = false;
                 _player.IsVisible = false;
                 _isWalkingSoundMuted.Value = true;
@@ -44,6 +45,7 @@ namespace Main.EventManager
                 _isWalkingSoundMuted.Value = false;
                 _player.IsVisible = true;
                 _player.IsPlayerControlEnabled = true;
+                TriggerPauseUI.IsInputEnabled = true;
             }
 
             // 1フレーム待ってプレイヤーをテレポートさせ、ゲーム全体のフラグを更新する
