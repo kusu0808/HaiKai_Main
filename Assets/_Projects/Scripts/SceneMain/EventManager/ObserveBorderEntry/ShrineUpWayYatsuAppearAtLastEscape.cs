@@ -14,6 +14,7 @@ namespace Main.EventManager
 
             async UniTask DoEvent(CancellationToken ct)
             {
+                TriggerPauseUI.IsInputEnabled = false;
                 _player.IsPlayerControlEnabled = false;
                 _player.IsVisible = false;
                 _isWalkingSoundMuted.Value = true;
@@ -31,6 +32,7 @@ namespace Main.EventManager
                 _isWalkingSoundMuted.Value = false;
                 _player.IsVisible = true;
                 _player.IsPlayerControlEnabled = true;
+                TriggerPauseUI.IsInputEnabled = true;
             }
 
             // 0.5秒待ってから、(カットシーンをキャンセルするための)キャンセル入力を受け付ける
