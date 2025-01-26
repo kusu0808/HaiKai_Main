@@ -21,6 +21,9 @@ namespace Main.Eventer
         [SerializeField, Required, SceneObjectsOnly]
         private Light _headLight;
 
+        [SerializeField, Tooltip("トランジションのイージング(おすすめはOutQuad)")]
+        private Ease _ease;
+
         [Space(25)]
 
         [Tooltip("ビルド、実行時 : 開発用を使用"), ReadOnly, ShowInInspector] private static readonly bool _useReleaseOnBuild = true;
@@ -109,8 +112,10 @@ namespace Main.Eventer
             if (_postProcessVolume == null) return;
             if (_postProcessVolume.profile.TryGet(out ColorAdjustments ca) is false) return;
 
-            DOTween.To(() => ca.contrast.value, x => ca.contrast.value = x, 64.0f, TransitionDuration).ToUniTask(cancellationToken: ct).Forget();
-            DOTween.To(() => ca.colorFilter.value, x => ca.colorFilter.value = x, new Color32(42, 45, 55, 255), TransitionDuration).ToUniTask(cancellationToken: ct).Forget();
+            DOTween.To(() => ca.contrast.value, x => ca.contrast.value = x, 64.0f, TransitionDuration).SetEase(_ease)
+                .ToUniTask(cancellationToken: ct).Forget();
+            DOTween.To(() => ca.colorFilter.value, x => ca.colorFilter.value = x, new Color32(42, 45, 55, 255), TransitionDuration).SetEase(_ease)
+                .ToUniTask(cancellationToken: ct).Forget();
         }
     }
 }
