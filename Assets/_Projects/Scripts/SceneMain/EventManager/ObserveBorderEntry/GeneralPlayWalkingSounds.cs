@@ -59,9 +59,12 @@ namespace Main.EventManager
                 corridor.IsMuted = value;
             });
 
+            // 最初のものほど、優先される
+            var priority = new WalkingSound[] { corridor, asphalt, soil };
+
             while (true)
             {
-                CheckPriority(new WalkingSound[] { corridor, asphalt, soil });
+                CheckPriority(priority);
                 await UniTask.NextFrame(ct);
             }
 
@@ -149,6 +152,11 @@ namespace Main.EventManager
                 while (true)
                 {
                     await UniTask.WaitUntil(() => getIsInAndMoving(_borders) is true, cancellationToken: ct);
+                    int i = await UniTask.WhenAny(
+                        UniTask.WaitUntil(() => getIsInAndMoving(_borders) is false, cancellationToken: ct),
+                        UniTask.WaitForSeconds(0.2f, cancellationToken: ct)
+                    );
+                    if (i == 0) continue;
                     _isPlaying.Value = true; // IsPressedによって、trueにならないこともある
                     await UniTask.WaitUntil(() => getIsInAndMoving(_borders) is false, cancellationToken: ct);
                     _isPlaying.Value = false;
