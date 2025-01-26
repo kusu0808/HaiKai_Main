@@ -73,6 +73,10 @@ namespace Main.EventManager
                 await UniTask.DelayFrame(10, cancellationToken: ct);
                 await UniTask.WaitForSeconds(0.5f, cancellationToken: ct);
                 await UniTask.WaitUntil(() => InputGetter.Instance.PlayerCancel.Bool, cancellationToken: ct);
+                _uiElements.CutSceneSkipLabel.IsEnabled = true;
+                await UniTask.WaitForSeconds(0.2f, cancellationToken: ct);
+                await UniTask.WaitUntil(() => InputGetter.Instance.PlayerCancel.Bool, cancellationToken: ct);
+                _uiElements.CutSceneSkipLabel.IsEnabled = false;
             }
 
             async UniTask CancelTimeline(CancellationToken ct)

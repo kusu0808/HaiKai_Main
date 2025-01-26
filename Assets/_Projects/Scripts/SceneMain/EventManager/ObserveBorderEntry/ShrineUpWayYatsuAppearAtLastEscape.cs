@@ -18,6 +18,7 @@ namespace Main.EventManager
                 _player.IsPlayerControlEnabled = false;
                 _player.IsVisible = false;
                 _isWalkingSoundMuted.Value = true;
+                _uiElements.CutSceneSkipLabel.IsEnabled = true;
 
                 _daughter.SpawnHere(_points.ShrineUpWayDaughterAtLastEscapeSpawnPoint);
 
@@ -29,6 +30,7 @@ namespace Main.EventManager
 
                 _yatsu.SpawnHere(_points.ShrineUpWayYatsuComeAtLastEscapeSpawnPoint);
 
+                _uiElements.CutSceneSkipLabel.IsEnabled = false;
                 _isWalkingSoundMuted.Value = false;
                 _player.IsVisible = true;
                 _player.IsPlayerControlEnabled = true;

@@ -25,6 +25,10 @@ namespace Main.Eventer.UIElements
         [SerializeField, Required, SceneObjectsOnly]
         private ManageItemUI _manageItemUI;
 
+        [SerializeField, Required, SceneObjectsOnly]
+        private LabelClass _cutSceneSkipLabel;
+        public LabelClass CutSceneSkipLabel => _cutSceneSkipLabel;
+
         [SerializeField, Required, AssetsOnly]
         private UIItemClass _daughterKnife;
         public UIItemClass DaughterKnife => _daughterKnife;
