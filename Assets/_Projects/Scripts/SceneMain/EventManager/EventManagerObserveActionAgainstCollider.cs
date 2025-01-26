@@ -20,7 +20,7 @@ namespace Main.EventManager
                 await UniTask.Yield(ct);
 
                 if (PauseState.IsPaused is true) continue;  // ポーズ中
-                await UniTask.WaitUntil(() => InputGetter.Instance.PlayerAction.Bool, cancellationToken: ct);
+                await UniTask.WaitUntil(() => InputGetter.Instance.PlayerActionWithCooltime, cancellationToken: ct);
                 if (PauseState.IsPaused is true) continue;  // ポーズ中
 
                 Collider collider = _player.GetHitColliderFromCamera();

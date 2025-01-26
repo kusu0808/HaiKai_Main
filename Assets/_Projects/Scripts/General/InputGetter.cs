@@ -1,6 +1,8 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
+using System.Threading;
+using Cysharp.Threading.Tasks;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
@@ -269,6 +271,9 @@ namespace IA
         public InputInfo Pause { get; private set; }
         public InputInfo TriggerBenchmarkText { get; private set; }
 
+        private static readonly float PlayerActionCooltime = 0.5f;
+        public bool PlayerActionWithCooltime { get; private set; } = false;
+
         private void Init()
         {
             PlayerAction = new InputInfo(_ia.Player.Action, InputType.Click).Add(_inputInfoList);
@@ -276,6 +281,20 @@ namespace IA
             PlayerCancel = new InputInfo(_ia.Player.Cancel, InputType.Click).Add(_inputInfoList);
             Pause = new InputInfo(_ia.General.Pause, InputType.Click).Add(_inputInfoList);
             TriggerBenchmarkText = new InputInfo(_ia.Debug.TriggerBenchmarkText, InputType.Click).Add(_inputInfoList);
+
+            CountPlayerActionCooltime(destroyCancellationToken).Forget();
+        }
+
+        private async UniTaskVoid CountPlayerActionCooltime(CancellationToken ct)
+        {
+            while (true)
+            {
+                await UniTask.WaitUntil(() => PlayerAction.Bool is true, cancellationToken: ct);
+                PlayerActionWithCooltime = true;
+                await UniTask.NextFrame(ct);
+                PlayerActionWithCooltime = false;
+                await UniTask.WaitForSeconds(PlayerActionCooltime, cancellationToken: ct);
+            }
         }
     }
 }
