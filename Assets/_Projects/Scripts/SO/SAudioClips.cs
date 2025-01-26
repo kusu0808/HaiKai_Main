@@ -2,6 +2,7 @@ using System;
 using Sirenix.OdinInspector;
 using UnityEngine;
 using UnityEngine.Audio;
+using UnityEngine.Serialization;
 
 namespace SO
 {
@@ -189,9 +190,9 @@ namespace SO
             private AudioClip _cutDeerNeck;
             public AudioClip CutDeerNeck => _cutDeerNeck;
 
-            [SerializeField, Required, AssetsOnly, LabelText("アイテムナイフで鎖を切る")]
-            private AudioClip _cutShionChain;
-            public AudioClip CutShionChain => _cutShionChain;
+            [SerializeField, Required, AssetsOnly, LabelText("アイテムナイフで鎖を切る"), FormerlySerializedAs("_cutShionChain")]
+            private AudioClip _cutDaugherChain;
+            public AudioClip CutDaugherChain => _cutDaugherChain;
 
             [SerializeField, Required, AssetsOnly, LabelText("アイテム鍵を開ける音")]
             private AudioClip _keyOpen;
