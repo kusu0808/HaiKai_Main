@@ -185,10 +185,6 @@ namespace SO
             private AudioClip _cutBigIvy;
             public AudioClip CutBigIvy => _cutBigIvy;
 
-            [SerializeField, Required, AssetsOnly, LabelText("アイテムナイフで鎖を切る")]
-            private AudioClip _cutShionChains;
-            public AudioClip CutShionChains => _cutShionChains;
-
             [SerializeField, Required, AssetsOnly, LabelText("アイテムナイフで鹿を切る")]
             private AudioClip _cutDeerNeck;
             public AudioClip CutDeerNeck => _cutDeerNeck;
