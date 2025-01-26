@@ -12,6 +12,7 @@ namespace Main.EventManager
         // バスの動きなど、行動の開始もここで
         private async UniTask Initialize(CancellationToken ct)
         {
+            _postProcessManager.Init();
             _uiElements.Init();
             _daughter.InitNavMeshAgent();
             _yatsu.InitNavMeshAgent();

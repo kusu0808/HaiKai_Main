@@ -48,9 +48,9 @@ namespace Main.EventManager
             Action GetEvent(string tag, CancellationToken ctIfNeeded) => tag switch
             {
                 "ActionAgainstCollider/Event/DaughterKnife" => () => PathWayPickUpDaughterKnife(),
-                "ActionAgainstCollider/Event/BigIvyOnPathWay" => () => GeneralCutBigIvy(IvyType.PathWay),
-                "ActionAgainstCollider/Event/BigIvyOnShrineStair" => () => GeneralCutBigIvy(IvyType.ShrineStair),
-                "ActionAgainstCollider/Event/BigIvyOnCaveEntrance" => () => GeneralCutBigIvy(IvyType.CaveEntrance),
+                "ActionAgainstCollider/Event/BigIvyOnPathWay" => () => GeneralCutBigIvy(IvyType.PathWay, ctIfNeeded),
+                "ActionAgainstCollider/Event/BigIvyOnShrineStair" => () => GeneralCutBigIvy(IvyType.ShrineStair, ctIfNeeded),
+                "ActionAgainstCollider/Event/BigIvyOnCaveEntrance" => () => GeneralCutBigIvy(IvyType.CaveEntrance, ctIfNeeded),
                 "ActionAgainstCollider/Event/PuzzleHintScroll" => () => VillageHouseReadPuzzleHintScroll(ctIfNeeded).Forget(),
                 "ActionAgainstCollider/Event/ButaisideKey" => () => ShrineUpWayPickUpDoubledKey(),
                 "ActionAgainstCollider/Event/Cup" => () => VillageToiletPickUpCup(),
