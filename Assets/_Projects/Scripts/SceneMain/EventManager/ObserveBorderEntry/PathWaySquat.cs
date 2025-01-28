@@ -26,7 +26,7 @@ namespace Main.EventManager
                 _uiElements.LogText.ShowManually("[ くぐる(右クリック) ]");
                 int j = await UniTask.WhenAny(
                     UniTask.WaitUntil(() => border.In.IsIn(_player.Position) is false, cancellationToken: ct),
-                    UniTask.WaitUntil(() => InputGetter.Instance.PlayerCancel.Bool, cancellationToken: ct));
+                    UniTask.WaitUntil(() => InputGetter.Instance.PlayerCancelWhileUnpause, cancellationToken: ct));
                 _uiElements.LogText.ShowManually(string.Empty);
                 if (j is not 1) continue;
 
@@ -37,7 +37,7 @@ namespace Main.EventManager
                     _uiElements.LogText.ShowManually("[ ぬける(右クリック) ]");
                     int k = await UniTask.WhenAny(
                         UniTask.WaitUntil(() => border.Out.IsIn(_player.Position) is false, cancellationToken: ct),
-                        UniTask.WaitUntil(() => InputGetter.Instance.PlayerCancel.Bool, cancellationToken: ct));
+                        UniTask.WaitUntil(() => InputGetter.Instance.PlayerCancelWhileUnpause, cancellationToken: ct));
                     _uiElements.LogText.ShowManually(string.Empty);
                     if (k is 1) break;
                 }

@@ -42,7 +42,7 @@ namespace Main.EventManager
                     _uiElements.LogText.ShowManually(isEnter ? "[ くぐる(右クリック) ]" : "[ ぬける(右クリック) ]");
                     int j = await UniTask.WhenAny(
                         UniTask.WaitUntil(() => element.GetBorder(isEnter).IsIn(_player.Position) is false, cancellationToken: ct),
-                        UniTask.WaitUntil(() => InputGetter.Instance.PlayerCancel.Bool, cancellationToken: ct));
+                        UniTask.WaitUntil(() => InputGetter.Instance.PlayerCancelWhileUnpause, cancellationToken: ct));
                     _uiElements.LogText.ShowManually(string.Empty);
 
                     if (j is not 1) continue;
