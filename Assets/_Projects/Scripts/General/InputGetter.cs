@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Threading;
 using Cysharp.Threading.Tasks;
+using Main;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
@@ -274,6 +275,9 @@ namespace IA
         private static readonly float PlayerActionCooltime = 0.5f;
         public bool PlayerActionWithCooltime { get; private set; } = false;
 
+        private bool _canPlayerCancelWhileUnpause = true;
+        public bool PlayerCancelWhileUnpause => _canPlayerCancelWhileUnpause && PlayerCancel.Bool;
+
         private void Init()
         {
             PlayerAction = new InputInfo(_ia.Player.Action, InputType.Click).Add(_inputInfoList);
@@ -283,6 +287,7 @@ namespace IA
             TriggerBenchmarkText = new InputInfo(_ia.Debug.TriggerBenchmarkText, InputType.Click).Add(_inputInfoList);
 
             CountPlayerActionCooltime(destroyCancellationToken).Forget();
+            CheckPlayerCancelAndPause(destroyCancellationToken).Forget();
         }
 
         private async UniTaskVoid CountPlayerActionCooltime(CancellationToken ct)
@@ -294,6 +299,22 @@ namespace IA
                 await UniTask.NextFrame(ct);
                 PlayerActionWithCooltime = false;
                 await UniTask.WaitForSeconds(PlayerActionCooltime, cancellationToken: ct);
+            }
+        }
+
+        // 「ポーズ」入力を受け取る側では、十分なフレームのクールタイムを儲けること！
+        private async UniTaskVoid CheckPlayerCancelAndPause(CancellationToken ct)
+        {
+            _canPlayerCancelWhileUnpause = PauseState.IsPaused is false;
+
+            while (true)
+            {
+                await UniTask.WaitUntil(() => PauseState.IsPaused == _canPlayerCancelWhileUnpause, cancellationToken: ct);
+                await UniTask.NextFrame(ct);
+                _canPlayerCancelWhileUnpause = !_canPlayerCancelWhileUnpause;
+                await UniTask.WaitUntil(() => PauseState.IsPaused == _canPlayerCancelWhileUnpause, cancellationToken: ct);
+                _canPlayerCancelWhileUnpause = !_canPlayerCancelWhileUnpause;
+                await UniTask.NextFrame(ct);
             }
         }
     }

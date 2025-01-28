@@ -7,6 +7,8 @@ using General;
 using TMPro;
 using StarterAssets;
 using Main.EventManager;
+using Cysharp.Threading.Tasks;
+using System.Threading;
 
 namespace Main
 {
@@ -92,6 +94,9 @@ namespace Main
 
         public static Subject<Unit> OnPauseBegin { get; set; } = new Subject<Unit>();
         public static Subject<Unit> OnPauseEnd { get; set; } = new Subject<Unit>();
+
+        private static readonly int _pauseInterval = 5; // 5フレームおきにしか「ポーズ」の入力を受け付けない
+        private bool _canPause = true;
 
         public static bool IsInputEnabled { get; set; } = true;
 
@@ -184,8 +189,11 @@ namespace Main
         {
             if (IsInputEnabled is false) return;
 
-            if (InputGetter.Instance.Pause.Bool)
+            if (_canPause && InputGetter.Instance.Pause.Bool)
             {
+                _canPause = false;
+                CountPauseCooltime(destroyCancellationToken).Forget();
+
                 switch (_state)
                 {
                     case State.OnGame:
@@ -219,6 +227,13 @@ namespace Main
                         break;
                 }
             }
+        }
+
+        private async UniTaskVoid CountPauseCooltime(CancellationToken ct)
+        {
+            if (_canPause is true) return;
+            await UniTask.DelayFrame(_pauseInterval, cancellationToken: ct);
+            _canPause = true;
         }
     }
 }
