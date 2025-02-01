@@ -19,6 +19,7 @@ MonoBehaviour:
   _seMixerGroup: {fileID: -2192650811841809601, guid: 8dc28d6ff9cac894bb75b062ed535873,
     type: 2}
   _bgm:
+    _title: {fileID: 0}
     _natureSoundWindOfMountain: {fileID: 8300000, guid: ff12a07754352f6419ea887e02be9f81,
       type: 3}
     _natureSoundDropOfWater: {fileID: 8300000, guid: 448182d0174fd3a428aa9b45b4601b0e,
@@ -33,6 +34,11 @@ MonoBehaviour:
   _voice:
     _daughterScream: {fileID: 8300000, guid: 6defbb0a96465411195ae2776b919116, type: 3}
     _daughterKidnapped: {fileID: 8300000, guid: b23ac6cab3d1946c3855a4e8b55c84ef,
+      type: 3}
+    _daughterMistakenDirection: {fileID: 8300000, guid: 905bf0cbc9b7891439aebf3185fe51ee,
+      type: 3}
+    _daughterOjizou: {fileID: 8300000, guid: e3bc35d522283c94d8cf8136b4e81525, type: 3}
+    _daughterRequestGoing: {fileID: 8300000, guid: 606f636612a8dd8469d213c574b1f2af,
       type: 3}
     _deerCry: {fileID: 0}
     _birdCry: {fileID: 8300000, guid: 0460d830f2b5e2b489d5c8f30e63144f, type: 3}
@@ -71,7 +77,7 @@ MonoBehaviour:
     _itemGetSound: {fileID: 8300000, guid: 97123134b6e00c443a9738188b4a9553, type: 3}
     _cutBigIvy: {fileID: 8300000, guid: 18c5ff3b711545c4b9a56b26815413e2, type: 3}
     _cutDeerNeck: {fileID: 8300000, guid: 0fcb003b6ae8c0f4885a1f5a955b027b, type: 3}
-    _cutShionChain: {fileID: 8300000, guid: d78a8e69726ef5b4497d8774adb9a900, type: 3}
+    _cutDaugherChain: {fileID: 8300000, guid: d78a8e69726ef5b4497d8774adb9a900, type: 3}
     _keyOpen: {fileID: 8300000, guid: 2f8ea79eafa4749409eca9c15b310928, type: 3}
     _cupGetBlood: {fileID: 8300000, guid: 97123134b6e00c443a9738188b4a9553, type: 3}
     _cupPourBlood: {fileID: 8300000, guid: 9190f64b3dcc4fa4680287176941502e, type: 3}

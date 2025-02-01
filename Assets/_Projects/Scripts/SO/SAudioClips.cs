@@ -92,6 +92,18 @@ namespace SO
             private AudioClip _daughterKidnapped;
             public AudioClip DaughterKidnapped => _daughterKidnapped;
 
+            [SerializeField, Required, AssetsOnly, LabelText("娘そっちじゃない")]
+            private AudioClip _daughterMistakenDirection;
+            public AudioClip DaughterMistakenDirection => _daughterMistakenDirection;
+
+            [SerializeField, Required, AssetsOnly, LabelText("娘お地蔵さん")]
+            private AudioClip _daughterOjizou;
+            public AudioClip DaughterOjizou => _daughterOjizou;
+
+            [SerializeField, Required, AssetsOnly, LabelText("娘先に行って")]
+            private AudioClip _daughterRequestGoing;
+            public AudioClip DaughterRequestGoing => _daughterRequestGoing;
+
             [SerializeField, Required, AssetsOnly, LabelText("鹿の鳴き声")]
             private AudioClip _deerCry;
             public AudioClip DeerCry => _deerCry;
