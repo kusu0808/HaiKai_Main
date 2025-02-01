@@ -132,11 +132,6 @@ namespace SO
             private AudioClip _yatsuDamagedVoice;
             public AudioClip YaTsuDamagedVoice => _yatsuDamagedVoice;
 
-
-            [SerializeField, Required, AssetsOnly, LabelText("ヤツ追跡中")]
-            private AudioClip _yatsuChasingVoice;
-            public AudioClip YaTsuChasingVoice => _yatsuChasingVoice;
-
         }
 
         [Serializable]
@@ -225,10 +220,6 @@ namespace SO
             [SerializeField, Required, AssetsOnly, LabelText("アイテムガラス片まく")]
             private AudioClip _setBreakedCup;
             public AudioClip ScatterGlassPiece => _setBreakedCup;
-
-            [SerializeField, Required, AssetsOnly, LabelText("アクション着地")]
-            private AudioClip _playerLandingGround;
-            public AudioClip PlayerLandingGround => _playerLandingGround;
 
             [SerializeField, Required, AssetsOnly, LabelText("アクション穴に入る")]
             private AudioClip _playerGoThroughHole;
