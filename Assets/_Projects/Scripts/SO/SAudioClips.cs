@@ -232,11 +232,11 @@ namespace SO
 
             [SerializeField, Required, AssetsOnly, LabelText("アクション穴に入る")]
             private AudioClip _playerGoThroughHole;
-            public AudioClip PlayeｒGoThroughHole => _playerGoThroughHole;
+            public AudioClip PlayerGoThroughHole => _playerGoThroughHole;
 
             [SerializeField, Required, AssetsOnly, LabelText("アクション穴から出る")]
             private AudioClip _playerGetOutHole;
-            public AudioClip PlayeｒGetOutHole => _playerGetOutHole;
+            public AudioClip PlayerGetOutHole => _playerGetOutHole;
 
             [SerializeField, Required, AssetsOnly, LabelText("アクションドアを開ける")]
             private AudioClip _playerOpenJapaneseDoor;

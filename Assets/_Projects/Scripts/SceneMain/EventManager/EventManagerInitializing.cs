@@ -38,6 +38,7 @@ namespace Main.EventManager
             _player.IsPlayerControlEnabled = true;
 
             _busMover.MoveOnce(ct).Forget();
+            _audioSources.GetNew().Raise(_audioClips.SE.VehicleSoundBusBeginToMove, SoundType.SE);
         }
 
         private async UniTaskVoid InitializeDebugProperty(CancellationToken ct)

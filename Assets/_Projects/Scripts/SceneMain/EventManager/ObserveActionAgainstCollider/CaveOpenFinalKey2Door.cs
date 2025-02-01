@@ -1,4 +1,5 @@
 using System.Collections.Generic;
+using General;
 using Main.Eventer.Objects.DoorPuzzleSolving;
 using Main.Eventer.UIElements;
 using FinalKey2DoorType = Main.Eventer.Objects.DoorPuzzleSolving.FinalKey2Door.Type;
@@ -77,6 +78,7 @@ namespace Main.EventManager
                 else
                 {
                     _uiElements.LogText.ShowAutomatically("鍵を差した");
+                    _audioSources.GetNew().Raise(_audioClips.SE.KeyOpen, SoundType.SE);
                 }
             }
         }

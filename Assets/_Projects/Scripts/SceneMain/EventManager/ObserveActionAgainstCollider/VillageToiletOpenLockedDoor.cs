@@ -19,6 +19,7 @@ namespace Main.EventManager
                     _uiElements.WarehouseKey.Obtain();
 
                     _uiElements.LogText.ShowAutomatically("鍵を開けた");
+                    _audioSources.GetNew().Raise(_audioClips.SE.KeyOpen, SoundType.SE);
 
                     _yatsu.Despawn();
                     await UniTask.WaitForSeconds(0.5f, cancellationToken: ct);
