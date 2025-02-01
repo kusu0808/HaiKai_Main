@@ -1,5 +1,6 @@
 using System.Threading;
 using Cysharp.Threading.Tasks;
+using General;
 using IA;
 
 namespace Main.EventManager
@@ -27,6 +28,7 @@ namespace Main.EventManager
                     _uiElements.GlassShard.Release();
                     _objects.VillageFarWayScatteredGlassPiece.IsEnabled = true;
                     _uiElements.LogText.ShowAutomatically("ガラス片を撒いた");
+                    _audioSources.GetNew().Raise(_audioClips.SE.ScatterGlassPiece, SoundType.SE);
                     break;
                 }
             }

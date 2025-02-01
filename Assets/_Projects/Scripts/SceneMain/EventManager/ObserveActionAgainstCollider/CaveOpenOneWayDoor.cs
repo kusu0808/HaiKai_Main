@@ -1,3 +1,4 @@
+using General;
 using Main.Eventer.Objects.DoorPuzzleSolving;
 
 namespace Main.EventManager
@@ -22,6 +23,7 @@ namespace Main.EventManager
             _hasTriggeredCaveOneWayDoor = true;
             door.Trigger();
             _uiElements.LogText.ShowAutomatically("ドアを開けた");
+            _audioSources.GetNew().Raise(_audioClips.SE.OpenIronSlideDoor, SoundType.SE);
         }
     }
 }

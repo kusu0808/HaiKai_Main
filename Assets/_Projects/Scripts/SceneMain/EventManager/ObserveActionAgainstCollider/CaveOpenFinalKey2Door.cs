@@ -48,6 +48,7 @@ namespace Main.EventManager
                 door.SetKey(type, false);
 
                 _uiElements.LogText.ShowAutomatically("鍵を取った");
+                _audioSources.GetNew().Raise(_audioClips.SE.ObtainItem, SoundType.SE);
             }
             else
             {
@@ -55,6 +56,7 @@ namespace Main.EventManager
                 if (holdingKey is null)
                 {
                     _uiElements.LogText.ShowAutomatically("鍵がかかっている");
+                    _audioSources.GetNew().Raise(_audioClips.SE.OpenIronUnopenableDoor, SoundType.SE);
                     return;
                 }
 
@@ -74,6 +76,8 @@ namespace Main.EventManager
                 {
                     door.Trigger();
                     _uiElements.LogText.ShowAutomatically("パズルを解いた");
+                    _audioSources.GetNew().Raise(_audioClips.SE.KeyOpen, SoundType.SE);
+                    _audioSources.GetNew().Raise(_audioClips.SE.OpenIronKannonDoor, SoundType.SE);
                 }
                 else
                 {

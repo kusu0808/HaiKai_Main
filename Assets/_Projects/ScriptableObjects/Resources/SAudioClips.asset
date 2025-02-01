@@ -88,7 +88,15 @@ MonoBehaviour:
     _playerGoThroughHole: {fileID: 8300000, guid: 329f080d912efaf46bb2e2eedea45989,
       type: 3}
     _playerGetOutHole: {fileID: 8300000, guid: 329f080d912efaf46bb2e2eedea45989, type: 3}
-    _playerOpenJapaneseDoor: {fileID: 8300000, guid: 5ab6711c7a1111749afe6e1c6e543f34,
+    _openWoodSlideDoor: {fileID: 8300000, guid: 5ab6711c7a1111749afe6e1c6e543f34,
       type: 3}
-    _playerOpenIronDoor: {fileID: 8300000, guid: 140e570b5af4947aa8fce03b5b788b2c,
+    _openWoodKannonDoor: {fileID: 8300000, guid: cc7ce30f9f7ae40359636ec785be7ace,
+      type: 3}
+    _openIronSlideDoor: {fileID: 8300000, guid: 140e570b5af4947aa8fce03b5b788b2c,
+      type: 3}
+    _openIronKannonDoor: {fileID: 8300000, guid: 8fdc1a8aa967a4a638b36f0d7e719494,
+      type: 3}
+    _openWoodUnopenableDoor: {fileID: 8300000, guid: aa84216e3e1fa45feb1cf67711e1ea13,
+      type: 3}
+    _openIronUnopenableDoor: {fileID: 8300000, guid: 94db7cf660c314031a9d0893b9a02698,
       type: 3}

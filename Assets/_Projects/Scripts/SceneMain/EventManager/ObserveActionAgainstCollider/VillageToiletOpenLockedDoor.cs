@@ -20,6 +20,7 @@ namespace Main.EventManager
 
                     _uiElements.LogText.ShowAutomatically("鍵を開けた");
                     _audioSources.GetNew().Raise(_audioClips.SE.KeyOpen, SoundType.SE);
+                    _audioSources.GetNew().Raise(_audioClips.SE.OpenWoodKannonDoor, SoundType.SE);
 
                     _yatsu.Despawn();
                     await UniTask.WaitForSeconds(0.5f, cancellationToken: ct);
@@ -33,10 +34,12 @@ namespace Main.EventManager
                 else if (_uiElements.IsHoldingAnyItem() is true)
                 {
                     _uiElements.LogText.ShowAutomatically("鍵を開けられるものはないだろうか？");
+                    _audioSources.GetNew().Raise(_audioClips.SE.OpenWoodUnopenableDoor, SoundType.SE);
                 }
                 else
                 {
                     _uiElements.LogText.ShowAutomatically("鍵がかかっている");
+                    _audioSources.GetNew().Raise(_audioClips.SE.OpenWoodUnopenableDoor, SoundType.SE);
                 }
             }
             else
@@ -55,6 +58,7 @@ namespace Main.EventManager
                 _hasDecidedNotToTurnBack = true;
 
                 _uiElements.LogText.ShowAutomatically("ここまで来たらもう引き返せない、先に進もう");
+                _audioSources.GetNew().Raise(_audioClips.SE.OpenWoodKannonDoor, SoundType.SE);
 
                 await UniTask.WaitForSeconds(0.5f, cancellationToken: ct);
                 await _TeleportPlayer(_points.VillageFarWayOutsideToiletPoint, ct);

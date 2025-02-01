@@ -1,3 +1,5 @@
+using General;
+
 namespace Main.EventManager
 {
     public sealed partial class EventManager
@@ -8,6 +10,7 @@ namespace Main.EventManager
 
             _uiElements.LogText.ShowAutomatically("失われた鍵を入手した");
             _uiElements.KeyInDoorPuzzleSolving.Obtain();
+            _audioSources.GetNew().Raise(_audioClips.SE.ObtainItem, SoundType.SE);
             _objects.KeyInDoorPuzzleSolving.IsEnabled = false;
         }
     }
