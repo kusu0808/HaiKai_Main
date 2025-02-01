@@ -192,7 +192,7 @@ namespace SO
 
             [SerializeField, Required, AssetsOnly, LabelText("アイテム入手")]
             private AudioClip _itemGetSound;
-            public AudioClip ItemGetSond => _itemGetSound;
+            public AudioClip ObtainItem => _itemGetSound;
 
             [SerializeField, Required, AssetsOnly, LabelText("アイテムナイフでツタを切る")]
             private AudioClip _cutBigIvy;
@@ -212,11 +212,11 @@ namespace SO
 
             [SerializeField, Required, AssetsOnly, LabelText("アイテム鹿の血すくう")]
             private AudioClip _cupGetBlood;
-            public AudioClip CupGetBlood => _cupGetBlood;
+            public AudioClip ScoopDeerBlood => _cupGetBlood;
 
             [SerializeField, Required, AssetsOnly, LabelText("アイテム鹿の血かける")]
             private AudioClip _cupPourBlood;
-            public AudioClip CupPourBlood => _cupPourBlood;
+            public AudioClip PourDeerBlood => _cupPourBlood;
 
             [SerializeField, Required, AssetsOnly, LabelText("アイテムコップ壊す")]
             private AudioClip _cupBreaking;
@@ -224,7 +224,7 @@ namespace SO
 
             [SerializeField, Required, AssetsOnly, LabelText("アイテムガラス片まく")]
             private AudioClip _setBreakedCup;
-            public AudioClip SetBreakedCup => _setBreakedCup;
+            public AudioClip ScatterGlassPiece => _setBreakedCup;
 
             [SerializeField, Required, AssetsOnly, LabelText("アクション着地")]
             private AudioClip _playerLandingGround;
@@ -232,19 +232,35 @@ namespace SO
 
             [SerializeField, Required, AssetsOnly, LabelText("アクション穴に入る")]
             private AudioClip _playerGoThroughHole;
-            public AudioClip PlayeｒGoThroughHole => _playerGoThroughHole;
+            public AudioClip PlayerGoThroughHole => _playerGoThroughHole;
 
             [SerializeField, Required, AssetsOnly, LabelText("アクション穴から出る")]
             private AudioClip _playerGetOutHole;
-            public AudioClip PlayeｒGetOutHole => _playerGetOutHole;
+            public AudioClip PlayerGetOutHole => _playerGetOutHole;
 
-            [SerializeField, Required, AssetsOnly, LabelText("アクションドアを開ける")]
-            private AudioClip _playerOpenJapaneseDoor;
-            public AudioClip PlayerOpenJapaneseDoor => _playerOpenJapaneseDoor;
+            [SerializeField, Required, AssetsOnly, LabelText("アクションドアを開ける（木製、スライド）")]
+            private AudioClip _openWoodSlideDoor;
+            public AudioClip OpenWoodSlideDoor => _openWoodSlideDoor;
 
-            [SerializeField, Required, AssetsOnly, LabelText("アクション鉄ドアを開ける")]
-            private AudioClip _playerOpenIronDoor;
-            public AudioClip PlayerOpenIronDoor => _playerOpenIronDoor;
+            [SerializeField, Required, AssetsOnly, LabelText("アクションドアを開ける（木製、観音開き）")]
+            private AudioClip _openWoodKannonDoor;
+            public AudioClip OpenWoodKannonDoor => _openWoodKannonDoor;
+
+            [SerializeField, Required, AssetsOnly, LabelText("アクションドアを開ける（鉄製、スライド）")]
+            private AudioClip _openIronSlideDoor;
+            public AudioClip OpenIronSlideDoor => _openIronSlideDoor;
+
+            [SerializeField, Required, AssetsOnly, LabelText("アクションドアを開ける（鉄製、観音開き）")]
+            private AudioClip _openIronKannonDoor;
+            public AudioClip OpenIronKannonDoor => _openIronKannonDoor;
+
+            [SerializeField, Required, AssetsOnly, LabelText("アクションドアを開ける（木製、開かない）")]
+            private AudioClip _openWoodUnopenableDoor;
+            public AudioClip OpenWoodUnopenableDoor => _openWoodUnopenableDoor;
+
+            [SerializeField, Required, AssetsOnly, LabelText("アクションドアを開ける（鉄製、開かない）")]
+            private AudioClip _openIronUnopenableDoor;
+            public AudioClip OpenIronUnopenableDoor => _openIronUnopenableDoor;
         }
 
         [Serializable]

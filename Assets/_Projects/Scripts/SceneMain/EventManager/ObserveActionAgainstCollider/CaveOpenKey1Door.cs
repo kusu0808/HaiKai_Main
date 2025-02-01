@@ -1,4 +1,5 @@
 using System.Collections.Generic;
+using General;
 using Main.Eventer.Objects.DoorPuzzleSolving;
 using Main.Eventer.UIElements;
 using Key1DoorType = Main.Eventer.Objects.DoorPuzzleSolving.Key1Door.Type;
@@ -45,6 +46,8 @@ namespace Main.EventManager
 
                 door.Trigger();
                 _uiElements.LogText.ShowAutomatically("鍵を取った");
+                _audioSources.GetNew().Raise(_audioClips.SE.ObtainItem, SoundType.SE);
+                _audioSources.GetNew().Raise(_audioClips.SE.OpenIronSlideDoor, SoundType.SE);
             }
             else
             {
@@ -52,6 +55,7 @@ namespace Main.EventManager
                 if (holdingKey is null)
                 {
                     _uiElements.LogText.ShowAutomatically("鍵がかかっている");
+                    _audioSources.GetNew().Raise(_audioClips.SE.OpenIronUnopenableDoor, SoundType.SE);
                     return;
                 }
 
@@ -68,6 +72,8 @@ namespace Main.EventManager
 
                 door.Trigger();
                 _uiElements.LogText.ShowAutomatically("鍵を差した");
+                _audioSources.GetNew().Raise(_audioClips.SE.KeyOpen, SoundType.SE);
+                _audioSources.GetNew().Raise(_audioClips.SE.OpenIronSlideDoor, SoundType.SE);
             }
         }
     }

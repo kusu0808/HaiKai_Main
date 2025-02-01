@@ -1,3 +1,5 @@
+using General;
+
 namespace Main.EventManager
 {
     public sealed partial class EventManager
@@ -10,6 +12,7 @@ namespace Main.EventManager
             {
                 _objects.Deers.HurtByKnife();
                 _uiElements.LogText.ShowAutomatically("温かい血が迸った");
+                _audioSources.GetNew().Raise(_audioClips.SE.CutDeerNeck, SoundType.SE);
             }
             else if (_uiElements.IsHoldingAnyItem() is true)
             {
