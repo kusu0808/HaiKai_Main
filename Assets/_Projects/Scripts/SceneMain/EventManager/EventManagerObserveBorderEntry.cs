@@ -12,6 +12,8 @@ namespace Main.EventManager
             // 一回だけ
             PathWayFirstFootOnDish(ct).Forget();
             PathWayCannotGo(ct).Forget();
+            PathWayDaughterSaysJizo(ct).Forget();
+            PathWayDaughterSaysGoAhead(ct).Forget();
             VillageWayDeerCry(ct).Forget();
             VillageWayDeerAppear(ct).Forget();
             VillageWayBirdAppear(ct).Forget();
@@ -30,13 +32,11 @@ namespace Main.EventManager
 
             // 繰り返し
             GeneralPlayWalkingSounds(ct).Forget();
+            GeneralDaughterSaysCannotGo(ct).Forget();
             GeneralEnableGoUpStairs(ct).Forget();
-            BusStopCannotMove(ct).Forget();
             PathWaySquat(ct).Forget();
             VillageUnderStageSquatAndGoThrough(ct);
             VillageWayCannotGoBackAfterWarehouse(ct).Forget();
-            ShrineUpWayDaughterSaysNotHere(ct).Forget();
-            PathWayDaughterSaysNotHere(ct).Forget();
         }
 
         // 後方置換されるかも

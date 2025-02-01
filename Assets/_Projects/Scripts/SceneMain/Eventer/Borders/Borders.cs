@@ -13,13 +13,21 @@ namespace Main.Eventer.Borders
         private WalkingSounds _walkingSounds;
         public WalkingSounds WalkingSounds => _walkingSounds;
 
-        [SerializeField, Required, SceneObjectsOnly, Tooltip("バス停：ここから先には行けない！")]
-        private MultiBorders _busStopCannotMove;
-        public MultiBorders BusStopCannotMove => _busStopCannotMove;
+        [SerializeField, Required, SceneObjectsOnly, Tooltip("先には行けないと娘に言われる")]
+        private MultiBorders _daughterSaysCannotGo;
+        public MultiBorders DaughterSaysCannotGo => _daughterSaysCannotGo;
+
+        [SerializeField, Required, SceneObjectsOnly, Tooltip("小道：娘が地蔵があると言う")]
+        private Border _pathWayDaughterSaysJizo;
+        public Border PathWayDaughterSaysJizo => _pathWayDaughterSaysJizo;
 
         [SerializeField, Required, SceneObjectsOnly, Tooltip("小道：初めて割れた皿を踏む")]
         private Border _pathWayFirstFootOnDish;
         public Border PathWayFirstFootOnDish => _pathWayFirstFootOnDish;
+
+        [SerializeField, Required, SceneObjectsOnly, Tooltip("小道：娘に先に行ってと言われる")]
+        private Border _pathWayDaughterSaysGoAhead;
+        public Border PathWayDaughterSaysGoAhead => _pathWayDaughterSaysGoAhead;
 
         [SerializeField, Required, SceneObjectsOnly, Tooltip("小道：しゃがんで通り抜ける 1")]
         private TeleportBorder _pathWaySquat1;
@@ -129,17 +137,9 @@ namespace Main.Eventer.Borders
         private Border _shrineUpWayYatsuAppearAtLastEscape;
         public Border ShrineUpWayYatsuAppearAtLastEscape => _shrineUpWayYatsuAppearAtLastEscape;
 
-        [SerializeField, Required, SceneObjectsOnly, Tooltip("神社上の道：娘にこっちじゃないと言われる")]
-        private Border _shrineUpWayDaughterSaysNotHere;
-        public Border ShrineUpWayDaughterSaysNotHere => _shrineUpWayDaughterSaysNotHere;
-
         [SerializeField, Required, SceneObjectsOnly, Tooltip("小道：最後の脱出時にヤツが現れる")]
         private Border _pathWayYatsuAppearAtLastEscape;
         public Border PathWayYatsuAppearAtLastEscape => _pathWayYatsuAppearAtLastEscape;
-
-        [SerializeField, Required, SceneObjectsOnly, Tooltip("小道：娘にこっちじゃないと言われる")]
-        private Border _pathWayDaughterSaysNotHere;
-        public Border PathWayDaughterSaysNotHere => _pathWayDaughterSaysNotHere;
 
         [SerializeField, Required, SceneObjectsOnly, Tooltip("バス停：脱出")]
         private Border _busStopEscape;
