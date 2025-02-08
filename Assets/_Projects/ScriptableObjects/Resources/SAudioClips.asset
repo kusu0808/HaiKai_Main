@@ -19,7 +19,7 @@ MonoBehaviour:
   _seMixerGroup: {fileID: -2192650811841809601, guid: 8dc28d6ff9cac894bb75b062ed535873,
     type: 2}
   _bgm:
-    _title: {fileID: 0}
+    _title: {fileID: 8300000, guid: b61bfd7a39c1ac34da3f22de4c261bae, type: 3}
     _natureSoundWindOfMountain: {fileID: 8300000, guid: ff12a07754352f6419ea887e02be9f81,
       type: 3}
     _natureSoundDropOfWater: {fileID: 8300000, guid: f7e3dd8ad43ba9b4dade09988d99e466,
