@@ -52,7 +52,18 @@ namespace Main
         private TextMeshProUGUI _mouseSensitivityText;
 
         [SerializeField, Required, SceneObjectsOnly]
+        private Button _checkInputButton;
+
+        [SerializeField, Required, SceneObjectsOnly]
         private Button _closeSettingButton;
+
+        [Header("Check Input UI")]
+
+        [SerializeField, Required, SceneObjectsOnly]
+        private Canvas _checkInputCanvas;
+
+        [SerializeField, Required, SceneObjectsOnly]
+        private Button _closeCheckInputButton;
 
         [Header("To Title UI")]
 
@@ -105,6 +116,7 @@ namespace Main
             OnGame,
             PauseUI,
             SettingUI,
+            CheckInputUI,
             ToTitleUI
         }
 
@@ -115,6 +127,7 @@ namespace Main
         {
             if (_pauseCanvas != null) _pauseCanvas.gameObject.SetActive(state == State.PauseUI);
             if (_settingCanvas != null) _settingCanvas.gameObject.SetActive(state == State.SettingUI);
+            if (_checkInputCanvas != null) _checkInputCanvas.gameObject.SetActive(state == State.CheckInputUI);
             if (_toTitleCanvas != null) _toTitleCanvas.gameObject.SetActive(state == State.ToTitleUI);
 
             if (state == State.OnGame)
@@ -179,7 +192,10 @@ namespace Main
                 mouseSensitivity = value;
                 if (_firstPersonController != null) _firstPersonController.RotationSpeed = value;
             });
+            _checkInputButton.onClick.AddListener(() => ChangeUI(State.CheckInputUI));
             _closeSettingButton.onClick.AddListener(() => ChangeUI(State.PauseUI));
+
+            _closeCheckInputButton.onClick.AddListener(() => ChangeUI(State.SettingUI));
 
             _yesButton.onClick.AddListener(() => Scene.ID.Title.LoadAsync().Forget());
             _noButton.onClick.AddListener(() => ChangeUI(State.PauseUI));
@@ -205,6 +221,9 @@ namespace Main
                     case State.SettingUI:
                         ChangeUI(State.OnGame);
                         break;
+                    case State.CheckInputUI:
+                        ChangeUI(State.OnGame);
+                        break;
                     case State.ToTitleUI:
                         ChangeUI(State.OnGame);
                         break;
@@ -221,6 +240,9 @@ namespace Main
                         break;
                     case State.SettingUI:
                         ChangeUI(State.PauseUI);
+                        break;
+                    case State.CheckInputUI:
+                        ChangeUI(State.SettingUI);
                         break;
                     case State.ToTitleUI:
                         ChangeUI(State.PauseUI);
