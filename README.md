@@ -11,6 +11,8 @@
 
 ◆利用規約
 
+・MIT Licenseを適用します。
+
 ・MIT Licenseの原文です。
 https://opensource.org/license/mit
 
