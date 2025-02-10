@@ -5,6 +5,7 @@
 ・2024/9-2025/2
 
 ◆利用規約
+
 ・MIT Licenseの原文です
 https://opensource.org/license/mit
 
