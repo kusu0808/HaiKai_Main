@@ -7,7 +7,7 @@
 
 ◆利用規約
 
-・MIT Licenseの原文です
+・MIT Licenseの原文です。
 https://opensource.org/license/mit
 
 ・MIT Licenseの日本語訳です。
