@@ -40,6 +40,7 @@ MonoBehaviour:
     _daughterOjizou: {fileID: 8300000, guid: 6a96d30abcd7f4c4f944d643b23d9ebd, type: 3}
     _daughterRequestGoing: {fileID: 8300000, guid: 128db5482a2b9d248b78e97190a7c1eb,
       type: 3}
+    _daughterCall: {fileID: 8300000, guid: b4b3631640427b346a59301c1658a1e7, type: 3}
     _deerCry: {fileID: 0}
     _birdCry: {fileID: 8300000, guid: 0460d830f2b5e2b489d5c8f30e63144f, type: 3}
     _yatsuImitateDaughterVoice: {fileID: 8300000, guid: 0caedbe5b599a5b49b7796c9e98e6505,

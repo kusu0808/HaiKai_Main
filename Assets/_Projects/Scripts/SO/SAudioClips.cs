@@ -104,6 +104,10 @@ namespace SO
             private AudioClip _daughterRequestGoing;
             public AudioClip DaughterRequestGoing => _daughterRequestGoing;
 
+            [SerializeField, Required, AssetsOnly, LabelText("娘呼び止める")]
+            private AudioClip _daughterCall;
+            public AudioClip DaughterCall => _daughterCall;
+
             [SerializeField, Required, AssetsOnly, LabelText("鹿の鳴き声")]
             private AudioClip _deerCry;
             public AudioClip DeerCry => _deerCry;
