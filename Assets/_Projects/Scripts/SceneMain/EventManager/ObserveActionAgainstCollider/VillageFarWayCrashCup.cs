@@ -15,11 +15,11 @@ namespace Main.EventManager
             }
             else if (_uiElements.IsHoldingAnyItem() is true)
             {
-                _uiElements.LogText.ShowAutomatically("このアイテムを割るわけにはいかない！");
+                _uiElements.LogText.ShowAutomatically("何かをたたき割れそうだ");
             }
             else
             {
-                _uiElements.LogText.ShowAutomatically("何かが割られた形跡がある");
+                _uiElements.LogText.ShowAutomatically("何かをたたき割れそうだ");
             }
         }
     }
