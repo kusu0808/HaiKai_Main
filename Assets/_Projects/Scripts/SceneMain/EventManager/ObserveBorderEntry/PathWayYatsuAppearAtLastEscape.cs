@@ -1,5 +1,6 @@
 using System.Threading;
 using Cysharp.Threading.Tasks;
+using General;
 
 namespace Main.EventManager
 {
@@ -14,6 +15,7 @@ namespace Main.EventManager
             _player.IsVisible = false;
             _isWalkingSoundMuted.Value = true;
 
+            _audioSources.GetNew().Raise(_audioClips.Voice.DaughterCall, SoundType.Voice);
             await _uiElements.BlackImage.FadeOut(0.5f, ct);
             await UniTask.WaitForSeconds(0.5f, cancellationToken: ct);
             _yatsu.SpawnHere(_points.PathWayYatsuComeAtLastEscapeSpawnPoint);
