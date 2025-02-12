@@ -75,6 +75,7 @@ namespace Main.EventManager
                 if (door.IsOpenBoth)
                 {
                     door.Trigger();
+                    _postProcessManager.ActivateSun();
                     _audioSources.GetNew().Raise(_audioClips.SE.KeyOpen, SoundType.SE);
                     _audioSources.GetNew().Raise(_audioClips.SE.OpenIronKannonDoor, SoundType.SE);
                 }
