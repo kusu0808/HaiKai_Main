@@ -81,6 +81,10 @@ namespace Main.Eventer.Objects
         public DaughterChainClass DaughterChain => _daughterChain;
 
         [SerializeField, Required, SceneObjectsOnly]
+        private BlockingVolumeClass _shrineCannotGetOutUntilDaughterSaved;
+        public BlockingVolumeClass ShrineCannotGetOutUntilDaughterSaved => _shrineCannotGetOutUntilDaughterSaved;
+
+        [SerializeField, Required, SceneObjectsOnly]
         private BlockingVolumeClass _shrineUpWayCannotGoAtLastEscape;
         public BlockingVolumeClass ShrineUpWayCannotGoAtLastEscape => _shrineUpWayCannotGoAtLastEscape;
 

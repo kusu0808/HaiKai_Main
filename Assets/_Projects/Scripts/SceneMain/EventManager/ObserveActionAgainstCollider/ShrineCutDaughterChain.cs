@@ -26,6 +26,7 @@ namespace Main.EventManager
                 _daughter.BecomeEmergencyMode();
                 await _uiElements.BlackImage.FadeIn(EventManagerConst.FadeInDuration, ct);
                 _hasSavedDaughter = true;
+                _objects.ShrineCannotGetOutUntilDaughterSaved.IsEnabled = false;
             }
             else if (_uiElements.IsHoldingAnyItem() is true)
             {
