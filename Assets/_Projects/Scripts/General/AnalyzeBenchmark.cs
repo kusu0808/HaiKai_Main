@@ -14,6 +14,8 @@ namespace General
         [SerializeField, Header("ベンチマークを表示するテキスト")]
         private TextMeshProUGUI _benchmarkText;
 
+#if UNITY_EDITOR
+
         private int _cnt = 0;
         private float _preT = 0f;
         private float _fps = 0f;
@@ -60,5 +62,7 @@ namespace General
         private float _reservedMemory => ByteToMegabyte(Profiler.GetTotalReservedMemoryLong());
         private float _memoryP => _allocatedMemory / _reservedMemory;
         private float ByteToMegabyte(long n) => (n >> 10) / 1024f;
+
+#endif
     }
 }

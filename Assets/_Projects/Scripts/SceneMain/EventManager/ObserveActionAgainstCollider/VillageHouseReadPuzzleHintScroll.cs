@@ -19,6 +19,8 @@ namespace Main.EventManager
             _uiElements.KokeshiScroll.IsEnabled = false;
             PauseState.IsPaused = false;
             TriggerPauseUI.IsInputEnabled = true;
+
+            if (_hasReadPuzzleHintScroll is false) _hasReadPuzzleHintScroll = true;
         }
     }
 }

@@ -20,11 +20,13 @@ namespace Main.EventManager
             }
             else if (_uiElements.IsHoldingAnyItem() is true)
             {
-                _uiElements.LogText.ShowAutomatically("このこけしは血に濡れていないようだ");
+                if (_hasReadPuzzleHintScroll is true) _uiElements.LogText.ShowAutomatically("このこけしは血に濡れていないようだ");
+                else _uiElements.LogText.ShowAutomatically("...");
             }
             else
             {
-                _uiElements.LogText.ShowAutomatically("このこけしは血に濡れていないようだ");
+                if (_hasReadPuzzleHintScroll is true) _uiElements.LogText.ShowAutomatically("このこけしは血に濡れていないようだ");
+                else _uiElements.LogText.ShowAutomatically("...");
             }
         }
     }

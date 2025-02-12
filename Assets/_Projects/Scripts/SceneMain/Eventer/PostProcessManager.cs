@@ -117,5 +117,11 @@ namespace Main.Eventer
             DOTween.To(() => ca.colorFilter.value, x => ca.colorFilter.value = x, new Color32(42, 45, 55, 255), TransitionDuration).SetEase(_ease)
                 .ToUniTask(cancellationToken: ct).Forget();
         }
+
+        public void ActivateSun()
+        {
+            if (_sun == null) return;
+            _sun.enabled = true;
+        }
     }
 }
