@@ -1,4 +1,5 @@
 using System.Collections.Generic;
+using System.Threading;
 using General;
 using Main.Eventer.Objects.DoorPuzzleSolving;
 using Main.Eventer.UIElements;
@@ -10,7 +11,7 @@ namespace Main.EventManager
     {
         private Dictionary<FinalKey2DoorType, UIItemClass> _caveFinalKey2DoorPlacedKeys = null;
 
-        private void CaveOpenFinalKey2Door(FinalKey2DoorType type)
+        private void CaveOpenFinalKey2Door(FinalKey2DoorType type, CancellationToken ctIfNeeded)
         {
             if (_caveFinalKey2DoorPlacedKeys is null)
             {
@@ -75,7 +76,7 @@ namespace Main.EventManager
                 if (door.IsOpenBoth)
                 {
                     door.Trigger();
-                    _postProcessManager.ActivateSun();
+                    _postProcessManager.DoLastEscapeTransition(ctIfNeeded).Forget();
                     _audioSources.GetNew().Raise(_audioClips.SE.KeyOpen, SoundType.SE);
                     _audioSources.GetNew().Raise(_audioClips.SE.OpenIronKannonDoor, SoundType.SE);
                 }

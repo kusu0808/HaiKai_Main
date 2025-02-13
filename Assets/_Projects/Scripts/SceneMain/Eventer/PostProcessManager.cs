@@ -37,6 +37,13 @@ namespace Main.Eventer
             Release
         }
 
+        private static readonly (float Shallow, float Deep) AoIntensity = (1.0f, 0.0f);
+        private static readonly (float Shallow, float Deep) CaContrast = (7.0f, 64.0f);
+        private static readonly (Color32 Shallow, Color32 Deep, Color32 LastEscape) CaColorFilter
+            = (new Color32(255, 255, 255, 255), new Color32(42, 45, 55, 255), new Color32(126, 135, 165, 255));
+        private static readonly float GameStartTransitionDuration = 90.0f;
+        private static readonly float LastEscapeTransitionDuration = 8.0f;
+
         /// <summary>
         /// 最初に呼んでほしい
         /// </summary>
@@ -71,37 +78,37 @@ namespace Main.Eventer
             {
                 case State.Develop:
                     {
-                        RenderSettings.ambientIntensity = 1.0f;
+                        RenderSettings.ambientIntensity = AoIntensity.Shallow;
                         _headLight.enabled = false;
                         _sun.enabled = true;
                         _postProcessVolume.enabled = false;
                         if (_postProcessVolume.profile.TryGet(out ColorAdjustments ca))
                         {
                             ca.active = false;
+                            ca.contrast.value = CaContrast.Shallow;
+                            ca.colorFilter.value = CaColorFilter.Shallow;
                         }
                     }
                     break;
 
                 case State.Release:
                     {
-                        RenderSettings.ambientIntensity = 0.0f;
+                        RenderSettings.ambientIntensity = AoIntensity.Deep;
                         _headLight.enabled = true;
                         _sun.enabled = false;
                         _postProcessVolume.enabled = true;
                         if (_postProcessVolume.profile.TryGet(out ColorAdjustments ca))
                         {
                             ca.active = true;
-                            ca.contrast.value = 7.0f;
-                            ca.colorFilter.value = new Color32(255, 255, 255, 255);
+                            ca.contrast.value = CaContrast.Shallow;
+                            ca.colorFilter.value = CaColorFilter.Shallow;
                         }
                     }
                     break;
             }
         }
 
-        private static readonly float TransitionDuration = 90.0f;
-
-        public void StartTransition(CancellationToken ct)
+        public async UniTaskVoid DoGameStartTransition(CancellationToken ct)
         {
 #if UNITY_EDITOR
             if (_useReleaseOnEditor is false) return;
@@ -112,16 +119,42 @@ namespace Main.Eventer
             if (_postProcessVolume == null) return;
             if (_postProcessVolume.profile.TryGet(out ColorAdjustments ca) is false) return;
 
-            DOTween.To(() => ca.contrast.value, x => ca.contrast.value = x, 64.0f, TransitionDuration).SetEase(_ease)
-                .ToUniTask(cancellationToken: ct).Forget();
-            DOTween.To(() => ca.colorFilter.value, x => ca.colorFilter.value = x, new Color32(42, 45, 55, 255), TransitionDuration).SetEase(_ease)
-                .ToUniTask(cancellationToken: ct).Forget();
+            await UniTask.WhenAll(
+                DOTween.To(() => ca.contrast.value, x => ca.contrast.value = x, CaContrast.Deep, GameStartTransitionDuration)
+                    .SetEase(_ease)
+                    .ToUniTask(cancellationToken: ct),
+                DOTween.To(() => ca.colorFilter.value, x => ca.colorFilter.value = x, CaColorFilter.Deep, GameStartTransitionDuration)
+                    .SetEase(_ease)
+                    .ToUniTask(cancellationToken: ct)
+            );
         }
 
-        public void ActivateSun()
+        public async UniTaskVoid DoLastEscapeTransition(CancellationToken ct)
         {
-            if (_sun == null) return;
-            _sun.enabled = true;
+#if UNITY_EDITOR
+            if (_useReleaseOnEditor is false) return;
+#else
+            if (_useReleaseOnBuild is false) return;
+#endif
+
+            if (_sun != null) _sun.enabled = true;
+
+            if (_postProcessVolume == null) return;
+            if (_postProcessVolume.profile.TryGet(out ColorAdjustments ca) is false) return;
+
+            await UniTask.WhenAll(
+                DOTween.To(() => RenderSettings.ambientIntensity, x => RenderSettings.ambientIntensity = x, AoIntensity.Shallow, LastEscapeTransitionDuration)
+                    .SetEase(_ease)
+                    .ToUniTask(cancellationToken: ct),
+                DOTween.To(() => ca.contrast.value, x => ca.contrast.value = x, CaContrast.Shallow, LastEscapeTransitionDuration)
+                    .SetEase(_ease)
+                    .ToUniTask(cancellationToken: ct),
+                DOTween.To(() => ca.colorFilter.value, x => ca.colorFilter.value = x, CaColorFilter.LastEscape, LastEscapeTransitionDuration)
+                    .SetEase(_ease)
+                    .ToUniTask(cancellationToken: ct)
+            );
+
+            if (_headLight != null) _headLight.enabled = false;
         }
     }
 }

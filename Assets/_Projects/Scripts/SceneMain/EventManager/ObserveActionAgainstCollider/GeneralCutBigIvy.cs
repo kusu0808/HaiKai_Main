@@ -14,7 +14,7 @@ namespace Main.EventManager
                 _objects.BigIvies.DeactivateThis(type);
                 _uiElements.LogText.ShowAutomatically("通れるようになった");
 
-                if (type == IvyType.PathWay) _postProcessManager.StartTransition(ctIfNeeded);
+                if (type == IvyType.PathWay) _postProcessManager.DoGameStartTransition(ctIfNeeded).Forget();
             }
             else if (_uiElements.IsHoldingAnyItem() is true)
             {
