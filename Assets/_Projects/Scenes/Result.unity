@@ -413,8 +413,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: "\u8131\u51FA\u6210\u529F\uFF1F\n<size=72> </size>\n<size=126>\u4E5E \u3046
-    \u3054 \u671F \u5F85 </size>\n<size=144> </size>\n<size=108>(10\u79D2\u5F8C\u306B\u30BF\u30A4\u30C8\u30EB\u306B\u623B\u308A\u307E\u3059...)</size>"
+  m_text: "\u8131\u51FA\u6210\u529F\uFF01\n<size=72> </size>\n<size=108>(10\u79D2\u5F8C\u306B\u30BF\u30A4\u30C8\u30EB\u306B\u623B\u308A\u307E\u3059...)</size>"
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 752743f0b65fd480f991a59eaa1d43fb, type: 2}
   m_sharedMaterial: {fileID: -8715956140816016504, guid: 752743f0b65fd480f991a59eaa1d43fb,

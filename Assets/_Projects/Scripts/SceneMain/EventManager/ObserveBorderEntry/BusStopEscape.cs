@@ -11,8 +11,23 @@ namespace Main.EventManager
             await UniTask.WaitUntil(() => _hasSavedDaughter is true, cancellationToken: ct);
             await UniTask.WaitUntil(() => _borders.BusStopEscape.IsIn(_player.Position) is true, cancellationToken: ct);
 
-            //ヤツが車に轢かれるムービー再生
-            //リザルトシーンでエンドロール表示"
+            _yatsu.Despawn();
+
+            TriggerPauseUI.IsInputEnabled = false;
+            _player.IsPlayerControlEnabled = false;
+            _player.IsVisible = false;
+            _isWalkingSoundMuted.Value = true;
+            _player.IsCameraEaseCut = true;
+
+            await _objects.BusStopEscapeTimeline.PlayOnce(ct);
+
+            // 一応、フラグを元に戻す
+            _player.IsCameraEaseCut = false;
+            _isWalkingSoundMuted.Value = false;
+            _player.IsVisible = true;
+            _player.IsPlayerControlEnabled = true;
+            TriggerPauseUI.IsInputEnabled = true;
+
             Scene.ID.Result.LoadAsync().Forget();
         }
     }
