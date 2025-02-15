@@ -12,6 +12,7 @@ namespace Main.EventManager
             await UniTask.WaitUntil(() => _borders.BusStopEscape.IsIn(_player.Position) is true, cancellationToken: ct);
 
             _yatsu.Despawn();
+            _daughter.Despawn();
 
             TriggerPauseUI.IsInputEnabled = false;
             _player.IsPlayerControlEnabled = false;
@@ -28,7 +29,7 @@ namespace Main.EventManager
             _player.IsPlayerControlEnabled = true;
             TriggerPauseUI.IsInputEnabled = true;
 
-            Scene.ID.Result.LoadAsync().Forget();
+            Scene.ID.Title.LoadAsync().Forget();
         }
     }
 }
