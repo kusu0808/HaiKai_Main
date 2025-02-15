@@ -41,8 +41,10 @@ namespace Main.Eventer
         private static readonly (float Shallow, float Deep) CaContrast = (7.0f, 64.0f);
         private static readonly (Color32 Shallow, Color32 Deep, Color32 LastEscape) CaColorFilter
             = (new Color32(255, 255, 255, 255), new Color32(42, 45, 55, 255), new Color32(126, 135, 165, 255));
+        private static readonly (float Shallow, float Deep) FogDensity = (0.0f, 0.5f);
         private static readonly float GameStartTransitionDuration = 90.0f;
         private static readonly float LastEscapeTransitionDuration = 8.0f;
+        private static readonly float FogTransitionDuration = 5.0f;
 
         /// <summary>
         /// 最初に呼んでほしい
@@ -79,6 +81,7 @@ namespace Main.Eventer
                 case State.Develop:
                     {
                         RenderSettings.ambientIntensity = AoIntensity.Shallow;
+                        RenderSettings.fogDensity = FogDensity.Shallow;
                         _headLight.enabled = false;
                         _sun.enabled = true;
                         _postProcessVolume.enabled = false;
@@ -94,6 +97,7 @@ namespace Main.Eventer
                 case State.Release:
                     {
                         RenderSettings.ambientIntensity = AoIntensity.Deep;
+                        RenderSettings.fogDensity = FogDensity.Shallow;
                         _headLight.enabled = true;
                         _sun.enabled = false;
                         _postProcessVolume.enabled = true;
@@ -155,6 +159,24 @@ namespace Main.Eventer
             );
 
             if (_headLight != null) _headLight.enabled = false;
+        }
+
+        public async UniTaskVoid DoFogTransition(bool isGenerate, CancellationToken ct)
+        {
+#if UNITY_EDITOR
+            if (_useReleaseOnEditor is false) return;
+#else
+            if (_useReleaseOnBuild is false) return;
+#endif
+
+            await DOTween.To(
+                () => RenderSettings.fogDensity,
+                x => RenderSettings.fogDensity = x,
+                isGenerate ? FogDensity.Deep : FogDensity.Shallow,
+                FogTransitionDuration
+            )
+            .SetEase(_ease)
+            .ToUniTask(cancellationToken: ct);
         }
     }
 }
