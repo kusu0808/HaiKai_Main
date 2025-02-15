@@ -99,5 +99,9 @@ namespace Main.Eventer.Objects
         [SerializeField, Required, SceneObjectsOnly]
         private TimelineClass _shrineWayYatsuComeAtLastEscapeTimeline;
         public TimelineClass ShrineWayYatsuComeAtLastEscapeTimeline => _shrineWayYatsuComeAtLastEscapeTimeline;
+
+        [SerializeField, Required, SceneObjectsOnly]
+        private TimelineClass _busStopEscapeTimeline;
+        public TimelineClass BusStopEscapeTimeline => _busStopEscapeTimeline;
     }
 }
