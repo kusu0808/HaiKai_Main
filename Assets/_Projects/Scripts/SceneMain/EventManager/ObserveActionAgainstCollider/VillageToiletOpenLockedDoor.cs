@@ -28,6 +28,7 @@ namespace Main.EventManager
 
                     AudioSource audioSource = _audioSources.VillageToiletYatsuKnockDoor;
                     if (audioSource != null) audioSource.Raise(_audioClips.BGM.YatsuKnockToiletDoor, SoundType.BGM);
+                    _postProcessManager.DoFogTransition(true, ct).Forget();
 
                     _hasRunAwayFromFirstYatsu = true;
                 }
@@ -59,6 +60,7 @@ namespace Main.EventManager
 
                 _uiElements.LogText.ShowAutomatically("ここまで来たらもう引き返せない、先に進もう");
                 _audioSources.GetNew().Raise(_audioClips.SE.OpenWoodKannonDoor, SoundType.SE);
+                _postProcessManager.DoFogTransition(false, ct).Forget();
 
                 await UniTask.WaitForSeconds(0.5f, cancellationToken: ct);
                 await _TeleportPlayer(_points.VillageFarWayOutsideToiletPoint, ct);

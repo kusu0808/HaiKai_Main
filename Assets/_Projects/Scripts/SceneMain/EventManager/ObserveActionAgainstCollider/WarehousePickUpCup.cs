@@ -4,7 +4,7 @@ namespace Main.EventManager
 {
     public sealed partial class EventManager
     {
-        private void VillageToiletPickUpCup()
+        private void WarehousePickUpCup()
         {
             if (_objects.ToiletCup.IsEnabled is false) return;
 
