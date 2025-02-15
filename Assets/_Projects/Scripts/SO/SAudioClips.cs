@@ -209,6 +209,10 @@ namespace SO
             private AudioClip _keyOpen;
             public AudioClip KeyOpen => _keyOpen;
 
+            [SerializeField, Required, AssetsOnly, LabelText("鹿が落下する")]
+            private AudioClip _deerFall;
+            public AudioClip DeerFall => _deerFall;
+
             [SerializeField, Required, AssetsOnly, LabelText("アイテム鹿の血すくう")]
             private AudioClip _cupGetBlood;
             public AudioClip ScoopDeerBlood => _cupGetBlood;
