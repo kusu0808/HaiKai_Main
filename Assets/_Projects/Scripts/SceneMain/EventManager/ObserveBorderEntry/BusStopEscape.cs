@@ -20,14 +20,10 @@ namespace Main.EventManager
             _isWalkingSoundMuted.Value = true;
             _player.IsCameraEaseCut = true;
 
-            await _objects.BusStopEscapeTimeline.PlayOnce(ct);
-
-            // 一応、フラグを元に戻す
-            _player.IsCameraEaseCut = false;
-            _isWalkingSoundMuted.Value = false;
-            _player.IsVisible = true;
-            _player.IsPlayerControlEnabled = true;
-            TriggerPauseUI.IsInputEnabled = true;
+            _objects.EndingCutScene.TranseBlackBorder(ct).Forget();
+            _objects.EndingCutScene.TranseTimeScale(ct).Forget();
+            await _objects.BusStopEscapeTimeline.PlayOnce(ct, deactivateAfterPlayed: false);
+            await _uiElements.BlackImage.FadeOut(1.5f, ct);
 
             Scene.ID.Title.LoadAsync().Forget();
         }
