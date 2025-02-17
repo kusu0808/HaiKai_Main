@@ -103,5 +103,9 @@ namespace Main.Eventer.Objects
         [SerializeField, Required, SceneObjectsOnly]
         private TimelineClass _busStopEscapeTimeline;
         public TimelineClass BusStopEscapeTimeline => _busStopEscapeTimeline;
+
+        [SerializeField, Required, SceneObjectsOnly]
+        private EndingCutSceneClass _endingCutScene;
+        public EndingCutSceneClass EndingCutScene => _endingCutScene;
     }
 }
