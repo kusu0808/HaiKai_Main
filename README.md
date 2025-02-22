@@ -18,5 +18,3 @@ https://opensource.org/license/mit
 
 ・MIT Licenseの日本語訳です。
 https://licenses.opensource.jp/MIT/MIT.html
-
-◆クレジット
