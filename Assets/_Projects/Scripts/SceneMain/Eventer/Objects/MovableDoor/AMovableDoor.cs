@@ -31,36 +31,36 @@ namespace Main.Eventer.Objects
 
         private bool _hasPlayedIfMoveOnce = false;
         private bool _hasOpenedIfNotMoveOnce = false;
+        private bool _isMoving = false;
+        public bool IsMoving => _isMoving;
 
         public void Trigger()
         {
+            if (_isMoving is true) return;
             if (_collider == null) return;
 
             if (_isMoveOnce)
             {
                 if (_hasPlayedIfMoveOnce is true) return;
-                UpdateColliderAndDoMove(true);
+                UpdateColliderAndDoMove(true, _collider.GetCancellationTokenOnDestroy()).Forget();
                 _hasPlayedIfMoveOnce = true;
             }
             else
             {
-                UpdateColliderAndDoMove(!_hasOpenedIfNotMoveOnce);
+                UpdateColliderAndDoMove(!_hasOpenedIfNotMoveOnce, _collider.GetCancellationTokenOnDestroy()).Forget();
                 Inverse(ref _hasOpenedIfNotMoveOnce);
             }
 
             static void Inverse(ref bool value) => value = !value;
-            void UpdateColliderAndDoMove(bool isOpen)
+            async UniTaskVoid UpdateColliderAndDoMove(bool isOpen, CancellationToken ct)
             {
+                _isMoving = true;
                 _collider.enabled = !isOpen; // 当たり判定とRayCast判定が同時に有効/無効化
-
-                DoMove(
-                    _collider.transform,
-                    isOpen ? _delta : -_delta,
-                    _collider.GetCancellationTokenOnDestroy()
-                    ).Forget();
+                await DoMove(_collider.transform, isOpen ? _delta : -_delta, ct);
+                _isMoving = false;
             }
         }
 
-        protected abstract UniTaskVoid DoMove(Transform transform, Vector3 delta, CancellationToken ct);
+        protected abstract UniTask DoMove(Transform transform, Vector3 delta, CancellationToken ct);
     }
 }

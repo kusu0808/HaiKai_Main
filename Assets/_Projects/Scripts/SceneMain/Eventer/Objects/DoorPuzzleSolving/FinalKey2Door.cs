@@ -31,31 +31,41 @@ namespace Main.Eventer.Objects.DoorPuzzleSolving
         [SerializeField, Required, FormerlySerializedAs("_door2"), SceneObjectsOnly]
         private RotateDoor _doorLeft;
 
-        public bool GetIsDoorLocked(Type type)
+        public bool IsMoving(Type type) => GetDoor(type)?.IsMoving ?? default;
+
+        public bool IsOpen(Type type)
         {
-            var key = GetKey(type);
-            if (key == null) return false;
-            return !key.enabled;
+            MeshRenderer key = GetKey(type);
+            if (key == null) return true;
+            return key.enabled;
         }
 
-        public bool Trigger(Type type)
+        public bool IsOpenBoth => IsOpen(Type.Right) && IsOpen(Type.Left);
+
+        public void SetKey(Type type, bool isActive)
         {
-            var key = GetKey(type);
-            if (key == null) return false;
-            key.enabled = true;
+            MeshRenderer key = GetKey(type);
+            if (key == null) return;
+            key.enabled = isActive;
+        }
 
-            if (GetIsDoorLocked(Type.Right) is true || GetIsDoorLocked(Type.Left) is true) return false;
-
+        public void Trigger()
+        {
             _doorRight?.Trigger();
             _doorLeft?.Trigger();
-
-            return true;
         }
 
         private MeshRenderer GetKey(Type type) => type switch
         {
             Type.Right => _keyRight,
             Type.Left => _keyLeft,
+            _ => null
+        };
+
+        private RotateDoor GetDoor(Type type) => type switch
+        {
+            Type.Right => _doorRight,
+            Type.Left => _doorLeft,
             _ => null
         };
     }

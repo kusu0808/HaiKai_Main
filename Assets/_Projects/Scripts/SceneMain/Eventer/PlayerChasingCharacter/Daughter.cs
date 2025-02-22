@@ -24,12 +24,16 @@ namespace Main.Eventer.PlayerChasingCharacter
             WalkTiredly // 逃走時には、この状態にはならない
         }
 
+        protected override float InitSpeed => 1.5f;
+
         private AnimationMode _animationMode = AnimationMode.Enter;
         private MoveState _moveState = MoveState.Idle;
+        private float _distanceFromPlayer = DistanceFromPlayerDefault;
         private float _movingTime = 0;
         private float _cachedSpeed = 0; // 足が遅くなる前のスピードを、一時的に保存
 
-        private static readonly float DistanceFromPlayer = 2;
+        private static readonly float DistanceFromPlayerDefault = 2;
+        private static readonly float DistanceFromPlayerAtEmergency = 1;
         private static readonly float TimeUntilBecomeTired = 5;
 
         protected override void ChasePlayerOnUpdateIfAvailableWithoutNullCheck(Transform playerTransform)
@@ -37,9 +41,9 @@ namespace Main.Eventer.PlayerChasingCharacter
             Vector2 daughterPos = _navMeshAgent.transform.position.WithoutY(out float daughterY);
             Vector2 playerPos = playerTransform.position.WithoutY(out _);
             Vector2 daughterToPlayer = playerPos - daughterPos;
-            if (daughterToPlayer.sqrMagnitude > DistanceFromPlayer * DistanceFromPlayer)
+            if (daughterToPlayer.sqrMagnitude > _distanceFromPlayer * _distanceFromPlayer)
             {
-                Vector3 targetPos = (playerPos - daughterToPlayer.normalized * DistanceFromPlayer).WithY(daughterY);
+                Vector3 targetPos = (playerPos - daughterToPlayer.normalized * _distanceFromPlayer).WithY(daughterY);
                 _navMeshAgent.SetDestination(targetPos);
             }
 
@@ -141,8 +145,9 @@ namespace Main.Eventer.PlayerChasingCharacter
         /// <summary>
         /// アニメーションのサブステートマシンを切り替える(入山時→逃走時)
         /// AnimationModeとパラメーターを同時に更新する
+        /// プレイヤーとの距離も近くなる
         /// </summary>
-        public void ChangeAnimationModeFromEnterToEscape()
+        public void BecomeEmergencyMode()
         {
             if (_animator == null) return;
             if (_animationMode is not AnimationMode.Enter) return;
@@ -150,6 +155,8 @@ namespace Main.Eventer.PlayerChasingCharacter
             _animationMode = AnimationMode.Escape;
             _animator.SetTrigger("DoEndEnter");
             _animator.SetTrigger("DoStartEscape");
+
+            _distanceFromPlayer = DistanceFromPlayerAtEmergency;
         }
     }
 }

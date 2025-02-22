@@ -13,15 +13,21 @@ MonoBehaviour:
   m_Name: SAudioClips
   m_EditorClassIdentifier: 
   _audioMixer: {fileID: 24100000, guid: 8dc28d6ff9cac894bb75b062ed535873, type: 2}
+  _masterMixerGroup: {fileID: 24300002, guid: 8dc28d6ff9cac894bb75b062ed535873, type: 2}
+  _bgmMixerGroup: {fileID: -6601038201499404773, guid: 8dc28d6ff9cac894bb75b062ed535873,
+    type: 2}
+  _seMixerGroup: {fileID: -2192650811841809601, guid: 8dc28d6ff9cac894bb75b062ed535873,
+    type: 2}
   _bgm:
+    _title: {fileID: 8300000, guid: b61bfd7a39c1ac34da3f22de4c261bae, type: 3}
     _natureSoundWindOfMountain: {fileID: 8300000, guid: ff12a07754352f6419ea887e02be9f81,
       type: 3}
-    _natureSoundDropOfWater: {fileID: 8300000, guid: 448182d0174fd3a428aa9b45b4601b0e,
+    _natureSoundDropOfWater: {fileID: 8300000, guid: f7e3dd8ad43ba9b4dade09988d99e466,
       type: 3}
     _walkOnBrokenDish: {fileID: 8300000, guid: 09ca79232c079294e81d78a2ee5ee9a2, type: 3}
     _walkOnAsphalt: {fileID: 8300000, guid: 6b50c1687710e48ae9f0be92d641f119, type: 3}
     _walkOnSoil: {fileID: 8300000, guid: 2b63f1d93eebade4490fa51fcb67e70f, type: 3}
-    _walkOnCorridor: {fileID: 8300000, guid: 5c1d8185e2ac0ae419d397394d9e93ab, type: 3}
+    _walkOnCorridor: {fileID: 8300000, guid: 02e6a45058de4e24faa08b2df172f9be, type: 3}
     _yatsuKnockToiletDoor: {fileID: 8300000, guid: 228889c5e38144e178bdfd34e205476c,
       type: 3}
     _chasedByYatsu: {fileID: 8300000, guid: c154f82c589654ac6bd37d4ffb064d5d, type: 3}
@@ -29,26 +35,30 @@ MonoBehaviour:
     _daughterScream: {fileID: 8300000, guid: 6defbb0a96465411195ae2776b919116, type: 3}
     _daughterKidnapped: {fileID: 8300000, guid: b23ac6cab3d1946c3855a4e8b55c84ef,
       type: 3}
+    _daughterMistakenDirection: {fileID: 8300000, guid: 080a8147573b7d84383a792544e2b5c1,
+      type: 3}
+    _daughterOjizou: {fileID: 8300000, guid: 6a96d30abcd7f4c4f944d643b23d9ebd, type: 3}
+    _daughterRequestGoing: {fileID: 8300000, guid: 128db5482a2b9d248b78e97190a7c1eb,
+      type: 3}
+    _daughterCall: {fileID: 8300000, guid: b4b3631640427b346a59301c1658a1e7, type: 3}
     _deerCry: {fileID: 0}
     _birdCry: {fileID: 8300000, guid: 0460d830f2b5e2b489d5c8f30e63144f, type: 3}
-    _yatsuImitateDaughterVoice: {fileID: 8300000, guid: af14c43878ea2a742bb22c689999305b,
+    _yatsuImitateDaughterVoice: {fileID: 8300000, guid: 0caedbe5b599a5b49b7796c9e98e6505,
       type: 3}
-    _yatsuImitateDaughterVoiceSecond: {fileID: 8300000, guid: 9297dc08d4f7f5643bfd05c4ebe67901,
+    _yatsuImitateDaughterVoiceSecond: {fileID: 8300000, guid: 9b5df652c4bd4c846a3b51ca56f5c9a7,
       type: 3}
-    _yatsuImitateDaughterVoiceSecondThird: {fileID: 8300000, guid: 839b054a8d50b20499b7f2783763cb3d,
+    _yatsuImitateDaughterVoiceSecondThird: {fileID: 8300000, guid: 4287e8f94a90b9a4fbcdb12a6f92fcfc,
       type: 3}
-    _yatsuShoutingVoice: {fileID: 8300000, guid: 62a58acdf2f1cf3428d9078018bebc02,
+    _yatsuShoutingVoice: {fileID: 8300000, guid: 800dd22cf114e1c4788d3e2aaed85a31,
       type: 3}
-    _yatsuDamagedVoice: {fileID: 8300000, guid: e1528ad84d0df1546b84ac5477d8cde5,
-      type: 3}
-    _yatsuChasingVoice: {fileID: 8300000, guid: a56885af16718214b80acf4b73552d68,
+    _yatsuDamagedVoice: {fileID: 8300000, guid: 4fdc8807a5315f449991aa000866f785,
       type: 3}
   _se:
     _grounded: {fileID: 0}
-    _dishBreak: {fileID: 8300000, guid: 09ca79232c079294e81d78a2ee5ee9a2, type: 3}
+    _dishBreak: {fileID: 8300000, guid: 8a7b25ce481764dadb15db19f1f68f1e, type: 3}
     _deerJumpOut: {fileID: 0}
     _deerRunAway: {fileID: 0}
-    _birdFlyAway: {fileID: 0}
+    _birdFlyAway: {fileID: 8300000, guid: 0460d830f2b5e2b489d5c8f30e63144f, type: 3}
     _feelingYatsuInHouse1: {fileID: 8300000, guid: ef71f143f9ad2a043886bedcd6e93d33,
       type: 3}
     _feelingYatsuInHouse2: {fileID: 8300000, guid: 95fa9f1f8e5cb37469f8e7273a1b1638,
@@ -66,18 +76,24 @@ MonoBehaviour:
     _itemGetSound: {fileID: 8300000, guid: 97123134b6e00c443a9738188b4a9553, type: 3}
     _cutBigIvy: {fileID: 8300000, guid: 18c5ff3b711545c4b9a56b26815413e2, type: 3}
     _cutDeerNeck: {fileID: 8300000, guid: 0fcb003b6ae8c0f4885a1f5a955b027b, type: 3}
-    _cutShionChain: {fileID: 8300000, guid: d78a8e69726ef5b4497d8774adb9a900, type: 3}
+    _cutDaugherChain: {fileID: 8300000, guid: d78a8e69726ef5b4497d8774adb9a900, type: 3}
     _keyOpen: {fileID: 8300000, guid: 2f8ea79eafa4749409eca9c15b310928, type: 3}
-    _cupGetBlood: {fileID: 8300000, guid: 97123134b6e00c443a9738188b4a9553, type: 3}
+    _cupGetBlood: {fileID: 8300000, guid: 9190f64b3dcc4fa4680287176941502e, type: 3}
     _cupPourBlood: {fileID: 8300000, guid: 9190f64b3dcc4fa4680287176941502e, type: 3}
     _cupBreaking: {fileID: 8300000, guid: 2797b458065377148af63f98329aeab9, type: 3}
     _setBreakedCup: {fileID: 8300000, guid: c217065fee99e0a43999492c1b2aaf8b, type: 3}
-    _playerLandingGround: {fileID: 8300000, guid: a543f877c094187479d381dd24ad8c01,
-      type: 3}
     _playerGoThroughHole: {fileID: 8300000, guid: 329f080d912efaf46bb2e2eedea45989,
       type: 3}
     _playerGetOutHole: {fileID: 8300000, guid: 329f080d912efaf46bb2e2eedea45989, type: 3}
-    _playerOpenJapaneseDoor: {fileID: 8300000, guid: 5ab6711c7a1111749afe6e1c6e543f34,
+    _openWoodSlideDoor: {fileID: 8300000, guid: 5ab6711c7a1111749afe6e1c6e543f34,
       type: 3}
-    _playerOpenIronDoor: {fileID: 8300000, guid: 140e570b5af4947aa8fce03b5b788b2c,
+    _openWoodKannonDoor: {fileID: 8300000, guid: cc7ce30f9f7ae40359636ec785be7ace,
+      type: 3}
+    _openIronSlideDoor: {fileID: 8300000, guid: 140e570b5af4947aa8fce03b5b788b2c,
+      type: 3}
+    _openIronKannonDoor: {fileID: 8300000, guid: 8fdc1a8aa967a4a638b36f0d7e719494,
+      type: 3}
+    _openWoodUnopenableDoor: {fileID: 8300000, guid: aa84216e3e1fa45feb1cf67711e1ea13,
+      type: 3}
+    _openIronUnopenableDoor: {fileID: 8300000, guid: 94db7cf660c314031a9d0893b9a02698,
       type: 3}

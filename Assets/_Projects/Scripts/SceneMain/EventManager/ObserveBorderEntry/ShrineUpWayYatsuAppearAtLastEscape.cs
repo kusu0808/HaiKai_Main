@@ -1,5 +1,6 @@
 using System.Threading;
 using Cysharp.Threading.Tasks;
+using IA;
 
 namespace Main.EventManager
 {
@@ -9,7 +10,39 @@ namespace Main.EventManager
         {
             await UniTask.WaitUntil(() => _hasSavedDaughter is true, cancellationToken: ct);
             await UniTask.WaitUntil(() => _borders.ShrineUpWayYatsuAppearAtLastEscape.IsIn(_player.Position) is true, cancellationToken: ct);
-            _yatsu.SpawnHere(_points.ShrineUpWayYatsuComeAtLastEscapeSpawnPoint);
+            await DoEvent(ct);
+
+            async UniTask DoEvent(CancellationToken ct)
+            {
+                TriggerPauseUI.IsInputEnabled = false;
+                _player.IsPlayerControlEnabled = false;
+                _player.IsVisible = false;
+                _isWalkingSoundMuted.Value = true;
+                _uiElements.CutSceneSkipLabel.IsEnabled = true;
+
+                _daughter.SpawnHere(_points.ShrineUpWayDaughterAtLastEscapeSpawnPoint);
+
+                int i = await UniTask.WhenAny(
+                    _objects.ShrineWayYatsuComeAtLastEscapeTimeline.PlayOnce(ct),
+                    WaitForCutSceneCancel(ct)
+                );
+                _objects.ShrineWayYatsuComeAtLastEscapeTimeline.StopForcibly();
+
+                _yatsu.SpawnHere(_points.ShrineUpWayYatsuComeAtLastEscapeSpawnPoint);
+
+                _uiElements.CutSceneSkipLabel.IsEnabled = false;
+                _isWalkingSoundMuted.Value = false;
+                _player.IsVisible = true;
+                _player.IsPlayerControlEnabled = true;
+                TriggerPauseUI.IsInputEnabled = true;
+            }
+
+            // 0.5秒待ってから、(カットシーンをキャンセルするための)キャンセル入力を受け付ける
+            async UniTask WaitForCutSceneCancel(CancellationToken ct)
+            {
+                await UniTask.WaitForSeconds(0.5f, cancellationToken: ct);
+                await UniTask.WaitUntil(() => InputGetter.Instance.PlayerCancel.Bool, cancellationToken: ct);
+            }
         }
     }
 }

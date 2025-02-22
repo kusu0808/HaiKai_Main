@@ -1,3 +1,6 @@
+using System.Collections.Generic;
+using System.Threading;
+using General;
 using Main.Eventer.Objects.DoorPuzzleSolving;
 using Main.Eventer.UIElements;
 using FinalKey2DoorType = Main.Eventer.Objects.DoorPuzzleSolving.FinalKey2Door.Type;
@@ -6,29 +9,83 @@ namespace Main.EventManager
 {
     public sealed partial class EventManager
     {
-        private void CaveOpenFinalKey2Door(FinalKey2DoorType type)
+        private Dictionary<FinalKey2DoorType, UIItemClass> _caveFinalKey2DoorPlacedKeys = null;
+
+        private void CaveOpenFinalKey2Door(FinalKey2DoorType type, CancellationToken ctIfNeeded)
         {
-            FinalKey2Door door = _objects.DoorPuzzleSolving.FinalKey2;
-            UIItemClass[] keys = _uiElements.KeysInFinalKey2Door;
-
-            if (door.Border.IsIn(_player.Position) is false) return;
-            if (door.GetIsDoorLocked(type) is false) return;
-
-            foreach (var key in keys)
+            if (_caveFinalKey2DoorPlacedKeys is null)
             {
-                if (key.IsHolding() is true)
+                _caveFinalKey2DoorPlacedKeys = new()
                 {
-                    key.Release();
+                    { FinalKey2DoorType.Left, null },
+                    { FinalKey2DoorType.Right, null },
+                };
 
-                    var hasOpened = door.Trigger(type);
-                    if (hasOpened is true) _uiElements.LogText.ShowAutomatically("鍵を開けた");
-                    else _uiElements.LogText.ShowAutomatically("鍵を差し込んだ");
-
-                    return;
-                }
+                _dispose += () =>
+                {
+                    _caveFinalKey2DoorPlacedKeys.Clear();
+                    _caveFinalKey2DoorPlacedKeys = null;
+                };
             }
 
-            _uiElements.LogText.ShowAutomatically("鍵がかかっている");
+            FinalKey2Door door = _objects.DoorPuzzleSolving.FinalKey2;
+            if (door.IsMoving(type) is true) return;
+
+            if (door.IsOpenBoth is true) return;
+
+            if (door.IsOpen(type) is true)
+            {
+                if (door.Border.IsIn(_player.Position) is false)
+                {
+                    _uiElements.LogText.ShowAutomatically("届かない...");
+                    return;
+                }
+
+                UIItemClass placedKey = _caveFinalKey2DoorPlacedKeys[type];
+                if (placedKey is null) return;
+                _caveFinalKey2DoorPlacedKeys[type] = null;
+
+                placedKey.Obtain();
+                door.SetKey(type, false);
+
+                _uiElements.LogText.ShowAutomatically("鍵を取った");
+                _audioSources.GetNew().Raise(_audioClips.SE.ObtainItem, SoundType.SE);
+            }
+            else
+            {
+                UIItemClass holdingKey = _uiElements.KeysInFinalKey2Door.IsHoldingAny();
+                if (holdingKey is null)
+                {
+                    _uiElements.LogText.ShowAutomatically("鍵がかかっている");
+                    _audioSources.GetNew().Raise(_audioClips.SE.OpenIronUnopenableDoor, SoundType.SE);
+                    return;
+                }
+
+                if (door.Border.IsIn(_player.Position) is false)
+                {
+                    _uiElements.LogText.ShowAutomatically("届かない...");
+                    return;
+                }
+
+                if (_caveFinalKey2DoorPlacedKeys[type] is not null) return;
+                _caveFinalKey2DoorPlacedKeys[type] = holdingKey;
+
+                holdingKey.Release();
+                door.SetKey(type, true);
+
+                if (door.IsOpenBoth)
+                {
+                    door.Trigger();
+                    _postProcessManager.DoLastEscapeTransition(ctIfNeeded).Forget();
+                    _audioSources.GetNew().Raise(_audioClips.SE.KeyOpen, SoundType.SE);
+                    _audioSources.GetNew().Raise(_audioClips.SE.OpenIronKannonDoor, SoundType.SE);
+                }
+                else
+                {
+                    _uiElements.LogText.ShowAutomatically("鍵を差した");
+                    _audioSources.GetNew().Raise(_audioClips.SE.KeyOpen, SoundType.SE);
+                }
+            }
         }
     }
 }

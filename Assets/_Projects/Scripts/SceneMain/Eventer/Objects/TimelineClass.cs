@@ -21,7 +21,7 @@ namespace Main.Eventer.Objects
         /// <summary>
         /// 一回のみ再生
         /// </summary>
-        public async UniTask PlayOnce(CancellationToken ct)
+        public async UniTask PlayOnce(CancellationToken ct, bool deactivateAfterPlayed = true)
         {
             if (_hasPlayed) return;
             if (_root == null) return;
@@ -30,8 +30,19 @@ namespace Main.Eventer.Objects
             _playableDirector.stopped += OnStopped;
             _root.SetActive(true);
             await UniTask.WaitUntil(() => _hasPlayed is true, cancellationToken: ct);
+            if (deactivateAfterPlayed) _root.SetActive(false);
+            _playableDirector.stopped -= OnStopped;
+        }
+
+        public void StopForcibly()
+        {
+            if (_root == null) return;
+            if (_playableDirector == null) return;
+
             _root.SetActive(false);
             _playableDirector.stopped -= OnStopped;
+
+            _hasPlayed = true;
         }
 
         private void OnStopped(PlayableDirector playableDirector)

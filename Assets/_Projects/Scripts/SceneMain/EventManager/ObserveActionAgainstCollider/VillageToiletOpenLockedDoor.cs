@@ -11,27 +11,37 @@ namespace Main.EventManager
         {
             if (_isOpenToiletLockedDoorEventEnabled is true)
             {
-                if (_uiElements.WarehouseKeyDoubled.IsHolding() is false)
+                if (_uiElements.WarehouseKeyDoubled.IsHolding() is true)
+                {
+                    _isOpenToiletLockedDoorEventEnabled = false;
+
+                    _uiElements.WarehouseKeyDoubled.Release();
+                    _uiElements.WarehouseKey.Obtain();
+
+                    _uiElements.LogText.ShowAutomatically("鍵を開けた");
+                    _audioSources.GetNew().Raise(_audioClips.SE.KeyOpen, SoundType.SE);
+                    _audioSources.GetNew().Raise(_audioClips.SE.OpenWoodKannonDoor, SoundType.SE);
+
+                    _yatsu.Despawn();
+                    await UniTask.WaitForSeconds(0.5f, cancellationToken: ct);
+                    await _TeleportPlayer(_points.VillageFarWayInsideToiletPoint, ct);
+
+                    AudioSource audioSource = _audioSources.VillageToiletYatsuKnockDoor;
+                    if (audioSource != null) audioSource.Raise(_audioClips.BGM.YatsuKnockToiletDoor, SoundType.BGM);
+                    _postProcessManager.DoFogTransition(true, ct).Forget();
+
+                    _hasRunAwayFromFirstYatsu = true;
+                }
+                else if (_uiElements.IsHoldingAnyItem() is true)
+                {
+                    _uiElements.LogText.ShowAutomatically("鍵を開けられるものはないだろうか？");
+                    _audioSources.GetNew().Raise(_audioClips.SE.OpenWoodUnopenableDoor, SoundType.SE);
+                }
+                else
                 {
                     _uiElements.LogText.ShowAutomatically("鍵がかかっている");
-                    return;
+                    _audioSources.GetNew().Raise(_audioClips.SE.OpenWoodUnopenableDoor, SoundType.SE);
                 }
-
-                _isOpenToiletLockedDoorEventEnabled = false;
-
-                _uiElements.WarehouseKeyDoubled.Release();
-                _uiElements.WarehouseKey.Obtain();
-
-                _uiElements.LogText.ShowAutomatically("鍵を開けた");
-
-                _yatsu.Despawn();
-                await UniTask.Delay(1000, ignoreTimeScale: true, cancellationToken: ct);
-                await _TeleportPlayer(_points.VillageFarWayInsideToiletPoint, ct);
-
-                AudioSource audioSource = _audioSources.VillageToiletYatsuKnockDoor;
-                if (audioSource != null) audioSource.Raise(_audioClips.BGM.YatsuKnockToiletDoor, SoundType.BGM);
-
-                _hasRunAwayFromFirstYatsu = true;
             }
             else
             {
@@ -48,9 +58,11 @@ namespace Main.EventManager
                 if (_hasDecidedNotToTurnBack is true) return;
                 _hasDecidedNotToTurnBack = true;
 
-                _uiElements.LogText.ShowAutomatically("ここまで来たらもう引き返せない");
+                _uiElements.LogText.ShowAutomatically("ここまで来たらもう引き返せない、先に進もう");
+                _audioSources.GetNew().Raise(_audioClips.SE.OpenWoodKannonDoor, SoundType.SE);
+                _postProcessManager.DoFogTransition(false, ct).Forget();
 
-                await UniTask.Delay(1000, ignoreTimeScale: true, cancellationToken: ct);
+                await UniTask.WaitForSeconds(0.5f, cancellationToken: ct);
                 await _TeleportPlayer(_points.VillageFarWayOutsideToiletPoint, ct);
             }
         }

@@ -8,20 +8,25 @@ namespace General
     {
         public enum ID
         {
+            Init,
             Title,
             Main,
             Death,
             Result
         }
 
+        private static bool _isLoading = false;
+
         /// <summary>
         /// キャンセル不可
         /// </summary>
         public static async UniTaskVoid LoadAsync(this ID id)
         {
+            if (_isLoading) return;
             string name = id.ToName();
             if (string.IsNullOrEmpty(name)) return;
 
+            _isLoading = true;
             PauseState.IsPaused = true;
             var opr = SceneManager.LoadSceneAsync(name);
             opr.allowSceneActivation = false;
@@ -29,10 +34,12 @@ namespace General
             opr.allowSceneActivation = true;
             await UniTask.WaitUntil(() => opr.isDone);
             PauseState.IsPaused = false;
+            _isLoading = false;
         }
 
         private static string ToName(this ID id) => id switch
         {
+            ID.Init => "Init",
             ID.Title => "Title",
             ID.Main => "Main",
             ID.Death => "Death",

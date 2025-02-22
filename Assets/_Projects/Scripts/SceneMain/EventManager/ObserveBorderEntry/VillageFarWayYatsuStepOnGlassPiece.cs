@@ -9,9 +9,8 @@ namespace Main.EventManager
         private async UniTaskVoid VillageFarWayYatsuStepOnGlassPiece(CancellationToken ct)
         {
             await UniTask.WaitUntil(() => _isPickUpSecretKeyEventEnabled is false, cancellationToken: ct);
-            _objects.VillageFarWayCanScatterGlassPieceArea.IsEnabled = true;
             await UniTask.WaitUntil(() => _objects.VillageFarWayScatteredGlassPiece.IsEnabled is true, cancellationToken: ct);
-            await UniTask.WaitUntil(() => _borders.VillageFarWayYatsuStepOnGlassPiece.IsIn(_yatsu.Position) is true, cancellationToken: ct);
+            await UniTask.WaitUntil(() => _borders.VillageFarWayGlassShardArea.IsIn(_yatsu.Position) is true, cancellationToken: ct);
 
             _yatsu.IsSlow = true;
             _audioSources.GetNew().Raise(_audioClips.Voice.YaTsuDamagedVoice, SoundType.Voice);

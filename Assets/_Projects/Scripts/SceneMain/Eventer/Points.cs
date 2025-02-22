@@ -50,5 +50,17 @@ namespace Main.Eventer
         [SerializeField, Required, SceneObjectsOnly, Tooltip("神社上の道で、最後の脱出時にヤツが現れる時の、スポーン場所")]
         private Transform _shrineUpWayYatsuComeAtLastEscapeSpawnPoint;
         public Transform ShrineUpWayYatsuComeAtLastEscapeSpawnPoint => _shrineUpWayYatsuComeAtLastEscapeSpawnPoint;
+
+        [SerializeField, Required, SceneObjectsOnly, Tooltip("小道で、最後の脱出時にヤツが現れる時の、スポーン場所")]
+        private Transform _pathWayYatsuComeAtLastEscapeSpawnPoint;
+        public Transform PathWayYatsuComeAtLastEscapeSpawnPoint => _pathWayYatsuComeAtLastEscapeSpawnPoint;
+
+        [SerializeField, Required, SceneObjectsOnly, Tooltip("神社上の道で、最後の脱出時にヤツが現れる時の、 娘のスポーン場所")]
+        private Transform _shrineUpWayDaughterAtLastEscapeSpawnPoint;
+        public Transform ShrineUpWayDaughterAtLastEscapeSpawnPoint => _shrineUpWayDaughterAtLastEscapeSpawnPoint;
+
+        [SerializeField, Required, SceneObjectsOnly, Tooltip("小道で、最後の脱出時にヤツが現れる時の、 娘のスポーン場所")]
+        private Transform _pathWayDaughterAtLastEscapeSpawnPoint;
+        public Transform PathWayDaughterAtLastEscapeSpawnPoint => _pathWayDaughterAtLastEscapeSpawnPoint;
     }
 }

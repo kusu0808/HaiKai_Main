@@ -39,11 +39,10 @@ namespace Main.EventManager
                 {
                     var element = await WaitUntilIsInAny(ct);
 
-                    _uiElements.LogText.ShowManually(isEnter ? "[くぐる(Wキー長押し)]" : "[ぬける(Wキー長押し)]");
-                    await UniTask.WaitForSeconds(0.5f, cancellationToken: ct);
+                    _uiElements.LogText.ShowManually(isEnter ? "[ くぐる(右クリック) ]" : "[ ぬける(右クリック) ]");
                     int j = await UniTask.WhenAny(
                         UniTask.WaitUntil(() => element.GetBorder(isEnter).IsIn(_player.Position) is false, cancellationToken: ct),
-                        UniTask.WaitUntil(() => InputGetter.Instance.PlayerSpecialAction.Bool, cancellationToken: ct));
+                        UniTask.WaitUntil(() => InputGetter.Instance.PlayerCancelWhileUnpause, cancellationToken: ct));
                     _uiElements.LogText.ShowManually(string.Empty);
 
                     if (j is not 1) continue;

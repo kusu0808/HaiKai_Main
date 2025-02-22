@@ -1,5 +1,6 @@
 using System.Threading;
 using Cysharp.Threading.Tasks;
+using IA;
 
 namespace Main.EventManager
 {
@@ -13,6 +14,7 @@ namespace Main.EventManager
 
             async UniTask DoEvent(CancellationToken ct)
             {
+                TriggerPauseUI.IsInputEnabled = false;
                 _player.IsPlayerControlEnabled = false;
                 _player.IsVisible = false;
                 _isWalkingSoundMuted.Value = true;
@@ -20,19 +22,33 @@ namespace Main.EventManager
 
                 await _uiElements.BlackImage.FadeOut(0.5f, ct);
                 await UniTask.WaitForSeconds(0.5f, cancellationToken: ct);
-                await UniTask.WhenAll(
-                    _objects.ShrineWayFoundByYatsuTimeline.PlayOnce(ct),
-                    WaitForFadeInOnEventBegin(ct),
-                    OnPlaying(ct)
+                int i = await UniTask.WhenAny(
+                    UniTask.WhenAll(
+                        _objects.ShrineWayFoundByYatsuTimeline.PlayOnce(ct),
+                        WaitForFadeInOnEventBegin(ct),
+                        OnPlaying(ct)
+                    ),
+                    WaitForCutSceneCancel(ct)
                 );
+
+                if (i == 1)
+                {
+                    // キャンセルされた
+                    // このとき、タイムライン再生以外のタスクは完了しているはず
+                    // フェードアウト → タイムラインの再生処理 → フェードイン を行う
+                    await CancelTimeline(ct);
+                }
+
                 _yatsu.SpawnHere(_points.ShrineWayYatsuSpawnPoint);
 
                 _player.IsCameraEaseCut = false;
                 _isWalkingSoundMuted.Value = false;
                 _player.IsVisible = true;
                 _player.IsPlayerControlEnabled = true;
+                TriggerPauseUI.IsInputEnabled = true;
             }
 
+            // 1フレーム待ってプレイヤーをテレポートさせ、ゲーム全体のフラグを更新する
             async UniTask OnPlaying(CancellationToken ct)
             {
                 await UniTask.NextFrame(cancellationToken: ct);
@@ -44,9 +60,29 @@ namespace Main.EventManager
                 _objects.VillageWayCannotGoBackAfterWarehouse.IsEnabled = true;
             }
 
+            // 5フレーム待って、0.5秒かけてフェードインする（見えるようになる）
             async UniTask WaitForFadeInOnEventBegin(CancellationToken ct)
             {
                 await UniTask.DelayFrame(5, cancellationToken: ct);
+                await _uiElements.BlackImage.FadeIn(0.5f, ct);
+            }
+
+            // 10フレーム待って、さらに0.5秒待ってから、(カットシーンをキャンセルするための)キャンセル入力を受け付ける
+            async UniTask WaitForCutSceneCancel(CancellationToken ct)
+            {
+                await UniTask.DelayFrame(10, cancellationToken: ct);
+                await UniTask.WaitForSeconds(0.5f, cancellationToken: ct);
+                await UniTask.WaitUntil(() => InputGetter.Instance.PlayerCancel.Bool, cancellationToken: ct);
+                _uiElements.CutSceneSkipLabel.IsEnabled = true;
+                await UniTask.WaitForSeconds(0.2f, cancellationToken: ct);
+                await UniTask.WaitUntil(() => InputGetter.Instance.PlayerCancel.Bool, cancellationToken: ct);
+                _uiElements.CutSceneSkipLabel.IsEnabled = false;
+            }
+
+            async UniTask CancelTimeline(CancellationToken ct)
+            {
+                await _uiElements.BlackImage.FadeOut(0.5f, ct);
+                _objects.ShrineWayFoundByYatsuTimeline.StopForcibly();
                 await _uiElements.BlackImage.FadeIn(0.5f, ct);
             }
         }

@@ -10,6 +10,7 @@ namespace Main.EventManager
         {
             await UniTask.WaitUntil(() => _borders.WarehouseDeerFall.IsIn(_player.Position) is true, cancellationToken: ct);
             _objects.Deers.Fall();
+            _audioSources.GetNew().Raise(_audioClips.SE.DeerFall, SoundType.SE);
         }
     }
 }

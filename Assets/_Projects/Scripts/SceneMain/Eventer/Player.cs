@@ -123,8 +123,13 @@ namespace Main.Eventer
 
         /// <summary>
         /// 完全にデバッグ用。戻すことはできない。
+        /// メインシーンに遷移する際に、強制的に一定の値に上書きする。
         /// </summary>
-        public void FastenLook() => _firstPersonController.RotationSpeed *= 3;
+        public void FastenLook()
+        {
+            _firstPersonController.RotationSpeed = EventManagerConst.RotationSpeedInit * 3;
+            TriggerPauseUI.MouseSensitivity = _firstPersonController.RotationSpeed;
+        }
 
         /// <summary>
         /// カメラの正面方向にRayを飛ばし、当たったColliderを返す

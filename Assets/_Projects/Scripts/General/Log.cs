@@ -4,36 +4,15 @@ namespace General
 {
     public static class Log
     {
-        public static string Tell(this string s, string colorCode = "ffffff")
-        {
-#if UNITY_EDITOR
-            Debug.Log($"<color=#{colorCode}>{s}</color>");
-            return s;
-#endif
-            return null;
-        }
+        private const string Symbol = "ENABLE_LOG";
 
-        public static T Show<T>(this T obj)
-        {
-#if UNITY_EDITOR
-            Debug.Log(obj);
-            return obj;
-#endif
-            return default(T);
-        }
+        [System.Diagnostics.Conditional(Symbol)]
+        public static void Tell(this string s, string colorCode = "ffffff") => Debug.Log($"<color=#{colorCode}>{s}</color>");
 
-        public static void Warn(this object obj)
-        {
-#if UNITY_EDITOR
-            Debug.LogWarning(obj);
-#endif
-        }
+        [System.Diagnostics.Conditional(Symbol)]
+        public static void Warn(this object obj) => Debug.LogWarning(obj);
 
-        public static void Error(this object obj)
-        {
-#if UNITY_EDITOR
-            Debug.LogError(obj);
-#endif
-        }
+        [System.Diagnostics.Conditional(Symbol)]
+        public static void Error(this object obj) => Debug.LogError(obj);
     }
 }

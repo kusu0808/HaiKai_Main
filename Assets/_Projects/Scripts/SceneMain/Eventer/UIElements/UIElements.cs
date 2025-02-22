@@ -3,6 +3,7 @@ using System.Threading;
 using UnityEngine;
 using SceneGeneral;
 using Sirenix.OdinInspector;
+using System.Collections.ObjectModel;
 
 namespace Main.Eventer.UIElements
 {
@@ -22,13 +23,11 @@ namespace Main.Eventer.UIElements
         public LogTextClass LogText => _logText;
 
         [SerializeField, Required, SceneObjectsOnly]
-        private ManagePlayerUI _managePlayerUI;
+        private ManageItemUI _manageItemUI;
 
         [SerializeField, Required, SceneObjectsOnly]
-        private TriggerPauseUI _triggerPauseUI;
-
-        [SerializeField, Required, SceneObjectsOnly]
-        private TriggerSettingUI _triggerSettingUI;
+        private LabelClass _cutSceneSkipLabel;
+        public LabelClass CutSceneSkipLabel => _cutSceneSkipLabel;
 
         [SerializeField, Required, AssetsOnly]
         private UIItemClass _daughterKnife;
@@ -66,8 +65,15 @@ namespace Main.Eventer.UIElements
         private ViewingItemClass _kokeshiScroll;
         public ViewingItemClass KokeshiScroll => _kokeshiScroll;
 
-        private UIItemClass[] _keysInFinalKey2Door;
-        public UIItemClass[] KeysInFinalKey2Door => _keysInFinalKey2Door;
+        private UIItemClass[] _keysInFinalKey2Door = null;
+        public ReadOnlyCollection<UIItemClass> KeysInFinalKey2Door
+        {
+            get
+            {
+                _keysInFinalKey2Door ??= new UIItemClass[] { _kokeshiSecretKey, _keyInDoorPuzzleSolving };
+                return Array.AsReadOnly(_keysInFinalKey2Door);
+            }
+        }
 
         // 最初に呼ぶこと！
         public void Init()
@@ -79,23 +85,35 @@ namespace Main.Eventer.UIElements
             Init(_cupFilledWithBlood);
             Init(_kokeshiSecretKey);
             Init(_glassShard);
+            Init(_keyInDoorPuzzleSolving);
 
-            void Init(UIItemClass uiItemClass) => uiItemClass?.Init(_managePlayerUI);
-
-            _keysInFinalKey2Door = new UIItemClass[] { _warehouseKey, _keyInDoorPuzzleSolving };
+            void Init(UIItemClass uiItemClass) => uiItemClass?.Init(_manageItemUI);
         }
 
-        public void ActivateUIManagers(CancellationToken ct)
+        public bool IsHoldingAnyItem()
         {
-            if (_managePlayerUI != null) _managePlayerUI.RollItem(ct).Forget();
-            if (_triggerPauseUI != null) _triggerPauseUI.Trigger(ct).Forget();
-            if (_triggerSettingUI != null) _triggerSettingUI.ChangeVolume(ct).Forget();
+            if (_daughterKnife?.IsHolding() is true) return true;
+            if (_warehouseKeyDoubled?.IsHolding() is true) return true;
+            if (_warehouseKey?.IsHolding() is true) return true;
+            if (_cup?.IsHolding() is true) return true;
+            if (_cupFilledWithBlood?.IsHolding() is true) return true;
+            if (_kokeshiSecretKey?.IsHolding() is true) return true;
+            if (_glassShard?.IsHolding() is true) return true;
+            if (_keyInDoorPuzzleSolving?.IsHolding() is true) return true;
+            return false;
         }
+    }
 
-        public void SetCursor(bool isActive)
+    public static class UIElementsEx
+    {
+        public static UIItemClass IsHoldingAny(this ReadOnlyCollection<UIItemClass> uiItemClasses)
         {
-            if (_triggerPauseUI == null) return;
-            _triggerPauseUI.SetCursor(isActive);
+            foreach (var uiItemClass in uiItemClasses)
+            {
+                if (uiItemClass.IsHolding() is true) return uiItemClass;
+            }
+
+            return null;
         }
     }
 }
