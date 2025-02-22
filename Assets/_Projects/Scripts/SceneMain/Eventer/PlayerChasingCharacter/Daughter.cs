@@ -24,6 +24,8 @@ namespace Main.Eventer.PlayerChasingCharacter
             WalkTiredly // 逃走時には、この状態にはならない
         }
 
+        protected override float InitSpeed => 1.5f;
+
         private AnimationMode _animationMode = AnimationMode.Enter;
         private MoveState _moveState = MoveState.Idle;
         private float _distanceFromPlayer = DistanceFromPlayerDefault;
