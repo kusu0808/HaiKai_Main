@@ -37,7 +37,7 @@ namespace Main.Eventer
             Release
         }
 
-        private static readonly (float Shallow, float Deep) AoIntensity = (1.0f, 0.0f);
+        private static readonly (float Shallow, float Deep) AoIntensity = (1.0f, 0.5f);
         private static readonly (float Shallow, float Deep) CaContrast = (7.0f, 64.0f);
         private static readonly (Color32 Shallow, Color32 Deep, Color32 LastEscape) CaColorFilter
             = (new Color32(255, 255, 255, 255), new Color32(42, 45, 55, 255), new Color32(126, 135, 165, 255));
