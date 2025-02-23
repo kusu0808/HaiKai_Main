@@ -37,10 +37,10 @@ namespace Main.Eventer
             Release
         }
 
-        private static readonly (float Shallow, float Deep) AoIntensity = (1.0f, 0.5f);
-        private static readonly (float Shallow, float Deep) CaContrast = (7.0f, 24.0f);
+        private static readonly (float Shallow, float Deep) AoIntensity = (1.0f, 0.8f);
+        private static readonly (float Shallow, float Deep) CaContrast = (7.0f, 10.0f);
         private static readonly (Color32 Shallow, Color32 Deep, Color32 LastEscape) CaColorFilter
-            = (new Color32(255, 255, 255, 255), new Color32(42, 45, 55, 255), new Color32(126, 135, 165, 255));
+            = (new Color32(255, 255, 255, 255), new Color32(84, 90, 110, 255), new Color32(126, 135, 165, 255));
         private static readonly (float Shallow, float Deep) FogDensity = (0.0f, 0.5f);
         private static readonly float GameStartTransitionDuration = 90.0f;
         private static readonly float LastEscapeTransitionDuration = 8.0f;

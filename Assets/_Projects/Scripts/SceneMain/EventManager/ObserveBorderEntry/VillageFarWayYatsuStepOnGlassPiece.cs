@@ -10,6 +10,7 @@ namespace Main.EventManager
         {
             await UniTask.WaitUntil(() => _isPickUpSecretKeyEventEnabled is false, cancellationToken: ct);
             await UniTask.WaitUntil(() => _objects.VillageFarWayScatteredGlassPiece.IsEnabled is true, cancellationToken: ct);
+            await UniTask.WaitUntil(() => _yatsu.IsEnabled is true, cancellationToken: ct);
             await UniTask.WaitUntil(() => _borders.VillageFarWayGlassShardArea.IsIn(_yatsu.Position) is true, cancellationToken: ct);
 
             _yatsu.IsSlow = true;

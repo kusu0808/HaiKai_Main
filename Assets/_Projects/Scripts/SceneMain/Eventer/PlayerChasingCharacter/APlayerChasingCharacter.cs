@@ -53,6 +53,7 @@ namespace Main.Eventer.PlayerChasingCharacter
                 }
             }
         }
+        public bool IsEnabled => isEnabled;
 
         private void ChasePlayerOnUpdateIfAvailable(Transform playerTransform)
         {
