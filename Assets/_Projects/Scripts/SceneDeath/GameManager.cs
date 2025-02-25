@@ -4,17 +4,19 @@ using General;
 using Sirenix.OdinInspector;
 using TMPro;
 using UnityEngine;
-using UnityEngine.Video;
 
 namespace Death
 {
     public sealed class GameManager : MonoBehaviour
     {
         [SerializeField, Required, SceneObjectsOnly]
-        private VideoPlayer _videoPlayer;
+        private Animator _deathMovieAnimator;
+
+        [SerializeField, Required, SceneObjectsOnly]
+        private AudioSource _deathMovieAudioSource;
 
         [SerializeField, Required, AssetsOnly]
-        private RenderTexture _renderTexture;
+        private AudioClip _deathMovieAudioClip;
 
         [SerializeField, Required, SceneObjectsOnly]
         private GameObject _goToTitleUI;
@@ -22,24 +24,16 @@ namespace Death
         [SerializeField, Required, SceneObjectsOnly]
         private TextMeshProUGUI _goToTitleText;
 
-        private void OnEnable()
+        private void OnEnable() => Main(destroyCancellationToken).Forget();
+
+        private async UniTaskVoid Main(CancellationToken ct)
         {
-            if (_videoPlayer == null) return;
-            if (_renderTexture == null) return;
-
-            _videoPlayer.loopPointReached += _ => OnVideoEnd(destroyCancellationToken).Forget();
-            _renderTexture.Release();
-            _videoPlayer.Play();
-        }
-
-        private async UniTaskVoid OnVideoEnd(CancellationToken ct)
-        {
-            if (_goToTitleUI != null) _goToTitleUI.SetActive(false);
-
-            await UniTask.WaitForSeconds(1, cancellationToken: ct);
+            await UniTask.DelayFrame(2, cancellationToken: ct);
+            if (_deathMovieAnimator != null) _deathMovieAnimator.SetTrigger("PlayOnce");
+            if (_deathMovieAudioSource != null) _deathMovieAudioSource.Raise(_deathMovieAudioClip, SoundType.SE);
+            await UniTask.WaitForSeconds(2.0f, cancellationToken: ct);
 
             if (_goToTitleUI != null) _goToTitleUI.SetActive(true);
-
             for (int i = 5; i >= 0; i--)
             {
                 if (i <= 0) Scene.ID.Title.LoadAsync().Forget();
