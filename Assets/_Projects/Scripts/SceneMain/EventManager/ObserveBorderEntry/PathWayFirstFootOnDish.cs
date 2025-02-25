@@ -9,8 +9,8 @@ namespace Main.EventManager
         private async UniTaskVoid PathWayFirstFootOnDish(CancellationToken ct)
         {
             await UniTask.WaitUntil(() => _borders.PathWayFirstFootOnDish.IsIn(_player.Position) is true, cancellationToken: ct);
-            _uiElements.LogText.ShowAutomatically("キャッ！");
             _audioSources.GetNew().Raise(_audioClips.SE.DishBreak, SoundType.SE);
+            _audioSources.GetNew().Raise(_audioClips.Voice.DaughterScream, SoundType.Voice);
         }
     }
 }

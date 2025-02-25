@@ -59,6 +59,10 @@ namespace Main.Eventer
         private Transform _shrineUpWayDaughterAtLastEscapeSpawnPoint;
         public Transform ShrineUpWayDaughterAtLastEscapeSpawnPoint => _shrineUpWayDaughterAtLastEscapeSpawnPoint;
 
+        [SerializeField, Required, SceneObjectsOnly, Tooltip("小道で、最後の脱出時にプレイヤーが飛び降りる時の、プレイヤーのテレポート場所")]
+        private Transform _pathWayPlayerTeleportPointAtLastEscape;
+        public Transform PathWayPlayerTeleportPointAtLastEscape => _pathWayPlayerTeleportPointAtLastEscape;
+
         [SerializeField, Required, SceneObjectsOnly, Tooltip("小道で、最後の脱出時にヤツが現れる時の、 娘のスポーン場所")]
         private Transform _pathWayDaughterAtLastEscapeSpawnPoint;
         public Transform PathWayDaughterAtLastEscapeSpawnPoint => _pathWayDaughterAtLastEscapeSpawnPoint;
