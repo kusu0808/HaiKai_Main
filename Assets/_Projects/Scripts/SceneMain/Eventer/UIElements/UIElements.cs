@@ -1,7 +1,5 @@
 ﻿using System;
-using System.Threading;
 using UnityEngine;
-using SceneGeneral;
 using Sirenix.OdinInspector;
 using System.Collections.ObjectModel;
 
