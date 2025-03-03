@@ -24,20 +24,20 @@ namespace Main.EventManager
                 await UniTask.WaitForSeconds(0.5f, cancellationToken: ct);
                 int i = await UniTask.WhenAny(
                     UniTask.WhenAll(
-                        _objects.ShrineWayFoundByYatsuTimeline.PlayOnce(ct),
+                        _objects.ShrineWayFoundByYatsuTimeline.PlayOnce(ct, deactivateAfterPlayed: false),
                         WaitForFadeInOnEventBegin(ct),
                         OnPlaying(ct)
                     ),
                     WaitForCutSceneCancel(ct)
                 );
 
-                if (i == 1)
-                {
-                    // キャンセルされた
-                    // このとき、タイムライン再生以外のタスクは完了しているはず
-                    // フェードアウト → タイムラインの再生処理 → フェードイン を行う
-                    await CancelTimeline(ct);
-                }
+                // キャンセルされた
+                // このとき、タイムライン再生以外のタスクは完了しているはず
+                // フェードアウト → タイムラインの再生キャンセル処理 → フェードイン を行う
+                // キャンセルされずに再生が終了した場合も、カメラの遷移を隠すために、一緒の処理をするので良さそう
+                await CancelTimeline(ct);
+
+                _uiElements.CutSceneSkipLabel.IsEnabled = false;
 
                 _yatsu.SpawnHere(_points.ShrineWayYatsuSpawnPoint);
 

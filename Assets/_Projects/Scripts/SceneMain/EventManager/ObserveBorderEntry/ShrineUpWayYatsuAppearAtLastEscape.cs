@@ -18,7 +18,6 @@ namespace Main.EventManager
                 _player.IsPlayerControlEnabled = false;
                 _player.IsVisible = false;
                 _isWalkingSoundMuted.Value = true;
-                _uiElements.CutSceneSkipLabel.IsEnabled = true;
 
                 _daughter.SpawnHere(_points.ShrineUpWayDaughterAtLastEscapeSpawnPoint);
 
@@ -28,9 +27,10 @@ namespace Main.EventManager
                 );
                 _objects.ShrineWayYatsuComeAtLastEscapeTimeline.StopForcibly();
 
+                _uiElements.CutSceneSkipLabel.IsEnabled = false;
+
                 _yatsu.SpawnHere(_points.ShrineUpWayYatsuComeAtLastEscapeSpawnPoint);
 
-                _uiElements.CutSceneSkipLabel.IsEnabled = false;
                 _isWalkingSoundMuted.Value = false;
                 _player.IsVisible = true;
                 _player.IsPlayerControlEnabled = true;
@@ -42,6 +42,10 @@ namespace Main.EventManager
             {
                 await UniTask.WaitForSeconds(0.5f, cancellationToken: ct);
                 await UniTask.WaitUntil(() => InputGetter.Instance.PlayerCancel.Bool, cancellationToken: ct);
+                _uiElements.CutSceneSkipLabel.IsEnabled = true;
+                await UniTask.WaitForSeconds(0.2f, cancellationToken: ct);
+                await UniTask.WaitUntil(() => InputGetter.Instance.PlayerCancel.Bool, cancellationToken: ct);
+                _uiElements.CutSceneSkipLabel.IsEnabled = false;
             }
         }
     }
